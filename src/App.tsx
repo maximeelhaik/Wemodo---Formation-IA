@@ -12,10 +12,21 @@ export default function App() {
     <div className="h-screen flex flex-col bg-wemodo-cream overflow-hidden">
       {/* Header */}
       <header className="border-b-4 border-wemodo-navy p-3 md:p-4 bg-white z-50 shrink-0">
-        <div className="max-w-5xl mx-auto flex justify-between items-center">
+        <div className="max-w-6xl mx-auto flex justify-between items-center gap-4">
           <WemodoLogo />
-          <div className="hidden md:block font-display font-black text-[10px] uppercase tracking-widest text-wemodo-navy/40">
-            Laboratoire IA Génératives
+          
+          <div className="flex items-center gap-6">
+            <div className="hidden lg:block font-display font-black text-[10px] uppercase tracking-widest text-wemodo-navy/40">
+              Laboratoire IA Génératives
+            </div>
+            <a 
+              href="https://wemodo.com" 
+              target="_blank" 
+              rel="noreferrer"
+              className="bg-wemodo-navy text-white hover:bg-wemodo-purple transition-colors font-black uppercase text-[10px] md:text-xs border-2 border-wemodo-navy px-4 py-2 shadow-[2px_2px_0px_0px_rgba(244,255,126,1)]"
+            >
+              Wemodo.com
+            </a>
           </div>
         </div>
       </header>
@@ -26,19 +37,6 @@ export default function App() {
           <AIQuiz />
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="border-t-4 border-wemodo-navy p-4 bg-wemodo-navy text-white shrink-0">
-        <div className="max-w-5xl mx-auto flex justify-between items-center gap-4">
-          <div className="font-display font-black text-xl italic tracking-tighter">Wemodo.</div>
-          <p className="font-bold text-[10px] md:text-sm text-center">
-            Formation IA Génératives 🚀
-          </p>
-          <a href="https://wemodo.com" className="hover:text-wemodo-yellow transition-colors font-bold uppercase text-[10px] border-2 border-white px-2 py-1 shrink-0">
-            Wemodo.com
-          </a>
-        </div>
-      </footer>
     </div>
   );
 }

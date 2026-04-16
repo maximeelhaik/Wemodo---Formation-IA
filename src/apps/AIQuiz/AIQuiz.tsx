@@ -41,15 +41,11 @@ export const AIQuiz = () => {
 
   const handleOptionSelect = (index: number) => {
     if (state.hasValidated) return;
-    setState((prev) => ({ ...prev, selectedOption: index }));
-  };
-
-  const handleValidate = () => {
-    if (state.selectedOption === null || state.hasValidated) return;
     
-    const isCorrect = state.selectedOption === currentQuestion.correctAnswer;
-    setState((prev) => ({
-      ...prev,
+    const isCorrect = index === currentQuestion.correctAnswer;
+    setState((prev) => ({ 
+      ...prev, 
+      selectedOption: index,
       hasValidated: true,
       score: isCorrect ? prev.score + 1 : prev.score,
     }));
@@ -90,25 +86,25 @@ export const AIQuiz = () => {
     if (percentage === 100) comment = "INCROYABLE ! Zéro faute, tu es le futur de l'IA ! 🤖👑";
 
     return (
-      <div className="flex flex-col items-center justify-center min-h-full gap-6 p-4 text-center">
+      <div className="flex flex-col items-center justify-center min-h-full gap-4 p-4 text-center">
         <motion.div
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
-          className="relative shrink-0 mb-4"
+          className="relative shrink-0 mb-2"
         >
-          <Award size={120} className="text-wemodo-yellow md:w-[160px] md:h-[160px] stroke-[4px] fill-wemodo-yellow/20" />
+          <Award size={100} className="text-wemodo-yellow md:w-[130px] md:h-[130px] stroke-[4px] fill-wemodo-yellow/20" />
         </motion.div>
         
-        <BrutalistCard className="max-w-md w-full flex flex-col gap-6 md:gap-8 p-8 bg-wemodo-navy text-white shadow-[12px_12px_0px_0px_rgba(107,60,226,1)] border-wemodo-purple">
-          <h2 className="font-display font-black text-5xl md:text-6xl uppercase italic tracking-tighter text-white">Bilan !</h2>
-          <div className="flex flex-col gap-4">
-            <span className="text-7xl md:text-8xl font-black bg-wemodo-yellow text-wemodo-navy py-4 outline-4 outline-wemodo-navy shadow-none">
+        <BrutalistCard className="max-w-md w-full flex flex-col gap-4 md:gap-6 p-6 bg-wemodo-navy text-white shadow-[8px_8px_0px_0px_rgba(107,60,226,1)] border-wemodo-purple">
+          <h2 className="font-display font-black text-4xl md:text-5xl uppercase italic tracking-tighter text-white">Bilan !</h2>
+          <div className="flex flex-col gap-3">
+            <span className="text-6xl md:text-7xl font-black bg-wemodo-yellow text-wemodo-navy py-3 outline-4 outline-wemodo-navy shadow-none">
               {state.score}/{GEN_AI_QUESTIONS.length}
             </span>
-            <p className="text-2xl md:text-3xl font-bold italic mt-2 leading-tight text-white">{comment}</p>
+            <p className="text-xl md:text-2xl font-bold italic mt-1 leading-tight text-white">{comment}</p>
           </div>
-          <BrutalistButton onClick={resetQuiz} className="mt-4 flex items-center justify-center gap-3 bg-wemodo-pink text-wemodo-navy border-white h-16 md:h-20 text-xl md:text-2xl">
-            <RotateCcw size={28} /> Recommencer
+          <BrutalistButton onClick={resetQuiz} className="mt-2 flex items-center justify-center gap-3 bg-wemodo-pink text-wemodo-navy border-white h-14 md:h-16 text-lg md:text-xl">
+            <RotateCcw size={24} /> Recommencer
           </BrutalistButton>
         </BrutalistCard>
       </div>
@@ -116,20 +112,20 @@ export const AIQuiz = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto flex flex-col min-h-full gap-6 py-2">
+    <div className="max-w-2xl mx-auto flex flex-col min-h-full gap-5 py-1">
       {/* Progress Header */}
-      <div className="flex flex-col gap-2 shrink-0 px-1">
-        <div className="flex justify-between items-center mb-1">
-          <span className="font-display font-black text-2xl md:text-3xl italic uppercase tracking-tighter">
+      <div className="flex flex-col gap-1.5 shrink-0 px-1">
+        <div className="flex justify-between items-center mb-0.5">
+          <span className="font-display font-black text-xl md:text-2xl italic uppercase tracking-tighter">
             Question {state.currentQuestionIndex + 1}
           </span>
-          <span className="font-bold text-wemodo-purple bg-white px-4 py-1 border-2 border-wemodo-navy text-base md:text-lg">
+          <span className="font-bold text-wemodo-purple bg-white px-3 py-0.5 border-2 border-wemodo-navy text-sm md:text-base">
              Score: {state.score}
           </span>
         </div>
-        <div className="w-full h-5 md:h-6 border-[3px] border-wemodo-navy bg-white shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] overflow-hidden">
+        <div className="w-full h-4 md:h-5 border-[2px] border-wemodo-navy bg-white shadow-[3px_3px_0px_0px_rgba(18,14,61,1)] overflow-hidden">
           <motion.div 
-            className="h-full bg-wemodo-yellow border-r-[3px] border-wemodo-navy"
+            className="h-full bg-wemodo-yellow border-r-[2px] border-wemodo-navy"
             initial={{ width: 0 }}
             animate={{ width: `${((state.currentQuestionIndex + 1) / GEN_AI_QUESTIONS.length) * 100}%` }}
           />
@@ -142,15 +138,15 @@ export const AIQuiz = () => {
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -50, opacity: 0 }}
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-5"
         >
-          <BrutalistCard className="bg-wemodo-yellow p-6 md:p-10 shrink-0">
-            <h1 className="text-2xl md:text-4xl font-black leading-[1.1] text-wemodo-navy tracking-tight">
+          <BrutalistCard className="bg-wemodo-yellow p-5 md:p-8 shrink-0">
+            <h1 className="text-xl md:text-3xl font-black leading-[1.1] text-wemodo-navy tracking-tight">
               {currentQuestion.text}
             </h1>
           </BrutalistCard>
 
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-3.5">
             {currentQuestion.options.map((option, index) => {
               const isSelected = state.selectedOption === index;
               const isCorrect = index === currentQuestion.correctAnswer;
@@ -161,26 +157,24 @@ export const AIQuiz = () => {
 
               if (state.hasValidated) {
                 if (isCorrect) {
-                  customStyles = "!bg-[#4ADE80] !text-wemodo-navy border-wemodo-navy scale-[1.01] shadow-[6px_6px_0px_0px_rgba(18,14,61,1)]";
-                  icon = <CheckCircle2 size={32} className="shrink-0" />;
+                  customStyles = "!bg-[#4ADE80] !text-wemodo-navy border-wemodo-navy scale-[1.01] shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]";
+                  icon = <CheckCircle2 size={24} className="shrink-0" />;
                 } else if (isWrongSelection) {
-                  customStyles = "!bg-[#F87171] !text-white border-wemodo-navy opacity-100 shadow-[6px_6px_0px_0px_rgba(18,14,61,1)]";
-                  icon = <XCircle size={32} className="shrink-0" />;
+                  customStyles = "!bg-[#F87171] !text-white border-wemodo-navy opacity-100 shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]";
+                  icon = <XCircle size={24} className="shrink-0" />;
                 } else {
                   customStyles = "opacity-30 grayscale";
                 }
-              } else if (isSelected) {
-                customStyles = "!bg-wemodo-navy !text-white shadow-[8px_8px_0px_0px_rgba(107,60,226,1)] -translate-x-1 -translate-y-1";
               }
 
               return (
                 <div 
                   key={index} 
                   onClick={() => handleOptionSelect(index)}
-                  className={`brutalist-card-interactive p-5 md:p-8 text-left font-black text-xl md:text-2xl flex items-center justify-between transition-all duration-200 ${customStyles}`}
+                  className={`brutalist-card-interactive p-4 md:p-6 text-left font-black text-lg md:text-xl flex items-center justify-between transition-all duration-200 ${customStyles}`}
                 >
-                  <span className="flex gap-4 items-center">
-                    <span className="opacity-40 text-sm md:text-base">{String.fromCharCode(65 + index)}.</span>
+                  <span className="flex gap-3 items-center">
+                    <span className="opacity-40 text-xs md:text-sm">{String.fromCharCode(65 + index)}.</span>
                     <span>{option}</span>
                   </span>
                   {icon}
@@ -188,72 +182,64 @@ export const AIQuiz = () => {
               );
             })}
           </div>
-
-          {/* Validation & Next Buttons below the questions */}
-          <div className="flex flex-col gap-4 mt-2">
-            {!state.hasValidated ? (
-              <BrutalistButton 
-                onClick={handleValidate} 
-                disabled={state.selectedOption === null}
-                className="w-full text-2xl md:text-3xl h-16 md:h-24 shadow-[8px_8px_0px_0px_rgba(18,14,61,1)]"
-              >
-                Valider <span className="ml-2">👉</span>
-              </BrutalistButton>
-            ) : (
-              <BrutalistButton 
-                onClick={handleNext} 
-                className="w-full text-2xl md:text-3xl flex items-center justify-center gap-4 bg-wemodo-navy text-white h-16 md:h-24 shadow-[8px_8px_0px_0px_rgba(107,60,226,1)]"
-              >
-                Suivant ({timeLeft}s) <ChevronRight size={32} />
-              </BrutalistButton>
-            )}
-          </div>
         </motion.div>
       </AnimatePresence>
 
-      {/* Explanation Overlay (separate panel to avoid layout jumping) */}
+      {/* Explanation Overlay */}
       <AnimatePresence>
         {state.hasValidated && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-wemodo-navy/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-wemodo-navy/80 backdrop-blur-md"
           >
             <motion.div 
-              initial={{ scale: 0.9, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 50 }}
-              className="w-full max-w-xl"
+              initial={{ scale: 0.8, y: 50, rotate: -2 }}
+              animate={{ scale: 1, y: 0, rotate: 0 }}
+              exit={{ scale: 0.8, y: 50 }}
+              className="w-full max-w-lg"
             >
-              <BrutalistCard className="bg-wemodo-pink border-4 p-8 md:p-12 relative overflow-hidden shadow-[16px_16px_0px_0px_rgba(18,14,61,1)]">
-                <div className="flex flex-col items-center text-center gap-6">
-                   <div className="bg-wemodo-navy text-white p-4 rounded-full">
-                      <Award size={40} md:size={50} />
-                   </div>
-                   <div className="flex flex-col gap-2">
-                      <p className="font-black uppercase text-sm md:text-base tracking-widest text-wemodo-navy opacity-60">Le saviez-vous ?</p>
-                      <p className="text-xl md:text-2xl font-black leading-tight text-wemodo-navy">
-                         {currentQuestion.explanation}
-                      </p>
-                   </div>
-                   <BrutalistButton 
-                    onClick={handleNext}
-                    className="mt-4 bg-wemodo-navy text-white px-10 py-4 text-xl"
-                   >
-                     J'ai compris !
-                   </BrutalistButton>
-                </div>
-                {/* Timer Bar */}
-                <div className="absolute bottom-0 left-0 h-3 bg-wemodo-navy w-full transform origin-left">
-                  <motion.div 
-                    className="h-full bg-white"
-                    initial={{ width: "100%" }}
-                    animate={{ width: "0%" }}
-                    transition={{ duration: 10, ease: "linear" }}
-                  />
-                </div>
-              </BrutalistCard>
+              {(() => {
+                const isCorrect = state.selectedOption === currentQuestion.correctAnswer;
+                return (
+                  <BrutalistCard className={`${isCorrect ? 'bg-[#4ADE80]' : 'bg-[#FF4D4D]'} border-4 p-8 md:p-10 relative overflow-hidden shadow-[12px_12px_0px_0px_rgba(18,14,61,1)] text-wemodo-navy`}>
+                    <div className="flex flex-col items-center text-center gap-5">
+                       <div className="text-7xl md:text-8xl mb-2 animate-bounce">
+                          {isCorrect ? "🎉" : "🧐"}
+                       </div>
+                       <div className="flex flex-col gap-2">
+                          <h3 className="font-display font-black text-3xl md:text-4xl uppercase italic tracking-tighter">
+                            {isCorrect ? "Bravo !" : "Dommage !"}
+                          </h3>
+                          <p className="font-black uppercase text-xs md:text-sm tracking-widest opacity-70">
+                            {isCorrect ? "C'était bien la bonne réponse !" : `La réponse était : ${currentQuestion.options[currentQuestion.correctAnswer]}`}
+                          </p>
+                          <div className="h-0.5 bg-wemodo-navy/20 w-full my-2" />
+                          <p className="text-lg md:text-xl font-black leading-tight">
+                             {currentQuestion.explanation}
+                          </p>
+                       </div>
+                       <BrutalistButton 
+                        onClick={handleNext}
+                        className="mt-2 bg-wemodo-navy text-white px-8 py-3 text-lg md:text-xl flex items-center gap-3"
+                       >
+                         Question suivante <ChevronRight size={24} />
+                       </BrutalistButton>
+                       <span className="text-xs font-bold opacity-50 uppercase tracking-widest">Passage automatique dans {timeLeft}s...</span>
+                    </div>
+                    {/* Timer Bar */}
+                    <div className="absolute bottom-0 left-0 h-2 bg-wemodo-navy w-full transform origin-left">
+                      <motion.div 
+                        className="h-full bg-white"
+                        initial={{ width: "100%" }}
+                        animate={{ width: "0%" }}
+                        transition={{ duration: 10, ease: "linear" }}
+                      />
+                    </div>
+                  </BrutalistCard>
+                );
+              })()}
             </motion.div>
           </motion.div>
         )}
