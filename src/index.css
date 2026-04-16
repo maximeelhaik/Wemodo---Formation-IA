@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", "system-ui", sans-serif;
+  --font-display: "Space Grotesk", "Inter", "system-ui", sans-serif;
+  
+  --color-wemodo-navy: #120E3D;
+  --color-wemodo-yellow: #F4FF7E;
+  --color-wemodo-pink: #FFB3B3;
+  --color-wemodo-purple: #6B3CE2;
+  --color-wemodo-cream: #FFFBF7;
+}
+
+@layer base {
+  body {
+    @apply bg-wemodo-cream text-wemodo-navy font-sans;
+  }
+}
+
+/* Brutalist Utility Classes */
+.brutalist-card {
+  @apply bg-white border-4 border-wemodo-navy shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] transition-all;
+}
+
+.brutalist-card-interactive {
+  @apply bg-white border-4 border-wemodo-navy shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] hover:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)] hover:-translate-x-2 hover:-translate-y-2 active:shadow-none active:translate-x-1 active:translate-y-1 transition-all cursor-pointer;
+}
+
+.brutalist-button {
+  @apply bg-wemodo-purple text-white border-4 border-wemodo-navy px-6 py-4 font-black uppercase tracking-wider shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] hover:shadow-[10px_10px_0px_0px_rgba(18,14,61,1)] hover:-translate-x-1 hover:-translate-y-1 active:shadow-none active:translate-x-1 active:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.brutalist-button-outline {
+  @apply bg-white text-wemodo-navy border-4 border-wemodo-navy px-6 py-4 font-black uppercase tracking-wider shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] hover:shadow-[10px_10px_0px_0px_rgba(18,14,61,1)] hover:-translate-x-1 hover:-translate-y-1 active:shadow-none active:translate-x-1 active:translate-y-1 transition-all;
+}
