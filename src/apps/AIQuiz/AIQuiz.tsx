@@ -81,33 +81,77 @@ export const AIQuiz = () => {
     const percentage = (state.score / GEN_AI_QUESTIONS.length) * 100;
     
     let comment = "Ouch ! Il va falloir réviser un peu... 😅";
-    if (percentage >= 50) comment = "Pas mal ! Tu as de bonnes bases. 👍";
-    if (percentage >= 80) comment = "Excellent ! Tu es un vrai expert de l'IA ! 🚀";
-    if (percentage === 100) comment = "INCROYABLE ! Zéro faute, tu es le futur de l'IA ! 🤖👑";
+    let emoji = "😱";
+    let bgColor = "bg-[#FF4D4D]"; // Red for low score
+
+    if (percentage >= 50) {
+      comment = "Pas mal ! Tu as de bonnes bases. 👍";
+      emoji = "😎";
+      bgColor = "bg-wemodo-pink";
+    }
+    if (percentage >= 80) {
+      comment = "Excellent ! Tu es un vrai expert ! 🚀";
+      emoji = "🔥";
+      bgColor = "bg-wemodo-purple";
+    }
+    if (percentage === 100) {
+      comment = "INCROYABLE ! Zéro faute, tu es un génie ! 🤖👑";
+      emoji = "👑";
+      bgColor = "bg-[#4ADE80]"; // Green for perfect score
+    }
 
     return (
-      <div className="flex flex-col items-center justify-center min-h-full gap-4 p-4 text-center">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className={`fixed inset-0 z-[200] flex flex-col items-center justify-center p-4 ${bgColor} transition-colors duration-500`}
+      >
         <motion.div
-          initial={{ scale: 0, rotate: -180 }}
+          initial={{ scale: 0, rotate: -20 }}
           animate={{ scale: 1, rotate: 0 }}
-          className="relative shrink-0 mb-2"
+          transition={{ type: "spring", damping: 12 }}
+          className="text-9xl md:text-[12rem] mb-6 drop-shadow-[8px_8px_0_rgba(18,14,61,1)]"
         >
-          <Award size={100} className="text-wemodo-yellow md:w-[130px] md:h-[130px] stroke-[4px] fill-wemodo-yellow/20" />
+          {emoji}
         </motion.div>
         
-        <BrutalistCard className="max-w-md w-full flex flex-col gap-4 md:gap-6 p-6 bg-wemodo-navy text-white shadow-[8px_8px_0px_0px_rgba(107,60,226,1)] border-wemodo-purple">
-          <h2 className="font-display font-black text-4xl md:text-5xl uppercase italic tracking-tighter text-white">Bilan !</h2>
-          <div className="flex flex-col gap-3">
-            <span className="text-6xl md:text-7xl font-black bg-wemodo-yellow text-wemodo-navy py-3 outline-4 outline-wemodo-navy shadow-none">
-              {state.score}/{GEN_AI_QUESTIONS.length}
-            </span>
-            <p className="text-xl md:text-2xl font-bold italic mt-1 leading-tight text-white">{comment}</p>
+        <BrutalistCard className="max-w-md w-full flex flex-col gap-6 md:gap-8 p-10 bg-white text-wemodo-navy shadow-[16px_16px_0px_0px_rgba(18,14,61,1)] border-4 border-wemodo-navy">
+          <div className="flex flex-col gap-2 scale-110">
+            <h2 className="font-display font-black text-5xl md:text-6xl uppercase italic tracking-tighter">
+              Bilan !
+            </h2>
+            <div className="h-2 w-24 bg-wemodo-navy mb-4" />
           </div>
-          <BrutalistButton onClick={resetQuiz} className="mt-2 flex items-center justify-center gap-3 bg-wemodo-pink text-wemodo-navy border-white h-14 md:h-16 text-lg md:text-xl">
-            <RotateCcw size={24} /> Recommencer
+
+          <div className="flex flex-col gap-4">
+            <div className="relative">
+              <span className="block text-8xl md:text-9xl font-black italic tracking-tighter leading-none">
+                {state.score}
+                <span className="text-4xl md:text-5xl opacity-30 not-italic ml-2">/ {GEN_AI_QUESTIONS.length}</span>
+              </span>
+            </div>
+            <p className="text-2xl md:text-3xl font-black leading-tight border-l-8 border-wemodo-navy pl-4 py-2">
+              {comment}
+            </p>
+          </div>
+
+          <BrutalistButton 
+            onClick={resetQuiz} 
+            className="mt-4 flex items-center justify-center gap-4 bg-wemodo-navy text-white hover:bg-wemodo-purple border-wemodo-navy h-16 md:h-20 text-2xl md:text-3xl shadow-[6px_6px_0px_0px_rgba(244,255,126,1)]"
+          >
+            <RotateCcw size={32} /> Recommencer
           </BrutalistButton>
         </BrutalistCard>
-      </div>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mt-8 font-black uppercase tracking-widest text-wemodo-navy text-sm md:text-base bg-white px-4 py-2 border-2 border-wemodo-navy shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]"
+        >
+          Prêt pour un nouveau défi ?
+        </motion.p>
+      </motion.div>
     );
   }
 
