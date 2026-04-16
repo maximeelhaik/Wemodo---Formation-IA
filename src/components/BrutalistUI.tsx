@@ -12,9 +12,9 @@ export const BrutalistCard: React.FC<BrutalistCardProps> = ({ children, classNam
   const baseClass = interactive ? "brutalist-card-interactive" : "brutalist-card";
   return (
     <motion.div
-      whileHover={interactive ? { scale: 1.02, transition: { type: "spring", stiffness: 300 } } : {}}
-      whileTap={interactive ? { scale: 0.98, transition: { duration: 0.1 } } : {}}
-      className={`${baseClass} p-6 ${className}`}
+      whileHover={interactive ? { scale: 1.01, transition: { type: "spring", stiffness: 300 } } : {}}
+      whileTap={interactive ? { scale: 0.99, transition: { duration: 0.1 } } : {}}
+      className={`${baseClass} p-4 md:p-6 ${className}`}
       onClick={onClick}
     >
       {children}
@@ -50,7 +50,7 @@ export const BrutalistButton: React.FC<BrutalistButtonProps> = ({
 };
 
 export const WemodoLogo = () => (
-  <div className="flex items-center gap-2 font-display font-black text-4xl tracking-tighter italic text-wemodo-navy">
+  <div className="flex items-center gap-2 font-sans font-black text-3xl md:text-5xl tracking-tighter text-wemodo-navy select-none">
     Wemodo
   </div>
 );
