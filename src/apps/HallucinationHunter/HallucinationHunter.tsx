@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { BrutalistCard, BrutalistButton } from "../../components/BrutalistUI";
+import { BrutalistCard, BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
 import { Search, Info, CheckCircle2, XCircle, RotateCcw, PartyPopper } from "lucide-react";
 
 type TargetType = "hallucination" | "cliche" | "none";
@@ -157,52 +157,56 @@ export const HallucinationHunter: React.FC = () => {
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="fixed inset-0 z-[200] flex flex-col items-center justify-center p-4 bg-wemodo-navy transition-colors duration-500"
+        className="fixed inset-0 z-[200] flex flex-col items-center justify-center p-0 md:p-4 bg-wemodo-navy transition-colors duration-500"
       >
+        <div className="mb-6">
+          <WemodoLogo variant="light" className="h-10 md:h-14" />
+        </div>
+
         <motion.div
           initial={{ scale: 0, rotate: -20 }}
           animate={{ scale: 1, rotate: 0 }}
-          className="text-9xl mb-6"
+          className="text-8xl md:text-9xl mb-4 md:mb-6"
         >
           🕵️✨
         </motion.div>
         
-        <BrutalistCard className="max-w-md w-full flex flex-col gap-6 p-10 bg-white text-wemodo-navy shadow-[16px_16px_0px_0px_rgba(244,255,126,1)] border-4 border-wemodo-navy">
-          <h2 className="font-display font-black text-5xl uppercase italic tracking-tighter">
+        <div className="max-w-md w-full flex flex-col gap-6 p-8 md:p-10 bg-white text-wemodo-navy md:shadow-[16px_16px_0px_0px_rgba(244,255,126,1)] md:border-4 border-wemodo-navy h-full md:h-auto items-center justify-center">
+          <h2 className="font-display font-black text-4xl md:text-5xl uppercase italic tracking-tighter text-center md:text-left">
             Expert dénicheur !
           </h2>
-          <p className="text-2xl font-black leading-tight border-l-8 border-wemodo-navy pl-4 py-2">
+          <p className="text-xl md:text-2xl font-black leading-tight border-b-8 md:border-b-0 md:border-l-8 border-wemodo-navy pb-4 md:pb-0 md:pl-4 md:py-2 text-center md:text-left">
             Tu as débusqué les {totalTargets} pièges du texte ! L'IA ne pourra plus te berner.
           </p>
 
           <BrutalistButton 
             onClick={resetGame} 
-            className="mt-4 flex items-center justify-center gap-4 bg-wemodo-pink text-wemodo-navy border-wemodo-navy h-16 text-2xl shadow-[6px_6px_0px_0px_rgba(18,14,61,1)]"
+            className="mt-8 md:mt-4 flex items-center justify-center gap-4 bg-wemodo-pink text-wemodo-navy border-wemodo-navy h-16 md:h-20 text-xl md:text-2xl w-full shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] md:shadow-[6px_6px_0px_0px_rgba(18,14,61,1)]"
           >
             <RotateCcw size={32} /> Recommencer
           </BrutalistButton>
-        </BrutalistCard>
+        </div>
       </motion.div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6 max-w-4xl mx-auto h-full p-2">
+    <div className="flex flex-col gap-4 md:gap-6 max-w-4xl mx-auto h-full p-0 md:p-2 bg-white md:bg-transparent">
       {/* Header Info */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white border-4 border-wemodo-navy p-4 shadow-[8px_8px_0px_0px_rgba(18,14,61,1)]">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-wemodo-cream md:bg-white border-b-4 md:border-4 border-wemodo-navy p-4 md:shadow-[8px_8px_0px_0px_rgba(18,14,61,1)]">
         <div>
-          <h1 className="font-display font-black text-3xl italic uppercase tracking-tighter text-wemodo-navy flex items-center gap-3">
+          <h1 className="font-display font-black text-2xl md:text-3xl italic uppercase tracking-tighter text-wemodo-navy flex items-center gap-3">
             <Search className="text-wemodo-purple" /> Hallucination Hunter
           </h1>
-          <p className="font-bold text-wemodo-navy/60 text-sm">
+          <p className="font-bold text-wemodo-navy/60 text-xs md:text-sm">
             Identifie les <span className="text-red-600">points à vérifier</span> et les <span className="text-wemodo-purple">clichés d'IA</span>.
           </p>
         </div>
-        <div className="flex flex-col items-end">
-          <span className="text-4xl font-black italic text-wemodo-purple">
+        <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto mt-2 md:mt-0">
+          <span className="text-3xl md:text-4xl font-black italic text-wemodo-purple">
             {foundIds.length} <span className="text-lg not-italic text-wemodo-navy/30">/ {totalTargets}</span>
           </span>
-          <div className="w-32 h-3 bg-wemodo-navy/10 border-2 border-wemodo-navy mt-1">
+          <div className="w-32 h-2.5 md:h-3 bg-wemodo-navy/10 border-2 border-wemodo-navy mt-1">
             <motion.div 
               className="h-full bg-wemodo-yellow"
               animate={{ width: `${(foundIds.length / totalTargets) * 100}%` }}
@@ -212,8 +216,8 @@ export const HallucinationHunter: React.FC = () => {
       </div>
 
       {/* Main Text Area */}
-      <BrutalistCard className="flex-1 bg-white p-6 md:p-10 border-4 border-wemodo-navy shadow-[12px_12px_0px_0px_rgba(18,14,61,1)] relative overflow-y-auto">
-        <div className="text-lg md:text-2xl font-bold leading-relaxed text-wemodo-navy">
+      <div className="flex-1 bg-white p-6 md:p-10 md:border-4 border-wemodo-navy md:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)] relative overflow-y-auto">
+        <div className="text-xl md:text-2xl font-bold leading-relaxed text-wemodo-navy">
           {HUNTER_DATA.map((segment, idx) => {
             const isFound = foundIds.includes(idx);
             const isError = errors.includes(idx);
@@ -222,11 +226,26 @@ export const HallucinationHunter: React.FC = () => {
               <motion.span
                 key={idx}
                 onClick={() => handleSegmentClick(idx, segment)}
+                animate={isFound ? {
+                  backgroundColor: segment.type === 'hallucination' ? '#EF4444' : '#6634D9',
+                  color: '#FFFFFF',
+                  scale: 0.95,
+                  opacity: 0.5,
+                } : {
+                  backgroundColor: 'transparent',
+                  color: 'inherit',
+                  scale: 1,
+                  opacity: 1,
+                }}
+                whileHover={!isFound ? { 
+                  scale: 1.05, 
+                  rotate: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : 0.5,
+                  backgroundColor: "rgba(26, 27, 31, 0.1)" 
+                } : {}}
+                whileTap={!isFound ? { scale: 0.95 } : {}}
                 className={`
-                  inline-block px-1 rounded-sm cursor-pointer transition-all duration-300
-                  ${isFound 
-                    ? (segment.type === 'hallucination' ? 'bg-red-500 text-white scale-95 opacity-50' : 'bg-wemodo-purple text-white scale-95 opacity-50') 
-                    : isError ? 'bg-red-200 animate-shake' : 'hover:bg-wemodo-navy/10'}
+                  inline-block px-1 cursor-pointer
+                  ${isError ? 'bg-red-200 animate-shake' : ''}
                 `}
               >
                 {segment.text}
@@ -234,7 +253,7 @@ export const HallucinationHunter: React.FC = () => {
             );
           })}
         </div>
-      </BrutalistCard>
+      </div>
 
       {/* Explanation Tooltip */}
       <AnimatePresence mode="wait">

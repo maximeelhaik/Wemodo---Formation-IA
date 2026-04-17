@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
+import wemodoLogo from "../assets/logos/wemodo logo.svg";
 
 interface BrutalistCardProps {
   children: React.ReactNode;
@@ -39,18 +40,24 @@ export const BrutalistButton: React.FC<BrutalistButtonProps> = ({
 }) => {
   const baseClass = variant === "primary" ? "brutalist-button" : "brutalist-button-outline";
   return (
-    <button 
+    <motion.button 
+      whileHover={{ scale: 1.05, rotate: 1 }}
+      whileTap={{ scale: 0.95, rotate: -1 }}
       className={`${baseClass} ${className}`} 
       onClick={onClick}
       disabled={disabled}
     >
       {children}
-    </button>
+    </motion.button>
   );
 };
 
-export const WemodoLogo = () => (
-  <div className="flex items-center gap-2 font-sans font-black text-3xl md:text-5xl tracking-tighter text-wemodo-navy select-none">
-    Wemodo
-  </div>
+
+
+export const WemodoLogo = ({ variant = "dark", className = "" }: { variant?: "dark" | "light", className?: string }) => (
+  <img 
+    src={wemodoLogo} 
+    alt="Wemodo Logo" 
+    className={`h-6 md:h-8 w-auto ${variant === "light" ? "brightness-0 invert" : ""} ${className}`} 
+  />
 );

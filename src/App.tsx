@@ -50,8 +50,8 @@ export default function App() {
 
   return (
     <div className="h-screen flex flex-col bg-wemodo-cream overflow-hidden">
-      {/* Header */}
-      <header className="border-b-4 border-wemodo-navy p-3 md:p-4 bg-white z-50 shrink-0">
+      {/* Header - Hidden on mobile as per user request */}
+      <header className="hidden md:block border-b-4 border-wemodo-navy p-3 md:p-4 bg-white z-50 shrink-0">
         <div className="max-w-6xl mx-auto flex justify-between items-center gap-4">
           <div className="flex items-center gap-4">
             <WemodoLogo />
@@ -96,9 +96,9 @@ export default function App() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-y-auto px-4 py-4 md:py-6 scrollbar-hide">
-        <div className="max-w-4xl mx-auto h-full">
+      {/* Main Content - Full screen on mobile */}
+      <main className="flex-1 overflow-y-auto px-0 md:px-4 py-0 md:py-6 scrollbar-hide">
+        <div className="max-w-4xl mx-auto h-full w-full">
           {view === "quiz" ? (
             <AIQuiz 
               key={`quiz-${level}`} 
