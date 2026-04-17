@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { GEN_AI_QUESTIONS } from "../../constants";
-import { QuizState } from "../../types";
+import { GEN_AI_QUESTIONS, GEN_AI_QUESTIONS_L2 } from "../../constants";
+import { QuizState, Question } from "../../types";
 import { BrutalistCard, BrutalistButton } from "../../components/BrutalistUI";
 import { ChevronRight, RotateCcw, Award, CheckCircle2, XCircle, Timer } from "lucide-react";
 
-export const AIQuiz = () => {
+interface AIQuizProps {
+  questions: Question[];
+}
+
+export const AIQuiz: React.FC<AIQuizProps> = ({ questions }) => {
   const [state, setState] = useState<QuizState>({
     currentQuestionIndex: 0,
     score: 0,
@@ -18,7 +22,7 @@ export const AIQuiz = () => {
   const [timeLeft, setTimeLeft] = useState(10);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const currentQuestion = GEN_AI_QUESTIONS[state.currentQuestionIndex];
+  const currentQuestion = questions[state.currentQuestionIndex];
 
   // Handle automatic progression after validation
   useEffect(() => {
@@ -53,7 +57,7 @@ export const AIQuiz = () => {
 
   const handleNext = () => {
     if (timerRef.current) clearInterval(timerRef.current);
-    const isLastQuestion = state.currentQuestionIndex === GEN_AI_QUESTIONS.length - 1;
+    const isLastQuestion = state.currentQuestionIndex === questions.length - 1;
     if (isLastQuestion) {
       setState((prev) => ({ ...prev, isFinished: true }));
     } else {
@@ -78,7 +82,7 @@ export const AIQuiz = () => {
   };
 
   if (state.isFinished) {
-    const percentage = (state.score / GEN_AI_QUESTIONS.length) * 100;
+    const percentage = (state.score / questions.length) * 100;
     
     let comment = "Ouch ! Il va falloir réviser un peu... 😅";
     let emoji = "😱";
@@ -127,7 +131,7 @@ export const AIQuiz = () => {
             <div className="relative">
               <span className="block text-8xl md:text-9xl font-black italic tracking-tighter leading-none">
                 {state.score}
-                <span className="text-4xl md:text-5xl opacity-30 not-italic ml-2">/ {GEN_AI_QUESTIONS.length}</span>
+                <span className="text-4xl md:text-5xl opacity-30 not-italic ml-2">/ {questions.length}</span>
               </span>
             </div>
             <p className="text-2xl md:text-3xl font-black leading-tight border-l-8 border-wemodo-navy pl-4 py-2">
@@ -164,14 +168,14 @@ export const AIQuiz = () => {
             Question {state.currentQuestionIndex + 1}
           </span>
           <span className="font-bold text-wemodo-purple bg-white px-3 py-0.5 border-2 border-wemodo-navy text-sm md:text-base">
-             Score: {state.score}
+             Score: {state.score} / {questions.length}
           </span>
         </div>
         <div className="w-full h-4 md:h-5 border-[2px] border-wemodo-navy bg-white shadow-[3px_3px_0px_0px_rgba(18,14,61,1)] overflow-hidden">
           <motion.div 
             className="h-full bg-wemodo-yellow border-r-[2px] border-wemodo-navy"
             initial={{ width: 0 }}
-            animate={{ width: `${((state.currentQuestionIndex + 1) / GEN_AI_QUESTIONS.length) * 100}%` }}
+            animate={{ width: `${((state.currentQuestionIndex + 1) / questions.length) * 100}%` }}
           />
         </div>
       </div>
