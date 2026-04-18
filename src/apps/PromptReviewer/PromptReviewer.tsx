@@ -45,13 +45,13 @@ export const PromptReviewer: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 h-full p-4 md:p-0 overflow-y-auto">
-      <div className="space-y-2">
-        <h1 className="font-display font-black text-4xl md:text-5xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
-          Prompt <span className="text-wemodo-purple">Reviewer</span>
+    <div className="flex flex-col gap-6 md:gap-8 h-full p-0 overflow-y-auto">
+      <div className="space-y-3 px-4 md:px-0 mt-4 md:mt-0">
+        <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
+          Le correcteur <span className="text-wemodo-purple">de Prompt</span>
         </h1>
-        <p className="font-bold text-wemodo-navy/60 uppercase text-xs md:text-sm tracking-widest">
-          Optimise la puissance de tes instructions
+        <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-sm tracking-widest max-w-2xl">
+          Optimise la puissance de tes instructions avec l'intelligence de Gemini.
         </p>
       </div>
 

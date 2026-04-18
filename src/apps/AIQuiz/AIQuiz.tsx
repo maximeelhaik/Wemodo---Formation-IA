@@ -9,9 +9,10 @@ import { Leaderboard } from "../../components/Leaderboard";
 
 interface AIQuizProps {
   questions: Question[];
+  level?: number;
 }
 
-export const AIQuiz: React.FC<AIQuizProps> = ({ questions }) => {
+export const AIQuiz: React.FC<AIQuizProps> = ({ questions, level = 1 }) => {
   const [state, setState] = useState<QuizState>({
     currentQuestionIndex: 0,
     score: 0,
@@ -209,7 +210,17 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions }) => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto flex flex-col h-full md:min-h-full gap-0 md:gap-5 py-0 md:py-1 bg-white md:bg-transparent">
+    <div className="max-w-2xl mx-auto flex flex-col h-full md:min-h-full gap-6 md:gap-8 py-0 md:py-1 bg-transparent">
+      {/* Header */}
+      <div className="space-y-3 px-4 md:px-0 mt-4 md:mt-0">
+        <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
+          Quiz <span className="text-wemodo-purple">Niveau {level}</span>
+        </h1>
+        <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-sm tracking-widest max-w-2xl">
+          Teste tes connaissances sur l'IA générative et valide tes acquis.
+        </p>
+      </div>
+
       {/* Progress Header */}
       <div className="flex flex-col gap-1.5 shrink-0 px-4 md:px-1 py-4 md:py-0 bg-wemodo-cream md:bg-transparent border-b-4 md:border-b-0 border-wemodo-navy">
         <div className="flex justify-between items-center mb-0.5">

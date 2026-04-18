@@ -63,7 +63,7 @@ export const UseCaseGenerator: React.FC = () => {
       {/* Header */}
       <div className="space-y-3 px-4 md:px-0">
         <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
-          L'IA dans <span className="text-wemodo-purple">mon Métier</span>
+          L'ia dans <span className="text-wemodo-purple">mon metier.</span>
         </h1>
         <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-sm tracking-widest max-w-2xl">
           Explore 5 cas d'usage concrets de l'IA adaptés à ta profession — avec un exemple de prompt pour chacun.

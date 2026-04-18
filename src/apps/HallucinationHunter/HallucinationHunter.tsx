@@ -192,17 +192,19 @@ export const HallucinationHunter: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 md:gap-6 max-w-4xl mx-auto h-full p-0 md:p-2 bg-white md:bg-transparent">
-      {/* Header Info */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-wemodo-cream md:bg-white border-b-4 md:border-4 border-wemodo-navy p-4 md:shadow-[8px_8px_0px_0px_rgba(18,14,61,1)]">
-        <div>
-          <h1 className="font-display font-black text-2xl md:text-3xl italic uppercase tracking-tighter text-wemodo-navy flex items-center gap-3">
-            <Search className="text-wemodo-purple" /> Hallucination Hunter
-          </h1>
-          <p className="font-bold text-wemodo-navy/60 text-xs md:text-sm">
-            Un email de consultant. Trouve les <span className="text-red-600">hallucinations</span> et les <span className="text-wemodo-purple">clichés IA</span>.
-          </p>
-        </div>
+    <div className="flex flex-col gap-6 md:gap-8 max-w-4xl mx-auto h-full p-0 md:p-2 bg-transparent overflow-y-auto w-full">
+      {/* Header */}
+      <div className="space-y-3 px-4 md:px-0 mt-4 md:mt-0">
+        <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
+          Cherche les <span className="text-wemodo-purple">Hallucinations !</span>
+        </h1>
+        <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-sm tracking-widest max-w-2xl">
+          Déniche les hallucinations et les clichés dans un texte généré par l'IA.
+        </p>
+      </div>
+
+      {/* Stats Info */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-wemodo-cream md:bg-white border-b-4 md:border-4 border-wemodo-navy p-4 md:shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] shrink-0 mx-4 md:mx-0">
         <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto mt-2 md:mt-0">
           <span className="text-3xl md:text-4xl font-black italic text-wemodo-purple">
             {foundIds.length} <span className="text-lg not-italic text-wemodo-navy/30">/ {totalTargets}</span>
