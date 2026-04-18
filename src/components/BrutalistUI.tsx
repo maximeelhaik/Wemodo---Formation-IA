@@ -61,3 +61,40 @@ export const WemodoLogo = ({ variant = "dark", className = "" }: { variant?: "da
     className={`h-6 md:h-8 w-auto ${variant === "light" ? "brightness-0 invert" : ""} ${className}`} 
   />
 );
+
+export const BrutalistLoading: React.FC<{ message?: string }> = ({ message = "CHARGEMENT..." }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, scale: 0.95 }}
+    className="w-full bg-white border-4 border-wemodo-navy p-6 md:p-10 shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] flex flex-col gap-6 my-4"
+  >
+    <div className="space-y-4">
+      <div className="flex justify-between items-end">
+        <h3 className="font-display font-black text-2xl md:text-3xl uppercase italic text-wemodo-navy leading-none">
+          {message}
+        </h3>
+      </div>
+
+      <div className="h-10 bg-wemodo-cream border-4 border-wemodo-navy relative overflow-hidden">
+        <motion.div
+          className="absolute inset-y-0 left-0 bg-wemodo-yellow border-r-4 border-wemodo-navy"
+          initial={{ width: "0%" }}
+          animate={{ 
+            width: ["0%", "35%", "55%", "75%", "90%", "98%"],
+          }}
+          transition={{ 
+            duration: 15,
+            times: [0, 0.1, 0.3, 0.5, 0.8, 1],
+            ease: "linear"
+          }}
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="font-black text-wemodo-navy text-[10px] tracking-[0.3em] uppercase mix-blend-multiply">
+            Veuillez patienter
+          </span>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);

@@ -7,10 +7,12 @@ import React, { useState, useEffect } from "react";
 import { WemodoLogo } from "./components/BrutalistUI";
 import { AIQuiz } from "./apps/AIQuiz/AIQuiz";
 import { HallucinationHunter } from "./apps/HallucinationHunter/HallucinationHunter";
+import { PromptReviewer } from "./apps/PromptReviewer/PromptReviewer";
+import { UseCaseGenerator } from "./apps/UseCaseGenerator/UseCaseGenerator";
 import { GEN_AI_QUESTIONS, GEN_AI_QUESTIONS_L2 } from "./constants";
 
 export default function App() {
-  const [view, setView] = useState<"quiz" | "hunter">("quiz");
+  const [view, setView] = useState<"quiz" | "hunter" | "reviewer" | "generator">("quiz");
   const [level, setLevel] = useState<1 | 2>(1);
 
   // Sync state with URL for development/deployment access
@@ -21,6 +23,10 @@ export default function App() {
 
     if (appParam === "hunter") {
       setView("hunter");
+    } else if (appParam === "reviewer") {
+      setView("reviewer");
+    } else if (appParam === "mission") {
+      setView("generator");
     } else {
       setView("quiz");
       if (lvlParam === "2") {
@@ -31,13 +37,14 @@ export default function App() {
     }
   }, []);
 
-  const switchApp = (newView: "quiz" | "hunter", newLvl: 1 | 2 = 1) => {
+  const switchApp = (newView: "quiz" | "hunter" | "reviewer" | "generator", newLvl: 1 | 2 = 1) => {
     setView(newView);
     setLevel(newLvl);
     
     const url = new URL(window.location.href);
     url.searchParams.delete("level");
-    url.searchParams.set("app", newView);
+    const appValue = newView === "generator" ? "mission" : newView;
+    url.searchParams.set("app", appValue);
     
     if (newView === "quiz") {
       url.searchParams.set("level", newLvl.toString());
@@ -57,7 +64,7 @@ export default function App() {
             <WemodoLogo />
             <div className="hidden lg:block h-8 w-1 bg-wemodo-navy/10 mx-2" />
             <div className="font-display font-black text-xs md:text-sm italic uppercase tracking-tighter text-wemodo-purple">
-              {view === "quiz" ? `Quiz Niveau ${level}` : "Hallucination Hunter"}
+              {view === "quiz" ? `Quiz Niveau ${level}` : view === "hunter" ? "Hallucination Hunter" : view === "reviewer" ? "Gemini Reviewer" : "Mission Booster"}
             </div>
           </div>
           
@@ -82,6 +89,18 @@ export default function App() {
               >
                 Hunt
               </button>
+              <button 
+                onClick={() => switchApp("reviewer")}
+                className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "reviewer" ? 'bg-wemodo-yellow shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
+              >
+                Gemini
+              </button>
+              <button 
+                onClick={() => switchApp("generator")}
+                className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "generator" ? 'bg-wemodo-purple text-white shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
+              >
+                Mission
+              </button>
             </div>
 
             <a 
@@ -104,8 +123,12 @@ export default function App() {
               key={`quiz-${level}`} 
               questions={level === 1 ? GEN_AI_QUESTIONS : GEN_AI_QUESTIONS_L2} 
             />
-          ) : (
+          ) : view === "hunter" ? (
             <HallucinationHunter key="hunter" />
+          ) : view === "reviewer" ? (
+            <PromptReviewer key="reviewer" />
+          ) : (
+            <UseCaseGenerator key="generator" />
           )}
         </div>
       </main>

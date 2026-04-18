@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { GEN_AI_QUESTIONS, GEN_AI_QUESTIONS_L2 } from "../../constants";
 import { QuizState, Question } from "../../types";
 import { BrutalistCard, BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
-import { ChevronRight, RotateCcw, Award, CheckCircle2, XCircle, Timer } from "lucide-react";
+import { ChevronRight, RotateCcw, Award, CheckCircle2, XCircle, Timer, User } from "lucide-react";
+import { useLeaderboard } from "../../hooks/useLeaderboard";
+import { Leaderboard } from "../../components/Leaderboard";
 
 interface AIQuizProps {
   questions: Question[];
@@ -20,7 +22,12 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions }) => {
   });
 
   const [timeLeft, setTimeLeft] = useState(10);
+  const [username, setUsername] = useState("");
+  const [hasSaved, setHasSaved] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  
+  const { saveScore, getAppLeaderboard } = useLeaderboard();
+  const appId = `quiz-${questions.length}`;
 
   const currentQuestion = questions[state.currentQuestionIndex];
 
@@ -79,86 +86,124 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions }) => {
       selectedOption: null,
       hasValidated: false,
     });
+    setHasSaved(false);
   };
 
-  if (state.isFinished) {
+    const handleSaveScore = () => {
+      if (!username.trim()) return;
+      saveScore({
+        username: username.trim(),
+        score: state.score,
+        total: questions.length,
+        appId
+      });
+      setHasSaved(true);
+    };
+
     const percentage = (state.score / questions.length) * 100;
     
     let comment = "Ouch ! Il va falloir réviser un peu... 😅";
-    let emoji = "😱";
     let bgColor = "bg-[#FF4D4D]"; // Red for low score
 
     if (percentage >= 50) {
       comment = "Pas mal ! Tu as de bonnes bases. 👍";
-      emoji = "😎";
       bgColor = "bg-wemodo-pink";
     }
     if (percentage >= 80) {
       comment = "Excellent ! Tu es un vrai expert ! 🚀";
-      emoji = "🔥";
       bgColor = "bg-wemodo-purple";
     }
     if (percentage === 100) {
       comment = "INCROYABLE ! Zéro faute, tu es un génie ! 🤖👑";
-      emoji = "👑";
       bgColor = "bg-[#4ADE80]"; // Green for perfect score
     }
 
-    return (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className={`fixed inset-0 z-[200] flex flex-col items-center justify-center p-0 md:p-4 ${bgColor} transition-colors duration-500`}
-      >
-        <div className="mb-6">
-          <WemodoLogo variant="light" className="h-10 md:h-14" />
-        </div>
-
-        <motion.div
-          initial={{ scale: 0, rotate: -20 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: "spring", damping: 12 }}
-          className="text-8xl md:text-[12rem] mb-4 md:mb-6 drop-shadow-[6px_6px_0_rgba(18,14,61,1)] md:drop-shadow-[8px_8px_0_rgba(18,14,61,1)]"
+    if (state.isFinished) {
+      return (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className={`fixed inset-0 z-[200] flex flex-col items-center justify-start overflow-y-auto p-4 md:p-10 ${bgColor} transition-colors duration-500`}
         >
-          {emoji}
-        </motion.div>
-        
-        <div className="max-w-md w-full flex flex-col gap-6 md:gap-8 p-8 md:p-10 bg-white text-wemodo-navy md:shadow-[16px_16px_0px_0px_rgba(18,14,61,1)] md:border-4 border-wemodo-navy h-full md:h-auto items-center justify-center md:block">
-          <div className="flex flex-col gap-2 md:scale-110 mb-6 md:mb-0">
-            <h2 className="font-display font-black text-5xl md:text-6xl uppercase italic tracking-tighter text-center md:text-left">
-              Bilan !
-            </h2>
-            <div className="h-2 w-24 bg-wemodo-navy mb-4 mx-auto md:mx-0" />
+          <div className="mb-6 shrink-0">
+            <WemodoLogo variant="light" className="h-10 md:h-14" />
           </div>
 
-          <div className="flex flex-col gap-6 md:gap-4 items-center md:items-start text-center md:text-left">
-            <div className="relative">
-              <span className="block text-8xl md:text-9xl font-black italic tracking-tighter leading-none">
-                {state.score}
-                <span className="text-4xl md:text-5xl opacity-30 not-italic ml-2">/ {questions.length}</span>
-              </span>
+          <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            {/* Result Card */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              className="flex flex-col gap-6 p-8 md:p-10 bg-white text-wemodo-navy md:shadow-[16px_16px_0px_0px_rgba(18,14,61,1)] md:border-4 border-wemodo-navy items-center md:items-start"
+            >
+              <div className="flex flex-col gap-2 mb-2">
+                <h2 className="font-display font-black text-5xl md:text-6xl uppercase italic tracking-tighter text-center md:text-left leading-none">
+                  Bilan !
+                </h2>
+              <div className="h-2 w-24 bg-wemodo-navy mx-auto md:mx-0" />
             </div>
-            <p className="text-2xl md:text-3xl font-black leading-tight border-b-8 md:border-b-0 md:border-l-8 border-wemodo-navy pb-4 md:pb-0 md:pl-4 md:py-2">
-              {comment}
-            </p>
-          </div>
 
-          <BrutalistButton 
-            onClick={resetQuiz} 
-            className="mt-8 md:mt-4 flex items-center justify-center gap-4 bg-wemodo-navy text-white hover:bg-wemodo-purple border-wemodo-navy h-16 md:h-20 text-2xl md:text-3xl w-full shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] md:shadow-[6px_6px_0px_0px_rgba(244,255,126,1)]"
+            <div className="flex flex-col gap-4 items-center md:items-start text-center md:text-left">
+              <div className="relative">
+                <span className="block text-8xl md:text-9xl font-black italic tracking-tighter leading-none">
+                  {state.score}
+                  <span className="text-4xl md:text-5xl opacity-30 not-italic ml-2">/ {questions.length}</span>
+                </span>
+              </div>
+              <p className="text-2xl font-black leading-tight border-b-8 md:border-b-0 md:border-l-8 border-wemodo-navy pb-4 md:pb-0 md:pl-4 md:py-2">
+                {comment}
+              </p>
+            </div>
+
+            {/* Persistence Form */}
+            {!hasSaved ? (
+              <div className="w-full flex flex-col gap-3 mt-4 bg-wemodo-cream/50 p-4 border-2 border-wemodo-navy border-dashed">
+                <p className="font-black text-xs uppercase tracking-widest text-wemodo-navy/60 text-center md:text-left">
+                  Enregistre ton score ?
+                </p>
+                <div className="flex gap-2">
+                  <input 
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Ton pseudo..."
+                    className="flex-1 px-4 py-2 border-2 border-wemodo-navy font-bold focus:outline-none focus:ring-2 focus:ring-wemodo-pink"
+                    onKeyDown={(e) => e.key === 'Enter' && handleSaveScore()}
+                  />
+                  <button 
+                    onClick={handleSaveScore}
+                    disabled={!username.trim()}
+                    className="bg-wemodo-navy text-white px-4 py-2 font-black uppercase text-xs border-2 border-wemodo-navy hover:bg-wemodo-purple disabled:opacity-50 transition-colors"
+                  >
+                    OK
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="w-full py-4 px-6 bg-wemodo-yellow border-4 border-wemodo-navy flex items-center gap-3">
+                <Award size={24} className="animate-bounce" />
+                <span className="font-black uppercase italic tracking-tighter text-lg">Score enregistré !</span>
+              </div>
+            )}
+
+            <BrutalistButton 
+              onClick={resetQuiz} 
+              className="mt-4 flex items-center justify-center gap-4 bg-wemodo-navy text-white hover:bg-wemodo-purple border-wemodo-navy h-14 md:h-16 text-xl md:text-2xl w-full shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] md:shadow-[6px_6px_0px_0px_rgba(244,255,126,1)]"
+            >
+              <RotateCcw size={24} /> Recommencer
+            </BrutalistButton>
+          </motion.div>
+
+          {/* Leaderboard Section */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="w-full"
           >
-            <RotateCcw size={32} /> Recommencer
-          </BrutalistButton>
+            <Leaderboard entries={getAppLeaderboard(appId)} />
+          </motion.div>
         </div>
-        
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="hidden md:block mt-8 font-black uppercase tracking-widest text-wemodo-navy text-sm md:text-base bg-white px-4 py-2 border-2 border-wemodo-navy shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]"
-        >
-          Prêt pour un nouveau défi ?
-        </motion.p>
       </motion.div>
     );
   }

@@ -14,3 +14,11 @@ export interface QuizState {
   selectedOption: number | null;
   hasValidated: boolean;
 }
+
+export interface LeaderboardEntry {
+  username: string;
+  score: number;
+  total: number;
+  date: string;
+  appId: string;
+}
