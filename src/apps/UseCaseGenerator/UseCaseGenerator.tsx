@@ -24,44 +24,25 @@ export const UseCaseGenerator: React.FC = () => {
     setUseCases(null);
 
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
-      
-      if (!apiKey) {
-        throw new Error("Clé API manquante. Vérifiez votre fichier .env");
-      }
-
-      const promptSystem = `Tu es un expert en productivité IA pour Wemodo. Ta mission est de transformer la profession ou la mission fournie en 5 cas d'usage concrets et actionnables.
-      Pour chaque cas d'usage, fournis : 
-      1. title: Un titre court et percutant.
-      2. timeSaved: Le gain de temps estimé (ex: "2h / semaine").
-      3. action: Ce que l'IA va concrètement faire.
-      4. prompt: Un exemple de prompt efficace pour cette tâche.
-      5. icon: Un emoji représentatif.
-
-      Profession/Mission à analyser: "${mission}"
-
-      Format de réponse: Un tableau JSON de 5 objets avec les clés strictes: title, timeSaved, action, prompt, icon.
-      Réponds uniquement en français.`;
-
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=${apiKey}`, {
+      // Utilisation de la route API locale /api/generate (sécurisée pour production)
+      const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: promptSystem }] }],
-          generationConfig: { response_mime_type: "application/json" }
-        })
+        body: JSON.stringify({ mission })
       });
 
       if (!response.ok) {
-        throw new Error("Erreur lors de la communication avec l'IA");
+        const errorData = await response.json().catch(() => ({ error: "Erreur serveur" }));
+        throw new Error(errorData.error || `Erreur ${response.status}`);
       }
 
       const data = await response.json();
-      const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
       
-      if (!content) throw new Error("Réponse vide");
+      if (!Array.isArray(data)) {
+        throw new Error("Format de réponse inattendu");
+      }
       
-      setUseCases(JSON.parse(content));
+      setUseCases(data);
 
     } catch (err: any) {
       console.error("Generation Error details:", err);
