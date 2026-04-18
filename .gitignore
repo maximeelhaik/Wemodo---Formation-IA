@@ -6,3 +6,8 @@ coverage/
 *.log
 .env*
 !.env.example
+.vercel
+.env*.local
+
+# Scratch and temporary AI files
+scratch/
