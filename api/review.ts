@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY_REVIEWER || process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite-preview';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -12,7 +12,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: "Method not allowed" });
 
   if (!GEMINI_API_KEY) {
-    console.error("GEMINI_API_KEY is not set in environment variables");
+    console.error("No Gemini API key found (tried GEMINI_API_KEY_REVIEWER and GEMINI_API_KEY)");
     return res.status(500).json({ error: "GEMINI_API_KEY is missing." });
   }
 

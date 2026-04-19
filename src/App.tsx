@@ -9,10 +9,11 @@ import { AIQuiz } from "./apps/AIQuiz/AIQuiz";
 import { HallucinationHunter } from "./apps/HallucinationHunter/HallucinationHunter";
 import { PromptReviewer } from "./apps/PromptReviewer/PromptReviewer";
 import { UseCaseGenerator } from "./apps/UseCaseGenerator/UseCaseGenerator";
+import { MidjourneyArchitect } from "./apps/MidjourneyArchitect/MidjourneyArchitect";
 import { GEN_AI_QUESTIONS, GEN_AI_QUESTIONS_L2 } from "./constants";
 
 export default function App() {
-  const [view, setView] = useState<"quiz" | "hunter" | "reviewer" | "generator">("quiz");
+  const [view, setView] = useState<"quiz" | "hunter" | "reviewer" | "generator" | "architect">("quiz");
   const [level, setLevel] = useState<1 | 2>(1);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -28,6 +29,8 @@ export default function App() {
       setView("reviewer");
     } else if (appParam === "mission") {
       setView("generator");
+    } else if (appParam === "architect") {
+      setView("architect");
     } else {
       setView("quiz");
       if (lvlParam === "2") {
@@ -38,7 +41,7 @@ export default function App() {
     }
   }, []);
 
-  const switchApp = (newView: "quiz" | "hunter" | "reviewer" | "generator", newLvl: 1 | 2 = 1) => {
+  const switchApp = (newView: "quiz" | "hunter" | "reviewer" | "generator" | "architect", newLvl: 1 | 2 = 1) => {
     setView(newView);
     setLevel(newLvl);
     setIsMobileMenuOpen(false);
@@ -67,7 +70,7 @@ export default function App() {
               <WemodoLogo />
               <div className="hidden lg:block h-8 w-1 bg-wemodo-navy/10 mx-2" />
               <div className="font-display font-black text-xs md:text-sm italic uppercase tracking-tighter text-wemodo-purple ml-2">
-                {view === "quiz" ? `QUIZ ${level}` : view === "hunter" ? "HALLUCINATION" : view === "reviewer" ? "PROMPT PROF" : "MISSION IA"}
+                {view === "quiz" ? `QUIZ ${level}` : view === "hunter" ? "HALLUCINATION" : view === "reviewer" ? "PROMPT PROF" : view === "generator" ? "MISSION IA" : "ARCHITECTE MJ"}
               </div>
             </div>
             {/* Hamburger Button for mobile */}
@@ -111,6 +114,12 @@ export default function App() {
                 className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "generator" ? 'bg-wemodo-purple text-white shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
               >
                 MISSION IA
+              </button>
+              <button 
+                onClick={() => switchApp("architect")}
+                className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "architect" ? 'bg-wemodo-pink shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
+              >
+                MJ PROMPT
               </button>
             </div>
 
@@ -158,6 +167,12 @@ export default function App() {
              >
                MISSION IA
              </button>
+             <button 
+               onClick={() => switchApp("architect")}
+               className={`text-xs font-black p-3 border-2 border-wemodo-navy text-left ${view === "architect" ? 'bg-wemodo-pink shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]' : 'bg-white'}`}
+             >
+               ARCHITECTE MJ
+             </button>
           </div>
         )}
       </header>
@@ -175,6 +190,8 @@ export default function App() {
             <HallucinationHunter key="hunter" />
           ) : view === "reviewer" ? (
             <PromptReviewer key="reviewer" />
+          ) : view === "architect" ? (
+            <MidjourneyArchitect key="architect" />
           ) : (
             <UseCaseGenerator key="generator" />
           )}

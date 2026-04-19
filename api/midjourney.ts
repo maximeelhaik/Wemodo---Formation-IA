@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY_MISSION || process.env.GEMINI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY_ARCHITECT || process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite-preview';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -18,28 +18,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (!GEMINI_API_KEY) {
-    return res.status(500).json({ error: "GEMINI_API_KEY is missing (neither GEMINI_API_KEY_MISSION nor GEMINI_API_KEY was found)." });
+    return res.status(500).json({ error: "GEMINI_API_KEY is missing (neither GEMINI_API_KEY_ARCHITECT nor GEMINI_API_KEY was found)." });
   }
 
-  const { mission } = req.body;
+  const { intention } = req.body;
 
-  if (!mission) {
-    return res.status(400).json({ error: "Missing mission field" });
+  if (!intention) {
+    return res.status(400).json({ error: "Missing intention field" });
   }
 
   try {
-    const promptSystem = `Tu es un expert en productivité IA pour Wemodo. Ta mission est de transformer la profession ou la mission fournie en 5 cas d'usage concrets et actionnables.
-    Pour chaque cas d'usage, fournis : 
-    1. title: Un titre court et percutant.
-    2. timeSaved: Le gain de temps estimé (ex: "2h / semaine").
-    3. action: Ce que l'IA va concrètement faire.
-    4. prompt: Un exemple de prompt efficace pour cette tâche.
-    5. icon: Un emoji représentatif.
-
-    Profession/Mission à analyser: "${mission}"
-
-    Format de réponse: Un tableau JSON de 5 objets avec les clés strictes: title, timeSaved, action, prompt, icon.
-    Réponds uniquement en français.`;
+    const promptSystem = `Expert Midjourney Wemodo. Transforme l'intention en 3 prompts optimisés.
+    Règles :
+    1. Sujet, Action, Environnement, Lumière, Style.
+    2. Paramètres (--ar, --stylize, --chaos, --weird, --tile, --no, --style raw) déduits de l'intention. 
+    3. PAS de paramètre de version (--v).
+    4. "visual_prompt" en ANGLAIS. "style_name" et emoji en FRANÇAIS.
+    
+    Format: JSON Array d'objets (visual_prompt, parameters, style_name, icon).
+    Intention : "${intention}"`;
 
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
       method: 'POST',
@@ -48,7 +45,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         contents: [{ parts: [{ text: promptSystem }] }],
         generationConfig: { 
           response_mime_type: "application/json",
-          temperature: 0.7
+          temperature: 0.4,
+          max_output_tokens: 1000
         }
       })
     });
@@ -66,7 +64,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json(JSON.parse(content));
 
   } catch (error: any) {
-    console.error("Gemini Error:", error);
+    console.error("Gemini Midjourney Error:", error);
     return res.status(500).json({ error: error.message });
   }
 }
