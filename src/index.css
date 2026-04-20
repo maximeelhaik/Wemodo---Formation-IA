@@ -38,3 +38,38 @@
 .brutalist-button-outline {
   @apply bg-white text-wemodo-navy border-4 border-wemodo-navy px-6 py-4 font-black uppercase tracking-wider shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] hover:shadow-[10px_10px_0px_0px_rgba(18,14,61,1)] hover:-translate-x-1 hover:-translate-y-1 active:shadow-none active:translate-x-1 active:translate-y-1;
 }
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-wemodo-cream);
+  border-left: 3px solid var(--color-wemodo-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-wemodo-purple);
+  border-left: 3px solid var(--color-wemodo-navy);
+  @apply shadow-[inset_0px_0px_0px_1px_rgba(255,255,255,0.1)];
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-wemodo-pink);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6634D9 #FFF7F7;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -21,21 +21,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ error: "GEMINI_API_KEY is missing (neither GEMINI_API_KEY_ARCHITECT nor GEMINI_API_KEY was found)." });
   }
 
-  const { intention } = req.body;
+  const { intention, styles } = req.body;
 
   if (!intention) {
     return res.status(400).json({ error: "Missing intention field" });
   }
 
+  const stylesText = styles && styles.length > 0
+    ? `\nSTYLES À APPLIQUER : ${styles.join(', ')}.`
+    : "";
+
   try {
-    const promptSystem = `Expert Midjourney Wemodo. Transforme l'intention en 3 prompts optimisés.
-    Règles :
-    1. Sujet, Action, Environnement, Lumière, Style.
-    2. Paramètres (--ar, --stylize, --chaos, --weird, --tile, --no, --style raw) déduits de l'intention. 
-    3. PAS de paramètre de version (--v).
-    4. "visual_prompt" en ANGLAIS. "style_name" et emoji en FRANÇAIS.
+    const promptSystem = `Expert Midjourney (Wemodo). Crée 1 SEUL prompt ultra-optimisé.
     
-    Format: JSON Array d'objets (visual_prompt, parameters, style_name, icon).
+    RÈGLES DE STRUCTURE :
+    1. "visual_prompt" : Description visuelle en ANGLAIS.
+    2. "parameters" : Paramètres Midjourney (ex: --ar 16:9 --raw).
+    3. "summary" : Un résumé très court de l'intention en FRANÇAIS (ex: "Café Parisien", "Portrait Cyberpunk"). MAX 3 mots. NE JAMAIS inclure d'emoji ici.
+    4. "icon" : Un seul emoji représentatif.
+    
+    RÈGLES CRITIQUES :
+    - INTERDICTION de répéter les paramètres.
+    - INTERDICTION de mettre des paramètres dans "visual_prompt".
+    - Paramètres autorisés : --ar, --stylize, --chaos, --weird, --tile, --no, --raw.
+    - Pour le mode raw, utilise exclusivement "--raw".
+    - PAS de paramètre de version (--v).${stylesText}
+    
+    Format JSON: OBJET UNIQUE (pas d'array car un seul prompt) avec les clés (visual_prompt, parameters, summary, icon).
     Intention : "${intention}"`;
 
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
@@ -43,9 +55,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ parts: [{ text: promptSystem }] }],
-        generationConfig: { 
+        generationConfig: {
           response_mime_type: "application/json",
-          temperature: 0.4,
+          temperature: 0.1,
           max_output_tokens: 1000
         }
       })
@@ -58,7 +70,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const data = await response.json();
     const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    
+
     if (!content) throw new Error("No response from Gemini");
 
     return res.status(200).json(JSON.parse(content));

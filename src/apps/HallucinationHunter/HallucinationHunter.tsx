@@ -1,9 +1,34 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { BrutalistCard, BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
-import { Search, Info, RotateCcw, Award } from "lucide-react";
-import { useLeaderboard } from "../../hooks/useLeaderboard";
-import { Leaderboard } from "../../components/Leaderboard";
+import { Search } from "lucide-react";
+
+// For later restitution of the leaderboard
+// import { useLeaderboard } from "../../hooks/useLeaderboard";
+// import { Leaderboard } from "../../components/Leaderboard";
+
+const RANDOM_THEMES = [
+  "Critique gastronomique d'un nouveau restaurant de street-food",
+  "Récit d'aventure sur l'ascension d'un sommet méconnu",
+  "Article de blog sur la psychologie des chats domestiques",
+  "Analyse d'une oeuvre d'art contemporaine controversée",
+  "Brève historique sur l'invention de la machine à écrire",
+  "Conseils de jardinage urbain pour débutants",
+  "Portrait d'un musicien de jazz fictif des années 50",
+  "Explication scientifique sur la formation des aurores boréales",
+  "Chronique culturelle sur le renouveau du cinéma d'animation",
+  "Guide de voyage sur une ville futuriste imaginaire",
+  "Essai sur l'impact de la musique lo-fi sur la concentration",
+  "Compte-rendu d'un match de sport insolite",
+  "Réflexion philosophique sur le concept du temps",
+  "Newsletter sur les tendances de la mode éco-responsable",
+  "Fait divers sur une incroyable découverte archéologique",
+  "Texte descriptif d'un marché traditionnel en Provence",
+  "Introduction à la mythologie nordique et ses symboles",
+  "Critique de film sur une saga de science-fiction",
+  "Billet d'humeur sur la vie sans smartphone pendant une semaine",
+  "Vulgarisation sur le fonctionnement des trous noirs",
+];
 
 type TargetType = "hallucination" | "cliche" | "none";
 
@@ -16,219 +41,280 @@ interface TextSegment {
 // V2 — Email de consultant rédigé par IA
 // Hallucinations : stats crédibles mais inventées, fausses citations, acquisitions bidonnées
 // Clichés : formules LinkedIn, transitions automatiques, buzzwords vides
+// Level 1 Static Data: 1 Cliché, 0 Hallucinations, ~80 words
 const HUNTER_DATA: TextSegment[] = [
-  { text: "Chers collègues,\n\n", type: "none" },
-  { text: "Je souhaitais ", type: "none" },
-  { text: "prendre un moment pour vous partager ", type: "cliche", explanation: "\"Prendre un moment pour partager\" est l'ouverture n°1 des emails professionnels générés par IA. Elle simule une attention humaine tout en évitant d'aller droit au but. ✉️" },
-  { text: "quelques réflexions suite à notre dernier comité. ", type: "none" },
-  { text: "L'IA générative représente ", type: "none" },
-  { text: "un tournant décisif ", type: "cliche", explanation: "\"Tournant décisif\" (ou \"moment charnière\") est l'une des 10 expressions les plus produites par les LLM en contexte professionnel. Elle dramatise sans informer. 🔄" },
-  { text: "pour nos organisations. ", type: "none" },
-  { text: "Selon une étude récente de McKinsey, ", type: "none" },
-  { text: "73 % des dirigeants européens ", type: "hallucination", explanation: "Ce chiffre précis n'existe pas dans les rapports McKinsey publiés. Les LLM hallucinent souvent des statistiques crédibles avec des décimales — c'est le type d'hallucination le plus dangereux car le plus difficile à détecter. 📊" },
-  { text: "considèrent l'IA comme priorité absolue pour 2025. ", type: "none" },
-  { text: "Ce constat nous invite à ", type: "none" },
-  { text: "repenser de fond en comble ", type: "cliche", explanation: "\"Repenser de fond en comble\" est une formule d'appel à l'action vague très utilisée par les IA pour introduire un changement sans en décrire le contenu réel. Elle sonne décisive mais ne dit rien. 🏗️" },
-  { text: "notre approche du numérique. ", type: "none" },
-  { text: "Il convient de noter que ", type: "cliche", explanation: "\"Il convient de noter\" est une balise rhétorique automatique des LLM pour simuler une voix académique. Souvent inutile — tout ce qu'il \"convient de noter\" pourrait simplement être dit directement. 📝" },
-  { text: "les modèles de langage actuels ont été entraînés sur ", type: "none" },
-  { text: "plus de 8 000 milliards de tokens, ", type: "hallucination", explanation: "Chiffre inventé. Les données d'entraînement de GPT-4 ne sont pas publiques — OpenAI n'a divulgué aucun chiffre officiel. Les LLM confondent souvent paramètres, données et tokens pour paraître précis. 🤖" },
-  { text: "contre seulement 300 milliards pour les modèles de 2020. ", type: "none" },
-  { text: "Dans cette optique, ", type: "cliche", explanation: "\"Dans cette optique\" est l'une des transitions automatiques préférées des LLM — elle semble logique mais relie souvent deux idées sans lien réel. Cherchez la transition, vous trouverez souvent le vide. 🔗" },
-  { text: "notre équipe s'est appuyée sur ", type: "none" },
-  { text: "le rapport Altman-LeCun de mars 2024, ", type: "hallucination", explanation: "Ce rapport n'existe pas. Sam Altman et Yann LeCun sont des personnalités réelles mais en désaccord public permanent — ils n'ont jamais co-signé un rapport. Les LLM associent des noms réels pour créer une autorité fictive. ⚠️" },
-  { text: "qui préconisait une gouvernance hybride de l'IA. ", type: "none" },
-  { text: "Force est de constater que ", type: "cliche", explanation: "\"Force est de constater\" est une formule quasi-systématique dans les textes formels générés par IA. Elle donne une impression de rigueur sans apporter de preuve — c'est du faux académisme. 🎓" },
-  { text: "les biais algorithmiques restent un défi majeur. ", type: "none" },
-  { text: "Une étude publiée dans Nature Machine Intelligence ", type: "none" },
-  { text: "a montré que GPT-4 produit des réponses biaisées dans 34 % des cas ", type: "hallucination", explanation: "Ce chiffre précis n'existe pas dans ce journal. Aucune étude avec ce taux n'a été publiée dans Nature MI. Les LLM inventent facilement des sources scientifiques — vérifiez toujours le DOI ou l'abstract. 🔬" },
-  { text: "impliquant des profils minoritaires. ", type: "none" },
-  { text: "C'est précisément là que réside l'enjeu fondamental ", type: "cliche", explanation: "\"C'est précisément là que réside l'enjeu\" est une formule dramatique très appréciée des LLM pour conclure un paragraphe. Elle sonne profond mais ne dit rien d'actionnable. 🎭" },
-  { text: "de notre stratégie de déploiement. ", type: "none" },
-  { text: "Nous devons donc adopter ", type: "none" },
-  { text: "une approche holistique ", type: "cliche", explanation: "\"Holistique\" est le cliché roi des LLM en contexte business — il signifie \"on prend tout en compte\" sans préciser quoi ni comment. Présent dans 1 email sur 3 généré par ChatGPT. 🌐" },
-  { text: "qui intègre les enjeux éthiques, techniques et organisationnels. ", type: "none" },
-  { text: "Par ailleurs, Meta AI a finalisé en janvier 2025 ", type: "none" },
-  { text: "le rachat de Mistral AI pour 4,2 milliards d'euros. ", type: "hallucination", explanation: "Cette acquisition n'a pas eu lieu. Mistral AI est une société indépendante française. Les LLM inventent des opérations financières entre acteurs tech réels — toujours vérifier sur des sources primaires récentes. 🏢" },
-  { text: "Cette consolidation reflète la pression croissante sur les start-ups européennes. ", type: "none" },
-  { text: "En somme, ", type: "cliche", explanation: "\"En somme\" est l'une des transitions de clôture les plus automatiques des LLM — avec \"En conclusion\" et \"En définitive\". Elle apparaît même quand il n'y a rien à résumer. 📦" },
-  { text: "je reste convaincu que ", type: "none" },
-  { text: "nous avons toutes les cartes en main ", type: "cliche", explanation: "\"Avoir toutes les cartes en main\" est une métaphore narrative typique des LLM en fin de mémo — elle exprime un optimisme générique sans aucune preuve concrète. 🃏" },
-  { text: "pour réussir cette transition. ", type: "none" },
-  { text: "N'hésitez pas à revenir vers moi pour tout ", type: "none" },
-  { text: "échange constructif.\n\n", type: "cliche", explanation: "\"Échange constructif\" est le closing par excellence des emails écrits par IA — présent dans presque tous les mails de consultants ou RH rédigés par un LLM. Il garantit l'absence totale d'engagement concret. ✉️" },
-  { text: "Cordialement,\n", type: "none" },
-  { text: "L'IA du département stratégie\n\n", type: "none" },
-  { text: "P.S. : Lors du sommet de Davos 2024, ", type: "none" },
-  { text: "António Guterres aurait déclaré ", type: "none" },
-  { text: "que \"l'IA détruira 40 % des emplois d'ici 2027 en Europe\".", type: "hallucination", explanation: "Guterres n'a jamais dit cela dans ce format précis. C'est une déformation d'un rapport de l'OIT sur les risques d'automatisation. Les LLM fabriquent de fausses citations de personnes réelles — l'un des patterns les plus trompeurs. 🗣️" },
+  { text: "L'intelligence artificielle transforme ", type: "none" },
+  { text: "radicalement de nombreux ", type: "none" },
+  { text: "secteurs d'activité aujourd'hui.\n\n", type: "none" },
+  { text: "ChatGPT a franchi une ", type: "none" },
+  { text: "étape historique en démontrant ", type: "none" },
+  { text: "l'étendue des capacités de ", type: "none" },
+  { text: "traitement du langage naturel. ", type: "none" },
+  { text: "Il est indéniable que", type: "cliche", explanation: "Formule d'autorité bateau très souvent utilisée par les IA pour conclure une phrase sans avancer la moindre preuve." },
+  { text: " cette technologie redessinera ", type: "none" },
+  { text: "le monde du travail ", type: "none" },
+  { text: "de demain. Les entreprises ", type: "none" },
+  { text: "intègrent de plus en ", type: "none" },
+  { text: "plus ces modèles pour ", type: "none" },
+  { text: "automatiser leurs tâches, ", type: "none" },
+  { text: "réinventant notre futur.", type: "none" },
 ];
 
 export const HallucinationHunter: React.FC = () => {
+  const [roundsData, setRoundsData] = useState<TextSegment[][]>([HUNTER_DATA]);
+  const [currentLevel, setCurrentLevel] = useState(0);
+  const [totalScore, setTotalScore] = useState(0);
+  const [isLoadingNext, setIsLoadingNext] = useState(false);
+  const [customTheme, setCustomTheme] = useState("");
+  const [isGeneratingCustom, setIsGeneratingCustom] = useState(false);
+
   const [foundIds, setFoundIds] = useState<number[]>([]);
-  const [errors, setErrors] = useState<number[]>([]);
-  const [isFinished, setIsFinished] = useState(false);
+  const [errorIndices, setErrorIndices] = useState<number[]>([]);
+  const [isErrorFlash, setIsErrorFlash] = useState(false);
   const [selectedInfo, setSelectedInfo] = useState<TextSegment | null>(null);
-  const [username, setUsername] = useState("");
-  const [hasSaved, setHasSaved] = useState(false);
 
-  const { saveScore, getAppLeaderboard } = useLeaderboard();
-  const appId = "hallucination-hunter";
+  const [startTime, setStartTime] = useState<number | null>(null);
 
-  const targets = useMemo(() => HUNTER_DATA.filter(s => s.type !== "none"), []);
+  const currentData = roundsData[currentLevel];
+  const targets = useMemo(() => currentData?.filter(s => s.type !== "none") || [], [currentData]);
   const totalTargets = targets.length;
 
-  const handleSegmentClick = (index: number, segment: TextSegment) => {
-    if (isFinished) return;
-    if (segment.type !== "none") {
-      if (!foundIds.includes(index)) {
-        setFoundIds(prev => {
-          const next = [...prev, index];
-          if (next.length === totalTargets) setIsFinished(true);
-          return next;
-        });
-        setSelectedInfo(segment);
-      }
-    } else {
-      setErrors(prev => [...prev, index]);
-      setTimeout(() => setErrors(prev => prev.filter(id => id !== index)), 1000);
+  useEffect(() => {
+    // Generate next round in the background if we don't have at least 2 rounds ahead
+    if (roundsData.length <= currentLevel + 2 && !isLoadingNext && !isGeneratingCustom) {
+      const fetchRound = async () => {
+        setIsLoadingNext(true);
+        try {
+          const nextLevelIndex = roundsData.length;
+          const levelNum = nextLevelIndex + 1;
+          const theme = RANDOM_THEMES[Math.floor(Math.random() * RANDOM_THEMES.length)];
+
+          // Difficulty scaling formulas
+          const halls = Math.floor(levelNum / 2);
+          const cliches = Math.ceil(levelNum / 2);
+          const words = 60 + levelNum * 20;
+
+          const res = await fetch("/api/hunt-generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              theme,
+              hallsCount: halls,
+              clichesCount: cliches,
+              maxWords: words
+            })
+          });
+          const data = await res.json();
+          if (data.segments && data.segments.length > 0) {
+            setRoundsData(prev => [...prev, data.segments]);
+          }
+        } catch (err) {
+          console.error("Failed to prefetch next round", err);
+        } finally {
+          setIsLoadingNext(false);
+        }
+      };
+      fetchRound();
+    }
+  }, [roundsData.length, currentLevel, isLoadingNext, isGeneratingCustom]);
+
+  const advanceToNextRound = useCallback((roundScore: number) => {
+    setTotalScore(prev => prev + roundScore);
+    setFoundIds([]);
+    setErrorIndices([]);
+    setIsErrorFlash(false);
+    setSelectedInfo(null);
+    setStartTime(null);
+    setCurrentLevel(prev => prev + 1);
+  }, []);
+
+  // Monitor round completion
+  useEffect(() => {
+    if (totalTargets > 0 && foundIds.length === totalTargets) {
+      const endTime = Date.now();
+      const duration = Math.floor((endTime - (startTime || endTime)) / 1000);
+      // Base score increases slightly with level difficulty
+      const basePoints = 1000 + (currentLevel * 200);
+      const roundScore = Math.max(100, basePoints - duration * 5);
+
+      const timer = setTimeout(() => {
+        advanceToNextRound(roundScore);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [foundIds.length, totalTargets, startTime, advanceToNextRound]);
+
+  const triggerMiss = (index?: number) => {
+    setIsErrorFlash(true);
+    setTimeout(() => setIsErrorFlash(false), 200);
+    if (index !== undefined) {
+      setErrorIndices(prev => [...prev, index]);
+      setTimeout(() => setErrorIndices(prev => prev.filter(id => id !== index)), 800);
     }
   };
 
-  const resetGame = () => {
-    setFoundIds([]);
-    setErrors([]);
-    setIsFinished(false);
-    setSelectedInfo(null);
-    setHasSaved(false);
+  const handleSegmentClick = (index: number, segment: TextSegment, e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    if (!startTime) setStartTime(Date.now());
+
+    if (segment.type !== "none") {
+      if (!foundIds.includes(index)) {
+        setFoundIds(prev => [...prev, index]);
+        setSelectedInfo(segment);
+      } else {
+        setSelectedInfo(segment);
+      }
+    } else {
+      triggerMiss(index);
+    }
   };
 
-  const handleSaveScore = () => {
-    if (!username.trim()) return;
-    saveScore({
-      username: username.trim(),
-      score: totalTargets - errors.length > 0 ? totalTargets - errors.length : 0, // Score penalized by errors
-      total: totalTargets,
-      appId
-    });
-    setHasSaved(true);
+  const handleContainerClick = () => {
+    if (!startTime) setStartTime(Date.now());
+    triggerMiss();
   };
 
-  if (isFinished) {
+  const handleGenerateCustom = async () => {
+    if (!customTheme.trim()) return;
+    setIsGeneratingCustom(true);
+    try {
+      const res = await fetch("/api/hunt-generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ theme: customTheme })
+      });
+      const data = await res.json();
+      if (data.segments && data.segments.length > 0) {
+        setRoundsData(prev => {
+          const newRounds = prev.slice(0, currentLevel + 1);
+          newRounds.push(data.segments);
+          return newRounds;
+        });
+        setCustomTheme("");
+        advanceToNextRound(0);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsGeneratingCustom(false);
+    }
+  };
+
+  if (!currentData || currentData.length === 0) {
     return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="fixed inset-0 z-[200] flex flex-col items-center justify-start overflow-y-auto p-4 md:p-10 bg-wemodo-navy transition-colors duration-500"
-      >
-        <div className="mb-6 shrink-0">
-          <WemodoLogo variant="light" className="h-10 md:h-14" />
-        </div>
-
-        <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="flex flex-col gap-6 p-8 md:p-10 bg-white text-wemodo-navy md:shadow-[16px_16px_0px_0px_rgba(244,255,126,1)] md:border-4 border-wemodo-navy items-center md:items-start"
-          >
-            <h2 className="font-display font-black text-4xl md:text-5xl uppercase italic tracking-tighter text-center md:text-left leading-none">
-              Expert dénicheur !
-            </h2>
-            <p className="text-xl md:text-2xl font-black leading-tight border-b-8 md:border-b-0 md:border-l-8 border-wemodo-navy pb-4 md:pb-0 md:pl-4 md:py-2 text-center md:text-left">
-              Tu as débusqué les {totalTargets} pièges du texte ! L'IA ne pourra plus te berner.
-            </p>
-
-            {/* Persistence Form */}
-            {!hasSaved ? (
-              <div className="w-full flex flex-col gap-3 mt-4 bg-wemodo-cream/50 p-4 border-2 border-wemodo-navy border-dashed">
-                <p className="font-black text-xs uppercase tracking-widest text-wemodo-navy/60 text-center md:text-left">
-                  Enregistre ton pseudo ?
-                </p>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Ton pseudo..."
-                    className="flex-1 px-4 py-2 border-2 border-wemodo-navy font-bold focus:outline-none focus:ring-2 focus:ring-wemodo-purple"
-                    onKeyDown={(e) => e.key === 'Enter' && handleSaveScore()}
-                  />
-                  <button
-                    onClick={handleSaveScore}
-                    disabled={!username.trim()}
-                    className="bg-wemodo-navy text-white px-4 py-2 font-black uppercase text-xs border-2 border-wemodo-navy hover:bg-wemodo-purple disabled:opacity-50 transition-colors"
-                  >
-                    OK
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="w-full py-4 px-6 bg-wemodo-yellow border-4 border-wemodo-navy flex items-center gap-3">
-                <Award size={24} className="animate-bounce text-wemodo-navy" />
-                <span className="font-black uppercase italic tracking-tighter text-lg text-wemodo-navy">Score enregistré !</span>
-              </div>
-            )}
-
-            <BrutalistButton
-              onClick={resetGame}
-              className="mt-4 flex items-center justify-center gap-4 bg-wemodo-pink text-wemodo-navy border-wemodo-navy h-14 md:h-16 text-xl w-full shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] md:shadow-[6px_6px_0px_0px_rgba(18,14,61,1)]"
-            >
-              <RotateCcw size={24} /> Recommencer
-            </BrutalistButton>
-          </motion.div>
-
-          {/* Leaderboard Section */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="w-full"
-          >
-            <Leaderboard entries={getAppLeaderboard(appId)} title="Chasseurs Élite" />
-          </motion.div>
-        </div>
-      </motion.div>
+      <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4 w-full">
+        <WemodoLogo variant="dark" className="h-10 md:h-14 animate-pulse opacity-50" />
+        <p className="font-black text-wemodo-navy/50 uppercase tracking-widest animate-pulse">Génération de la prochaine manche...</p>
+      </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-6 md:gap-8 max-w-4xl mx-auto h-full p-0 md:p-2 bg-transparent overflow-y-auto w-full">
-      {/* Header */}
-      <div className="space-y-3 px-4 md:px-0 mt-4 md:mt-0">
-        <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
-          Cherche les <span className="text-wemodo-purple">Hallucinations !</span>
-        </h1>
-        <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-sm tracking-widest max-w-2xl">
-          Déniche les hallucinations et les clichés dans un texte généré par l'IA.
-        </p>
-      </div>
+    <div className="flex flex-col gap-6 md:gap-8 max-w-5xl mx-auto p-0 md:p-2 bg-transparent w-full">
+      {/* Header and custom generator */}
+      <div className="space-y-4 px-4 md:px-0 mt-4 md:mt-0 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+        <div className="space-y-3">
+          <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
+            CHASSE AUX <span className="text-wemodo-purple">HALLUCINATIONS</span>
+          </h1>
+          <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-sm tracking-widest max-w-xl">
+            Trouve l'hallucination et le cliché cachés dans ce texte. <br />
+            <span className="text-wemodo-purple italic">Le score dépend de ta rapidité !</span>
+          </p>
+        </div>
 
-      {/* Stats Info */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-wemodo-cream md:bg-white border-b-4 md:border-4 border-wemodo-navy p-4 md:shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] shrink-0 mx-4 md:mx-0">
-        <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto mt-2 md:mt-0">
-          <span className="text-3xl md:text-4xl font-black italic text-wemodo-purple">
-            {foundIds.length} <span className="text-lg not-italic text-wemodo-navy/30">/ {totalTargets}</span>
-          </span>
-          <div className="w-32 h-2.5 md:h-3 bg-wemodo-navy/10 border-2 border-wemodo-navy mt-1">
-            <motion.div
-              className="h-full bg-wemodo-yellow"
-              animate={{ width: `${(foundIds.length / totalTargets) * 100}%` }}
+        {/* Custom Subject Generator (secondary) */}
+        <div className="flex flex-col gap-2 shrink-0 bg-white p-3 border-2 border-wemodo-navy bg-wemodo-cream/30 w-full md:w-auto min-w-[250px] shadow-[4px_4px_0_rgba(18,14,61,1)]">
+          <span className="text-[10px] font-black uppercase text-wemodo-navy/50 tracking-widest">Sujet sur mesure (optionnel)</span>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={customTheme}
+              onChange={(e) => setCustomTheme(e.target.value)}
+              placeholder="Ex: Startups..."
+              className="flex-1 px-2 py-1 text-sm border-2 border-wemodo-navy bg-white focus:outline-none focus:ring-2 focus:ring-wemodo-purple min-w-0"
+              disabled={isGeneratingCustom}
+              onKeyDown={(e) => e.key === 'Enter' && handleGenerateCustom()}
             />
+            <BrutalistButton
+              onClick={handleGenerateCustom}
+              disabled={isGeneratingCustom || !customTheme.trim()}
+              className="h-auto py-1 px-3 text-xs"
+            >
+              Go
+            </BrutalistButton>
           </div>
+          {isGeneratingCustom && <span className="text-[10px] text-wemodo-purple font-bold">Génération en cours...</span>}
         </div>
       </div>
 
+      {/* Stats Info */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white border-b-4 md:border-4 border-wemodo-navy p-4 md:shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] shrink-0 mx-4 md:mx-0">
+        <div className="flex items-center gap-4 md:gap-8 w-full md:w-auto justify-between md:justify-start">
+          <div className="flex flex-col">
+            <span className="text-[10px] md:text-xs font-black uppercase text-wemodo-navy/40">Éléments trouvés</span>
+            <span className="text-3xl md:text-4xl font-black italic text-wemodo-purple leading-none">
+              {foundIds.length} <span className="text-lg not-italic text-wemodo-navy/30">/ {totalTargets}</span>
+            </span>
+          </div>
+
+          <div className="flex flex-col text-right md:text-left border-l-2 border-wemodo-navy/10 pl-4 md:pl-6">
+            <span className="text-[10px] md:text-xs font-black uppercase text-wemodo-navy/40">Score Cumulative</span>
+            <span className="text-3xl md:text-4xl font-black italic text-wemodo-navy leading-none">
+              {totalScore} <span className="text-sm md:text-lg not-italic text-wemodo-navy/30">pts</span>
+            </span>
+          </div>
+
+          <div className="flex flex-col text-right md:text-left border-l-2 border-wemodo-navy/10 pl-4 md:pl-6 hidden md:flex">
+            <span className="text-[10px] md:text-xs font-black uppercase text-wemodo-navy/40">Manche</span>
+            <span className="text-3xl md:text-4xl font-black italic text-wemodo-navy leading-none">
+              {currentLevel + 1}
+            </span>
+          </div>
+        </div>
+
+        <div className="hidden md:block flex-1 max-w-md w-full h-4 bg-wemodo-navy/10 border-2 border-wemodo-navy overflow-hidden ml-4">
+          <motion.div
+            className="h-full bg-wemodo-yellow"
+            animate={{ width: `${totalTargets > 0 ? Math.min(100, (foundIds.length / totalTargets) * 100) : 0}%` }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          />
+        </div>
+      </div>
+
+      {/* Loading overlay indicator for background generation */}
+      {(isLoadingNext && roundsData.length <= currentLevel + 1) && (
+        <div className="text-right mx-4 md:mx-0 -mt-2 -mb-2">
+          <span className="text-xs font-bold text-wemodo-navy/40 italic">Préparation de la manche suivante...</span>
+        </div>
+      )}
+
       {/* Main Text Area */}
-      <div className="flex-1 bg-white p-6 md:p-10 md:border-4 border-wemodo-navy md:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)] relative overflow-y-auto">
-        <div className="text-xl md:text-2xl font-bold leading-relaxed text-wemodo-navy whitespace-pre-wrap">
-          {HUNTER_DATA.map((segment, idx) => {
+      <div
+        className={`bg-white p-6 md:p-10 md:border-4 border-wemodo-navy md:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)] relative cursor-crosshair overflow-hidden mx-4 md:mx-0 transition-colors duration-300 ${isErrorFlash ? 'bg-red-50 border-red-500' : 'border-wemodo-navy'}`}
+        onClick={handleContainerClick}
+      >
+        <AnimatePresence>
+          {isErrorFlash && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 z-0 bg-red-500/10 pointer-events-none"
+            />
+          )}
+        </AnimatePresence>
+
+        <div className="text-xl md:text-2xl font-bold leading-relaxed text-wemodo-navy whitespace-pre-wrap relative z-10 pb-48">
+          {currentData.map((segment, idx) => {
             const isFound = foundIds.includes(idx);
-            const isError = errors.includes(idx);
+            const isError = errorIndices.includes(idx);
 
             return (
               <motion.span
-                key={idx}
-                onClick={() => handleSegmentClick(idx, segment)}
+                key={`${currentLevel}-${idx}`}
+                onClick={(e) => handleSegmentClick(idx, segment, e)}
                 animate={isFound ? {
                   backgroundColor: segment.type === 'hallucination' ? '#EF4444' : '#6634D9',
                   color: '#FFFFFF',
@@ -246,8 +332,9 @@ export const HallucinationHunter: React.FC = () => {
                 } : {}}
                 whileTap={!isFound ? { scale: 0.95 } : {}}
                 className={`
-                  inline px-1 cursor-pointer
-                  ${isError ? 'bg-red-200 animate-shake' : ''}
+                  inline cursor-pointer transition-all duration-200 rounded-sm
+                  ${isError ? 'bg-red-500 text-white animate-shake' : ''}
+                  ${isFound ? 'px-1' : 'px-0'}
                 `}
               >
                 {segment.text}

@@ -69,7 +69,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       // Save back to KV
       await kvFetch(['SET', STORAGE_KEY, JSON.stringify(scores)]);
-      
+
       return res.status(200).json(scores);
     }
 

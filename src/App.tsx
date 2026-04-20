@@ -3,62 +3,58 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { WemodoLogo } from "./components/BrutalistUI";
 import { AIQuiz } from "./apps/AIQuiz/AIQuiz";
 import { HallucinationHunter } from "./apps/HallucinationHunter/HallucinationHunter";
+import { HallucinationHunter2 } from "./apps/HallucinationHunter/HallucinationHunter2";
 import { PromptReviewer } from "./apps/PromptReviewer/PromptReviewer";
 import { UseCaseGenerator } from "./apps/UseCaseGenerator/UseCaseGenerator";
 import { MidjourneyArchitect } from "./apps/MidjourneyArchitect/MidjourneyArchitect";
-import { GEN_AI_QUESTIONS, GEN_AI_QUESTIONS_L2 } from "./constants";
+import { AIQuizTraining } from "./apps/AIQuizTraining/AIQuizTraining";
+import { ALL_APPS, PLATFORMS_CONFIG, getPlatform, AppId } from "./config/navigation";
+
 
 export default function App() {
-  const [view, setView] = useState<"quiz" | "hunter" | "reviewer" | "generator" | "architect">("quiz");
-  const [level, setLevel] = useState<1 | 2>(1);
+  const [view, setView] = useState<AppId>("quiz");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Détecter la plateforme actuelle
+  const platform = useMemo(() => getPlatform(), []);
+  
+  // Apps visibles dans le menu pour cette plateforme
+  const visibleApps = useMemo(() => {
+    return PLATFORMS_CONFIG[platform].apps.map(id => ALL_APPS[id]);
+  }, [platform]);
 
   // Sync state with URL for development/deployment access
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const appParam = params.get("app");
-    const lvlParam = params.get("level");
 
-    if (appParam === "hunter") {
-      setView("hunter");
-    } else if (appParam === "reviewer") {
-      setView("reviewer");
-    } else if (appParam === "mission") {
-      setView("generator");
-    } else if (appParam === "architect") {
-      setView("architect");
+    // Trouver l'app qui correspond au paramètre URL
+    const foundApp = Object.values(ALL_APPS).find(app => app.urlParam === appParam);
+    
+    if (foundApp) {
+      setView(foundApp.id);
     } else {
-      setView("quiz");
-      if (lvlParam === "2") {
-        setLevel(2);
-      } else {
-        setLevel(1);
-      }
+      // App par défaut selon la plateforme
+      setView(PLATFORMS_CONFIG[platform].apps[0] || "quiz");
     }
-  }, []);
+  }, [platform]);
 
-  const switchApp = (newView: "quiz" | "hunter" | "reviewer" | "generator" | "architect", newLvl: 1 | 2 = 1) => {
+  const switchApp = (newView: AppId) => {
     setView(newView);
-    setLevel(newLvl);
     setIsMobileMenuOpen(false);
     
     const url = new URL(window.location.href);
     url.searchParams.delete("level");
-    const appValue = newView === "generator" ? "mission" : newView;
-    url.searchParams.set("app", appValue);
-    
-    if (newView === "quiz") {
-      url.searchParams.set("level", newLvl.toString());
-    } else {
-      url.searchParams.delete("level");
-    }
+    url.searchParams.set("app", ALL_APPS[newView].urlParam);
     
     window.history.pushState({}, "", url);
   };
+
+  const currentApp = ALL_APPS[view] || ALL_APPS.quiz;
 
   return (
     <div className="h-screen flex flex-col bg-wemodo-cream overflow-hidden">
@@ -70,7 +66,7 @@ export default function App() {
               <WemodoLogo />
               <div className="hidden lg:block h-8 w-1 bg-wemodo-navy/10 mx-2" />
               <div className="font-display font-black text-xs md:text-sm italic uppercase tracking-tighter text-wemodo-purple ml-2">
-                {view === "quiz" ? `QUIZ ${level}` : view === "hunter" ? "HALLUCINATION" : view === "reviewer" ? "PROMPT PROF" : view === "generator" ? "MISSION IA" : "ARCHITECTE MJ"}
+                {currentApp.label}
               </div>
             </div>
             {/* Hamburger Button for mobile */}
@@ -83,44 +79,21 @@ export default function App() {
           </div>
           
           <div className="hidden md:flex items-center gap-4 md:gap-6">
-            {/* Dev Navigation - Buttons to switch apps */}
-            <div className="flex gap-2 bg-wemodo-navy/5 p-1">
-              <button 
-                onClick={() => switchApp("quiz", 1)}
-                className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "quiz" && level === 1 ? 'bg-wemodo-yellow shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
-              >
-                QUIZ 1
-              </button>
-              <button 
-                onClick={() => switchApp("quiz", 2)}
-                className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "quiz" && level === 2 ? 'bg-wemodo-purple text-white shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
-              >
-                QUIZ 2
-              </button>
-              <button 
-                onClick={() => switchApp("hunter")}
-                className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "hunter" ? 'bg-wemodo-pink shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
-              >
-                HALLUCINATION
-              </button>
-              <button 
-                onClick={() => switchApp("reviewer")}
-                className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "reviewer" ? 'bg-wemodo-yellow shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
-              >
-                PROMPT PROF
-              </button>
-              <button 
-                onClick={() => switchApp("generator")}
-                className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "generator" ? 'bg-wemodo-purple text-white shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
-              >
-                MISSION IA
-              </button>
-              <button 
-                onClick={() => switchApp("architect")}
-                className={`text-[10px] font-black px-2 py-1 border-2 border-wemodo-navy transition-all ${view === "architect" ? 'bg-wemodo-pink shadow-[2px_2px_0px_0px_rgba(18,14,61,1)]' : 'bg-white opacity-50'}`}
-              >
-                MJ PROMPT
-              </button>
+            {/* dynamic Navigation */}
+            <div className="flex gap-1 bg-wemodo-navy/5 p-1">
+              {visibleApps.map((app) => (
+                <button 
+                  key={app.id}
+                  onClick={() => switchApp(app.id)}
+                  className={`text-[9px] font-black px-3 py-1 border-2 border-wemodo-navy transition-all ${
+                    view === app.id 
+                    ? `${app.color} shadow-[1px_1px_0px_0px_rgba(18,14,61,1)]` 
+                    : 'bg-white opacity-50 hover:opacity-100'
+                  }`}
+                >
+                  {app.shortLabel}
+                </button>
+              ))}
             </div>
 
             <a 
@@ -136,62 +109,39 @@ export default function App() {
 
         {/* Mobile menu dropdown */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b-4 border-b border-wemodo-navy p-4 flex flex-col gap-2 z-50">
-             <button 
-               onClick={() => switchApp("quiz", 1)}
-               className={`text-xs font-black p-3 border-2 border-wemodo-navy text-left ${view === "quiz" && level === 1 ? 'bg-wemodo-yellow shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]' : 'bg-white'}`}
-             >
-               QUIZ NIVEAU 1
-             </button>
-             <button 
-               onClick={() => switchApp("quiz", 2)}
-               className={`text-xs font-black p-3 border-2 border-wemodo-navy text-left ${view === "quiz" && level === 2 ? 'bg-wemodo-purple text-white shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]' : 'bg-white'}`}
-             >
-               QUIZ NIVEAU 2
-             </button>
-             <button 
-               onClick={() => switchApp("hunter")}
-               className={`text-xs font-black p-3 border-2 border-wemodo-navy text-left ${view === "hunter" ? 'bg-wemodo-pink shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]' : 'bg-white'}`}
-             >
-               HALLUCINATION HUNTER
-             </button>
-             <button 
-               onClick={() => switchApp("reviewer")}
-               className={`text-xs font-black p-3 border-2 border-wemodo-navy text-left ${view === "reviewer" ? 'bg-wemodo-yellow shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]' : 'bg-white'}`}
-             >
-               PROMPT PROF
-             </button>
-             <button 
-               onClick={() => switchApp("generator")}
-               className={`text-xs font-black p-3 border-2 border-wemodo-navy text-left ${view === "generator" ? 'bg-wemodo-purple text-white shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]' : 'bg-white'}`}
-             >
-               MISSION IA
-             </button>
-             <button 
-               onClick={() => switchApp("architect")}
-               className={`text-xs font-black p-3 border-2 border-wemodo-navy text-left ${view === "architect" ? 'bg-wemodo-pink shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]' : 'bg-white'}`}
-             >
-               ARCHITECTE MJ
-             </button>
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b-4 border-b border-wemodo-navy p-4 flex flex-col gap-2 z-50 shadow-2xl">
+            {visibleApps.map((app) => (
+              <button 
+                key={app.id}
+                onClick={() => switchApp(app.id)}
+                className={`text-xs font-black p-3 border-2 border-wemodo-navy text-left ${
+                  view === app.id 
+                  ? `${app.color} shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]` 
+                  : 'bg-white'
+                }`}
+              >
+                {app.label}
+              </button>
+            ))}
           </div>
         )}
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-hidden px-4 md:px-4 py-4 md:py-6 scrollbar-hide">
-        <div className="max-w-4xl mx-auto h-full w-full">
+      <main className="flex-1 overflow-y-auto">
+        <div className="max-w-4xl mx-auto h-full w-full px-4 py-4 md:py-6">
           {view === "quiz" ? (
-            <AIQuiz 
-              key={`quiz-${level}`} 
-              questions={level === 1 ? GEN_AI_QUESTIONS : GEN_AI_QUESTIONS_L2} 
-              level={level}
-            />
+            <AIQuiz key="ai-quiz" />
           ) : view === "hunter" ? (
             <HallucinationHunter key="hunter" />
+          ) : view === "hunter2" ? (
+            <HallucinationHunter2 key="hunter2" />
           ) : view === "reviewer" ? (
             <PromptReviewer key="reviewer" />
           ) : view === "architect" ? (
             <MidjourneyArchitect key="architect" />
+          ) : view === "training" ? (
+            <AIQuizTraining key="training" />
           ) : (
             <UseCaseGenerator key="generator" />
           )}

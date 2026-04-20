@@ -21,4 +21,20 @@ export interface LeaderboardEntry {
   total: number;
   date: string;
   appId: string;
+  time?: number;
 }
+
+export interface Chapter {
+  id: string;
+  title: string;
+  questions: Question[];
+}
+
+export interface Module {
+  id: string;
+  title: string;
+  description: string;
+  color: string;
+  chapters: Chapter[];
+}
+

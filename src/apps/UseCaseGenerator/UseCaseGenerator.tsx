@@ -59,7 +59,7 @@ export const UseCaseGenerator: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 md:gap-8 h-full overflow-y-auto">
+    <div className="flex flex-col gap-6 md:gap-8">
       {/* Header */}
       <div className="space-y-3 px-4 md:px-0">
         <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">

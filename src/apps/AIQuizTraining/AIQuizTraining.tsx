@@ -1,19 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { GEN_AI_QUESTIONS, GEN_AI_QUESTIONS_L2, GEN_AI_QUESTIONS_L3, GEN_AI_QUESTIONS_L4 } from "../../constants";
-import { QuizState, Question } from "../../types";
-import { BrutalistCard, BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
-import { ChevronRight, RotateCcw, Award, CheckCircle2, XCircle, Timer, User, Zap, Brain, ArrowLeft } from "lucide-react";
+import { TRAINING_QUIZ_STRUCTURE } from "../../constants";
+import { QuizState, Question, Chapter, Module } from "../../types";
+import { BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
+import { ChevronRight, RotateCcw, Award, CheckCircle2, XCircle, Brain, ArrowLeft, BookOpen, Layers } from "lucide-react";
 import { useLeaderboard } from "../../hooks/useLeaderboard";
 import { Leaderboard } from "../../components/Leaderboard";
 
-interface AIQuizProps {
-  questions?: Question[];
-  initialLevel?: number;
-}
-
-export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initialLevel = 1 }) => {
-  const [currentLevel, setCurrentLevel] = useState<number | null>(null);
+export const AIQuizTraining: React.FC = () => {
+  const [selectedModule, setSelectedModule] = useState<Module | null>(null);
+  const [selectedChapter, setSelectedChapter] = useState<Chapter | null>(null);
   const [gameStarted, setGameStarted] = useState(false);
   
   const [state, setState] = useState<QuizState>({
@@ -33,13 +29,11 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
   
   const { saveScore, getAppLeaderboard } = useLeaderboard();
 
-  // Determine which questions to use
-  const questions = currentLevel === 1 ? GEN_AI_QUESTIONS : currentLevel === 2 ? GEN_AI_QUESTIONS_L2 : currentLevel === 3 ? GEN_AI_QUESTIONS_L3 : currentLevel === 4 ? GEN_AI_QUESTIONS_L4 : propQuestions || GEN_AI_QUESTIONS;
-  const appId = `quiz-v2-level-${currentLevel}`;
+  const questions = selectedChapter?.questions || [];
+  const appId = `quiz-training-${selectedChapter?.id}`;
 
   const currentQuestion = questions[state.currentQuestionIndex];
 
-  // Handle automatic progression after validation
   useEffect(() => {
     if (state.hasValidated && !state.isFinished) {
       setTimeLeft(10);
@@ -58,8 +52,8 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
     };
   }, [state.hasValidated, state.currentQuestionIndex]);
 
-  const handleLevelSelect = (level: number) => {
-    setCurrentLevel(level);
+  const handleChapterSelect = (chapter: Chapter) => {
+    setSelectedChapter(chapter);
     setGameStarted(true);
     resetQuiz();
   };
@@ -69,14 +63,12 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
     
     const isCorrect = index === currentQuestion.correctAnswer;
     
-    // First step: highlight the selection
     setState((prev) => ({ 
       ...prev, 
       selectedOption: index,
       score: isCorrect ? prev.score + 1 : prev.score,
     }));
 
-    // Second step: show overlay after a short delay
     setTimeout(() => {
       setState(prev => ({ ...prev, hasValidated: true }));
     }, 800);
@@ -87,7 +79,7 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
     const isLastQuestion = state.currentQuestionIndex === questions.length - 1;
     if (isLastQuestion) {
       setIsTransitioningToScore(true);
-      setState((prev) => ({ ...prev, hasValidated: false })); // Hide explanation
+      setState((prev) => ({ ...prev, hasValidated: false }));
       setTimeout(() => {
         setState((prev) => ({ ...prev, isFinished: true }));
         setIsTransitioningToScore(false);
@@ -115,7 +107,7 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
   };
 
   const handleSaveScore = () => {
-    if (!username.trim()) return;
+    if (!username.trim() || !selectedChapter) return;
     saveScore({
       username: username.trim(),
       score: state.score,
@@ -125,117 +117,93 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
     setHasSaved(true);
   };
 
-  // Level Selection Screen
-  if (!gameStarted) {
+  // 1. Module Selection Screen
+  if (!selectedModule && !gameStarted) {
     return (
       <div className="max-w-4xl mx-auto flex flex-col gap-8 py-4 md:py-8 px-4">
         <div className="space-y-4">
           <h1 className="font-display font-black text-5xl md:text-7xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
-            QUIZ <span className="text-wemodo-purple">IA</span>
+            QUIZ <span className="text-wemodo-purple">FORMATION</span>
           </h1>
           <p className="font-bold text-wemodo-navy/70 uppercase text-sm md:text-base tracking-widest max-w-2xl">
-            Choisis ton niveau et teste tes connaissances sur l'IA Générative.
+            Validez vos acquis chapitre par chapitre. Sélectionnez un module pour commencer.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-          <motion.div 
-            whileHover={{ scale: 1.02, rotate: -1 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => handleLevelSelect(1)}
-            className="group cursor-pointer"
-          >
-            <div className="h-full bg-wemodo-yellow border-4 border-wemodo-navy p-8 md:p-10 flex flex-col gap-6 shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] transition-all group-hover:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)]">
-              <div className="bg-white border-4 border-wemodo-navy w-16 h-16 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]">
-                <Zap size={32} className="text-wemodo-purple fill-wemodo-purple" />
+          {TRAINING_QUIZ_STRUCTURE.map((module) => (
+            <motion.div 
+              key={module.id}
+              whileHover={{ scale: 1.02, rotate: -1 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setSelectedModule(module)}
+              className="group cursor-pointer"
+            >
+              <div className={`h-full ${module.color} border-4 border-wemodo-navy p-8 md:p-10 flex flex-col gap-6 shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] transition-all group-hover:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)]`}>
+                <div className="bg-white border-4 border-wemodo-navy w-16 h-16 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]">
+                  <Layers size={32} className="text-wemodo-purple fill-wemodo-purple" />
+                </div>
+                <div>
+                  <h2 className="font-display font-black text-4xl uppercase italic tracking-tighter leading-none mb-2">{module.title}</h2>
+                  <p className="font-black uppercase text-xs tracking-widest text-wemodo-navy/60 mb-4">{module.description}</p>
+                  <p className="text-lg font-bold leading-tight">
+                    {module.chapters.length} chapitres à valider.
+                  </p>
+                </div>
+                <div className="mt-auto flex items-center gap-2 font-black uppercase text-sm group-hover:gap-4 transition-all">
+                  VOIR LES CHAPITRES <ChevronRight size={20} />
+                </div>
               </div>
-              <div>
-                <h2 className="font-display font-black text-4xl uppercase italic tracking-tighter leading-none mb-2">Niveau 1</h2>
-                <p className="font-black uppercase text-xs tracking-widest text-wemodo-navy/60 mb-4">BASES & FONDATIONS</p>
-                <p className="text-lg font-bold leading-tight">
-                  Comprendre ce qu'est l'IA générative, les outils essentiels et les premiers concepts clés pour bien démarrer.
-                </p>
-              </div>
-              <div className="mt-auto flex items-center gap-2 font-black uppercase text-sm group-hover:gap-4 transition-all">
-                DÉMARRER <ChevronRight size={20} />
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            whileHover={{ scale: 1.02, rotate: 1 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => handleLevelSelect(2)}
-            className="group cursor-pointer"
-          >
-            <div className="h-full bg-wemodo-pink border-4 border-wemodo-navy p-8 md:p-10 flex flex-col gap-6 shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] transition-all group-hover:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)]">
-              <div className="bg-white border-4 border-wemodo-navy w-16 h-16 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]">
-                <Brain size={32} className="text-wemodo-purple fill-wemodo-purple" />
-              </div>
-              <div>
-                <h2 className="font-display font-black text-4xl uppercase italic tracking-tighter leading-none mb-2">Niveau 2</h2>
-                <p className="font-black uppercase text-xs tracking-widest text-wemodo-navy/60 mb-4">MÉTHODES & USAGES</p>
-                <p className="text-lg font-bold leading-tight">
-                  Maîtriser les méthodes ROCIF, les 3R et les bonnes pratiques de feedback pour devenir vraiment productif au quotidien.
-                </p>
-              </div>
-              <div className="mt-auto flex items-center gap-2 font-black uppercase text-sm group-hover:gap-4 transition-all">
-                DÉMARRER <ChevronRight size={20} />
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            whileHover={{ scale: 1.02, rotate: -0.5 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => handleLevelSelect(3)}
-            className="group cursor-pointer"
-          >
-            <div className="h-full bg-wemodo-purple text-white border-4 border-wemodo-navy p-8 md:p-10 flex flex-col gap-6 shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] transition-all group-hover:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)]">
-              <div className="bg-white border-4 border-wemodo-navy w-16 h-16 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]">
-                <Zap size={32} className="text-wemodo-purple fill-wemodo-purple" />
-              </div>
-              <div>
-                <h2 className="font-display font-black text-4xl uppercase italic tracking-tighter leading-none mb-2">Niveau 3</h2>
-                <p className="font-black uppercase text-xs tracking-widest text-white/60 mb-4">MAÎTRISE & RISQUES</p>
-                <p className="text-lg font-bold leading-tight">
-                   Fonctionnement technique, sécurité des données et enjeux éthiques. Pour ceux qui veulent aller au-delà de la surface.
-                </p>
-              </div>
-              <div className="mt-auto flex items-center gap-2 font-black uppercase text-sm group-hover:gap-4 transition-all">
-                DÉMARRER <ChevronRight size={20} />
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            whileHover={{ scale: 1.02, rotate: 0.5 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => handleLevelSelect(4)}
-            className="group cursor-pointer"
-          >
-            <div className="h-full bg-wemodo-navy text-white border-4 border-wemodo-navy p-8 md:p-10 flex flex-col gap-6 shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] transition-all group-hover:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)]">
-              <div className="bg-white border-4 border-wemodo-navy w-16 h-16 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]">
-                <Zap size={32} className="text-wemodo-purple fill-wemodo-purple" />
-              </div>
-              <div>
-                <h2 className="font-display font-black text-4xl uppercase italic tracking-tighter leading-none mb-2">Niveau 4</h2>
-                <p className="font-black uppercase text-xs tracking-widest text-white/60 mb-4">STRATÉGIE & EXPERTISE</p>
-                <p className="text-lg font-bold leading-tight">
-                  Transformers, RAG, IA Act et vision stratégique métier. Le défi ultime pour les futurs experts de l'IA.
-                </p>
-              </div>
-              <div className="mt-auto flex items-center gap-2 font-black uppercase text-sm group-hover:gap-4 transition-all">
-                DÉMARRER <ChevronRight size={20} />
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
     );
   }
 
-  // Finished Screen
+  // 2. Chapter Selection Screen
+  if (selectedModule && !gameStarted) {
+    return (
+      <div className="max-w-4xl mx-auto flex flex-col gap-8 py-4 md:py-8 px-4">
+        <div className="space-y-4">
+          <button 
+            onClick={() => setSelectedModule(null)}
+            className="flex items-center gap-2 font-black uppercase text-[10px] tracking-widest text-wemodo-navy/50 hover:text-wemodo-purple transition-colors"
+          >
+            <ArrowLeft size={14} /> Retour aux modules
+          </button>
+          <h1 className="font-display font-black text-5xl md:text-7xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
+            {selectedModule.title}
+          </h1>
+          <p className="font-black uppercase text-xs tracking-widest text-wemodo-navy/60">
+            {selectedModule.description}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {selectedModule.chapters.map((chapter) => (
+            <motion.div 
+              key={chapter.id}
+              whileHover={{ scale: 1.02, x: 5 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => handleChapterSelect(chapter)}
+              className="group cursor-pointer bg-white border-4 border-wemodo-navy p-6 flex items-center justify-between shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] hover:shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] transition-all"
+            >
+              <div className="flex items-center gap-4">
+                <div className="bg-wemodo-yellow border-2 border-wemodo-navy p-2">
+                  <BookOpen size={20} />
+                </div>
+                <h3 className="font-black uppercase text-lg leading-tight">{chapter.title}</h3>
+              </div>
+              <ChevronRight size={24} className="opacity-0 group-hover:opacity-100 transition-all text-wemodo-purple" />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // 3. Finished Screen
   if (state.isFinished) {
     const percentage = (state.score / questions.length) * 100;
     let comment = "Ouch ! Il va falloir réviser un peu... 😅";
@@ -265,6 +233,9 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
                 Bilan !
               </h2>
               <div className="h-2 w-24 bg-wemodo-navy mx-auto md:mx-0" />
+              <p className="font-black uppercase text-[10px] tracking-widest opacity-60 text-center md:text-left">
+                {selectedChapter?.title}
+              </p>
             </div>
 
             <div className="flex flex-col gap-4 items-center md:items-start text-center md:text-left">
@@ -320,7 +291,7 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
                 onClick={() => setGameStarted(false)} 
                 className="flex items-center justify-center gap-4 bg-white text-wemodo-navy hover:bg-wemodo-yellow border-wemodo-navy h-14 text-xl w-full shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]"
               >
-                <ArrowLeft size={20} /> Retour aux niveaux
+                <ArrowLeft size={20} /> Retour aux chapitres
               </BrutalistButton>
             </div>
           </motion.div>
@@ -338,7 +309,9 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
     );
   }
 
-  // Gameplay Screen
+  // 4. Gameplay Screen
+  if (!currentQuestion) return null;
+
   return (
     <div className="max-w-2xl mx-auto flex flex-col min-h-full gap-6 md:gap-8 py-0 md:py-1 bg-transparent">
       {/* Header */}
@@ -348,15 +321,20 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
             onClick={() => setGameStarted(false)}
             className="flex items-center gap-2 font-black uppercase text-[10px] tracking-widest text-wemodo-navy/50 hover:text-wemodo-purple transition-colors mb-2"
           >
-            <ArrowLeft size={14} /> Sommaire des niveaux
+            <ArrowLeft size={14} /> Retour aux chapitres
           </button>
-          <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
-            Quiz <span className="text-wemodo-purple">Niveau {currentLevel}</span>
-          </h1>
+          <div className="flex items-center gap-3">
+             <div className="bg-wemodo-navy text-white p-2 border-2 border-wemodo-navy font-black text-xs">
+                {selectedChapter?.id}
+             </div>
+             <h1 className="font-display font-black text-3xl md:text-5xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
+                {selectedChapter?.title}
+             </h1>
+          </div>
         </div>
         <div className="shrink-0 flex items-center gap-3 bg-white border-4 border-wemodo-navy p-3 shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]">
           <div className="flex flex-col">
-            <span className="font-black uppercase text-[10px] text-wemodo-navy/50 leading-none mb-1">Score Actuel</span>
+            <span className="font-black uppercase text-[10px] text-wemodo-navy/50 leading-none mb-1">Score</span>
             <span className="font-display font-black text-2xl italic leading-none">{state.score} / {questions.length}</span>
           </div>
           <div className="h-8 w-1 bg-wemodo-navy/10" />
@@ -387,7 +365,7 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
           className="flex-1 flex flex-col gap-0 md:gap-5 overflow-hidden"
         >
           <div className="bg-wemodo-yellow p-8 md:p-10 border-4 border-wemodo-navy shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] shrink-0 mx-4 md:mx-0">
-            <h1 className="text-2xl md:text-4xl font-black leading-[1.1] text-wemodo-navy tracking-tight">
+            <h1 className="text-2xl md:text-3xl font-black leading-[1.1] text-wemodo-navy tracking-tight">
               {currentQuestion.text}
             </h1>
           </div>
@@ -397,7 +375,6 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
               {currentQuestion.options.map((option, index) => {
                 const isSelected = state.selectedOption === index;
                 const isCorrect = index === currentQuestion.correctAnswer;
-                const isWrongSelection = isSelected && !isCorrect;
 
                 let customStyles = "bg-white text-wemodo-navy";
                 let icon = null;
@@ -457,7 +434,6 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
                 const isCorrect = state.selectedOption === currentQuestion.correctAnswer;
                 return (
                   <div className={`flex flex-col items-center justify-center p-8 md:p-10 relative overflow-hidden text-wemodo-navy bg-white border-4 border-wemodo-navy shadow-[12px_12px_0px_0px_rgba(18,14,61,1)]`}>
-                    {/* Visual accent top */}
                     <div className={`absolute top-0 left-0 right-0 h-4 ${isCorrect ? 'bg-[#4ADE80]' : 'bg-[#FF4D4D]'}`} />
                     
                     <div className="flex flex-col items-center text-center gap-4 max-w-sm mt-2">
@@ -483,11 +459,10 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
                         onClick={handleNext}
                         className="mt-4 bg-wemodo-navy text-white px-8 py-5 text-xl flex items-center gap-3 w-full justify-center shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]"
                        >
-                         Question suivante <ChevronRight size={28} />
+                         Suivant <ChevronRight size={28} />
                        </BrutalistButton>
                        <span className="text-sm font-bold opacity-60 uppercase tracking-widest mt-2">Passage automatique dans {timeLeft}s...</span>
                     </div>
-                    {/* Timer Bar */}
                     <div className="absolute bottom-0 left-0 h-3 bg-wemodo-navy w-full transform origin-left">
                       <motion.div 
                         className="h-full bg-white"

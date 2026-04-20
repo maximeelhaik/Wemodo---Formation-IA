@@ -45,7 +45,7 @@ export const PromptReviewer: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 md:gap-8 h-full p-0 overflow-y-auto">
+    <div className="flex flex-col gap-6 md:gap-8 p-0">
       <div className="space-y-3 px-4 md:px-0 mt-4 md:mt-0">
         <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
           Le correcteur <span className="text-wemodo-purple">de Prompt</span>

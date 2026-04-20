@@ -47,6 +47,9 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ entries, title = "Clas
                   </span>
                   <span className="text-[10px] opacity-50 font-bold flex items-center gap-1">
                     <Clock size={10} /> {new Date(entry.date).toLocaleDateString()}
+                    {entry.time !== undefined && (
+                      <span className="ml-1 px-1 bg-wemodo-navy/5 rounded">⏱️ {entry.time}s</span>
+                    )}
                   </span>
                 </div>
               </div>
@@ -54,12 +57,18 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ entries, title = "Clas
               <div className="flex items-center gap-4">
                 <div className="flex flex-col items-end">
                   <span className="font-black text-xl italic tracking-tighter text-wemodo-purple leading-none">
-                    {entry.score}<span className="text-xs not-italic opacity-30 ml-0.5">/{entry.total}</span>
+                    {entry.score}
+                    {entry.total > 0 && entry.score <= entry.total && (
+                      <span className="text-xs not-italic opacity-30 ml-0.5">/{entry.total}</span>
+                    )}
+                    {entry.total > 0 && entry.score > entry.total && (
+                      <span className="text-[10px] not-italic opacity-30 ml-0.5 uppercase tracking-tighter">pts</span>
+                    )}
                   </span>
                   <div className="w-16 h-1 bg-wemodo-navy/10 mt-1">
                     <div 
                       className="h-full bg-wemodo-yellow" 
-                      style={{ width: `${(entry.score / entry.total) * 100}%` }} 
+                      style={{ width: `${Math.min(100, (entry.score / Math.max(1, entry.total)) * 100)}%` }} 
                     />
                   </div>
                 </div>
