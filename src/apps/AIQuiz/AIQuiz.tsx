@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { GEN_AI_QUESTIONS, GEN_AI_QUESTIONS_L2, GEN_AI_QUESTIONS_L3, GEN_AI_QUESTIONS_L4 } from "../../constants";
+import { getQuizData } from "../../data/quizzes";
 import { QuizState, Question } from "../../types";
 import { BrutalistCard, BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
 import { ChevronRight, RotateCcw, Award, CheckCircle2, XCircle, Timer, User, Zap, Brain, ArrowLeft } from "lucide-react";
@@ -15,6 +15,8 @@ interface AIQuizProps {
 export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initialLevel = 1 }) => {
   const [currentLevel, setCurrentLevel] = useState<number | null>(null);
   const [gameStarted, setGameStarted] = useState(false);
+  const [questions, setQuestions] = useState<Question[]>(propQuestions || []);
+  const [isLoading, setIsLoading] = useState(false);
   
   const [state, setState] = useState<QuizState>({
     currentQuestionIndex: 0,
@@ -33,8 +35,7 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
   
   const { saveScore, getAppLeaderboard } = useLeaderboard();
 
-  // Determine which questions to use
-  const questions = currentLevel === 1 ? GEN_AI_QUESTIONS : currentLevel === 2 ? GEN_AI_QUESTIONS_L2 : currentLevel === 3 ? GEN_AI_QUESTIONS_L3 : currentLevel === 4 ? GEN_AI_QUESTIONS_L4 : propQuestions || GEN_AI_QUESTIONS;
+  // Determine app ID for leaderboard
   const appId = `quiz-v2-level-${currentLevel}`;
 
   const currentQuestion = questions[state.currentQuestionIndex];
@@ -58,8 +59,16 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
     };
   }, [state.hasValidated, state.currentQuestionIndex]);
 
-  const handleLevelSelect = (level: number) => {
+  const handleLevelSelect = async (level: number) => {
+    setIsLoading(true);
     setCurrentLevel(level);
+    
+    // Lazy load the questions
+    const chapterId = `level${level}`;
+    const loadedQuestions = await getQuizData('GEN_AI', chapterId);
+    setQuestions(loadedQuestions);
+    
+    setIsLoading(false);
     setGameStarted(true);
     resetQuiz();
   };
@@ -124,6 +133,38 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
     });
     setHasSaved(true);
   };
+
+  // Loading Screen
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-[300] flex flex-col items-center justify-center bg-wemodo-navy text-white">
+        <motion.div
+          animate={{ 
+            rotate: 360,
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ 
+            rotate: { duration: 2, repeat: Infinity, ease: "linear" },
+            scale: { duration: 1, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="mb-8"
+        >
+          <Brain size={80} className="text-wemodo-yellow" />
+        </motion.div>
+        <h2 className="font-display font-black text-4xl mt-4 uppercase italic tracking-tighter">
+          Chargement du <span className="text-wemodo-purple">Quiz...</span>
+        </h2>
+        <div className="mt-8 w-48 h-2 bg-white/20 border-2 border-white overflow-hidden">
+          <motion.div 
+            className="h-full bg-wemodo-yellow"
+            initial={{ width: "0%" }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          />
+        </div>
+      </div>
+    );
+  }
 
   // Level Selection Screen
   if (!gameStarted) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { TRAINING_QUIZ_STRUCTURE } from "../../constants";
+import { getQuizData } from "../../data/quizzes";
 import { QuizState, Question, Chapter, Module } from "../../types";
 import { BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
 import { ChevronRight, RotateCcw, Award, CheckCircle2, XCircle, Brain, ArrowLeft, BookOpen, Layers } from "lucide-react";
@@ -11,6 +12,8 @@ export const AIQuizTraining: React.FC = () => {
   const [selectedModule, setSelectedModule] = useState<Module | null>(null);
   const [selectedChapter, setSelectedChapter] = useState<Chapter | null>(null);
   const [gameStarted, setGameStarted] = useState(false);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   
   const [state, setState] = useState<QuizState>({
     currentQuestionIndex: 0,
@@ -29,7 +32,6 @@ export const AIQuizTraining: React.FC = () => {
   
   const { saveScore, getAppLeaderboard } = useLeaderboard();
 
-  const questions = selectedChapter?.questions || [];
   const appId = `quiz-training-${selectedChapter?.id}`;
 
   const currentQuestion = questions[state.currentQuestionIndex];
@@ -52,8 +54,17 @@ export const AIQuizTraining: React.FC = () => {
     };
   }, [state.hasValidated, state.currentQuestionIndex]);
 
-  const handleChapterSelect = (chapter: Chapter) => {
+  const handleChapterSelect = async (chapter: Chapter) => {
+    setIsLoading(true);
     setSelectedChapter(chapter);
+    
+    // Lazy load the questions based on module and chapter
+    if (selectedModule) {
+      const loadedQuestions = await getQuizData(selectedModule.id, chapter.id);
+      setQuestions(loadedQuestions);
+    }
+    
+    setIsLoading(false);
     setGameStarted(true);
     resetQuiz();
   };
@@ -117,6 +128,38 @@ export const AIQuizTraining: React.FC = () => {
     setHasSaved(true);
   };
 
+  // Loading Screen
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-[300] flex flex-col items-center justify-center bg-wemodo-navy text-white">
+        <motion.div
+          animate={{ 
+            rotate: 360,
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ 
+            rotate: { duration: 2, repeat: Infinity, ease: "linear" },
+            scale: { duration: 1, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="mb-8"
+        >
+          <Brain size={80} className="text-wemodo-yellow" />
+        </motion.div>
+        <h2 className="font-display font-black text-4xl mt-4 uppercase italic tracking-tighter text-center px-4">
+          Chargement des questions du <span className="text-wemodo-purple">Chapitre...</span>
+        </h2>
+        <div className="mt-8 w-48 h-2 bg-white/20 border-2 border-white overflow-hidden">
+          <motion.div 
+            className="h-full bg-wemodo-yellow"
+            initial={{ width: "0%" }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          />
+        </div>
+      </div>
+    );
+  }
+
   // 1. Module Selection Screen
   if (!selectedModule && !gameStarted) {
     return (
@@ -144,7 +187,12 @@ export const AIQuizTraining: React.FC = () => {
                   <Layers size={32} className="text-wemodo-purple fill-wemodo-purple" />
                 </div>
                 <div>
-                  <h2 className="font-display font-black text-4xl uppercase italic tracking-tighter leading-none mb-2">{module.title}</h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <h2 className="font-display font-black text-4xl uppercase italic tracking-tighter leading-none">{module.title}</h2>
+                    {module.chapters.some(c => c.isUpdated) && (
+                      <div className="w-3 h-3 bg-wemodo-purple rounded-full animate-pulse shadow-[0_0_8px_rgba(139,92,246,0.5)]" />
+                    )}
+                  </div>
                   <p className="font-black uppercase text-xs tracking-widest text-wemodo-navy/60 mb-4">{module.description}</p>
                   <p className="text-lg font-bold leading-tight">
                     {module.chapters.length} chapitres à valider.
@@ -193,7 +241,14 @@ export const AIQuizTraining: React.FC = () => {
                 <div className="bg-wemodo-yellow border-2 border-wemodo-navy p-2">
                   <BookOpen size={20} />
                 </div>
-                <h3 className="font-black uppercase text-lg leading-tight">{chapter.title}</h3>
+                <div className="flex flex-col gap-1">
+                  <h3 className="font-black uppercase text-lg leading-tight">{chapter.title}</h3>
+                  {chapter.isUpdated && (
+                    <span className="bg-wemodo-purple text-white text-[8px] font-black px-2 py-0.5 w-fit uppercase tracking-tighter rounded-sm">
+                      Mis à jour
+                    </span>
+                  )}
+                </div>
               </div>
               <ChevronRight size={24} className="opacity-0 group-hover:opacity-100 transition-all text-wemodo-purple" />
             </motion.div>

@@ -27,7 +27,8 @@ export interface LeaderboardEntry {
 export interface Chapter {
   id: string;
   title: string;
-  questions: Question[];
+  questions?: Question[];
+  isUpdated?: boolean;
 }
 
 export interface Module {
