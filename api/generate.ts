@@ -1,72 +1,91 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import { GoogleGenAI } from "@google/genai";
+
+export const config = {
+  runtime: 'edge',
+};
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY_MISSION || process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS basic headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
+export default async function handler(req: Request) {
   if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+    return new Response(null, {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    });
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: "Method not allowed" });
+    return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 });
   }
 
   if (!GEMINI_API_KEY) {
-    return res.status(500).json({ error: "GEMINI_API_KEY is missing (neither GEMINI_API_KEY_MISSION nor GEMINI_API_KEY was found)." });
+    return new Response(JSON.stringify({ error: "GEMINI_API_KEY is missing." }), { status: 500 });
   }
 
-  const { mission } = req.body;
+  const { mission } = await req.json();
 
   if (!mission) {
-    return res.status(400).json({ error: "Missing mission field" });
+    return new Response(JSON.stringify({ error: "Missing mission field" }), { status: 400 });
   }
 
   try {
-    const promptSystem = `Tu es un expert en productivité IA pour Wemodo. Ta mission est de transformer la profession ou la mission fournie en 5 cas d'usage concrets et actionnables.
-    Pour chaque cas d'usage, fournis : 
-    1. title: Un titre court et percutant.
-    2. timeSaved: Le gain de temps estimé (ex: "2h / semaine").
-    3. action: Ce que l'IA va concrètement faire.
-    4. prompt: Un exemple de prompt efficace pour cette tâche.
-    5. icon: Un emoji représentatif.
+    const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-    Profession/Mission à analyser: "${mission}"
+    const response = await ai.models.generateContentStream({
+      model: GEMINI_MODEL,
+      contents: [
+        { role: 'user', parts: [{ text: `Mission : "${mission}"` }] }
+      ],
+      config: {
+        systemInstruction: `Expert Productivité IA. Génère 5 cas d'usage pour la mission fournie.
+        Chaque cas est un objet JSON avec :
+        - title: Titre court et percutant.
+        - timeSaved: Gain estimé (ex: "3h/semaine").
+        - action: Description concrète de ce que l'IA va faire.
+        - icon: Un emoji représentatif.
 
-    Format de réponse: Un tableau JSON de 5 objets avec les clés strictes: title, timeSaved, action, prompt, icon.
-    Réponds uniquement en français.`;
-
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: promptSystem }] }],
-        generationConfig: { 
-          response_mime_type: "application/json",
-          temperature: 0.7
-        }
-      })
+        IMPORTANT : Sépare chaque objet par le délimiteur exact : ---END_OF_CASE---
+        Règles : Pas de crochets [ ], pas de blabla, Français uniquement.`,
+        temperature: 0.1,
+      }
     });
 
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error?.message || "Gemini API error");
-    }
+    const stream = new ReadableStream({
+      async start(controller) {
+        const encoder = new TextEncoder();
+        controller.enqueue(encoder.encode(' ')); // Espace d'amorçage
 
-    const data = await response.json();
-    const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    
-    if (!content) throw new Error("No response from Gemini");
+        try {
+          for await (const chunk of response) {
+            const text = chunk.text || "";
+            if (text) {
+              controller.enqueue(encoder.encode(text));
+            }
+          }
+        } catch (e) {
+          console.error("Stream Error:", e);
+        } finally {
+          controller.close();
+        }
+      },
+    });
 
-    return res.status(200).json(JSON.parse(content));
+    return new Response(stream, {
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'no-cache, no-transform',
+        'X-Content-Type-Options': 'nosniff',
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
 
   } catch (error: any) {
-    console.error("Gemini Error:", error);
-    return res.status(500).json({ error: error.message });
+    console.error("Gemini Edge Error:", error);
+    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
 }

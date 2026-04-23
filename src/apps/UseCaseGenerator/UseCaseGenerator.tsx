@@ -6,7 +6,6 @@ interface UseCase {
   title: string;
   timeSaved: string;
   action: string;
-  prompt: string;
   icon: string;
 }
 
@@ -21,10 +20,9 @@ export const UseCaseGenerator: React.FC = () => {
 
     setLoading(true);
     setError(null);
-    setUseCases(null);
+    setUseCases([]); // Commencer avec un tableau vide pour ajouter au fur et à mesure
 
     try {
-      // Utilisation de la route API locale /api/generate (sécurisée pour production)
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -36,16 +34,59 @@ export const UseCaseGenerator: React.FC = () => {
         throw new Error(errorData.error || `Erreur ${response.status}`);
       }
 
-      const data = await response.json();
-      
-      if (!Array.isArray(data)) {
-        throw new Error("Format de réponse inattendu");
+      const reader = response.body?.getReader();
+      if (!reader) throw new Error("Le flux de réponse est indisponible.");
+
+      const decoder = new TextDecoder();
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        
+        // On cherche le délimiteur défini dans l'API
+        const parts = buffer.split('---END_OF_CASE---');
+        
+        // On traite tous les segments sauf le dernier (qui est potentiellement incomplet)
+        for (let i = 0; i < parts.length - 1; i++) {
+          const content = parts[i].trim();
+          if (content) {
+            try {
+              // Nettoyage rapide pour éviter les blocs de code markdown s'ils s'invitent
+              const cleanContent = content.replace(/```json|```/g, "").trim();
+              if (cleanContent) {
+                const useCase = JSON.parse(cleanContent);
+                setUseCases(prev => [...(prev || []), useCase]);
+              }
+            } catch (e) {
+              console.warn("Échec du parsing d'un fragment de cas d'usage:", e);
+            }
+          }
+        }
+        
+        // On conserve le fragment restant (incomplet) pour le prochain chunk
+        buffer = parts[parts.length - 1];
       }
-      
-      setUseCases(data);
+
+      // Traiter le dernier morceau si jamais il n'y a pas de délimiteur final
+      const finalContent = buffer.trim().replace(/```json|```/g, "").trim();
+      if (finalContent && finalContent.startsWith('{') && finalContent.endsWith('}')) {
+        try {
+          const useCase = JSON.parse(finalContent);
+          setUseCases(prev => {
+            // Vérifier si ce cas n'a pas déjà été ajouté (au cas où)
+            if (prev?.some(uc => uc.title === useCase.title)) return prev;
+            return [...(prev || []), useCase];
+          });
+        } catch (e) {
+          // Ignorer si c'est incomplet
+        }
+      }
 
     } catch (err: any) {
-      console.error("Generation Error details:", err);
+      console.error("Streaming Error details:", err);
       
       const errorMessage = err.message || "";
       if (errorMessage.includes("high demand") || errorMessage.includes("Too Many Requests") || errorMessage.includes("503") || errorMessage.includes("500")) {
@@ -102,9 +143,9 @@ export const UseCaseGenerator: React.FC = () => {
 
       {/* Results Section */}
       <div className="px-4 md:px-0 pb-12">
-        <AnimatePresence mode="wait">
-          {loading && (
-            <BrutalistLoading key="loading" message="Chargement des cas d'usage..." />
+        <AnimatePresence mode="popLayout">
+          {loading && useCases && useCases.length === 0 && (
+            <BrutalistLoading key="loading" message="Analyse de votre mission..." />
           )}
 
           {error && (
@@ -118,50 +159,57 @@ export const UseCaseGenerator: React.FC = () => {
             </motion.div>
           )}
 
-          {useCases && (
-            <motion.div 
-              key="results"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {useCases.map((useCase, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="group"
-                >
-                  <BrutalistCard className="h-full flex flex-col gap-4 bg-white hover:bg-wemodo-yellow transition-colors duration-300">
-                    <div className="flex justify-between items-start">
-                      <span className="text-4xl">{useCase.icon}</span>
-                      <span className="bg-wemodo-navy text-white font-black text-[10px] px-2 py-1 uppercase tracking-widest">
-                        ⏱ {useCase.timeSaved}
-                      </span>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <h3 className="font-black text-xl uppercase leading-tight text-wemodo-navy">
-                        {useCase.title}
-                      </h3>
-                      <p className="font-bold text-sm text-wemodo-navy/80 italic">
-                        {useCase.action}
-                      </p>
-                    </div>
+          {useCases && useCases.length > 0 && (
+            <div key="results-container" className="space-y-8">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {useCases.map((useCase, idx) => (
+                  <motion.div
+                    key={`${useCase.title}-${idx}`}
+                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    className="group"
+                  >
+                    <BrutalistCard className="h-full flex flex-col gap-4 bg-white hover:bg-wemodo-yellow transition-colors duration-300">
+                      <div className="flex justify-between items-start">
+                        <span className="text-4xl">{useCase.icon}</span>
+                        <span className="bg-wemodo-navy text-white font-black text-[10px] px-2 py-1 uppercase tracking-widest">
+                          ⏱ {useCase.timeSaved}
+                        </span>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <h3 className="font-black text-xl uppercase leading-tight text-wemodo-navy">
+                          {useCase.title}
+                        </h3>
+                        <p className="font-bold text-sm text-wemodo-navy/80 italic">
+                          {useCase.action}
+                        </p>
+                      </div>
 
-                    <div className="mt-auto pt-4 border-t-2 border-wemodo-navy/10">
-                      <p className="font-black text-[10px] uppercase text-wemodo-purple mb-2 tracking-widest">
-                        Exemple de prompt :
-                      </p>
-                      <p className="bg-wemodo-cream/40 p-3 border border-wemodo-navy text-xs font-mono font-bold italic break-words whitespace-pre-wrap select-all cursor-copy">
-                        "{useCase.prompt}"
-                      </p>
-                    </div>
-                  </BrutalistCard>
+                      <div className="mt-auto" />
+                    </BrutalistCard>
+                  </motion.div>
+                ))}
+              </motion.div>
+              
+              {loading && (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex justify-center items-center gap-3 bg-wemodo-purple/10 border-2 border-dashed border-wemodo-purple p-4"
+                >
+                  <div className="w-4 h-4 border-2 border-wemodo-purple border-t-transparent rounded-full animate-spin"></div>
+                  <p className="font-black uppercase text-[10px] tracking-widest text-wemodo-purple">
+                    Génération des prochains cas d'usage...
+                  </p>
                 </motion.div>
-              ))}
-            </motion.div>
+              )}
+            </div>
           )}
         </AnimatePresence>
       </div>
