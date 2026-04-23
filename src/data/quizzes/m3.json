@@ -1,0 +1,446 @@
+{
+  "c4": [
+    {
+      "id": 1,
+      "text": "Quelle est la différence majeure entre le Mode Chat et le Mode Agent ?",
+      "options": [
+        "Chat : texte brut / Agent : code et images",
+        "Chat : conversationnel / Agent : autonome",
+        "Chat : distant / Agent : données locales"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le mode Agent se distingue par sa capacité à décomposer une tâche complexe, à utiliser des outils (web, Python, connecteurs) et à itérer seul jusqu'au résultat."
+    },
+    {
+      "id": 2,
+      "text": "Qu'a concrètement apporté le protocole MCP (Model Context Protocol) au marché de l'IA ?",
+      "options": [
+        "Système de chiffrement pour les prompts",
+        "Standard universel d'interopérabilité",
+        "Réduction de la consommation de tokens"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le MCP est un standard ouvert qui simplifie l'interopérabilité entre les modèles d'IA et les sources de données ou applications tierces."
+    },
+    {
+      "id": 3,
+      "text": "Lors du lancement d'une tâche complexe en mode Agent, quelle bonne pratique est recommandée face au temps de traitement ?",
+      "options": [
+        "Interrompre l'agent après une minute",
+        "Laisser l'autonomie agir sans coupure",
+        "Ouvrir une seconde fenêtre en parallèle"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'agent peut prendre plusieurs minutes pour explorer des sources ou tester du code ; l'interruption casse sa boucle de réflexion."
+    },
+    {
+      "id": 4,
+      "text": "Face aux sources citées par le mode Agent, quelle est la bonne posture ?",
+      "options": [
+        "Aucune vérification : le mode Agent filtre automatiquement les sources non fiables.",
+        "Valider manuellement les informations critiques, même si les sources sont citées.",
+        "Exporter les sources dans un document externe pour que l'agent les mémorise."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La traçabilité n'exclut pas l'erreur ; l'esprit critique reste indispensable."
+    },
+    {
+      "id": 5,
+      "text": "Parmi ces outils, lequel n'est PAS listé comme un connecteur nativement disponible dans le mode Agent présenté ?",
+      "options": [
+        "GitHub.",
+        "Dropbox.",
+        "SAP ERP."
+      ],
+      "correctAnswer": 2,
+      "explanation": "SAP ERP n'est pas (encore) un connecteur standard direct contrairement à des services cloud comme GitHub, Google Drive ou Dropbox."
+    },
+    {
+      "id": 6,
+      "text": "Quel avantage majeur offre la fonction \"Navigation web active\" du mode Agent par rapport aux données d'entraînement de base ?",
+      "options": [
+        "S'affranchit du RGPD par anonymat interne",
+        "Obtient des données fraîches en autonomie",
+        "Accélère la vitesse en évitant les filtres"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'agent peut consulter le web 'frais' pour obtenir des informations post-entraînement (post-knowledge cutoff)."
+    },
+    {
+      "id": 7,
+      "text": "Quelle limite faut-il anticiper concernant la consommation de ressources du mode Agent ?",
+      "options": [
+        "Limite le nombre de mots en sortie finale",
+        "Consomme beaucoup plus de tokens et d'API",
+        "Nécessite une connexion filaire haut débit"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Chaque étape de réflexion, de recherche ou d'utilisation d'outil multiplie les appels au modèle, consommant plus de tokens."
+    },
+    {
+      "id": 8,
+      "text": "En moyenne, combien de temps une tâche complexe déléguée à l'Agent peut-elle prendre ?",
+      "options": [
+        "Entre 10 et 30 secondes.",
+        "Entre 5 et 10 minutes.",
+        "Plus d'une heure selon le volume de documents."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pour des recherches croisées ou des analyses de dossiers complets, un temps de quelques minutes est standard."
+    },
+    {
+      "id": 9,
+      "text": "Dans la méthode de prompt, comment doit-on formuler une requête destinée à l'Agent par rapport à un prompt classique ?",
+      "options": [
+        "Brève pour ne pas saturer la planification",
+        "Inclure des balises HTML pour les tâches",
+        "Extrêmement précise (format, contraintes)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Plus le but est précis, moins l'agent risque de s'égarer dans des itérations inutiles."
+    },
+    {
+      "id": 10,
+      "text": "Face à une question métier simple et directe, quel outil privilégier ?",
+      "options": [
+        "Le mode Agent, pour s'assurer que la réponse soit sourcée sur le web.",
+        "Le mode Chat traditionnel, qui reste plus rapide et efficace pour ce type de requête.",
+        "Les connecteurs externes sans passer par le modèle de langage."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Inutile de mobiliser la lourdeur d'un agent pour une définition ou une reformulation simple."
+    },
+    {
+      "id": 11,
+      "text": "Que permet spécifiquement l'intégration du connecteur GitHub au sein du mode Agent ?",
+      "options": [
+        "Génération automatique de licences logicielles",
+        "Analyse de code et exploration de dépôts",
+        "Déploiement direct d'apps sans supervision"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'agent peut lire, comprendre et synthétiser du code stocké sur vos dépôts GitHub."
+    },
+    {
+      "id": 12,
+      "text": "Dans le cas d'usage \"Préparation de réunions\", quelles actions combinées l'Agent peut-il réaliser de manière autonome ?",
+      "options": [
+        "Programmer l'invitation Outlook, rédiger l'ordre du jour et animer la visio.",
+        "Rechercher le contexte, analyser les profils LinkedIn des participants et préparer des argumentaires.",
+        "Analyser la tonalité vocale des réunions précédentes pour ajuster le discours."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'agent croise les sources web et les documents pour préparer une synthèse complète avant une rencontre."
+    },
+    {
+      "id": 13,
+      "text": "Comment s'exprime la notion de \"Traçabilité\" garantie par le mode Agent ?",
+      "options": [
+        "Raisonnement explicite et sources citées",
+        "Rapport PDF envoyé à l'administrateur",
+        "Historique des prompts chiffré blockchain"
+      ],
+      "correctAnswer": 0,
+      "explanation": "On peut suivre en temps réel les sites visités, les outils lancés et la logique de l'agent."
+    },
+    {
+      "id": 14,
+      "text": "Lors de l'exemple du cas d'usage avec Gmail, quelle opération réalise l'Agent AVANT de proposer un projet de réponse ?",
+      "options": [
+        "Il synchronise les contacts du répertoire téléphonique de l'utilisateur.",
+        "Il analyse les 5 derniers échanges pour en extraire les engagements pris et le contexte.",
+        "Il crée un filtre de classement automatique dans la boîte de réception."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'analyse de l'historique permet de proposer une réponse cohérente avec les échanges passés."
+    },
+    {
+      "id": 15,
+      "text": "Qu'est-ce qui définit la capacité d'un agent IA à \"itérer\" ?",
+      "options": [
+        "La répétition automatique d'une même tâche tous les jours à la même heure.",
+        "Le fait d'ajuster sa stratégie en cours de route jusqu'à obtenir un résultat satisfaisant.",
+        "La duplication de la conversation dans différents onglets pour comparer les résultats."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Si une recherche échoue, l'agent change ses mots-clés ou cherche une autre méthode sans intervention humaine."
+    },
+    {
+      "id": 16,
+      "text": "Sur quel type de flux de travail le mode Agent démontre-t-il sa plus grande valeur ajoutée ?",
+      "options": [
+        "Les tâches isolées et créatives (comme écrire un poème).",
+        "Les tâches multi-étapes nécessitant de croiser recherche, analyse de données externes et production.",
+        "La traduction en temps réel lors de conversations audio."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est dans la complexité de l'enchaînement des tâches que l'agent surclasse le chat classique."
+    },
+    {
+      "id": 17,
+      "text": "Quel avantage le mode Agent offre-t-il vis-à-vis des données d'entraînement (Knowledge Cutoff) de ChatGPT ?",
+      "options": [
+        "Met à jour la base interne d'OpenAI",
+        "Croise des sources actuelles via le web",
+        "Ignore les données pour les documents"
+      ],
+      "correctAnswer": 1,
+      "explanation": "La navigation web permet de compenser l'obsolescence naturelle des données figées de l'IA."
+    },
+    {
+      "id": 18,
+      "text": "Comment positionner le mode Agent dans son quotidien professionnel ?",
+      "options": [
+        "L'utiliser systématiquement pour remplacer le chat classique.",
+        "L'utiliser avec modération, réservé aux tâches à forte valeur ajoutée.",
+        "Uniquement en cas de panne du mode Chat."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le mode Agent est puissant mais plus lent et coûteux en ressources ; il faut savoir quand il est vraiment nécessaire."
+    },
+    {
+      "id": 19,
+      "text": "Dans l'interface, où se situent généralement les réglages pour lier les applications (comme Dropbox ou Google Drive) ?",
+      "options": [
+        "Dans le menu de configuration des API développeurs exclusivement.",
+        "Directement dans le gestionnaire de \"Connecteurs\" accessible via l'interface du mode Agent.",
+        "L'agent détecte automatiquement les applications installées sur l'ordinateur sans configuration préalable."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Les connecteurs se gèrent via une interface simplifiée de type 'OAuth' pour autoriser l'accès aux données."
+    },
+    {
+      "id": 20,
+      "text": "Que se passe-t-il si l'Agent se heurte à une source inaccessible (ex: un site protégé) lors d'une recherche ?",
+      "options": [
+        "Il met fin à la session et efface la mémoire du projet en cours.",
+        "Grâce à son autonomie, il ajuste sa stratégie, modifie sa requête ou cherche des sources alternatives.",
+        "Il demande à l'utilisateur de fournir ses identifiants personnels pour forcer l'accès au site."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est l'essence de l'autonomie : savoir rebondir face à un obstacle sans abandonner la tâche."
+    }
+  ],
+  "c5": [
+    {
+      "id": 1,
+      "text": "Quel atout mondial fait de ChatGPT un standard qui facilite l'intégration et ce module des équipes ?",
+      "options": [
+        "Son interface open-source hébergée",
+        "Son adoption massive et son écosystème",
+        "Sa gratuité totale imposée par les lois"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'effet de réseau rend ChatGPT incontournable pour la collaboration et le recrutement."
+    },
+    {
+      "id": 2,
+      "text": "Sur le plan de la robustesse, comment les modèles d'OpenAI gèrent-ils la conformité européenne ?",
+      "options": [
+        "Ils intègrent des garde-fous natifs et sont compatibles avec l'IA Act européen.",
+        "Ils délèguent la responsabilité de la conformité au navigateur web de l'utilisateur.",
+        "Ils stockent les données sur des serveurs physiques chez l'utilisateur pour contourner les lois cloud."
+      ],
+      "correctAnswer": 0,
+      "explanation": "OpenAI s'efforce de respecter les standards de sécurité et de transparence imposés par l'Europe."
+    },
+    {
+      "id": 3,
+      "text": "Qu'implique concrètement la \"vision avancée\" multimodale de ChatGPT ?",
+      "options": [
+        "Optimisation de la luminosité des photos",
+        "Analyse sophistiquée et OCR contextuel",
+        "Activation de la webcam de l'utilisateur"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA peut 'voir' un tableau blanc, un schéma ou une photo pour en extraire du sens."
+    },
+    {
+      "id": 4,
+      "text": "Que désigne l'expression \"date de coupure des connaissances\" (Knowledge Cutoff) ?",
+      "options": [
+        "La date d'expiration de votre abonnement mensuel à ChatGPT Plus.",
+        "La date précise à laquelle l'entraînement du modèle sur des données fixes a été arrêté.",
+        "Le temps maximum (en minutes) alloué à une requête avant l'arrêt du serveur."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le modèle ne 'connaît' pas les événements mondiaux survenus après cette date, sauf s'il utilise le web."
+    },
+    {
+      "id": 5,
+      "text": "À quelle date s'arrêtent les données d'entraînement pour le modèle GPT-5 ?",
+      "options": [
+        "Janvier 2023.",
+        "Décembre 2025.",
+        "Octobre 2024."
+      ],
+      "correctAnswer": 2,
+      "explanation": "GPT-5 a un cutoff plus récent mais reste limité aux données disponibles jusqu'à l'automne 2024."
+    },
+    {
+      "id": 6,
+      "text": "Quel comportement caractérise le danger principal des \"hallucinations\" générées par l'IA ?",
+      "options": [
+        "L'IA refuse de répondre pour de faux motifs",
+        "L'IA invente des faits avec assurance totale",
+        "L'IA traduit littéralement sans aucun contexte"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est le paradoxe de la fluidité : l'IA est tout aussi convaincante quand elle a tort que quand elle a raison."
+    },
+    {
+      "id": 7,
+      "text": "Selon les benchmarks comparatifs IA, sur quels types d'opérations les LLM comme GPT-5 présentent-ils encore d'importantes lacunes ?",
+      "options": [
+        "La génération de résumés de textes courts.",
+        "Les calculs probabilistes avancés et le raisonnement mathématique multi-étapes.",
+        "L'analyse syntaxique et la correction orthographique de base."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Les modèles sont des moteurs de langage, pas des moteurs de calcul pur ; ils peuvent encore se tromper sur des logiques complexes."
+    },
+    {
+      "id": 8,
+      "text": "Face à la limite de la date de coupure des connaissances, quel réflexe l'utilisateur doit-il adopter pour une information très récente ?",
+      "options": [
+        "Se fier aux seules prédictions logiques",
+        "Rechercher sur le web (sources externes)",
+        "Rédiger en anglais pour élargir la base"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'utilisation de la navigation web (Bing/Google) est le seul moyen d'avoir une info 'fraîche'."
+    },
+    {
+      "id": 9,
+      "text": "Quel réglage est indispensable pour empêcher OpenAI d'utiliser vos données d'entreprise pour entraîner ses futurs modèles ?",
+      "options": [
+        "Activer le mode vocal hors connexion.",
+        "Désactiver l'option \"Améliorer le modèle pour tous\" dans les contrôles de données.",
+        "Supprimer son historique tous les soirs manuellement."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est l'étape clé pour garantir la confidentialité des données traitées."
+    },
+    {
+      "id": 10,
+      "text": "Dans quel contexte l'utilisation de la fonctionnalité \"Chats éphémères\" (Temporary Chat) est-elle la plus pertinente ?",
+      "options": [
+        "Pour tester des idées sensibles ou manipuler des données confidentielles.",
+        "Pour s'assurer que ChatGPT retienne vos préférences de style à long terme.",
+        "Pour accélérer le temps de génération d'images avec DALL-E."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Le chat éphémère ne nourrit pas la mémoire du modèle et ne s'enregistre pas dans l'historique."
+    },
+    {
+      "id": 11,
+      "text": "Quelle est la politique de conservation d'OpenAI concernant les chats éphémères ?",
+      "options": [
+        "Ils sont supprimés instantanément dès la fermeture de la fenêtre.",
+        "Ils sont conservés 30 jours pour des raisons de sécurité/abus avant d'être supprimés définitivement.",
+        "Ils sont conservés indéfiniment mais anonymisés sur les serveurs."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Une trace technique subsiste 30 jours pour modération avant purge totale."
+    },
+    {
+      "id": 12,
+      "text": "Lorsqu'un apprenant sécurise un prompt RH, en quoi consiste l'étape d'anonymisation / transformation ?",
+      "options": [
+        "Chiffrer le fichier PDF avant l'envoi",
+        "Utiliser des pseudonymes et agrégats",
+        "Signer un accord avec OpenAI au préalable"
+      ],
+      "correctAnswer": 1,
+      "explanation": "On retire toute donnée identifiante (PII) pour profiter de l'IA sans risque juridique."
+    },
+    {
+      "id": 13,
+      "text": "Qu'est-ce qui constitue un \"secret commercial\" qu'il faut absolument exclure d'un prompt non sécurisé ?",
+      "options": [
+        "L'adresse du siège social de l'entreprise.",
+        "Un code source propriétaire ou des stratégies financières internes.",
+        "Le numéro de Siret et la convention collective de la société."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tout ce qui donne un avantage concurrentiel unique doit rester hors des serveurs cloud publics."
+    },
+    {
+      "id": 14,
+      "text": "Selon les principes éthiques, que demande le principe de 'Transparence' ?",
+      "options": [
+        "D'expliquer à l'IA exactement pourquoi il a besoin d'un contenu.",
+        "D'indiquer clairement (à ses clients/collègues) lorsqu'un contenu a été généré ou assisté par une IA.",
+        "De fournir à son employeur le registre complet de ses conversations ChatGPT."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'honnêteté sur l'origine du contenu renforce la confiance avec les interlocuteurs."
+    },
+    {
+      "id": 15,
+      "text": "Comment s'applique la règle de \"Non-manipulation\" lors de l'utilisation de modèles génératifs ?",
+      "options": [
+        "L'interdiction de générer de faux témoignages ou des contenus trompeurs pour influencer l'opinion.",
+        "Le fait de ne pas modifier le code source de l'interface d'OpenAI.",
+        "L'interdiction de reformuler un prompt pour forcer l'IA à contourner ses filtres de sécurité."
+      ],
+      "correctAnswer": 0,
+      "explanation": "L'IA ne doit pas servir à créer des 'deepfakes' textuels ou des avis frauduleux."
+    },
+    {
+      "id": 16,
+      "text": "Quel abonnement garantit une sécurisation optimale des données en entreprise ?",
+      "options": [
+        "ChatGPT Plus.",
+        "Les forfaits Team, Business ou Enterprise.",
+        "L'API gratuite de base."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Ces forfaits garantissent contractuellement que les données ne servent pas à l'entraînement."
+    },
+    {
+      "id": 17,
+      "text": "Que permet l'option \"Export des données\" accessible dans les paramètres de confidentialité ?",
+      "options": [
+        "De formater automatiquement les réponses de ChatGPT en fichiers Excel (.csv).",
+        "De télécharger une archive contenant toutes vos données personnelles et historiques, conformément au droit RGPD.",
+        "De migrer directement vos prompts sauvegardés vers une IA concurrente comme Claude."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est l'application du droit à la portabilité des données prévu par le RGPD."
+    },
+    {
+      "id": 18,
+      "text": "Pourquoi dit-on que ChatGPT n'est qu'un \"amplificateur de nos intentions\" ?",
+      "options": [
+        "Sa puissance dépend uniquement de la vitesse de connexion.",
+        "La qualité et l'éthique du résultat dépendent entièrement de la vigilance et de l'esprit critique de l'utilisateur.",
+        "Il amplifie le volume du texte : un prompt court donne toujours une réponse très longue."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA est un outil neutre ; c'est le pilote humain qui détermine si l'usage est bénéfique ou toxique."
+    },
+    {
+      "id": 19,
+      "text": "Pour assurer la traçabilité d'un prompt sécurisé, que faut-il conserver ?",
+      "options": [
+        "Filmer son écran pendant la génération.",
+        "Le prompt utilisé, la version du modèle et les transformations appliquées.",
+        "Envoyer un rapport mensuel à la CNIL."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Garder une trace de 'comment' le résultat a été obtenu permet d'assurer la responsabilité éditoriale."
+    },
+    {
+      "id": 20,
+      "text": "Que stipule le principe du respect du \"Droit d'auteur\" lorsque l'on prompte ChatGPT (ou DALL-E) ?",
+      "options": [
+        "De ne pas utiliser l'IA pour reproduire des œuvres protégées ou contrefaire délibérément le style d'un auteur vivant.",
+        "De toujours payer des royalties à OpenAI lors de la revente d'un texte généré.",
+        "De s'abstenir de générer des images contenant des humains."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Le plagiat assisté par IA reste du plagiat ; le respect de la propriété intellectuelle est fondamental."
+    }
+  ]
+}

@@ -224,9 +224,9 @@ export const HallucinationHunter: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-6 md:gap-8 max-w-5xl mx-auto p-0 md:p-2 bg-transparent w-full">
+    <div className="flex flex-col gap-6 md:gap-8 w-full max-w-5xl mx-auto bg-transparent py-4 md:py-12">
       {/* Header */}
-      <div className="space-y-4 px-4 md:px-0 mt-4 md:mt-0 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <div className="w-full max-w-4xl mx-auto space-y-4 px-4 md:px-0 mt-4 md:mt-0 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div className="space-y-3">
           <button 
             onClick={resetToStart}
@@ -234,12 +234,11 @@ export const HallucinationHunter: React.FC = () => {
           >
             <RotateCcw size={14} /> Recommencer à zéro (Niv. 1)
           </button>
-          <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
+          <h1 className="font-display font-black text-5xl md:text-7xl uppercase italic tracking-tighter text-wemodo-navy leading-none mb-2">
             CHASSE AUX <span className="text-wemodo-purple">HALLUCINATIONS</span>
           </h1>
           <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-sm tracking-widest max-w-xl">
-            Trouve l'hallucination et le cliché cachés dans ce texte. <br />
-            <span className="text-wemodo-purple italic">Le score dépend de ta rapidité !</span>
+            Identifie les hallucinations et les pièges cachés par l'IA.
           </p>
         </div>
       </div>

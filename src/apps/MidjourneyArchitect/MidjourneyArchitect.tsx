@@ -119,14 +119,13 @@ export const MidjourneyArchitect: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 md:gap-8">
-      {/* Header */}
-      <div className="space-y-3 px-4 md:px-0">
-        <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
-          L'Architecte <span className="text-wemodo-purple text-outline">Midjourney.</span>
+    <div className="flex flex-col gap-6 md:gap-8 max-w-5xl mx-auto w-full py-4 md:py-12">
+      <div className="space-y-4 px-4 md:px-0 mt-4 md:mt-0">
+        <h1 className="font-display font-black text-5xl md:text-7xl uppercase italic tracking-tighter text-wemodo-navy leading-none mb-2">
+          MIDJOURNEY <span className="text-wemodo-purple">ARCHITECT</span>
         </h1>
         <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-sm tracking-widest max-w-2xl">
-          Transforme tes idées en prompts Midjourney structurés, fidèles et optimisés.
+          Construis des prompts visuels complexes et précis pour Midjourney.
         </p>
       </div>
 

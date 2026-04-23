@@ -170,12 +170,12 @@ export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initia
   // Level Selection Screen
   if (!gameStarted) {
     return (
-      <div className="max-w-4xl mx-auto flex flex-col gap-8 py-4 md:py-8 px-4">
+      <div className="max-w-4xl mx-auto flex flex-col gap-8 py-4 md:py-12">
         <div className="space-y-4">
-          <h1 className="font-display font-black text-5xl md:text-7xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
+          <h1 className="font-display font-black text-5xl md:text-7xl uppercase italic tracking-tighter text-wemodo-navy leading-none mb-2">
             QUIZ <span className="text-wemodo-purple">IA</span>
           </h1>
-          <p className="font-bold text-wemodo-navy/70 uppercase text-sm md:text-base tracking-widest max-w-2xl">
+          <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-base tracking-widest max-w-2xl">
             Choisis ton niveau et teste tes connaissances sur l'IA Générative.
           </p>
         </div>

@@ -2,141 +2,241 @@
   "c1": [
     {
       "id": 1,
-      "text": "À quelle période scientifique les chercheurs ont-ils introduit le concept du \"Perceptron\", l'un des tout premiers réseaux de neurones artificiels ?",
-      "options": ["Lors du premier hiver de l'IA dans les années 1970", "Lors des prémices de la discipline, dans les années 1950 (en 1957)", "Au moment de l'essor du Machine Learning dans les années 1980", "Lors de la révolution des Transformers en 2017"],
+      "text": "Quand a été introduit le concept de \"Perceptron\" ?",
+      "options": [
+        "Dans les années 70 (Premier hiver)",
+        "Dans les années 50 (Conférence Dartmouth)",
+        "Dans les années 80 (Essor du Machine Learning)",
+        "En 2017 (Révolution des Transformers)"
+      ],
       "correctAnswer": 1,
       "explanation": "Le Perceptron (Frank Rosenblatt, 1957) est l'ancêtre des réseaux de neurones profonds actuels."
     },
     {
       "id": 2,
-      "text": "Quel événement marquant survient en 1997, prouvant au monde que la machine peut rivaliser avec l'homme sur des domaines réputés complexes ?",
-      "options": ["L'algorithme AlexNet bat tous les records de reconnaissance visuelle", "Le superordinateur Deep Blue d'IBM bat le champion du monde d'échecs Garry Kasparov", "OpenAI met en ligne le premier modèle linguistique grand public", "Le programme ELIZA réussit officiellement le test de Turing"],
+      "text": "Quel événement de 1997 a prouvé que la machine pouvait rivaliser avec l'homme ?",
+      "options": [
+        "AlexNet bat les records de vision",
+        "Deep Blue bat Kasparov aux échecs",
+        "OpenAI lance son premier modèle",
+        "ELIZA réussit le test de Turing"
+      ],
       "correctAnswer": 1,
       "explanation": "Cette victoire historique a marqué un tournant symbolique dans la perception de la puissance algorithmique."
     },
     {
       "id": 3,
-      "text": "En 2006, quelle avancée technologique majeure est introduite par Geoffrey Hinton, permettant enfin aux machines d'analyser des données hiérarchiques complexes comme l'image ?",
-      "options": ["L'architecture Transformer", "Le concept de Modèle de Diffusion", "Le Deep Learning", "Le Fine-Tuning"],
+      "text": "Quelle avancée majeure de Geoffrey Hinton en 2006 a permis d'analyser des données complexes ?",
+      "options": [
+        "L'architecture Transformer",
+        "Le concept de Modèle de Diffusion",
+        "Le Deep Learning",
+        "Le Fine-Tuning"
+      ],
       "correctAnswer": 2,
       "explanation": "Le Deep Learning (apprentissage profond) utilise des couches de neurones pour extraire des motifs de plus en plus abstraits."
     },
     {
       "id": 4,
-      "text": "En 2017, une nouvelle architecture dévoilée par les chercheurs de Google bouleverse l'IA générative en permettant le traitement des données en parallèle (plutôt qu'en séquence). De quoi s'agit-il ?",
-      "options": ["L'architecture des Transformers (\"Attention is All You Need\")", "L'architecture GAN (Generative Adversarial Networks)", "Les modèles textuels paramétriques GPT-1", "Le système de reconnaissance visuelle ImageNet"],
+      "text": "Quelle architecture de Google (2017) permet le traitement de données en parallèle ?",
+      "options": [
+        "Architecture Transformers (Attention)",
+        "Architecture GAN (Adversarial Networks)",
+        "Modèles paramétriques textuels GPT-1",
+        "Système de vision ImageNet (Google)"
+      ],
       "correctAnswer": 0,
       "explanation": "Les Transformers permettent aux modèles de comprendre le contexte global d'une phrase extrêmement vite."
     },
     {
       "id": 5,
-      "text": "Quelles sont les quatre étapes fondamentales nécessaires à la création et l'entraînement d'un grand modèle de langage (LLM) ?",
-      "options": ["La saisie, la tokenisation, la prédiction et la diffusion", "Le prompt, le ciblage, la correction et le rendu", "La collecte, l'apprentissage, la répétition et l'adaptation", "L'analyse, le débruitage, la compilation et la modération"],
+      "text": "Quelles sont les étapes de création d'un LLM ?",
+      "options": [
+        "La saisie, la tokenisation, la prédiction et la diffusion",
+        "Le prompt, le ciblage, la correction et le rendu",
+        "La collecte, l'apprentissage, la répétition et l'adaptation",
+        "L'analyse, le débruitage, la compilation et la modération"
+      ],
       "correctAnswer": 2,
       "explanation": "Un modèle se construit par l'ingestion de données puis des cycles d'apprentissage et d'ajustement."
     },
     {
       "id": 6,
-      "text": "Techniquement, comment un modèle de langage (LLM) génère-t-il une phrase en réponse à une question ?",
-      "options": ["Il effectue une recherche sémantique dans une base de données fermée", "Il calcule des probabilités statistiques pour prédire quel mot a le plus de chances de venir ensuite selon le contexte", "Il traduit un algorithme de fond en langage naturel pré-programmé", "Il recompose des paragraphes entiers issus de sa base d'entraînement"],
+      "text": "Comment un LLM génère-t-il une réponse ?",
+      "options": [
+        "Recherche sémantique en base",
+        "Calcul de probabilités statistiques",
+        "Traduction d'un algorithme de fond",
+        "Recomposition de textes existants"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA ne 'pense' pas, elle devine la suite la plus probable d'après ses milliards de paramètres."
     },
     {
       "id": 7,
       "text": "Que désigne le terme \"token\" dans l'architecture d'un LLM ?",
-      "options": ["Une image compressée utilisée pour le conditionnement visuel", "Le budget alloué par l'utilisateur pour traiter sa requête", "Un filtre de sécurité empêchant l'IA de générer du code malveillant", "Un morceau de mot servant d'unité de base pour les calculs statistiques (environ 4 caractères en français)"],
+      "options": [
+        "Image compressée pour le visuel",
+        "Budget alloué par l'utilisateur",
+        "Filtre de sécurité anti-piratage",
+        "Morceau de mot (unité de base)"
+      ],
       "correctAnswer": 3,
       "explanation": "Le token est la 'monnaie' de l'IA : elle découpe le texte pour le transformer en nombres."
     },
     {
       "id": 8,
       "text": "Lors de la génération de texte, que fait le modèle au moment de l'étape du \"Contexte\" ?",
-      "options": ["Il analyse tous les tokens fournis pour comprendre le sens global de la demande avant de prédire la suite", "Il se connecte à internet pour vérifier si la requête est d'actualité", "Il découpe les mots de l'utilisateur en syllabes indépendantes", "Il répète la génération jusqu'à obtenir un texte de la bonne longueur"],
+      "options": [
+        "Il analyse les tokens pour le sens",
+        "Il se connecte au web pour vérifier",
+        "Il découpe les mots en syllabes",
+        "Il répète la génération en boucle"
+      ],
       "correctAnswer": 0,
       "explanation": "Plus la fenêtre de contexte est large, mieux l'IA 'comprend' les instructions complexes et les longs documents."
     },
     {
       "id": 9,
       "text": "Comment définir le fonctionnement d'un réseau de neurones profond (Deep Learning) ?",
-      "options": ["Un processeur informatique spécialisé dans le tri de bases de données", "Plusieurs couches de connexions (neurones) dont les \"poids\" s'ajustent statistiquement durant l'apprentissage pour extraire des motifs", "Un algorithme qui classe l'information par ordre alphabétique ou chronologique", "Un système de mémoire vive stockant les réponses les plus fréquentes"],
+      "options": [
+        "Processeur de tri de données",
+        "Couches de neurones (Deep Learning)",
+        "Algorithme de classement simple",
+        "Système de mémoire vive vive"
+      ],
       "correctAnswer": 1,
       "explanation": "Comme le cerveau, ces réseaux renforcent ou affaiblissent des connexions pour apprendre des concepts."
     },
     {
       "id": 10,
-      "text": "Sur quel principe d'entraînement reposent les IA génératrices d'images pour comprendre une requête textuelle ?",
-      "options": ["Elles utilisent des moteurs de rendu 3D pour modéliser des objets", "Elles superposent des calques d'images transparentes libres de droits", "Elles analysent des milliards de paires associant un texte et une image pour relier un concept à une structure de pixels", "Elles utilisent exclusivement la reconnaissance de couleurs primaires"],
+      "text": "Comment les IA d'images comprennent-elles une requête ?",
+      "options": [
+        "Elles utilisent des moteurs de rendu 3D pour modéliser des objets",
+        "Elles superposent des calques d'images transparentes libres de droits",
+        "Elles analysent des milliards de paires associant un texte et une image pour relier un concept à une structure de pixels",
+        "Elles utilisent exclusivement la reconnaissance de couleurs primaires"
+      ],
       "correctAnswer": 2,
       "explanation": "C'est l'association texte-image (ex: CLIP) qui permet à l'IA de savoir à quoi ressemble un 'chat bleu'."
     },
     {
       "id": 11,
-      "text": "L'architecture GAN (Generative Adversarial Networks) permet de produire des visuels ultra-réalistes. Sur quelle mécanique repose-t-elle ?",
-      "options": ["Sur un processus de floutage progressif d'une image source", "Sur la compétition entre deux réseaux : un générateur qui crée de faux contenus et un discriminateur qui tente de les détecter", "Sur la prédiction du pixel le plus logique dans une séquence", "Sur un système d'assemblage géométrique de polygones complexes"],
+      "text": "Sur quel principe repose l'architecture GAN ?",
+      "options": [
+        "Floutage progressif d'image",
+        "Duel entre deux réseaux neuronaux",
+        "Prédiction du pixel suivant",
+        "Assemblage de polygones 3D"
+      ],
       "correctAnswer": 1,
       "explanation": "C'est un duel permanent : l'un truque, l'autre démasque, faisant progresser les deux réseaux."
     },
     {
       "id": 12,
-      "text": "Quel est le principe technique d'un \"Modèle de Diffusion\", utilisé par des IA comme Midjourney ou DALL-E ?",
-      "options": ["Modifier l'éclairage et les couleurs d'une photographie existante", "Diffuser des milliers de requêtes en simultané sur plusieurs serveurs", "Ajouter progressivement du bruit visuel lors de l'entraînement, puis apprendre à inverser ce processus (débruitage) pour générer l'image", "Convertir une séquence vidéo en une série de photographies nettes"],
+      "text": "Quel est le principe d'un \"Modèle de Diffusion\" ?",
+      "options": [
+        "Ajustement des couleurs de photos",
+        "Diffusion simultanée sur serveurs",
+        "Processus de débruitage (Diffusion)",
+        "Conversion de vidéo en clichés nets"
+      ],
       "correctAnswer": 2,
       "explanation": "L'IA apprend à voir une image claire là où il n'y avait que du chaos (bruit)."
     },
     {
       "id": 13,
-      "text": "En génération d'images, quelle différence majeure sépare le mode \"TXT2IMG\" du mode \"IMG2IMG\" ?",
-      "options": ["TXT2IMG crée des images vectorielles, IMG2IMG crée des images matricielles (pixels)", "TXT2IMG est réservé aux LLM, tandis que IMG2IMG nécessite un réseau GAN", "TXT2IMG demande beaucoup de puissance de calcul, IMG2IMG est généré localement", "TXT2IMG crée une image depuis un simple texte, IMG2IMG part d'une image source fournie pour la modifier ou l'altérer"],
+      "text": "Différence entre TXT2IMG et IMG2IMG ?",
+      "options": [
+        "TXT2IMG : vectoriel / IMG2IMG : pixels",
+        "TXT2IMG : LLM / IMG2IMG : réseau GAN",
+        "TXT2IMG : lourd / IMG2IMG : génération locale",
+        "TXT2IMG : depuis texte / IMG2IMG : depuis image"
+      ],
       "correctAnswer": 3,
       "explanation": "TXT2IMG part de zéro (texte), IMG2IMG utilise une base visuelle pour guider la création."
     },
     {
       "id": 14,
       "text": "Qu'est-ce qui caractérise un modèle d'IA dit \"multimodal\" par rapport aux anciens modèles en \"silo\" ?",
-      "options": ["Il analyse et comprend simultanément plusieurs formats (texte, image, son), permettant des réponses plus nuancées par le croisement du contexte", "Il est capable de s'installer sur plusieurs systèmes d'exploitation différents", "Il ne nécessite plus aucune puissance de calcul pour fonctionner", "Il traduit instantanément les requêtes dans de multiples langages informatiques"],
+      "options": [
+        "Analyse de plusieurs formats (texte, image, son)",
+        "Installation sur divers systèmes d'exploitation",
+        "Fonctionnement sans aucune puissance de calcul",
+        "Traduction instantanée en multiples langages"
+      ],
       "correctAnswer": 0,
       "explanation": "Un modèle multimodal peut 'voir' un graphique et en 'discuter' par écrit."
     },
     {
       "id": 15,
       "text": "Parmi ces propositions, quels modèles figurent parmi les leaders actuels de l'architecture multimodale ?",
-      "options": ["Midjourney, DALL-E, Sora", "ImageNet, Deep Blue, ELIZA", "Notion AI, Canva, Figma", "GPT-4o, Gemini Pro, Claude 3.5"],
+      "options": [
+        "Midjourney, DALL-E, Sora",
+        "ImageNet, Deep Blue, ELIZA",
+        "Notion AI, Canva, Figma",
+        "GPT-4o, Gemini Pro, Claude 3.5"
+      ],
       "correctAnswer": 3,
       "explanation": "Ces modèles sont les fers de lance de l'industrie, capables de traiter texte, voix et vision à la fois."
     },
     {
       "id": 16,
-      "text": "Comment les domaines technologiques de l'IA s'imbriquent-ils correctement ?",
-      "options": ["L'IA est le domaine général, le Machine Learning en est un sous-domaine, et le Deep Learning est une spécialisation du Machine Learning", "Le Machine Learning est la technologie principale, l'IA et le Deep Learning en sont des options", "Le Deep Learning englobe le Machine Learning, qui lui-même contient l'IA", "Ces trois termes sont techniquement synonymes et désignent la même architecture"],
+      "text": "Imbrication des domaines de l'IA ?",
+      "options": [
+        "L'IA est le domaine général, le Machine Learning en est un sous-domaine, et le Deep Learning est une spécialisation du Machine Learning",
+        "Le Machine Learning est la technologie principale, l'IA et le Deep Learning en sont des options",
+        "Le Deep Learning englobe le Machine Learning, qui lui-même contient l'IA",
+        "Ces trois termes sont techniquement synonymes et désignent la même architecture"
+      ],
       "correctAnswer": 0,
       "explanation": "L'IA est la discipline, le ML la méthode, et le Deep Learning la technique à base de neurones."
     },
     {
       "id": 17,
-      "text": "Sur le plan du vocabulaire technique, quelle nuance différencie un \"Réseau de neurones\" d'un \"LLM\" (Grand Modèle de Langage) ?",
-      "options": ["Le réseau de neurones traite du texte, le LLM traite des images", "Le réseau de neurones est un modèle mathématique généraliste, le LLM est une architecture spécifique (Transformer) entraînée uniquement sur du langage naturel", "Le réseau de neurones est toujours open-source, le LLM est toujours propriétaire", "Le LLM est une méthode de Fine-tuning pour les réseaux de neurones"],
+      "text": "Nuance entre \"Réseau de neurones\" et \"LLM\" ?",
+      "options": [
+        "Le réseau de neurones traite du texte, le LLM traite des images",
+        "Le réseau de neurones est un modèle mathématique généraliste, le LLM est une architecture spécifique (Transformer) entraînée uniquement sur du langage naturel",
+        "Le réseau de neurones est toujours open-source, le LLM est toujours propriétaire",
+        "Le LLM est une méthode de Fine-tuning pour les réseaux de neurones"
+      ],
       "correctAnswer": 1,
       "explanation": "Tous les LLM utilisent des réseaux de neurones, mais tous les réseaux de neurones ne sont pas des LLM."
     },
     {
       "id": 18,
-      "text": "Lors de l'entraînement d'un modèle d'IA, quelle est la fonction principale d'un \"Dataset\" par rapport à un \"Corpus\" ?",
-      "options": ["Le dataset est une collection de textes littéraires, le corpus regroupe les conversations", "Le corpus est utilisé pour le Deep Learning visuel, le dataset pour le Machine Learning textuel", "Le dataset est un ensemble de données structurées souvent pourvues de labels, tandis que le corpus est une vaste collection de textes pour l'analyse linguistique", "Le dataset est la version finale et publique d'un corpus privé"],
+      "text": "Fonction d'un Dataset vs Corpus ?",
+      "options": [
+        "Dataset : littéraire / Corpus : conversations",
+        "Dataset : Machine Learning / Corpus : Deep Learning",
+        "Dataset : données labellisées / Corpus : vaste collection",
+        "Dataset : version finale / Corpus : version privée"
+      ],
       "correctAnswer": 2,
       "explanation": "Le corpus est la matière brute du langage, le dataset est la base organisée pour l'entraînement."
     },
     {
       "id": 19,
-      "text": "Pour spécialiser un modèle de langage, on peut utiliser le \"Fine-Tuning\" ou le \"RAG\". Quelle est la principale différence entre ces deux méthodes ?",
-      "options": ["Le Fine-Tuning est réservé aux images, le RAG est spécialisé dans le texte", "Le Fine-Tuning ré-entraîne et modifie les paramètres du modèle, tandis que le RAG cherche des documents externes pour enrichir la réponse sans altérer le modèle", "Le RAG demande des mois de calcul intensif, le Fine-Tuning s'exécute en temps réel", "Il n'y a aucune différence, RAG est l'acronyme anglais de Fine-Tuning"],
+      "text": "Quelle est la différence entre le Fine-Tuning et le RAG ?",
+      "options": [
+        "Fine-Tuning : images / RAG : texte spécialisé",
+        "Fine-Tuning : ré-entraîne / RAG : documents externes",
+        "Fine-Tuning : temps réel / RAG : calcul intensif",
+        "Fine-Tuning : propriétaire / RAG : open-source"
+      ],
       "correctAnswer": 1,
       "explanation": "Le Fine-Tuning change le 'cerveau' de l'IA, le RAG lui donne accès à une bibliothèque de documents."
     },
     {
       "id": 20,
-      "text": "Quel exemple montre comment des actions quotidiennes des internautes ont pu servir à construire les bases de données (datasets) des modèles de reconnaissance visuelle ?",
-      "options": ["L'utilisation prolongée des moteurs de recherche textuels", "La résolution manuelle des grilles de CAPTCHA (ex: \"sélectionnez les feux de circulation\")", "La lecture d'articles de presse en ligne", "Le téléchargement régulier d'applications mobiles"],
+      "text": "Comment nos actions en ligne ont-elles aidé à créer les jeux de données visuels ?",
+      "options": [
+        "L'utilisation prolongée des moteurs de recherche textuels",
+        "La résolution manuelle des grilles de CAPTCHA (ex: \"sélectionnez les feux de circulation\")",
+        "La lecture d'articles de presse en ligne",
+        "Le téléchargement régulier d'applications mobiles"
+      ],
       "correctAnswer": 1,
       "explanation": "En prouvant que vous êtes un humain, vous avez aidé à labelliser des images pour l'entraînement des IA."
     }
@@ -144,141 +244,241 @@
   "c2": [
     {
       "id": 1,
-      "text": "Dans le cadre de l'innovation, de quelles dimensions essentielles la \"créativité\" est-elle constituée ?",
-      "options": ["L'esthétisme visuel et la complexité technique", "La vitesse d'exécution et le faible coût de production", "L'unanimité du public et la quantité d'idées générées", "La nouveauté (sortir du cadre habituel) et la pertinence (répondre à un besoin réel)"],
+      "text": "Quelles sont les dimensions de la créativité ?",
+      "options": [
+        "L'esthétisme visuel et la complexité technique",
+        "La vitesse d'exécution et le faible coût de production",
+        "L'unanimité du public et la quantité d'idées générées",
+        "La nouveauté (sortir du cadre habituel) et la pertinence (répondre à un besoin réel)"
+      ],
       "correctAnswer": 3,
       "explanation": "Une idée créative n'est pas seulement nouvelle, elle doit aussi avoir une utilité ou un sens."
     },
     {
       "id": 2,
       "text": "Parmi les 3 types de créativité identifiés, laquelle représente environ 95 % de la créativité humaine et consiste à associer des éléments existants ?",
-      "options": ["La créativité exploratoire", "La créativité incrémentale", "La créativité combinatoire", "La créativité transformationnelle"],
+      "options": [
+        "La créativité exploratoire",
+        "La créativité incrémentale",
+        "La créativité combinatoire",
+        "La créativité transformationnelle"
+      ],
       "correctAnswer": 2,
       "explanation": "La majorité de nos idées naissent du mélange de concepts déjà connus."
     },
     {
       "id": 3,
-      "text": "Face à ces différents types de créativité, quelle est la posture actuelle de l'Intelligence Artificielle générative ?",
-      "options": ["Elle excelle dans la créativité combinatoire mais échoue, en théorie, dans la créativité transformationnelle (rupture radicale et ex nihilo)", "Elle est parfaitement capable d'inventer des ruptures conceptuelles radicales", "Elle échoue dans la créativité combinatoire car elle ne sait pas associer plusieurs concepts", "Elle est exclusivement réservée à la créativité exploratoire dans des cadres très stricts"],
+      "text": "Posture de l'IA face aux types de créativité ?",
+      "options": [
+        "Excelle en combinatoire / Échoue en transformation",
+        "Excelle en rupture / Échoue en association",
+        "Échoue en combinatoire / Excelle en paradigme",
+        "Excelle en exploration / Échoue en cadre strict"
+      ],
       "correctAnswer": 0,
       "explanation": "L'IA est une championne de l'association, mais elle ne peut pas encore créer de paradigme totalement vierge."
     },
     {
       "id": 4,
-      "text": "Quels sont les 4 piliers indispensables qui caractérisent la créativité humaine et que l'on cherche à retrouver dans nos productions ?",
-      "options": ["Contexte, Objectif, Style, Ton", "Original, Utile, Flexible, Fluide", "Planification, Prototypage, Exécution, Déploiement", "Données, Algorithmes, Interface, Utilisateur"],
+      "text": "Quels sont les 4 piliers de la créativité humaine ?",
+      "options": [
+        "Contexte, Objectif, Style, Ton",
+        "Original, Utile, Flexible, Fluide",
+        "Planification, Prototypage, Exécution, Déploiement",
+        "Données, Algorithmes, Interface, Utilisateur"
+      ],
       "correctAnswer": 1,
       "explanation": "Ces quatre critères permettent d'évaluer la qualité et la richesse d'une output créative."
     },
     {
       "id": 5,
       "text": "Selon le modèle itératif de Graham Wallas (1926), à quelle étape du processus créatif correspond le moment du \"déclic\" ou de la pensée soudaine qui émerge ?",
-      "options": ["La préparation", "L'incubation", "L'illumination", "La vérification"],
+      "options": [
+        "La préparation",
+        "L'incubation",
+        "L'illumination",
+        "La vérification"
+      ],
       "correctAnswer": 2,
       "explanation": "C'est le moment 'Eureka' où les connexions se font après un temps de maturation inconsciente."
     },
     {
       "id": 6,
       "text": "Face à la création, nous rencontrons souvent des obstacles. Dans quelle famille classe-t-on la \"peur du jugement\" ou le \"perfectionnisme\" ?",
-      "options": ["Les blocages cognitifs", "Les blocages externes (ou environnementaux)", "Les blocages émotionnels", "Les blocages hiérarchiques"],
+      "options": [
+        "Les blocages cognitifs",
+        "Les blocages externes (ou environnementaux)",
+        "Les blocages émotionnels",
+        "Les blocages hiérarchiques"
+      ],
       "correctAnswer": 2,
       "explanation": "Ces peurs empêchent de se lancer et d'explorer des pistes inhabituelles."
     },
     {
       "id": 7,
-      "text": "En quoi consiste la \"spirale négative de la créativité\" lorsqu'un obstacle n'est pas identifié ?",
-      "options": ["L'accumulation de contraintes budgétaires qui empêchent la réalisation d'un projet", "Un doute initial qui pousse au repli sur des solutions familières, générant des résultats décevants, ce qui renforce le doute initial", "Le fait qu'une équipe passe trop de temps en réunion de brainstorming sans prendre de notes", "L'utilisation excessive d'outils numériques qui fatigue l'attention de l'employé"],
+      "text": "Qu'est-ce que la \"spirale négative de la créativité\" ?",
+      "options": [
+        "Accumulation de contraintes budgétaires fortes",
+        "Doute initial menant à un repli sur soi-même",
+        "Réunion de brainstorming sans aucune prise de note",
+        "Usage excessif d'outils numériques au quotidien"
+      ],
       "correctAnswer": 1,
       "explanation": "Le manque de confiance bride l'originalité, créant un cercle vicieux de banalité."
     },
     {
       "id": 8,
       "text": "À l'échelle d'une entreprise ou d'une équipe, quel élément est le symptôme d'un blocage créatif systémique ?",
-      "options": ["L'utilisation d'outils collaboratifs en ligne", "Le syndrome de la page blanche face à un document vide", "La culture du conformisme et les brainstormings stériles", "La difficulté à trouver une palette de couleurs pour un logo"],
+      "options": [
+        "L'utilisation d'outils collaboratifs en ligne",
+        "Le syndrome de la page blanche face à un document vide",
+        "La culture du conformisme et les brainstormings stériles",
+        "La difficulté à trouver une palette de couleurs pour un logo"
+      ],
       "correctAnswer": 2,
       "explanation": "Quand on cherche seulement à ne pas faire d'erreur, on cesse d'être créatif."
     },
     {
       "id": 9,
       "text": "Le journal de créativité permet de diagnostiquer ses propres blocages. Quelles sont les 3 étapes de cette méthode ?",
-      "options": ["Observer, Analyser, Prioriser", "Imaginer, Modéliser, Diffuser", "Réduire, Réévaluer, Rediriger", "Découvrir, Définir, Délivrer"],
+      "options": [
+        "Observer, Analyser, Prioriser",
+        "Imaginer, Modéliser, Diffuser",
+        "Réduire, Réévaluer, Rediriger",
+        "Découvrir, Définir, Délivrer"
+      ],
       "correctAnswer": 0,
       "explanation": "On observe son ressenti, on analyse la cause du blocage et on priorise la solution."
     },
     {
       "id": 10,
-      "text": "Lorsque l'on souhaite intégrer l'IA dans un processus créatif, pourquoi est-il crucial de se poser les bonnes questions en amont ?",
-      "options": ["Pour garantir que l'outil génère le résultat final en moins de dix secondes", "Pour définir quel abonnement premium sera le plus adapté au besoin", "Car l'IA n'est qu'un catalyseur : sans cadrage de notre part, son utilisation risque d'engendrer de la redondance, du plagiat ou une uniformisation des styles", "Car l'outil refuse de fonctionner si la requête n'a pas été planifiée à l'avance"],
+      "text": "Pourquoi cadrer l'IA dans un processus créatif ?",
+      "options": [
+        "Pour garantir un résultat en moins de 10 secondes",
+        "Pour choisir l'abonnement le plus rentable possible",
+        "Pour éviter la redondance et le plagiat des styles",
+        "Pour forcer l'outil à s'activer sans délai technique"
+      ],
       "correctAnswer": 2,
       "explanation": "L'IA ne connaît pas votre intention profonde ; sans direction, elle produit le résultat le plus moyen possible."
     },
     {
       "id": 11,
       "text": "Parmi ces tâches créatives, laquelle ne faut-il idéalement PAS déléguer entièrement à une IA, car elle demande un fort niveau d'expertise et de réflexion stratégique ?",
-      "options": ["La génération de pistes de réflexion pour un slogan", "La création de l'identité visuelle et du logo stratégique d'une entreprise", "L'aide à la structuration d'un plan d'article de blog", "La création de variations esthétiques d'un mockup produit"],
+      "options": [
+        "La génération de pistes de réflexion pour un slogan",
+        "La création de l'identité visuelle et du logo stratégique d'une entreprise",
+        "L'aide à la structuration d'un plan d'article de blog",
+        "La création de variations esthétiques d'un mockup produit"
+      ],
       "correctAnswer": 1,
       "explanation": "Un logo doit porter l'âme et la stratégie de la marque, ce qu'une IA ne peut pas encore capter seule."
     },
     {
       "id": 12,
       "text": "Dans le domaine du SEO et de la rédaction web, comment est-il conseillé d'utiliser l'IA pour préserver la qualité finale du texte ?",
-      "options": ["Générer le texte final de bout en bout et le publier instantanément", "Utiliser l'IA pour la structure (plan, balises) et le brouillon, puis enrichir, clarifier et fiabiliser manuellement le contenu", "Lui demander de générer des mots-clés et de les cacher dans le code de la page", "Laisser l'IA répondre seule et sans supervision aux commentaires clients sensibles"],
+      "options": [
+        "Générer le texte final de bout en bout et le publier instantanément",
+        "Utiliser l'IA pour la structure (plan, balises) et le brouillon, puis enrichir, clarifier et fiabiliser manuellement le contenu",
+        "Lui demander de générer des mots-clés et de les cacher dans le code de la page",
+        "Laisser l'IA répondre seule et sans supervision aux commentaires clients sensibles"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA est le squelette, l'humain est le cœur. Cette méthode garantit fiabilité et originalité."
     },
     {
       "id": 13,
       "text": "Quel événement symbolique survenu en 2018 a prouvé que l'IA était capable de simuler une certaine forme de créativité combinatoire visuelle ?",
-      "options": ["La victoire d'un robot autonome à un concours de photographie naturel", "La vente du portrait 'Edmond de Belamy', généré par IA, pour plus de 432 000$ chez Christie's", "La rédaction d'un scénario de film entièrement généré et récompensé aux Oscars", "La création d'une palette de couleurs brevetée par un réseau de neurones"],
+      "options": [
+        "La victoire d'un robot autonome à un concours de photographie naturel",
+        "La vente du portrait 'Edmond de Belamy', généré par IA, pour plus de 432 000$ chez Christie's",
+        "La rédaction d'un scénario de film entièrement généré et récompensé aux Oscars",
+        "La création d'une palette de couleurs brevetée par un réseau de neurones"
+      ],
       "correctAnswer": 1,
       "explanation": "Cette vente a ouvert le débat mondial sur la place de l'algorithme dans l'art."
     },
     {
       "id": 14,
-      "text": "Qu'appelle-t-on \"l'effet photocopieuse\" en matière de génération de contenu par l'IA ?",
-      "options": ["La capacité du modèle à analyser un document importé via une photographie", "La production de contenus très formatés par les statistiques moyennes de l'entraînement, conduisant à des tournures répétitives et une uniformisation", "Le fait que l'IA copie exactement les données confidentielles de l'entreprise", "La possibilité de multiplier un fichier texte en différentes langues simultanément"],
+      "text": "Qu'est-ce que \"l'effet photocopieuse\" de l'IA ?",
+      "options": [
+        "La capacité du modèle à analyser un document importé via une photographie",
+        "La production de contenus très formatés par les statistiques moyennes de l'entraînement, conduisant à des tournures répétitives et une uniformisation",
+        "Le fait que l'IA copie exactement les données confidentielles de l'entreprise",
+        "La possibilité de multiplier un fichier texte en différentes langues simultanément"
+      ],
       "correctAnswer": 1,
       "explanation": "Si tout le monde utilise les mêmes prompts, nous finirons tous avec les mêmes articles et visuels."
     },
     {
       "id": 15,
       "text": "En génération d'images, quel phénomène peut engendrer \"l'effondrement du modèle\" et la perte de la diversité visuelle ?",
-      "options": ["L'utilisation de résolutions d'images trop élevées lors des requêtes", "Le manque d'imagination de la part des concepteurs de l'outil", "Le cannibalisme de l'IA, c'est-à-dire l'auto-alimentation des modèles par des images elles-mêmes générées par des IA", "L'ajout excessif de filtres colorés par les utilisateurs"],
+      "options": [
+        "L'utilisation de résolutions d'images trop élevées lors des requêtes",
+        "Le manque d'imagination de la part des concepteurs de l'outil",
+        "Le cannibalisme de l'IA, c'est-à-dire l'auto-alimentation des modèles par des images elles-mêmes générées par des IA",
+        "L'ajout excessif de filtres colorés par les utilisateurs"
+      ],
       "correctAnswer": 2,
       "explanation": "Entraîner une IA sur des images d'IA finit par appauvrir le réalisme et la créativité."
     },
     {
       "id": 16,
-      "text": "Lors de l'expérience du \"Château Ventilé\" (Build-a-Breeze Castle), quel constat a été tiré sur l'impact de l'IA dans la créativité collective ?",
-      "options": ["L'IA a permis au groupe de trouver cent fois plus d'idées originales que l'équipe humaine seule", "L'IA a biaisé tout le groupe vers un concept similaire et prévisible, tuant la diversité des idées au profit d'un consensus moyen", "L'IA n'a pas réussi à générer de visuels cohérents pour ce jouet imaginaire", "Le groupe utilisant l'IA a refusé de continuer l'expérience à cause de la complexité de l'outil"],
+      "text": "Impact de l'IA sur la créativité collective (Château Ventilé) ?",
+      "options": [
+        "Trouvé 100x plus d'idées originales que l'humain",
+        "Biaisé le groupe vers un concept prévisible",
+        "Échoué à générer des visuels pour ce jouet",
+        "Refusé de continuer à cause de la complexité"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA peut agir comme un 'aimant' qui aspire l'imagination individuelle vers un résultat commun neutre."
     },
     {
       "id": 17,
       "text": "Pour contrer les limites créatives de l'IA, il faut la contrôler. Quelle vérification correspond à la lutte contre les \"Hallucinations\" ?",
-      "options": ["Ajouter sa touche humaine et son expertise au texte", "Analyser si le résultat ressemble trop à une œuvre existante protégée par des droits", "Valider la pertinence du contexte, vérifier les affirmations factuelles et tester le rendu auprès de sa cible", "Exiger de l'IA qu'elle explique son processus de création mathématique"],
+      "options": [
+        "Ajouter sa touche humaine au texte brut",
+        "Analyser le respect des droits d'auteur",
+        "Vérifier les faits et tester le rendu final",
+        "Exiger l'explication du processus de calcul"
+      ],
       "correctAnswer": 2,
       "explanation": "Il ne faut jamais gober une affirmation de l'IA sans la sourcer ailleurs."
     },
     {
       "id": 18,
       "text": "Dans les formats de création possibles, comment l'IA peut-elle accompagner un développeur informatique ?",
-      "options": ["En créant des mockups de packagings en 3D", "En automatisant des requêtes SQL, générant des scripts Python ou en relisant du code web", "En produisant la musique de fond d'une application", "En rédigeant les posts Instagram de l'agence web"],
+      "options": [
+        "En créant des mockups de packagings en 3D",
+        "En automatisant des requêtes SQL, générant des scripts Python ou en relisant du code web",
+        "En produisant la musique de fond d'une application",
+        "En rédigeant les posts Instagram de l'agence web"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA est un assistant redoutable pour déboguer ou structurer des lignes de code rébarbatives."
     },
     {
       "id": 19,
       "text": "Quelle étape finale garantit qu'un contenu généré par IA ne reste pas froid, générique ou standardisé ?",
-      "options": ["Augmenter la longueur du prompt initial", "Relancer exactement la même requête pour voir si le résultat change", "Demander à l'outil de signer le texte avec son nom d'intelligence artificielle", "L'intégration de notre identité créative : affiner le style, ajuster le ton et apporter une valeur ajoutée personnelle"],
+      "options": [
+        "Augmenter la longueur du prompt complexe",
+        "Relancer exactement la même requête IA",
+        "Demander de signer avec le nom du modèle",
+        "Ajuster le ton et apporter sa valeur ajoutée"
+      ],
       "correctAnswer": 3,
       "explanation": "L'IA produit le socle, vous apportez l'âme et la touche finale."
     },
     {
       "id": 20,
-      "text": "En résumé, quelle phrase définit le mieux la capacité créative d'un outil comme Midjourney ou ChatGPT face à l'humain ?",
-      "options": ["C'est un artiste autonome qui remplace l'expertise humaine", "C'est un moteur de recherche visuel qui copie-colle des créations d'autres artistes", "C'est un assistant puissant pour produire des contenus qualitatifs et des pistes de réflexion, à condition d'être supervisé", "C'est un logiciel technique réservé à l'optimisation des serveurs de bases de données"],
+      "text": "Capacité créative de l'IA vs Humain ?",
+      "options": [
+        "Artiste autonome remplaçant l'expertise",
+        "Moteur de recherche visuel de copies",
+        "Assistant puissant sous supervision humaine",
+        "Logiciel technique d'optimisation serveurs"
+      ],
       "correctAnswer": 2,
       "explanation": "L'IA augmente l'humain, elle ne le remplace pas dans ses choix et sa vision."
     }
@@ -286,141 +486,241 @@
   "c3": [
     {
       "id": 1,
-      "text": "Dans le monde professionnel, la productivité n'est pas qu'une question de vitesse. Quels sont les trois leviers fondamentaux sur lesquels on peut agir ?",
-      "options": ["Simplifier, Standardiser, Supprimer", "Faire plus (quantité), Faire plus vite (vitesse), Faire mieux (qualité)", "Collecter, Analyser, Archiver", "Planifier, Exécuter, Contrôler"],
+      "text": "Quels sont les trois leviers de la productivité ?",
+      "options": [
+        "Simplifier, Standardiser, Supprimer",
+        "Faire plus (quantité), Faire plus vite (vitesse), Faire mieux (qualité)",
+        "Collecter, Analyser, Archiver",
+        "Planifier, Exécuter, Contrôler"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA permet d'agir sur ces trois leviers pour optimiser l'impact de son travail."
     },
     {
       "id": 2,
-      "text": "Afin d'utiliser l'IA efficacement, il faut savoir différencier les tâches. Comment qualifie-t-on les tâches à forte valeur ajoutée, comme la prise de décision ou la réorganisation ?",
-      "options": ["Les tâches analytiques", "Les tâches opérationnelles", "Les tâches stratégiques", "Les tâches subalternes"],
+      "text": "Comment nomme-t-on les tâches à forte valeur comme la prise de décision ?",
+      "options": [
+        "Les tâches analytiques",
+        "Les tâches opérationnelles",
+        "Les tâches stratégiques",
+        "Les tâches subalternes"
+      ],
       "correctAnswer": 2,
       "explanation": "Les tâches stratégiques sont celles où le discernement humain apporte le plus de valeur."
     },
     {
       "id": 3,
-      "text": "En moyenne, combien de temps un professionnel passe-t-il chaque jour à chercher et rassembler de l'information (selon l'étude McKinsey) ?",
-      "options": ["Moins de 20 minutes", "Environ 1h48", "Exactement 4 heures", "Plus de 6 heures"],
+      "text": "En moyenne, combien de temps un professionnel passe-t-il chaque jour à chercher de l'information (McKinsey) ?",
+      "options": [
+        "Moins de 20 minutes",
+        "Environ 1h48",
+        "Exactement 4 heures",
+        "Plus de 6 heures"
+      ],
       "correctAnswer": 1,
       "explanation": "C'est un temps colossal que l'IA peut réduire grâce à ses capacités de synthèse immédiate."
     },
     {
       "id": 4,
-      "text": "Les tâches qui nuisent à notre productivité ont généralement un très faible ratio effort / impact. Quelle est l'une de leurs caractéristiques ?",
-      "options": ["Elles sont prévisibles (étapes clairement définies et reproductibles à chaque exécution)", "Elles demandent une grande créativité à chaque itération", "Elles génèrent un très haut niveau de valeur stratégique", "Elles nécessitent de collaborer avec plusieurs équipes d'entreprises différentes"],
+      "text": "Caractéristique des tâches à faible ratio effort/impact ?",
+      "options": [
+        "Elles sont prévisibles (étapes clairement définies et reproductibles à chaque exécution)",
+        "Elles demandent une grande créativité à chaque itération",
+        "Elles génèrent un très haut niveau de valeur stratégique",
+        "Elles nécessitent de collaborer avec plusieurs équipes d'entreprises différentes"
+      ],
       "correctAnswer": 0,
       "explanation": "Tout ce qui est prévisible est un candidat idéal pour l'automatisation par IA."
     },
     {
       "id": 5,
-      "text": "Quel signal d'alerte dans votre quotidien indique qu'une tâche devrait probablement être optimisée par l'IA ou automatisée ?",
-      "options": ["Vous ressentez le besoin d'échanger avec un collègue pour avancer", "La tâche demande une forte concentration intellectuelle et d'analyse critique", "Vous réalisez la tâche en \"pilote automatique\" et ressentez une frustration récurrente à chaque exécution", "Il est impossible de documenter le processus car il change systématiquement"],
+      "text": "Quel signal d'alerte indique qu'une tâche devrait être optimisée par l'IA ?",
+      "options": [
+        "Besoin d'échanger avec un collègue proche",
+        "Besoin de concentration et d'analyse critique",
+        "Réalisation en mode \"pilote automatique\" lassant",
+        "Impossibilité de documenter le processus interne"
+      ],
       "correctAnswer": 2,
       "explanation": "C'est ce qu'on appelle les tâches 'zombies' qui déchargent votre motivation."
     },
     {
       "id": 6,
-      "text": "Pour identifier méthodiquement les tâches chronophages de son quotidien, quel exercice pratique est recommandé de réaliser sur 7 jours ?",
-      "options": ["Un bilan de compétences managériales", "Un journal de productivité (Observer, Analyser, Prioriser)", "Un audit technique de son ordinateur", "Une matrice SWOT de son entreprise"],
+      "text": "Pour identifier les tâches chronophages, quel exercice est recommandé sur 7 jours ?",
+      "options": [
+        "Un bilan de compétences managériales",
+        "Un journal de productivité (Observer, Analyser, Prioriser)",
+        "Un audit technique de son ordinateur",
+        "Une matrice SWOT de son entreprise"
+      ],
       "correctAnswer": 1,
       "explanation": "C'est en mesurant le temps perdu qu'on réalise le potentiel de gain apporté par l'IA."
     },
     {
       "id": 7,
       "text": "Quel est l'avantage de dessiner une \"cartographie de workflow\" (un diagramme étape par étape) de ses processus ?",
-      "options": ["C'est une obligation légale pour intégrer l'IA", "Cela permet de générer un prompt automatiquement", "Cela permet de représenter visuellement le cheminement et d'identifier instantanément les étapes redondantes ou les pertes de temps", "Cela améliore l'ergonomie visuelle des documents de présentation de l'entreprise"],
+      "options": [
+        "Obligation légale pour intégrer tout outil IA",
+        "Permet de générer un prompt de manière directe",
+        "Identifie les étapes redondantes ou les pertes",
+        "Améliore l'ergonomie visuelle des documents pro"
+      ],
       "correctAnswer": 2,
       "explanation": "Visualiser le processus aide à voir où l'IA peut s'insérer comme un rouage d'efficacité."
     },
     {
       "id": 8,
       "text": "Lors de la priorisation de vos tâches à optimiser, sur quel type de tâche faut-il se concentrer en priorité numéro 1 ?",
-      "options": ["La tâche la plus créative et stratégique du mois", "La tâche chronophage et répétitive qui consomme le plus de temps chaque semaine", "La tâche qui nécessite l'approbation du directeur général", "La tâche la plus difficile techniquement à réaliser"],
+      "options": [
+        "Tâche créative et stratégique majeure du mois",
+        "Tâche chronophage et répétitive hebdomadaire",
+        "Tâche nécessitant l'approbation de la direction",
+        "Tâche la plus complexe techniquement à réaliser"
+      ],
       "correctAnswer": 1,
       "explanation": "On vise les gains rapides : libérer 3h par semaine a plus d'impact que de gagner 10mn on un projet annuel."
     },
     {
       "id": 9,
       "text": "Avant d'intégrer l'IA pour automatiser une action, l'une des 5 questions essentielles à se poser concerne \"l'impact\". Que faut-il évaluer exactement ?",
-      "options": ["Le nombre de mots que l'IA va devoir générer", "La capacité de l'IA à trouver des informations sur les concurrents", "L'impact réel sur le temps gagné par rapport à la charge de travail demandée pour paramétrer et vérifier l'outil", "L'impact environnemental des serveurs de génération"],
+      "options": [
+        "Le nombre total de mots que l'IA va générer",
+        "La capacité de l'IA à espionner la concurrence",
+        "Le temps gagné par rapport à la charge de paramétrage",
+        "L'impact environnemental des serveurs de calcul"
+      ],
       "correctAnswer": 2,
       "explanation": "Si paramétrer l'IA prend plus de temps que de faire la tâche à la main, ce n'est pas rentable."
     },
     {
       "id": 10,
-      "text": "Selon les statistiques, quel bénéfice de productivité concret (+32%) a été observé entre 2017 et 2023 grâce à l'automatisation dans le secteur des Ressources Humaines ?",
-      "options": ["Sur la création des stratégies de marque employeur", "Sur les processus de gestion et tâches administratives", "Sur la conduite d'entretiens psychologiques", "Sur la rédaction du règlement intérieur"],
+      "text": "Bénéfice de l'automatisation RH (+32%) entre 2017 et 2023 ?",
+      "options": [
+        "Sur la création des stratégies de marque employeur",
+        "Sur les processus de gestion et tâches administratives",
+        "Sur la conduite d'entretiens psychologiques",
+        "Sur la rédaction du règlement intérieur"
+      ],
       "correctAnswer": 1,
       "explanation": "L'administratif RH est de plus en plus géré par des systèmes intelligents de tri et de saisie."
     },
     {
       "id": 11,
-      "text": "Parmi les erreurs méthodologiques fréquentes (les pièges), qu'est-ce que \"l'effet miroir magique\" vis-à-vis de l'IA ?",
-      "options": ["Oublier de relire le texte généré à cause de la précipitation", "Surestimer les capacités de l'outil et croire que l'IA fait tout parfaitement, la considérant comme un oracle infaillible", "Vouloir intégrer un outil uniquement par effet de mode", "Partager des données confidentielles dans des chats publics"],
+      "text": "Qu'est-ce que \"l'effet miroir magique\" ?",
+      "options": [
+        "Oublier de relire le texte généré par erreur",
+        "Considérer l'IA comme un oracle infaillible",
+        "Vouloir intégrer un outil par pur effet de mode",
+        "Partager des données pro dans des chats publics"
+      ],
       "correctAnswer": 1,
       "explanation": "Croire aveuglément l'IA est un danger : c'est un miroir probabiliste, pas une source de vérité absolue."
     },
     {
       "id": 12,
       "text": "Quel piège d'organisation correspond au fait de laisser l'IA gérer un flux d'emails ou un processus de bout en bout sans intervenir ?",
-      "options": ["Le syndrome du dernier outil à la mode", "L'automatisation à tout prix", "Déléguer sans encadrer (l'IA n'est pas un prestataire autonome, elle doit être supervisée)", "Le biais de confirmation algorithmique"],
+      "options": [
+        "Le syndrome du dernier outil à la mode",
+        "L'automatisation à tout prix et sans limite",
+        "Déléguer sans encadrer (manque de supervision)",
+        "Le biais de confirmation algorithmique pur"
+      ],
       "correctAnswer": 2,
       "explanation": "L'IA a besoin d'un cadre et d'une vérification humaine pour ne pas dévier de l'objectif."
     },
     {
       "id": 13,
-      "text": "Face à l'intégration de l'IA, la Harvard Business Review propose la règle des 3R pour une approche ciblée et réfléchie. Que signifient ces lettres ?",
-      "options": ["Rapide, Rentable, Rationnel", "Résumer, Rédiger, Relire", "Recueillir, Raisonner, Restituer", "Réduire, Réévaluer, Rediriger"],
+      "text": "Que signifient les 3R (Harvard Business Review) ?",
+      "options": [
+        "Rapide, Rentable, Rationnel",
+        "Résumer, Rédiger, Relire",
+        "Recueillir, Raisonner, Restituer",
+        "Réduire, Réévaluer, Rediriger"
+      ],
       "correctAnswer": 3,
       "explanation": "Réduire les tâches, réévaluer ses priorités et rediriger son temps vers l'essentiel."
     },
     {
       "id": 14,
       "text": "Pour bien cadrer vos objectifs de gain de productivité, il est recommandé d'utiliser la méthode SMART. Que signifie le \"M\" de cet acronyme ?",
-      "options": ["Modulable : l'objectif peut changer en cours de route", "Mesurable : l'objectif est quantifiable avec des indicateurs de réussite précis", "Managérial : l'objectif doit être défini par la direction", "Minimaliste : l'objectif doit demander peu de ressources"],
+      "options": [
+        "Modulable : l'objectif peut changer en cours de route",
+        "Mesurable : l'objectif est quantifiable avec des indicateurs de réussite précis",
+        "Managérial : l'objectif doit être défini par la direction",
+        "Minimaliste : l'objectif doit demander peu de ressources"
+      ],
       "correctAnswer": 1,
       "explanation": "Un objectif clair doit pouvoir être chiffré (ex: passer de 4h à 30mn sur ce rapport)."
     },
     {
       "id": 15,
       "text": "Dans une matrice \"Impact / Effort\", quelles tâches (appelées \"Quick Wins\") devez-vous impérativement cibler pour commencer l'intégration de l'IA ?",
-      "options": ["Celles qui ont un impact faible mais qui demandent très peu d'efforts", "Les projets stratégiques complexes avec un impact très élevé mais un effort très important", "Les tâches simples et répétitives qui ont un impact élevé sur la libération du temps, avec un effort de mise en place très faible", "Les tâches inutiles à éviter (impact faible, effort élevé)"],
+      "options": [
+        "Impact faible / Efforts très peu importants",
+        "Projets stratégiques / Efforts très importants",
+        "Impact élevé / Efforts de mise en place faibles",
+        "Tâches inutiles / Efforts élevés à éviter"
+      ],
       "correctAnswer": 2,
       "explanation": "Les victoires rapides permettent d'engager le changement et de voir les résultats tout de suite."
     },
     {
       "id": 16,
       "text": "Pour un freelance ou une TPE, quel cas concret correspond parfaitement à un \"Quick Win\" optimisable par l'IA ?",
-      "options": ["Le développement complet d'un logiciel CRM métier codé depuis zéro", "L'automatisation des réponses aux questions par email récurrentes ou le résumé des réunions clients", "L'analyse psychologique complexe des intentions d'achat d'un prospect", "La prise de décision stratégique sur l'orientation financière de l'année"],
+      "options": [
+        "Le développement complet d'un logiciel CRM métier codé depuis zéro",
+        "L'automatisation des réponses aux questions par email récurrentes ou le résumé des réunions clients",
+        "L'analyse psychologique complexe des intentions d'achat d'un prospect",
+        "La prise de décision stratégique sur l'orientation financière de l'année"
+      ],
       "correctAnswer": 1,
       "explanation": "Répondre aux mails et résumer des meetings sont des tâches à faible complexité mais fort gain de temps."
     },
     {
       "id": 17,
       "text": "L'IA ne résout pas tous les problèmes. Parmi les facteurs de productivité liés à la \"dimension humaine\", que faut-il également gérer pour être efficace ?",
-      "options": ["L'optimisation des bases de données et des serveurs cloud", "La standardisation des templates de documents", "La fatigue cognitive, la gestion de l'attention (Deep Work) et la motivation", "La vitesse du réseau Wi-Fi dans les bureaux"],
+      "options": [
+        "L'optimisation des bases de données et des serveurs cloud",
+        "La standardisation des templates de documents",
+        "La fatigue cognitive, la gestion de l'attention (Deep Work) et la motivation",
+        "La vitesse du réseau Wi-Fi dans les bureaux"
+      ],
       "correctAnswer": 2,
       "explanation": "L'IA ne sert à rien si vous êtes trop fatigué pour piloter vos outils efficacement."
     },
     {
       "id": 18,
       "text": "Pour optimiser des workflows en entreprise, centraliser l'information et collaborer en temps réel, quel type d'outil est mentionné comme un levier d'efficacité puissant ?",
-      "options": ["Les tableurs traditionnels comme Microsoft Excel", "Les espaces de travail connectés et bases de données comme Notion", "Les logiciels de retouche photo comme Photoshop", "Les plateformes de génération d'images par IA"],
+      "options": [
+        "Les tableurs traditionnels comme Microsoft Excel",
+        "Les espaces de travail connectés et bases de données comme Notion",
+        "Les logiciels de retouche photo comme Photoshop",
+        "Les plateformes de génération d'images par IA"
+      ],
       "correctAnswer": 1,
       "explanation": "Des outils comme Notion permettent de créer des flux de travail fluides où l'IA peut directement agir."
     },
     {
       "id": 19,
-      "text": "Comment se manifeste l'\"effet rebond\", un phénomène où l'intégration de l'IA crée finalement de nouvelles problématiques de temps ?",
-      "options": ["L'IA bug systématiquement à la moitié de la génération, forçant l'utilisateur à relancer le prompt", "L'équipe passe plus de temps à discuter de l'IA qu'à travailler", "Le temps gagné sur une tâche est immédiatement réinvesti dans de nouvelles micro-tâches liées à l'outil (rédiger des prompts, vérifier), empêchant la charge globale de diminuer", "Le logiciel devient payant après une période d'essai gratuite"],
+      "text": "Qu'est-ce que \"l'effet rebond\" avec l'IA ?",
+      "options": [
+        "L'IA bug systématiquement à la moitié de la génération, forçant l'utilisateur à relancer le prompt",
+        "L'équipe passe plus de temps à discuter de l'IA qu'à travailler",
+        "Le temps gagné est réinvesti dans de nouvelles tâches liées à l'outil, empêchant la charge de diminuer",
+        "Le logiciel devient payant après une période d'essai gratuite"
+      ],
       "correctAnswer": 2,
       "explanation": "Il faut veiller à ce que l'utilisation de l'IA ne génère pas autant de travail qu'elle n'en résout."
     },
     {
       "id": 20,
       "text": "Qu'est-ce que le \"Doomprompting\", ce piège chronophage redouté par les professionnels du digital ?",
-      "options": ["L'optimisation compulsive et sans fin d'une requête (prompt) pendant des heures dans l'espoir illusoire que l'IA finisse par délivrer le résultat parfait du premier coup", "L'incapacité de trouver le bon vocabulaire technique pour s'adresser à la machine", "Le fait de demander délibérément à l'IA de générer des contenus tristes ou anxiogènes", "Le phénomène de faux travail généré par l'IA qui demande ensuite des heures de déchiffrage aux collègues"],
+      "options": [
+        "Optimisation excessive d'un prompt pour la perfection",
+        "Incapacité de trouver le bon vocabulaire technique pro",
+        "Demander délibérément à l'IA des contenus anxiogènes",
+        "Génération de faux travail demandant des heures de tri"
+      ],
       "correctAnswer": 0,
       "explanation": "Mieux vaut accepter un résultat à 90% et le corriger soi-même que de passer 2h sur un prompt parfait."
     }
@@ -429,14 +729,24 @@
     {
       "id": 1,
       "text": "Combien de grandes catégories d'outils d'IA générative identifie-t-on généralement dans le paysage actuel (texte, audio, image, etc.) ?",
-      "options": ["3 catégories principales", "4 catégories principales", "6 catégories principales", "8 catégories principales"],
+      "options": [
+        "3 catégories principales",
+        "4 catégories principales",
+        "6 catégories principales",
+        "8 catégories principales"
+      ],
       "correctAnswer": 2,
       "explanation": "Le paysage se divise en 6 piliers : Texte, Image, Audio, Vidéo, Code et 3D/Design."
     },
     {
       "id": 2,
-      "text": "Concernant l'adoption fulgurante des outils d'IA, combien de temps a-t-il fallu à ChatGPT pour atteindre la barre record des 100 millions d'utilisateurs ?",
-      "options": ["2 mois", "6 mois", "12 mois", "18 mois"],
+      "text": "Temps pour ChatGPT d'atteindre 100 millions d'utilisateurs ?",
+      "options": [
+        "2 mois",
+        "6 mois",
+        "12 mois",
+        "18 mois"
+      ],
       "correctAnswer": 0,
       "explanation": "D'après les statistiques du marché, ChatGPT a atteint ce cap record en à peine 2 mois."
     },
@@ -455,13 +765,18 @@
     {
       "id": 4,
       "text": "D'après les statistiques du marché, quel pourcentage de professionnels de la communication et du marketing déclarent utiliser l'IA générative visuelle ?",
-      "options": ["30 %", "50 %", "70 %", "90 %"],
+      "options": [
+        "30 %",
+        "50 %",
+        "70 %",
+        "90 %"
+      ],
       "correctAnswer": 2,
       "explanation": "L'adoption est massive dans les métiers créatifs pour le prototypage et l'idéation."
     },
     {
       "id": 5,
-      "text": "Parmi les générateurs d'images, quel est l'avantage concurrentiel majeur qui pousse les créatifs à utiliser Midjourney malgré son interface sur Discord ?",
+      "text": "Avantage majeur de Midjourney pour les créatifs ?",
       "options": [
         "Sa capacité à générer des images vectorielles nativement modifiables",
         "Sa qualité visuelle inégalée et son rendu hautement stylisé et détaillé",
@@ -474,7 +789,12 @@
     {
       "id": 6,
       "text": "Quel modèle de génération d'images se cache derrière l'interface grand public et simplifiée de Canva AI ?",
-      "options": ["DALL-E 3", "Imagen 4 Ultra", "Stable Diffusion", "Midjourney V6"],
+      "options": [
+        "DALL-E 3",
+        "Imagen 4 Ultra",
+        "Stable Diffusion",
+        "Midjourney V6"
+      ],
       "correctAnswer": 2,
       "explanation": "Canva utilise notamment Stable Diffusion pour son outil de génération d'images interne."
     },
@@ -516,8 +836,13 @@
     },
     {
       "id": 10,
-      "text": "Si vous devez générer une présentation de 10 diapositives (plan, textes et design) à partir d'un simple sujet en moins de 30 secondes, vers quel outil devez-vous vous tourner ?",
-      "options": ["Notion AI", "Trello + Butler", "Gamma App", "Synthesia"],
+      "text": "Outil pour générer une présentation complète en 30 secondes ?",
+      "options": [
+        "Notion AI",
+        "Trello + Butler",
+        "Gamma App",
+        "Synthesia"
+      ],
       "correctAnswer": 2,
       "explanation": "Gamma est l'outil leader pour transformer un prompt en deck de présentation complet."
     },
@@ -536,7 +861,11 @@
     {
       "id": 12,
       "text": "Quels sont les 3 critères fondamentaux pour bien évaluer et choisir son outil d'IA ?",
-      "options": ["L'interface, l'intégration, la sécurité", "Le marché, la concurrence, le ROI", "Les besoins, les compétences, le budget"],
+      "options": [
+        "L'interface, l'intégration, la sécurité",
+        "Le marché, la concurrence, le ROI",
+        "Les besoins, les compétences, le budget"
+      ],
       "correctAnswer": 2,
       "explanation": "Inutile de payer pour un outil trop complexe si vos besoins et compétences ne suivent pas."
     },
@@ -554,7 +883,7 @@
     },
     {
       "id": 14,
-      "text": "L'approche \"Centralisée\" consiste à utiliser un seul outil polyvalent pour tout faire. Quel en est l'inconvénient majeur ?",
+      "text": "Inconvénient de l'approche \"Centralisée\" ?",
       "options": [
         "Une courbe d'apprentissage beaucoup plus longue et complexe",
         "Un risque de dépendance à un fournisseur unique et des performances limitées sur les tâches très techniques",
@@ -566,7 +895,7 @@
     },
     {
       "id": 15,
-      "text": "Dans quel cas l'approche \"Spécialisée\" (combiner plusieurs outils experts) est-elle réellement justifiée ?",
+      "text": "Quand l'approche \"Spécialisée\" est-elle justifiée ?",
       "options": [
         "Pour des utilisateurs débutants qui cherchent à découvrir l'IA avec un budget limité",
         "Pour des besoins très variés mais ponctuels (rédiger un mail, faire une synthèse)",
@@ -578,24 +907,24 @@
     },
     {
       "id": 16,
-      "text": "Lors du cas d'étude, pourquoi Sophie (responsable marketing) décide-t-elle finalement de s'abonner à ChatGPT Plus plutôt qu'à un outil dédié comme Jasper ?",
+      "text": "Pourquoi un professionnel choisirait-il ChatGPT Plus plutôt qu'un outil dédié comme Jasper ?",
       "options": [
-        "Car Jasper ne permettait pas de générer du texte en français",
-        "Parce que ChatGPT offrait le meilleur rapport qualité/prix et une grande flexibilité pour affiner le ton de sa marque au fil du temps",
-        "Car elle avait besoin d'une fonctionnalité de génération de vidéos incluse",
-        "Parce que les templates de Jasper étaient jugés trop créatifs pour son secteur B2B"
+        "Jasper ne permet pas de générer du texte en français.",
+        "ChatGPT offre un meilleur rapport qualité/prix et une grande flexibilité pour affiner le ton.",
+        "Pour accéder à une fonctionnalité de génération de vidéos incluse.",
+        "Les templates de Jasper sont trop créatifs pour le secteur B2B."
       ],
       "correctAnswer": 1,
       "explanation": "La polyvalence et le coût réduit rendent souvent ChatGPT plus attractif en phase de lancement."
     },
     {
       "id": 17,
-      "text": "Dans le cas d'étude de Thomas (graphiste), pourquoi l'adoption de Midjourney a-t-elle été abandonnée au bout de 6 semaines malgré l'excellente qualité visuelle ?",
+      "text": "Pourquoi un graphiste pourrait-il abandonner Midjourney malgré sa qualité visuelle ?",
       "options": [
-        "L'outil a supprimé son accès API du jour au lendemain",
-        "La limitation des droits d'auteur l'empêchait de revendre ses créations",
-        "Le manque d'intégration dans son workflow (exports manuels) et la qualité stagnante ont généré un ROI négatif en temps gagné",
-        "L'interface sur Discord a été bloquée par le service informatique de son agence"
+        "L'outil a supprimé son accès API du jour au lendemain.",
+        "Des problèmes de droits d'auteur l'empêchaient de revendre ses créations.",
+        "Le manque d'intégration dans le workflow (exports manuels) et une qualité stagnante génèrent un ROI négatif.",
+        "L'interface Discord a été bloquée par le service informatique."
       ],
       "correctAnswer": 2,
       "explanation": "Si l'outil fait perdre du temps en manipulations techniques, son intérêt s'estompe vite."
@@ -626,7 +955,7 @@
     },
     {
       "id": 20,
-      "text": "Pourquoi est-il fortement recommandé de privilégier les IA qui s'intègrent à votre écosystème de travail existant (ex: Copilot dans Office 365, Canva AI) ?",
+      "text": "Pourquoi privilégier les IA intégrées (ex: Copilot, Canva) ?",
       "options": [
         "Pour bénéficier de réductions fiscales liées à la transition numérique",
         "Car un excellent outil devient pénible et contre-productif s'il impose des allers-retours constants entre plusieurs applications",
@@ -640,10 +969,10 @@
   "c5": [
     {
       "id": 1,
-      "text": "Quelle est la distinction principale entre le \"Prompting\" et le \"Prompt Engineering\" ?",
+      "text": "Différence entre Prompting et Prompt Engineering ?",
       "options": [
         "Le prompting est utilisé pour le texte, le prompt engineering pour la génération d'images",
-        "Le prompting est l'acte ponctuel d'écrire une instruction, le prompt engineering est une discipline méthodologique visant des résultats fiables à l'échelle professionnelle",
+        "Le prompting est l'acte de prompter, le prompt engineering est une méthodologie pour des résultats fiables",
         "Le prompting est gratuit, le prompt engineering nécessite un accès API payant",
         "Il n'y a aucune différence, ce sont deux termes marketing pour désigner la même chose"
       ],
@@ -664,7 +993,7 @@
     },
     {
       "id": 3,
-      "text": "Quelle différence fondamentale d'intention sépare la recherche d'information classique de l'ingénierie de prompt ?",
+      "text": "Recherche d'info vs Prompt Engineering ?",
       "options": [
         "La recherche vise à trouver une information existante, le prompt vise à créer, transformer ou analyser du contenu",
         "La recherche utilise des mots-clés, le prompt utilise uniquement des commandes vocales",
@@ -700,7 +1029,7 @@
     },
     {
       "id": 6,
-      "text": "Pourquoi dit-on que les grands modèles de langage (LLM) sont créés pour fonctionner en \"dialogue\" plutôt qu'en requêtes isolées ?",
+      "text": "Pourquoi les LLM privilégient-ils le dialogue ?",
       "options": [
         "Parce qu'ils ont besoin de simuler des émotions humaines pour fonctionner correctement",
         "Car l'IA enrichit sa \"mémoire de travail\" au fil de l'échange, ce qui réduit son incertitude et limite les risques d'invention",
@@ -737,7 +1066,12 @@
     {
       "id": 9,
       "text": "Si vous demandez à l'IA les chiffres d'une étude de l'INSEE pour 2023 et qu'elle génère un pourcentage réaliste mais fictif, de quel type d'hallucination s'agit-il ?",
-      "options": ["Une hallucination de référence", "Une hallucination d'événement", "Une hallucination de citation", "Une hallucination statistique"],
+      "options": [
+        "Une hallucination de référence",
+        "Une hallucination d'événement",
+        "Une hallucination de citation",
+        "Une hallucination statistique"
+      ],
       "correctAnswer": 3,
       "explanation": "L'IA invente des nombres crédibles pour combler ses lacunes de connaissances."
     },
@@ -779,7 +1113,7 @@
     },
     {
       "id": 13,
-      "text": "En quoi la méthode de \"l'Interview\" (Reverse Prompting) est-elle particulièrement efficace face à une tâche complexe (ex: rédiger un CV ciblé) ?",
+      "text": "Efficacité de \"l'Interview\" (Reverse Prompting) ?",
       "options": [
         "Elle force l'IA à adopter un ton très journalistique et formel",
         "Elle permet d'évaluer le niveau technique du modèle linguistique",
@@ -803,7 +1137,7 @@
     },
     {
       "id": 15,
-      "text": "Parmi ces exemples, lequel représente un feedback \"constructif\" permettant à l'IA de corriger son tir ?",
+      "text": "Exemple de feedback \"constructif\" pour l'IA ?",
       "options": [
         "\"C'est nul, ça ne va pas du tout.\"",
         "\"C'est trop compliqué, recommence.\"",
@@ -815,7 +1149,7 @@
     },
     {
       "id": 16,
-      "text": "Pourquoi est-il déconseillé de donner un \"feedback négatif vague\" (ex: \"C'est mauvais\") à une IA ?",
+      "text": "Pourquoi éviter les feedbacks négatifs vagues ?",
       "options": [
         "Parce que cela risque de bloquer le compte utilisateur pour comportement toxique",
         "L'IA ne sachant pas ce qui a déplu, elle risque de modifier de façon aléatoire des éléments qui étaient pourtant corrects",
@@ -827,7 +1161,7 @@
     },
     {
       "id": 17,
-      "text": "Demander à l'IA : \"Résume ce compte-rendu PDF en 5 points clés actionnables pour mon équipe\", relève de quelle catégorie d'usage ?",
+      "text": "Quelle catégorie d'usage pour un résumé PDF en 5 points ?",
       "options": [
         "Une recherche de tendances macro-économiques",
         "Une demande de reformattage / transformation (Prompt d'action)",
@@ -839,7 +1173,7 @@
     },
     {
       "id": 18,
-      "text": "Lors d'un \"pré-questionnement\", quel est le bénéfice principal d'investir 1 minute en amont pour cadrer la demande avec l'IA ?",
+      "text": "Bénéfice de cadrer la demande en amont ?",
       "options": [
         "Cela permet de débloquer des fonctionnalités premium gratuites",
         "Cela empêche l'IA de conserver les données pour son propre entraînement",
@@ -863,7 +1197,7 @@
     },
     {
       "id": 20,
-      "text": "Dans la démarche itérative, pourquoi dit-on qu'il faut \"oser corriger l'IA\" ?",
+      "text": "Pourquoi faut-il \"oser corriger l'IA\" ?",
       "options": [
         "Car cela permet de signaler les bugs à l'entreprise créatrice (ex: OpenAI)",
         "Car l'IA a tendance à devenir paresseuse si on accepte systématiquement ses premières propositions sans la challenger",
@@ -877,7 +1211,7 @@
   "c6": [
     {
       "id": 1,
-      "text": "Quels sont les 4 piliers de base indispensables pour structurer et détailler une requête efficace ?",
+      "text": "Quels sont les 4 piliers d'un prompt efficace ?",
       "options": [
         "Le Sujet, le Destinataire, la Longueur, le Style",
         "Le Contexte, la Tâche, le Format, les Contraintes",
@@ -901,8 +1235,13 @@
     },
     {
       "id": 3,
-      "text": "La trame \"R.O.C.I.F\" est l'une des plus populaires. Que signifient les deux premières lettres \"R\" et \"O\" ?",
-      "options": ["Raisonnement, Ordre", "Rôle, Objectif", "Recherche, Optimisation", "Rigueur, Obligation"],
+      "text": "Que signifient R et O dans ROCIF ?",
+      "options": [
+        "Raisonnement, Ordre",
+        "Rôle, Objectif",
+        "Recherche, Optimisation",
+        "Rigueur, Obligation"
+      ],
       "correctAnswer": 1,
       "explanation": "Donner un rôle (Role) et un but clair (Objective) conditionne immédiatement la qualité de la réponse."
     },
@@ -920,7 +1259,7 @@
     },
     {
       "id": 5,
-      "text": "En quoi la trame \"C.O.S.T.A.R\" (Contexte, Objectif, Style, Ton, Audience, Réponse) diffère-t-elle principalement de la trame ROCIF ?",
+      "text": "Différence entre COSTAR et ROCIF ?",
       "options": [
         "Elle est beaucoup plus rigide et orientée vers l'analyse mathématique",
         "Elle se concentre intensément sur l'harmonie éditoriale, rendant le prompt idéal pour des contenus créatifs ou de la communication très ciblée",
@@ -980,7 +1319,7 @@
     },
     {
       "id": 10,
-      "text": "Si vous ne souhaitez pas réinventer la roue à chaque requête, où pouvez-vous trouver des collections publiques de prompts open-source classés par cas d'usage ?",
+      "text": "Où trouver des collections de prompts open-source ?",
       "options": [
         "Uniquement dans les conditions générales d'utilisation d'OpenAI",
         "Sur des dépôts communautaires comme GitHub (ex: Awesome ChatGPT Prompts) ou ShareGPT",
@@ -1004,7 +1343,7 @@
     },
     {
       "id": 12,
-      "text": "Quel moyen simple et rapide avez-vous à disposition pour trouver une trame de prompt parfaitement adaptée à votre besoin métier spécifique ?",
+      "text": "Comment trouver une trame de prompt adaptée à son métier ?",
       "options": [
         "Envoyer un email au support technique d'Anthropic ou Google",
         "Demander directement à l'assistant IA de vous proposer et structurer 2 ou 3 trames sur-mesure pour votre tâche",
@@ -1016,7 +1355,7 @@
     },
     {
       "id": 13,
-      "text": "Pour construire et organiser sa propre \"Bibliothèque de prompts\", quel type d'outil est le plus adapté et recommandé (ex: pour une équipe métier) ?",
+      "text": "Quel outil pour organiser sa bibliothèque de prompts ?",
       "options": [
         "Un fichier texte (.txt) non formaté placé sur le bureau de l'ordinateur",
         "Une messagerie instantanée comme WhatsApp",
@@ -1040,7 +1379,7 @@
     },
     {
       "id": 15,
-      "text": "Qu'est-ce que un \"Custom GPT\" (ou GPT personnalisé) par rapport à un prompt classique ?",
+      "text": "Qu'est-ce qu'un \"Custom GPT\" ?",
       "options": [
         "C'est un modèle physique de robot de bureau",
         "C'est un mini-agent configuré une seule fois, embarquant vos instructions permanentes et fichiers de contexte, ce qui évite de réécrire les mêmes règles à chaque échange",
@@ -1052,7 +1391,7 @@
     },
     {
       "id": 16,
-      "text": "Lors de la phase d'évaluation d'un prompt (pour l'améliorer), que vérifie le critère de \"Clarté\" (noté sur 5) ?",
+      "text": "Que vérifie le critère de \"Clarté\" d'un prompt ?",
       "options": [
         "Que le vocabulaire utilisé ne contient aucune ambiguïté et que l'objectif est compréhensible dès la première lecture",
         "Que le prompt contient obligatoirement des emojis pour la lisibilité",
@@ -1064,7 +1403,7 @@
     },
     {
       "id": 17,
-      "text": "Dans la grille d'évaluation des prompts, que signifie obtenir la note maximale (5/5) au critère d'\"Actionnabilité\" ?",
+      "text": "Que signifie un prompt 5/5 en \"Actionnabilité\" ?",
       "options": [
         "Le prompt déclenche automatiquement l'envoi d'un email depuis votre boîte",
         "Le prompt oblige l'IA à utiliser un langage informatique complexe",
@@ -1088,7 +1427,7 @@
     },
     {
       "id": 19,
-      "text": "Pourquoi est-il utile de s'auto-évaluer avec une grille de critères (Clarté, Complétude, Contraintes, Actionnabilité) *avant* même d'envoyer la requête ?",
+      "text": "Pourquoi s'auto-évaluer avant d'envoyer un prompt ?",
       "options": [
         "Pour garantir que la génération coûtera moins cher en jetons (tokens)",
         "Pour s'assurer de ne pas dépasser la limite de caractères autorisée",
@@ -1100,7 +1439,7 @@
     },
     {
       "id": 20,
-      "text": "En résumé, quel est l'avantage principal de maîtriser les différentes structures de prompt (ROCIF, COSTAR, etc.) plutôt que de formuler des demandes instinctives ?",
+      "text": "Avantage des structures de prompt (ROCIF, COSTAR) ?",
       "options": [
         "Cela permet de gagner en contrôle, de standardiser la qualité des résultats et de réutiliser efficacement son travail intellectuel sur le long terme",
         "Cela empêche les créateurs des modèles IA de lire vos historiques de conversation",
@@ -1126,7 +1465,7 @@
     },
     {
       "id": 2,
-      "text": "Le pilier éthique de l'\"Autonomie\" implique des responsabilités précises pour les créateurs d'IA. Laquelle en fait partie ?",
+      "text": "Responsabilité liée au pilier \"Autonomie\" ?",
       "options": [
         "Laisser l'IA prendre seule les décisions juridiques complexes",
         "Garantir un consentement éclairé et éviter les \"dark patterns\" (techniques de persuasion abusives) pour que l'humain garde le contrôle",
@@ -1138,7 +1477,7 @@
     },
     {
       "id": 3,
-      "text": "Dans le cadre de l'évaluation de la fiabilité, comment se définit une \"hallucination\" générée par un modèle ?",
+      "text": "Définition d'une \"hallucination\" en IA ?",
       "options": [
         "La reproduction exacte et non autorisée d'un texte protégé par le droit d'auteur",
         "La génération d'une information factuellement fausse ou inventée, mais présentée avec une syntaxe très crédible et assurée",
@@ -1150,7 +1489,7 @@
     },
     {
       "id": 4,
-      "text": "Quel enjeu juridique fondamental est soulevé par le procès opposant le New York Times à OpenAI ?",
+      "text": "Enjeu du procès New York Times vs OpenAI ?",
       "options": [
         "La responsabilité pénale de l'IA en cas de diffamation envers une personnalité publique",
         "Le droit pour un modèle d'IA d'être entraîné sur des contenus protégés sans licence, puis de générer des textes qui concurrencent l'éditeur original",
@@ -1162,7 +1501,7 @@
     },
     {
       "id": 5,
-      "text": "Qu'est-ce que l'IA Act européen, adopté en mars 2024 ?",
+      "text": "Qu'est-ce que l'IA Act (mars 2024) ?",
       "options": [
         "Une charte éthique optionnelle que les entreprises de la tech peuvent signer sur la base du volontariat",
         "Un traité international signé par les États-Unis, la Chine et l'Europe pour interdire le développement de l'IA",
@@ -1186,7 +1525,7 @@
     },
     {
       "id": 7,
-      "text": "Dans quelle catégorie de risque l'IA Act classe-t-il l'utilisation d'une IA pour évaluer des candidats lors d'un processus de recrutement (RH) ?",
+      "text": "Catégorie de risque pour l'IA en recrutement (IA Act) ?",
       "options": [
         "Risque inacceptable",
         "Risque élevé (nécessite une certification, une documentation technique et une supervision humaine)",
@@ -1198,7 +1537,7 @@
     },
     {
       "id": 8,
-      "text": "Pour la grande majorité des outils génératifs grand public (comme ChatGPT ou Midjourney), quelles sont les exigences de l'IA Act (catégorie Risque Limité) ?",
+      "text": "Exigences de l'IA Act pour ChatGPT (Risque Limité) ?",
       "options": [
         "L'interdiction stricte de traiter des requêtes liées à la santé ou à la finance",
         "L'obligation de transparence, notamment signaler clairement aux utilisateurs qu'un contenu a été généré par une IA",
@@ -1210,7 +1549,7 @@
     },
     {
       "id": 9,
-      "text": "Jusqu'à quel montant les sanctions financières prévues par l'IA Act peuvent-elles s'élever en cas de violation des systèmes interdits ?",
+      "text": "Sanctions financières maximales de l'IA Act ?",
       "options": [
         "1 million d'euros ou 1% du chiffre d'affaires",
         "15 millions d'euros ou 3% du chiffre d'affaires",
@@ -1234,7 +1573,7 @@
     },
     {
       "id": 11,
-      "text": "Quel est le calendrier d'application de l'IA Act pour les systèmes existants ?",
+      "text": "Calendrier d'application de l'IA Act ?",
       "options": [
         "L'application a été immédiate et totale dès la signature en mars 2024",
         "Le texte s'applique progressivement avec des échéances différentes selon le niveau de risque, visant une conformité totale d'ici 2027",
@@ -1246,7 +1585,7 @@
     },
     {
       "id": 12,
-      "text": "Dans un contexte de ressources humaines, pourquoi est-il juridiquement dangereux de demander à ChatGPT de classer 50 CV non anonymisés pour choisir le meilleur profil ?",
+      "text": "Risque de classer des CV non anonymisés avec ChatGPT ?",
       "options": [
         "Car l'IA risque d'envoyer un email de refus automatique aux candidats",
         "Car on viole le RGPD (transfert de données hors UE) et on s'expose à des poursuites pour discrimination algorithmique indocumentée",
@@ -1258,7 +1597,7 @@
     },
     {
       "id": 13,
-      "text": "En marketing, si l'on demande à l'IA de générer des \"témoignages clients convaincants\" de toutes pièces pour un site web, quel est le risque principal ?",
+      "text": "Risque de générer de faux témoignages clients avec l'IA ?",
       "options": [
         "Engager la responsabilité éditoriale de l'entreprise pour pratiques commerciales trompeuses et publicité mensongère",
         "Déclencher une hallucination qui fera planter le serveur d'hébergement du site",
@@ -1270,7 +1609,7 @@
     },
     {
       "id": 14,
-      "text": "En matière de génération de visuels clients avec une IA (ex: Midjourney), pourquoi la vigilance est-elle de mise sur la question de la propriété intellectuelle ?",
+      "text": "Vigilance sur la propriété intellectuelle (Midjourney) ?",
       "options": [
         "L'IA intègre automatiquement un filigrane (watermark) indélébile sur chaque image",
         "Le statut juridique des images générées reste flou et peut comporter des éléments de plagiat involontaire d'œuvres existantes",
@@ -1282,7 +1621,7 @@
     },
     {
       "id": 15,
-      "text": "Lorsqu'on utilise une IA générative en entreprise, que signifie la bonne pratique consistant à \"Documenter nos processus\" ?",
+      "text": "Signification de \"Documenter nos processus\" d'IA ?",
       "options": [
         "Imprimer toutes les conversations eues avec l'IA et les archiver sous clé",
         "Publier la totalité de ses prompts sur les réseaux sociaux pour être transparent",
@@ -1294,7 +1633,7 @@
     },
     {
       "id": 16,
-      "text": "Quel principe fondamental permet d'atténuer le risque environnemental lié à l'utilisation massive de l'IA ?",
+      "text": "Comment atténuer l'impact environnemental de l'IA ?",
       "options": [
         "N'utiliser l'IA que la nuit, pendant les heures creuses du réseau électrique",
         "Utiliser exclusivement des petits modèles open-source installés sur clé USB",
@@ -1306,7 +1645,7 @@
     },
     {
       "id": 17,
-      "text": "Côté utilisateur, comment se traduit concrètement le pilier de la \"Justice\" dans les usages quotidiens ?",
+      "text": "Comment appliquer le pilier \"Justice\" au quotidien ?",
       "options": [
         "Déléguér la vérification des sources à un département juridique interne",
         "Être attentif aux biais présents dans les réponses, les corriger et veiller à créer du contenu inclusif et représentatif de la diversité",
@@ -1318,7 +1657,7 @@
     },
     {
       "id": 18,
-      "text": "Pour éviter la fuite de données d'un client lors de la rédaction d'un compte-rendu avec une IA publique, quelle est la solution la plus directe ?",
+      "text": "Comment éviter la fuite de données client via une IA publique ?",
       "options": [
         "Écrire la requête dans une langue étrangère que l'IA maîtrise moins bien",
         "Anonymiser systématiquement les informations (noms, montants) avant de les soumettre au modèle",
@@ -1342,7 +1681,7 @@
     },
     {
       "id": 20,
-      "text": "Face aux risques de l'IA (hallucination, biais, plagiat), quelle doit être la posture indéfectible du professionnel ?",
+      "text": "Posture du professionnel face aux risques de l'IA ?",
       "options": [
         "Accepter le risque car les gains de productivité compensent largement les erreurs",
         "Considérer la machine comme un outil de travail dont l'humain reste, en dernier ressort, le superviseur et le garant juridique et moral",
@@ -1380,7 +1719,7 @@
     },
     {
       "id": 3,
-      "text": "En matière d'équité algorithmique, comment définit-on la notion de \"Traitement juste\" ?",
+      "text": "Définition du \"Traitement juste\" en IA ?",
       "options": [
         "L'algorithme prend exactement la même décision pour tout le monde, quelles que soient les données",
         "L'algorithme ignore systématiquement les variables de genre et d'âge lors de ses calculs",
@@ -1392,7 +1731,7 @@
     },
     {
       "id": 4,
-      "text": "Pourquoi l'identification et la correction des biais sont-elles complexifiées par le concept des \"variables combinées\" ?",
+      "text": "Pourquoi les \"variables combinées\" complexifient-elles les biais ?",
       "options": [
         "Parce que l'IA modifie ses réponses de manière aléatoire tous les jours",
         "Parce que la discrimination peut apparaître au croisement de plusieurs caractéristiques (ex: âge + genre + origine) de manière très subtile",
@@ -1416,7 +1755,7 @@
     },
     {
       "id": 6,
-      "text": "Face à un outil d'IA générative, quelle technique \"manuelle\" un utilisateur peut-il employer pour réduire un biais de discrimination (ex: lors de la génération d'une image d'entreprise) ?",
+      "text": "Comment réduire manuellement un biais de discrimination (ex: image d'entreprise) ?",
       "options": [
         "Demander à l'IA d'ignorer la requête et de choisir un autre sujet",
         "Reformuler la demande en forçant explicitement la diversité (âge, genre, origines) au sein du prompt",
@@ -1428,7 +1767,7 @@
     },
     {
       "id": 7,
-      "text": "L'inclusivité numérique se joue sur plusieurs dimensions. Que demande la prise en compte du \"Handicap cognitif\" dans un contenu généré ?",
+      "text": "IA et handicap cognitif dans les contenus ?",
       "options": [
         "D'utiliser un langage soutenu et de longues phrases complexes pour stimuler la lecture",
         "De structurer l'information de manière prévisible, avec des phrases courtes et en définissant immédiatement le jargon technique",
@@ -1440,7 +1779,7 @@
     },
     {
       "id": 8,
-      "text": "Lors de la rédaction d'un prompt pour générer un contenu accessible aux locuteurs non-natifs (Diversité linguistique), quelle instruction est appropriée ?",
+      "text": "Prompt pour contenu accessible aux non-natifs ?",
       "options": [
         "\"Rédige ce texte en utilisant de nombreuses expressions idiomatiques locales\"",
         "\"Rédige ce texte avec un niveau de vocabulaire universitaire complexe\"",
@@ -1476,7 +1815,7 @@
     },
     {
       "id": 11,
-      "text": "Quel est le principe de l'attaque informatique par \"Inférence d'appartenance\" sur un modèle d'IA ?",
+      "text": "Qu'est-ce que l'attaque par \"Inférence d'appartenance\" ?",
       "options": [
         "Diffuser un virus qui efface la base de données de l'IA",
         "Deviner le mot de passe du créateur du modèle algorithmique",
@@ -1488,7 +1827,7 @@
     },
     {
       "id": 12,
-      "text": "Pour garantir la confidentialité algorithmique dans les calculs, que doivent faire mathématiquement les chercheurs en sécurité ?",
+      "text": "Comment garantir la confidentialité des calculs ?",
       "options": [
         "Rendre le code source de l'algorithme accessible à tous",
         "Ajouter une quantité précise de \"bruit\" (aléa) lors du traitement pour brouiller les pistes et empêcher l'identification individuelle",
@@ -1500,7 +1839,7 @@
     },
     {
       "id": 13,
-      "text": "Quel est le compromis majeur (\"trade-off\") actuellement irrésolu entre Confidentialité et Utilité en IA ?",
+      "text": "Compromis entre Confidentialité et Utilité ?",
       "options": [
         "Plus on ajoute de l'aléa pour protéger les données, plus la qualité prédictive du modèle a tendance à diminuer",
         "Plus on sécurise le modèle, plus il génère des réponses rapides",
@@ -1512,7 +1851,7 @@
     },
     {
       "id": 14,
-      "text": "Comment l'approche de \"l'apprentissage décentralisé\" (ou fédéré) résout-elle en partie le problème de confidentialité (ex: pour les hôpitaux) ?",
+      "text": "Avantage de l'apprentissage décentralisé (ex: hôpitaux) ?",
       "options": [
         "Le modèle global ne s'entraîne plus, il devient statique",
         "Toutes les données des patients sont envoyées sur un serveur public anonymisé",
@@ -1524,7 +1863,7 @@
     },
     {
       "id": 15,
-      "text": "Pour quelle raison l'entreprise Clearview AI a-t-elle subi des interdictions et des amendes records en Europe ?",
+      "text": "Pourquoi Clearview AI a été sanctionné en Europe ?",
       "options": [
         "Pour avoir généré des deepfakes de politiciens européens",
         "Pour avoir collecté massivement plus de 30 milliards d'images faciales sans consentement afin d'entraîner son logiciel de reconnaissance faciale",
@@ -1572,7 +1911,7 @@
     },
     {
       "id": 20,
-      "text": "Si un professionnel souhaite utiliser un fichier contenant des salaires internes pour demander des pistes d'optimisation financière à l'IA, quelle méthode de sécurisation est la plus adaptée ?",
+      "text": "Sécuriser l'analyse de salaires internes par l'IA ?",
       "options": [
         "Envoyer le fichier brut en précisant \"Confidentiel\" au début du prompt",
         "Agréger les données en remplaçant les valeurs exactes par des tranches globales (ex: \"Poste A : 40k-60k\") sans identifiants personnels",

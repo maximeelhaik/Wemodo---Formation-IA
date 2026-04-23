@@ -1,0 +1,446 @@
+{
+  "c1": [
+    {
+      "id": 1,
+      "text": "Quelle caractéristique architecturale distingue Gemini des modèles classiques lors de sa conception ?",
+      "options": [
+        "Il fonctionne exclusivement en local sur les serveurs de l'entreprise.",
+        "Il a été conçu nativement multimodal dès le premier jour de son apprentissage",
+        "Il utilise un langage de programmation quantique pour accélérer le traitement des données."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Contrairement à d'autres modèles qui ajoutent des modules de vision plus tard, Gemini traite nativement le texte, l'image et la vidéo."
+    },
+    {
+      "id": 2,
+      "text": "Quelle est la capacité maximale de la fenêtre de contexte annoncée pour les versions avancées de Gemini ?",
+      "options": [
+        "128 000 tokens.",
+        "2 millions de tokens.",
+        "Une capacité de tokens illimitée tant que l'onglet reste ouvert."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Gemini 1.5 Pro propose une fenêtre massive permettant d'analyser des heures de vidéo ou des milliers de pages de code."
+    },
+    {
+      "id": 3,
+      "text": "Qu'évalue le test \"Needle In A Haystack\" sur lequel Gemini obtient un score de 99 % de précision ?",
+      "options": [
+        "La capacité à générer une image photoréaliste à partir d'un prompt complexe.",
+        "La capacité à retrouver une information très précise perdue dans un immense corpus de documents.",
+        "La capacité à traduire simultanément plus de 50 langues régionales."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est le test de référence pour vérifier si une IA avec une grande fenêtre de contexte n'oublie pas les détails au milieu du texte."
+    },
+    {
+      "id": 4,
+      "text": "Quel est l'atout majeur de l'intégration de Gemini dans l'écosystème Google Workspace ?",
+      "options": [
+        "Connexion pour Drive, Gmail et Docs",
+        "Gratuité totale des fonctions avancées",
+        "Suppression des spams lors du surf web"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L'intégration native permet d'analyser vos propres documents et emails de manière sécurisée et fluide."
+    },
+    {
+      "id": 5,
+      "text": "Comment Gemini assure-t-il une haute précision factuelle sur l'actualité chaude ?",
+      "options": [
+        "Grâce à des mises à jour manuelles de sa base de données tous les soirs à minuit.",
+        "Grâce à un accès direct aux serveurs d'indexation de Google Search pour de la recherche en temps réel.",
+        "En croisant ses données avec les réseaux sociaux de l'utilisateur."
+      ],
+      "correctAnswer": 1,
+      "explanation": "En utilisant Google Search, Gemini peut vérifier des faits récents non présents dans sa base d'entraînement initiale."
+    },
+    {
+      "id": 6,
+      "text": "Malgré sa connexion au web, quelle limite technique inhérente aux IA conversationnelles Gemini présente-t-il encore ?",
+      "options": [
+        "L'impossibilité de résumer des articles de presse.",
+        "La production potentielle d'\"hallucinations\", telles que des fausses statistiques ou des faits historiques déformés.",
+        "Le blocage systématique des requêtes formulées en français."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Comme tous les LLM, Gemini reste un moteur probabiliste qui peut parfois inventer des informations crédibles mais fausses."
+    },
+    {
+      "id": 7,
+      "text": "Sur le plan de la ligne éditoriale, quel reproche est souvent fait au style de rédaction par défaut de Gemini ?",
+      "options": [
+        "Excessivement familier et peu sérieux",
+        "Conventionnel ou excessivement corporate",
+        "Vocabulaire technique ardu à vulgariser"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le style de Google est très poli et formel, ce qui peut parfois manquer de 'piment' ou de créativité brute sans instructions spécifiques."
+    },
+    {
+      "id": 8,
+      "text": "Dans quel cas l'utilisation de la version gratuite (Standard) de Gemini montre-t-elle ses limites ?",
+      "options": [
+        "Pour générer des textes courts ou des emails simples.",
+        "Pour l'analyse de corpus documentaires très longs nécessitant une fenêtre de contexte étendue.",
+        "Pour effectuer une recherche web ponctuelle."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Les capacités de contexte massives (1M+ tokens) sont généralement réservées aux versions payantes ou API."
+    },
+    {
+      "id": 9,
+      "text": "Quelle fonctionnalité de création est spécifiquement débloquée par l'abonnement Google AI Pro ?",
+      "options": [
+        "La génération de vidéos avec le modèle VEO.",
+        "La génération de code HTML natif.",
+        "L'intégration de la voix de l'utilisateur pour dicter des prompts."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Google intègre ses modèles de pointe (comme VEO ou Imagen 3) prioritairement dans ses offres Premium."
+    },
+    {
+      "id": 10,
+      "text": "Face à ChatGPT, sur quel type d'opération technique Gemini prend-il généralement l'avantage ?",
+      "options": [
+        "La rédaction de fictions créatives ou de scénarios originaux.",
+        "L'analyse de documents extrêmement longs et volumineux, grâce à sa fenêtre de contexte massive.",
+        "Le développement de plugins personnalisés accessibles au grand public."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Là où ChatGPT sature sur de gros fichiers, Gemini peut 'avaler' l'intégralité d'un codebase ou d'un livre blanc."
+    },
+    {
+      "id": 11,
+      "text": "Comment se positionne Gemini pour l'analyse multimédia (vidéo ou audio) ?",
+      "options": [
+        "Il exige que l'utilisateur transcrive l'audio en texte manuellement avant analyse.",
+        "Il est très performant pour chapitrer un enregistrement de réunion ou en extraire les points clés sans visionnage préalable.",
+        "Il ne peut analyser que les vidéos hébergées exclusivement sur YouTube."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Grâce à sa multimodalité native, il 'voit' et 'entend' les fichiers sans passer par une transcription textuelle intermédiaire."
+    },
+    {
+      "id": 12,
+      "text": "En entreprise, quelle est la politique de protection des données sensibles sur les versions professionnelles payantes de Gemini ?",
+      "options": [
+        "Les données sont chiffrées mais peuvent être revendues à des partenaires tiers anonymisés.",
+        "Les données soumises par l'utilisateur ne sont pas utilisées pour l'entraînement des modèles de base de Google.",
+        "Les données sont conservées pendant 30 jours pour améliorer la suggestion orthographique."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est un argument clé pour les DSI : vos secrets industriels ne servent pas à entraîner l'IA de Google."
+    },
+    {
+      "id": 13,
+      "text": "Si une équipe utilise principalement Microsoft Office 365, quelle recommandation stratégique s'applique au choix de Gemini ?",
+      "options": [
+        "Outil immédiatement compatible Office 365",
+        "Adoption perdant de son intérêt principal",
+        "Gemini bloquera l'analyse Word ou Excel"
+      ],
+      "correctAnswer": 1,
+      "explanation": "La puissance de Gemini réside dans son lien avec Google Workspace. Sans cet écosystème, ses avantages sont moins marqués."
+    },
+    {
+      "id": 14,
+      "text": "Quel déploiement de Gemini a radicalement transformé son usage sur les smartphones Android ?",
+      "options": [
+        "Fusion de l'application avec Maps",
+        "Remplacement natif de l'Assistant",
+        "Obligation de créer un compte écran"
+      ],
+      "correctAnswer": 1,
+      "explanation": "En remplaçant 'Hey Google', Gemini devient le cerveau central du smartphone Android."
+    },
+    {
+      "id": 15,
+      "text": "Quel est l'impact de la conception \"multimodale native\" sur le raisonnement de l'outil ?",
+      "options": [
+        "Force l'image avec chaque prompt",
+        "Raisonnement sur PDF avec schémas",
+        "Limite la vitesse du texte brut"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Gemini comprend les relations entre le texte et les éléments visuels (tableaux, schémas) au sein d'un document."
+    },
+    {
+      "id": 16,
+      "text": "Quelle approche de sécurité différencie le cadre moral de Gemini de ses concurrents ?",
+      "options": [
+        "Un système de vote communautaire pour approuver les réponses sensibles.",
+        "L'application stricte des politiques de modération et de l'écosystème de sécurité globale de Google.",
+        "L'absence totale de filtre pour garantir la liberté d'expression absolue."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Google est réputé pour être très conservateur et protecteur sur les sujets sensibles afin d'éviter tout scandale éthique."
+    },
+    {
+      "id": 17,
+      "text": "Pour un développeur informatique pur, quel est le consensus global dans la comparaison des deux leaders ?",
+      "options": [
+        "Gemini surpasse largement ses concurrents grâce à sa rapidité.",
+        "ChatGPT reste souvent considéré comme plus polyvalent pour les raisonnements logiques complexes et la structure du code.",
+        "Gemini refuse de générer des lignes de code pour des raisons de sécurité."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Bien que Gemini progresse, ChatGPT (via GPT-4o) garde une légère avance sur la subtilité logique pure du code."
+    },
+    {
+      "id": 18,
+      "text": "Pourquoi la courbe d'apprentissage de Gemini est-elle considérée comme très faible en entreprise ?",
+      "options": [
+        "Possède seulement trois boutons d'action",
+        "Intégration invisible au sein de Workspace",
+        "Pas de prompt, uniquement par QCM"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA est là où les gens travaillent déjà (Docs, Gmail), ce qui facilite grandement l'adoption."
+    },
+    {
+      "id": 19,
+      "text": "Dans le cadre d'un fact-checking rapide, pourquoi privilégier Gemini ?",
+      "options": [
+        "Citer des sources avec droit d'auteur",
+        "Connexion immédiate à l'index Search",
+        "Générer une bibliographie universitaire"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'accès à l'index de recherche Google est le plus performant du marché pour l'actualité temps réel."
+    },
+    {
+      "id": 20,
+      "text": "Que traduit le score de 1,5 milliard d'utilisateurs potentiels en 2026 pour Gemini ?",
+      "options": [
+        "La force de frappe de son intégration directe via les licences professionnelles Google Workspace mondiales.",
+        "Le nombre de téléchargements de son application mobile autonome.",
+        "Le nombre de requêtes traitées par jour sur ses serveurs européens."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Le déploiement massif de Google lui donne un avantage d'échelle colossal face aux startups IA."
+    }
+  ],
+  "c2": [
+    {
+      "id": 1,
+      "text": "Quelle méthodologie de sécurité fondatrice développée par Anthropic pour guider le comportement de Claude ?",
+      "options": [
+        "RLHF exclusif (feedback humain)",
+        "IA Constitutionnelle (auto-évaluation)",
+        "Sandboxing (environnement virtuel)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Claude suit une 'constitution' de principes éthiques qui l'aident à rester utile et inoffensif sans intervention humaine constante."
+    },
+    {
+      "id": 2,
+      "text": "À combien s'élève la fenêtre de contexte maximale des récents modèles de Claude ?",
+      "options": [
+        "32 000 tokens.",
+        "200 000 tokens.",
+        "1 million de tokens."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Avec 200k tokens, Claude 3.5 Sonnet peut traiter des centaines de pages de documents techniques en une seule fois."
+    },
+    {
+      "id": 3,
+      "text": "Quelle fonctionnalité de l'interface de Claude, nommée \"Artifacts\", s'avère redoutable pour les professionnels ?",
+      "options": [
+        "Archivage sécurisé des conversations",
+        "Interface d'édition et de test en live",
+        "Restauration d'images anciennes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Les Artifacts permettent de voir immédiatement le résultat d'un code ou d'une structure, transformant l'IA en outil de production directe."
+    },
+    {
+      "id": 4,
+      "text": "Quel est le corollaire négatif direct du cadre éthique très strict de Claude ?",
+      "options": [
+        "Prudence excessive (refus inoffensifs)",
+        "Incapacité d'analyse juridique",
+        "Facturation au mot plus élevée"
+      ],
+      "correctAnswer": 0,
+      "explanation": "On appelle cela le 'preachiness' : Claude peut parfois donner des leçons de morale ou refuser une tâche par excès de zèle sécuritaire."
+    },
+    {
+      "id": 5,
+      "text": "Comment Claude gère-t-il les consignes négatives (ce qu'il ne faut pas faire) ?",
+      "options": [
+        "Ignore les consignes pour la créativité",
+        "Respect scrupuleux sans dévier de l'ordre",
+        "Demande systématiquement une validation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Claude est réputé pour sa 'sobriété' : il suit les ordres à la lettre sans dévier, ce qui le rend très fiable."
+    },
+    {
+      "id": 6,
+      "text": "Quel avantage offre l'interface de Claude par rapport à celle de ChatGPT ?",
+      "options": [
+        "Intègre des centaines de widgets",
+        "Interface épurée axée sur le travail",
+        "Mode sombre optimisé pour batterie"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'interface d'Anthropic est pensée pour le travail intellectuel sérieux, sans distractions."
+    },
+    {
+      "id": 7,
+      "text": "Quelle limitation technique majeure restreint actuellement la polyvalence de Claude face à certains concurrents ?",
+      "options": [
+        "Incapacité totale à lire les PDF",
+        "Absence de recherche web temps réel",
+        "Limitation des réponses à 500 mots"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Contrairement à ChatGPT ou Gemini, Claude n'a pas (encore) d'accès direct au web dans son interface standard."
+    },
+    {
+      "id": 8,
+      "text": "En termes de multimodality, de quoi Claude est-il capable à ce jour ?",
+      "options": [
+        "Excelle dans la génération d'images",
+        "Analyse images/docs sans création native",
+        "Génère de l'audio et clone les voix"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Claude se concentre sur l'analyse de haut niveau. Il 'comprend' les images mais ne les 'crée' pas."
+    },
+    {
+      "id": 9,
+      "text": "Quel niveau de précision les modèles récents de Claude atteignent-ils dans l'interprétation de graphiques et schémas complexes ?",
+      "options": [
+        "45 % (texte environnant uniquement)",
+        "88 % (standards élevés de l'industrie)",
+        "99,9 % (fiabilité sans relecture)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Claude est l'un des meilleurs modèles pour transformer un graphique visuel complexe en données structurées exploitables."
+    },
+    {
+      "id": 10,
+      "text": "Quels sont les noms des trois modèles distincts de la famille Claude ?",
+      "options": [
+        "Alpha, Beta, Omega.",
+        "Opus, Sonnet, Haiku.",
+        "Standard, Advanced, Ultra."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Haiku est rapide/pas cher, Sonnet est équilibré, Opus est le plus puissant pour les tâches complexes."
+    },
+    {
+      "id": 11,
+      "text": "Comment s'articule la protection des données sur les formules professionnelles d'Anthropic (Pro/Max) ?",
+      "options": [
+        "Utilisées sauf demande écrite inverse",
+        "Exclues de l'entraînement par défaut",
+        "Rendues publiques au bout de 6 mois"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Anthropic a bâti sa réputation sur la sécurité et la confidentialité des données d'entreprise."
+    },
+    {
+      "id": 12,
+      "text": "Pour un développeur informatique, pourquoi Claude est-il souvent recommandé comme un \"partenaire de réflexion\" de premier ordre ?",
+      "options": [
+        "Précision logique et débogage avancé",
+        "Précision logique et débogage avancé",
+        "Accès direct GitHub sans authentification"
+      ],
+      "correctAnswer": 1,
+      "explanation": "De nombreux développeurs préfèrent Claude à ChatGPT pour la propreté et la rigueur du code généré."
+    },
+    {
+      "id": 13,
+      "text": "Face à une demande de brainstorming créatif rapide pour trouver des accroches publicitaires hors-normes, quel modèle serait idéalement privilégié ?",
+      "options": [
+        "Claude (IA constitutionnelle créative)",
+        "ChatGPT (créativité fluide et réactive)",
+        "Aucun des deux pour le marketing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "La 'folie' créative et la flexibilité restent souvent l'apanage des modèles OpenAI."
+    },
+    {
+      "id": 14,
+      "text": "Que garantissent les options régionales de déploiement Cloud (via AWS, GCP) proposées pour les versions entreprises de Claude ?",
+      "options": [
+        "Une réduction du temps de latence pour la traduction audio.",
+        "La résidence et la ségrégation des données selon les exigences géographiques et légales (ex: serveurs isolés en Europe).",
+        "L'exemption totale des règles de tarification de l'API."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cela permet aux entreprises de respecter les lois locales sur la protection des données (RGPD)."
+    },
+    {
+      "id": 15,
+      "text": "Comment la philosophie de Claude aborde-t-elle la restitution d'informations incertaines ?",
+      "options": [
+        "L'outil feint l'assurance pour plaire",
+        "Partage son processus et ses doutes",
+        "Interroge d'autres IA en arrière-plan"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'honnêteté intellectuelle est une valeur fondamentale infusée dans l'entraînement de Claude."
+    },
+    {
+      "id": 16,
+      "text": "Quel cas d'usage illustre parfaitement le domaine de prédilection absolu de Claude ?",
+      "options": [
+        "Générer une illustration stylisée pour une couverture de magazine.",
+        "Synthétiser un rapport financier de 150 pages sans perdre le fil conducteur ni omettre de subtilités analytiques.",
+        "Naviguer sur des sites e-commerce pour comparer les prix en temps réel d'un produit."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Claude est le roi de la synthèse longue et de l'analyse documentaire rigoureuse."
+    },
+    {
+      "id": 17,
+      "text": "Comment Anthropic décrit-il le ton naturel adopté par Claude dans ses échanges ?",
+      "options": [
+        "Ton journalistique froid et factuel",
+        "Style authentique sans puces en gras",
+        "Style provocateur pour stimuler le débat"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Claude écrit d'une manière très 'humaine' et moins stéréotypée que les autres IA."
+    },
+    {
+      "id": 18,
+      "text": "En quoi le nombre de 60 \"principes\" est-il pertinent dans l'architecture de Claude ?",
+      "options": [
+        "C'est le nombre de lois fondamentales inscrites dans sa \"Constitution\" pour évaluer si une réponse générée contient des biais ou des risques sécuritaires.",
+        "C'est le nombre de langues maternelles que le modèle maîtrise à la perfection.",
+        "C'est le nombre de plugins externes auxquels le modèle peut se connecter simultanément."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ces principes sont inspirés de textes comme la Déclaration des Droits de l'Homme pour guider son éthique."
+    },
+    {
+      "id": 19,
+      "text": "Dans le cadre d'un usage respectueux du RGPD, comment Claude gère-t-il les droits des utilisateurs ?",
+      "options": [
+        "La suppression et l'export des données nécessitent de passer par un intermédiaire juridique externe.",
+        "Les options de suppression, de portabilité et de gestion du consentement sont gérées directement et facilement via l'interface du compte.",
+        "Le modèle s'auto-détruit si des données personnelles sont détectées dans le prompt."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Anthropic propose des outils de gestion de compte très complets pour le respect de la vie privée."
+    },
+    {
+      "id": 20,
+      "text": "En conclusion, pour quel type de profil professionnel Claude représente-t-il l'alternative la plus pertinente aujourd'hui ?",
+      "options": [
+        "Outil tout-en-un pour réseaux sociaux",
+        "Experts exigeant une forte rigueur logique",
+        "Équipes cherchant des infos web en direct"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Claude est l'outil préféré de ceux qui placent la fiabilité et la sécurité avant le gadget ou le divertissement."
+    }
+  ]
+}

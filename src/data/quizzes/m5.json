@@ -1,0 +1,338 @@
+{
+  "c1": [
+    {
+      "id": 1,
+      "text": "Quelle est la définition précise d'un post LinkedIn optimisé ?",
+      "options": [
+        "Format textuel B2B pour les annonces",
+        "Publication interactive et multimodale",
+        "Micro-blogging limité en caractères"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LinkedIn a évolué vers un réseau social complet où l'interactivité et la variété des formats sont clés pour la visibilité."
+    },
+    {
+      "id": 2,
+      "text": "Quel est l'impact algorithmique direct de l'utilisation d'un format multimodal (texte + image/vidéo) ?",
+      "options": [
+        "Il permet de contourner les filtres anti-spam de la plateforme.",
+        "Il favorise l'interaction et attire plus facilement l'attention dans les fils d'actualité.",
+        "Il réduit la portée organique mais qualifie mieux l'audience technique."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le contenu visuel capte le regard plus vite que le texte brut, augmentant le temps d'arrêt (dwell time) sur le post."
+    },
+    {
+      "id": 3,
+      "text": "Quelle est la différence éditoriale fondamentale entre un \"Profil Personnel\" et une \"Page Entreprise\" ?",
+      "options": [
+        "Le profil développe le personal branding, la page communique au nom de la marque",
+        "Le profil est réservé aux interactions privées, tandis que la page est le seul espace autorisé pour publier des offres d'emploi.",
+        "Le profil doit se concentrer sur la vente directe, tandis que la page gère exclusivement le service client."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Les utilisateurs de LinkedIn préfèrent interagir avec des humains (Profils) qu'avec des logos (Pages)."
+    },
+    {
+      "id": 4,
+      "text": "Dans la structure idéale d'un post, quel est le rôle spécifique de \"l'Accroche\" ?",
+      "options": [
+        "Résumer l'intégralité du contenu du post",
+        "Susciter la curiosité pour inciter au clic",
+        "Mentionner les partenaires commerciaux"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'accroche est le facteur déterminant du succès d'un post ; sans elle, personne ne lit la suite."
+    },
+    {
+      "id": 5,
+      "text": "Quelle bonne pratique de rédaction faut-il appliquer pour \"le Corps\" du post ?",
+      "options": [
+        "Utiliser un jargon technique très pointu pour asseoir son expertise d'entrée de jeu.",
+        "Aérer le texte visuellement en privilégiant des paragraphes courts et lisibles.",
+        "Rédiger un seul grand bloc de texte compact pour retenir l'attention du lecteur jusqu'à la fin."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sur mobile, la lisibilité est cruciale. Un texte aéré évite de décourager le lecteur."
+    },
+    {
+      "id": 6,
+      "text": "Comment est-il recommandé de conclure un post LinkedIn efficace (le CTA) ?",
+      "options": [
+        "Par une question ouverte pour engager le débat dans les commentaires.",
+        "Par un lien direct vers une page de paiement ou un formulaire de devis.",
+        "Par une liste exhaustive de hashtags (minimum 15) pour maximiser le référencement naturel."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Le CTA (Call to Action) doit viser l'interaction pour booster la portée organique du post."
+    },
+    {
+      "id": 7,
+      "text": "Parmi les caractéristiques d'un post performant, laquelle est indispensable pour créer de la confiance ?",
+      "options": [
+        "Vocabulaire académique distant et froid",
+        "Ton naturel, authentique et dynamique",
+        "Republication hebdomadaire à l'identique"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'authenticité 'humanise' l'expertise et facilite la connexion avec l'audience."
+    },
+    {
+      "id": 8,
+      "text": "Pourquoi les réactions et les commentaires sont-ils le nerf de la guerre sur une publication ?",
+      "options": [
+        "Signalent un contenu de qualité à l'IA",
+        "Activent le badge Top Voice dès le début",
+        "Permettent d'accéder aux emails privés"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Plus un post génère d'interactions, plus LinkedIn le diffuse largement dans les réseaux de second et troisième degré."
+    },
+    {
+      "id": 9,
+      "text": "Quel type de contenu est particulièrement recommandé pour engager sur un profil personnel ?",
+      "options": [
+        "Les bilans comptables et rapports financiers annuels de son entreprise.",
+        "Le partage d'erreurs, ce que l'on en a appris, et sa vision d'une nouvelle idée sectorielle.",
+        "Le relais systématique de toutes les publications de la page entreprise sans ajout de contexte."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le 'Storytelling' et le partage d'expérience réelle sont les formats les plus engageants sur les profils."
+    },
+    {
+      "id": 10,
+      "text": "Qu'est-ce qui définit un post apportant une \"valeur concrète\" à l'audience ?",
+      "options": [
+        "Un post qui distribue des codes promotionnels à chaque publication.",
+        "Un post qui intègre des informations utiles, des conseils actionnables ou un point de vue enrichissant.",
+        "Un post sponsorisé par un budget publicitaire important."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La valeur perçue fidélise l'audience et établit l'auteur comme une référence dans son domaine."
+    }
+  ],
+  "c2": [
+    {
+      "id": 1,
+      "text": "Qu'est-ce qui caractérise un contenu Instagram complet et engageant ?",
+      "options": [
+        "Série de hashtags populaires sans texte",
+        "Image statique avec texte indispensable",
+        "Vidéo avec lien cliquable obligatoire"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Instagram est visuel, mais c'est la légende (caption) qui apporte la profondeur et le contexte nécessaires à l'action."
+    },
+    {
+      "id": 2,
+      "text": "Sur le plan de la stratégie de marque (branding), quel est l'enjeu majeur de la création de visuels ?",
+      "options": [
+        "Reproduire fidèlement les visuels concurrents",
+        "Créer un univers visuel fort et reconnaissable",
+        "Changer radicalement de style à chaque post"
+      ],
+      "correctAnswer": 1,
+      "explanation": "La cohérence visuelle permet à l'abonné de reconnaître votre contenu sans même lire votre nom."
+    },
+    {
+      "id": 3,
+      "text": "Comment un visuel peut-il efficacement \"humaniser\" une marque ?",
+      "options": [
+        "Afficher le trombinoscope de la direction",
+        "Montrer l'envers du décor et les visages",
+        "Utiliser des illustrations vectorielles"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le 'Behind the scenes' crée de la proximité et de la confiance avec la communauté."
+    },
+    {
+      "id": 4,
+      "text": "Si le visuel doit accueillir du texte par-dessus l'image, quelle règle de composition faut-il suivre ?",
+      "options": [
+        "Texte centré sur le sujet principal",
+        "Aplat minimaliste pour la lisibilité",
+        "Typographies très fines et claires"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le contraste et la simplicité du fond sont les clés d'un message lisible sur petit écran."
+    },
+    {
+      "id": 5,
+      "text": "Quelle erreur visuelle engendre ce qu'on appelle la \"surcharge cognitive\" pour l'utilisateur ?",
+      "options": [
+        "Formats carrousels de plus de 5 slides",
+        "Trop d'infos et détails perturbateurs",
+        "Couleurs trop claires fatiguant la vue"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Trop d'informations tue l'information. L'œil doit comprendre le message en moins de 2 secondes."
+    },
+    {
+      "id": 6,
+      "text": "Lors de la création d'une image pour illustrer un concept, l'approche doit-elle toujours être littérale ?",
+      "options": [
+        "Oui, un algorithme visuel pénalise les images conceptuelles qui ne montrent pas le produit exact.",
+        "Non, l'image peut être abstraite ou figurative, à condition d'évoquer le sujet et que ce choix soit justifié par le texte.",
+        "Non, les images générées pour les réseaux sociaux ne doivent jamais contenir d'humains réels."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La métaphore visuelle peut être plus puissante et différenciante qu'une photo de produit classique."
+    },
+    {
+      "id": 7,
+      "text": "Quelle consigne technique de base est prioritaire pour garantir un rendu qualitatif dans le fil d'actualité ?",
+      "options": [
+        "Privilégier une haute résolution et assurer un éclairage naturel ou soigné du sujet.",
+        "Appliquer systématiquement un filtre vintage natif d'Instagram.",
+        "Générer des images d'une taille inférieure à 100 Ko pour accélérer leur temps d'affichage."
+      ],
+      "correctAnswer": 0,
+      "explanation": "La qualité technique (netteté, lumière) reflète le professionnalisme de la marque."
+    },
+    {
+      "id": 8,
+      "text": "Qu'est-ce qu'une image qualifiée de \"hors sujet\" dans une stratégie éditoriale ?",
+      "options": [
+        "Une image au format paysage (16:9) publiée sur une plateforme optimisée pour le format vertical.",
+        "Un visuel qui n'a pas un lien sémantique suffisant ou évident avec le propos tenu dans la légende du post.",
+        "Une image dont la colorimétrie déborde de la charte graphique de l'entreprise."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La cohérence entre l'image et le texte est vitale pour la compréhension du message."
+    },
+    {
+      "id": 9,
+      "text": "Quel type de format visuel est particulièrement pertinent pour annoncer un contenu éducatif de type \"Les 5 erreurs à éviter\" ?",
+      "options": [
+        "Photo de paysage abstrait contemplative",
+        "Couverture avec une accroche intrigante",
+        "Selfie pris sur le vif sans aucune retouche"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le texte sur l'image (texte de couverture) est un signal fort pour attirer le public intéressé par le sujet."
+    },
+    {
+      "id": 10,
+      "text": "La dernière étape de finalisation d'un visuel demande souvent un ajustement. Quel est son but ?",
+      "options": [
+        "Imprimer pour vérifier la colorimétrie",
+        "Vérifier les contrastes et le placement",
+        "Soumettre à un panel d'utilisateurs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est l'étape de contrôle qualité indispensable pour garantir l'impact du visuel."
+    }
+  ],
+  "c3": [
+    {
+      "id": 1,
+      "text": "Quelle est la distinction fondamentale entre un \"Calendrier Éditorial\" et un \"Calendrier de Publication\" ?",
+      "options": [
+        "L'éditorial est réservé aux articles de blog, la publication est réservée aux réseaux sociaux.",
+        "L'éditorial structure le \"quoi\" et le \"pourquoi\" (thèmes, objectifs), la publication structure le \"quand\" et le \"comment\" (dates, heures, statuts).",
+        "L'éditorial est la version de brouillon, la publication est la version validée par le client."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'un définit la stratégie de fond, l'autre est l'outil logistique de mise en œuvre."
+    },
+    {
+      "id": 2,
+      "text": "En quoi la planification a-t-elle un impact direct sur la \"charge mentale\" du créateur de contenu ?",
+      "options": [
+        "Automatise la réponse aux commentaires",
+        "Libère l'espace pour la créativité pure",
+        "Délègue la responsabilité juridique totale"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Anticiper permet de produire des contenus de meilleure qualité, sans le stress de la dernière minute."
+    },
+    {
+      "id": 3,
+      "text": "Pourquoi l'alternance des \"piliers de contenu\" est-elle une règle d'or d'un bon calendrier ?",
+      "options": [
+        "Contourner les limites des adblockers",
+        "Équilibrer le ton et éviter la lassitude",
+        "Forcer l'IA à catégoriser comme média"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Une audience a besoin de variété pour rester engagée sur le long terme."
+    },
+    {
+      "id": 4,
+      "text": "Quelle est la limite technique majeure de l'IA générative lorsqu'on lui demande de créer une stratégie complète ?",
+      "options": [
+        "Elle ne possède pas d'émotions et génère exclusivement des textes de nature académique.",
+        "C'est un moteur de prédiction statistique qui ne comprend pas les objectifs réels",
+        "Elle refuse systématiquement de générer du contenu pour des secteurs d'activités dits de \"niche\"."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA imite la forme d'une stratégie mais n'en saisit pas les enjeux stratégiques profonds sans guidage humain."
+    },
+    {
+      "id": 5,
+      "text": "Pourquoi l'IA est-elle incapable de produire une \"pure innovation\" stratégique de manière totalement autonome ?",
+      "options": [
+        "Restriction légale des idées nouvelles",
+        "Moyenne statistique exigeant une directive",
+        "Manque d'accès aux données financières"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA est excellente pour synthétiser le connu, mais l'innovation demande souvent de sortir des cadres statistiques."
+    },
+    {
+      "id": 6,
+      "text": "Que désigne le problème de la déconnexion liée au \"Micro-marché\" concernant les conseils d'une IA ?",
+      "options": [
+        "Le fait qu'elle ne puisse pas générer des calendriers pour des durées inférieures à une semaine.",
+        "Elle ignore les réalités hyper-locales (climat, concurrent physique) impactant la stratégie",
+        "Le fait qu'elle facture des crédits supplémentaires pour analyser les données des petites entreprises."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Une stratégie efficace doit tenir compte du contexte réel immédiat, ce que l'IA ne 'voit' pas."
+    },
+    {
+      "id": 7,
+      "text": "En quoi la date de \"Cutoff\" (coupure des connaissances) crée-t-elle un angle mort dans la planification stratégique ?",
+      "options": [
+        "Empêche de planifier pour le futur",
+        "Rend l'IA aveugle aux tendances récentes",
+        "Limite le volume de mots par requête"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'actualité immédiate est le domaine où l'humain reste indispensable face à l'IA."
+    },
+    {
+      "id": 8,
+      "text": "Quelle posture le professionnel doit-il impérativement adopter vis-à-vis de l'IA en matière de stratégie ?",
+      "options": [
+        "Conseiller infaillible à suivre aveuglément",
+        "Assistant de création sous esprit critique",
+        "Simple outil de relecture et correction finale"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA est un copilote puissant, mais le pilote (l'humain) garde la responsabilité de la direction."
+    },
+    {
+      "id": 9,
+      "text": "Dans la checklist de validation d'une stratégie assistée par IA, quelle action est primordiale concernant les données ?",
+      "options": [
+        "Les accepter telles quelles uniquement si l'IA fournit spontanément un lien source.",
+        "Vérifier systématiquement et manuellement chaque chiffre, étude, fait ou pourcentage cité par l'outil.",
+        "Demander à une seconde intelligence artificielle de croiser et vérifier le travail de la première."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le risque d'hallucination de l'IA impose une vérification humaine rigoureuse des faits."
+    },
+    {
+      "id": 10,
+      "text": "Dans un calendrier de publication opérationnel, à quoi sert la colonne \"Statut de production\" ?",
+      "options": [
+        "Définir le budget publicitaire alloué",
+        "Suivre l'avancement de chaque contenu",
+        "Mesurer le nombre total d'interactions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est l'indicateur de suivi qui permet de savoir exactement où en est le projet à tout moment."
+    }
+  ]
+}

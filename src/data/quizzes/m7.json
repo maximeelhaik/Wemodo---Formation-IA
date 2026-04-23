@@ -1,0 +1,446 @@
+{
+  "c1": [
+    {
+      "id": 1,
+      "text": "Quel modèle a succédé officiellement à DALL-E en tant que moteur principal de création visuelle dans l'écosystème d'OpenAI depuis fin 2025 ?",
+      "options": [
+        "Sora Vision.",
+        "GPT Image.",
+        "OpenAI Canvas."
+      ],
+      "correctAnswer": 1,
+      "explanation": "OpenAI a fait évoluer sa gamme vers GPT Image pour offrir une intégration plus profonde avec ses modèles de langage."
+    },
+    {
+      "id": 2,
+      "text": "Quelle est la vitesse de génération moyenne annoncée pour obtenir un résultat exploitable en haute définition (1500x2000px) ?",
+      "options": [
+        "Environ 5 secondes.",
+        "Environ 25 secondes.",
+        "Environ 2 minutes."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La génération d'images haute résolution demande un temps de calcul optimisé d'environ une demi-minute."
+    },
+    {
+      "id": 3,
+      "text": "Sur le plan technique, quel est l'un des avantages majeurs de ce modèle face à la plupart de ses concurrents directs ?",
+      "options": [
+        "Export direct en format vectoriel (SVG)",
+        "Capacité supérieure à intégrer du texte",
+        "Absence totale de toute forme de censure"
+      ],
+      "correctAnswer": 1,
+      "explanation": "GPT Image excelle dans le rendu des caractères et des mots, là où beaucoup d'IA produisent encore du texte illisible."
+    },
+    {
+      "id": 4,
+      "text": "Quelle est la particularité de la syntaxe requise pour générer une image performante sur cet outil ?",
+      "options": [
+        "Paramètres techniques (ex: --ar 16:9)",
+        "Langage naturel fluide (souvent français)",
+        "Utilisation exclusive de la langue anglaise"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'un des points forts est de pouvoir décrire son image simplement, comme si on parlait à un humain."
+    },
+    {
+      "id": 5,
+      "text": "Quel bénéfice direct tire-t-on de \"l'écosystème\" unifié de cet outil ?",
+      "options": [
+        "Une fusion totale avec l'agent, utilisant le contexte sans réécrire le brief",
+        "La sauvegarde illimitée de toutes les images générées sur un serveur cloud dédié.",
+        "La possibilité d'imprimer directement ses œuvres via des partenaires commerciaux intégrés."
+      ],
+      "correctAnswer": 0,
+      "explanation": "L'IA 'se souvient' de ce que vous avez dit avant, ce qui permet d'ajuster une image par simple discussion."
+    },
+    {
+      "id": 6,
+      "text": "Quelle limite technique bride actuellement la productivité lors de la génération ?",
+      "options": [
+        "Le modèle ne peut générer qu'une seule image à la fois par requête, allongeant le temps d'exploration.",
+        "La résolution maximale est bloquée au format carré (1080x1080px).",
+        "L'impossibilité stricte de générer des illustrations de style \"dessin animé\"."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Contrairement à Midjourney qui propose 4 options d'un coup, GPT Image se concentre sur une proposition unique par envoi."
+    },
+    {
+      "id": 7,
+      "text": "Que signifie l'expression \"interprétation limitée\" concernant la gestion des prompts ?",
+      "options": [
+        "L'outil refuse d'interpréter des concepts abstraits ou philosophiques.",
+        "Le prompt ne garantit aucune reproductibilité stricte ; relancer la même requête produira une image différente.",
+        "Le modèle restreint sa palette de couleurs aux tons primaires."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Chaque génération est unique, il est difficile d'obtenir exactement deux fois la même image avec le même texte."
+    },
+    {
+      "id": 8,
+      "text": "Contrairement à d'autres générateurs du marché, quel aspect social est absent de cette plateforme ?",
+      "options": [
+        "Absence de bouton de partage direct",
+        "Impossibilité de voir la galerie publique",
+        "Impossibilité de travail collaboratif"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est un outil de création privé et individuel, sans flux public de créations comme sur Midjourney."
+    },
+    {
+      "id": 9,
+      "text": "Par défaut, et sans précision spécifique dans la requête, vers quel type de rendu graphique le modèle tend-il naturellement ?",
+      "options": [
+        "Le style illustratif et vectoriel.",
+        "Le photoréalisme extrêmement poussé.",
+        "L'art abstrait."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Le modèle a tendance à produire des visuels propres, colorés et un peu 'lisses' s'il n'est pas poussé vers le réalisme."
+    },
+    {
+      "id": 10,
+      "text": "Pour quel type de visuel cet outil est-il considéré comme \"excellent\" et parfaitement adapté ?",
+      "options": [
+        "Les paysages artistiques nécessitant des textures très riches et nuancées.",
+        "Les visuels dits \"utiles\" (diagrammes, interfaces utilisateur, schémas).",
+        "Les portraits de type photographie de mode."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sa capacité à intégrer du texte et des formes claires le rend idéal pour les supports de communication pro."
+    },
+    {
+      "id": 11,
+      "text": "Comment garantir que les données ne servent pas à l'entraînement du modèle ?",
+      "options": [
+        "En insérant la mention \"Confidentiel\" au début de chaque prompt.",
+        "En utilisant obligatoirement des comptes professionnels de type \"Plus\" ou \"Enterprise\".",
+        "En supprimant l'image de l'historique dans les 5 minutes suivant sa génération."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Seuls les comptes payants garantissent la confidentialité et l'exclusion des données de l'entraînement."
+    },
+    {
+      "id": 12,
+      "text": "Quelle politique de modération stricte est nativement intégrée au modèle ?",
+      "options": [
+        "Le blocage de toute génération incluant des figures humaines.",
+        "Des filtres empêchant la génération de visages réels identifiables ou de contenus violents.",
+        "L'interdiction de générer des images contenant des marques déposées."
+      ],
+      "correctAnswer": 1,
+      "explanation": "OpenAI applique des garde-fous éthiques pour éviter les deepfakes et les usages malveillants."
+    },
+    {
+      "id": 13,
+      "text": "D'un point de vue économique, comment se positionne l'accès au modèle GPT Image ?",
+      "options": [
+        "Il est facturé à l'acte, via un système de micro-transactions par image générée.",
+        "Il est nativement inclus sans coût additionnel dans l'abonnement global de l'assistant (ex: ChatGPT Plus).",
+        "Il nécessite la souscription d'une option visuelle payante en supplément de l'abonnement de base."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La création visuelle fait partie intégrante de l'offre 'All-in-one' d'OpenAI."
+    },
+    {
+      "id": 14,
+      "text": "Dans l'interface utilisateur, comment peut-on forcer manuellement le mode de création visuelle avant de rédiger ?",
+      "options": [
+        "Menu déroulant avec bouton dédié",
+        "Commande /imagine dans la recherche",
+        "Upload d'une image blanche vierge"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L'interface propose des outils visuels pour faciliter le travail sans dépendre uniquement du texte."
+    },
+    {
+      "id": 15,
+      "text": "Comment le système bascule-t-il automatiquement en mode génération sans passer par les menus ?",
+      "options": [
+        "Dès qu'une requête dépasse 50 mots.",
+        "Par la détection de mots-clés déclencheurs en début de phrase (ex: \"Génère un visuel de...\", \"Dessine...\").",
+        "En analysant la présence de couleurs dans le texte."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA comprend l'intention de l'utilisateur grâce à la sémantique de sa demande."
+    },
+    {
+      "id": 16,
+      "text": "Comment la précision du format et du ratio d'image doit-elle être intégrée lors d'une requête ?",
+      "options": [
+        "Paramètres de configuration du compte",
+        "Demande textuelle (ex: format paysage)",
+        "Sélection d'une grille après génération"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le langage naturel est le seul vecteur de réglage, bien que les options de formats restent limitées."
+    },
+    {
+      "id": 17,
+      "text": "Sur quel critère spécifique de la compréhension d'un prompt le modèle surpasse-t-il souvent la concurrence ?",
+      "options": [
+        "Interprétation des styles antiques",
+        "Respect scrupuleux du brief complexe",
+        "Intégration de codes hexadécimaux"
+      ],
+      "correctAnswer": 1,
+      "explanation": "GPT Image 'lit' et 'comprend' mieux les instructions complexes que les modèles purement visuels."
+    },
+    {
+      "id": 18,
+      "text": "Pourquoi ce modèle est-il souvent privilégié pour la phase de \"prototypage rapide\" ?",
+      "options": [
+        "Génère systématiquement 10 variantes",
+        "Courbe d'apprentissage très faible",
+        "Fichiers allégés en basse résolution"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est l'outil le plus simple pour obtenir une image 'pro' sans passer par des commandes techniques."
+    },
+    {
+      "id": 19,
+      "text": "Quelle est l'approche recommandée pour orienter efficacement la \"patte graphique\" du résultat ?",
+      "options": [
+        "L'ajout de mots-clés liés au médium désiré (ex: photo, illustration, rendu 3D).",
+        "Mentionner exclusivement le nom d'artistes vivants pour imiter leur trait.",
+        "Laisser l'IA choisir le style aléatoirement pour garantir l'originalité."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Préciser le support ou le style (ex: 'style Pixar', 'photo argentique') aide l'IA à choisir la bonne esthétique."
+    },
+    {
+      "id": 20,
+      "text": "Que traduit l'absence de \"syntaxe complexe à apprendre\" dans le positionnement du modèle ?",
+      "options": [
+        "Ciblage exclusif vers le milieu scolaire",
+        "Accessibilité universelle pour tous profils",
+        "Bridage volontaire pour limiter l'énergie"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'objectif d'OpenAI est de démocratiser la création d'images via le langage courant."
+    }
+  ],
+  "c2": [
+    {
+      "id": 1,
+      "text": "Quelle est la définition conceptuelle d'Adobe Firefly ?",
+      "options": [
+        "Un réseau social dédié aux artistes numériques génératifs.",
+        "Une famille de modèles IA nativement intégrés aux logiciels de création de l'écosystème Adobe.",
+        "Une API externe spécialisée dans la restauration de photographies anciennes."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Firefly n'est pas un gadget isolé mais un moteur infusé dans Photoshop, Illustrator et consorts."
+    },
+    {
+      "id": 2,
+      "text": "Sur quelle base de données spécifique Firefly a-t-il été exclusivement entraîné dès sa conception ?",
+      "options": [
+        "L'intégralité du web public et des réseaux sociaux d'images.",
+        "Du contenu validé issu d'Adobe Stock et des contenus libres de droits.",
+        "Uniquement des formes géométriques et des couleurs primaires basiques."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est le seul modèle 'propre' du marché, évitant les problèmes de droits d'auteur liés au web-scraping sauvage."
+    },
+    {
+      "id": 3,
+      "text": "Quel est l'avantage compétitif et juridique absolu découlant de cette méthode d'entraînement exclusive ?",
+      "options": [
+        "Génération d'images plus légères",
+        "Sécurité commerciale et juridique",
+        "Absence de limite de résolution"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Les entreprises peuvent utiliser les images Firefly sans crainte de poursuites juridiques sur les sources."
+    },
+    {
+      "id": 4,
+      "text": "Comment le système garantit-il la transparence sur la nature \"artificielle\" des visuels qu'il produit ?",
+      "options": [
+        "Filigrane rouge ineffaçable au centre",
+        "Injection invisible de métadonnées",
+        "Conservation dans une base d'État"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Adobe milite pour une traçabilité de l'IA via des 'passeports numériques' pour les images."
+    },
+    {
+      "id": 5,
+      "text": "À quoi sert la fonctionnalité phare nommée \"Comparateur de modèles\" ?",
+      "options": [
+        "Comparer le poids d'une image réelle",
+        "Tester différentes IA dans un hub unifié",
+        "Évaluer si un prompt est éthique"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'interface web d'Adobe devient un hub agnostique pour tester le meilleur modèle pour chaque besoin."
+    },
+    {
+      "id": 6,
+      "text": "Quelle est l'utilité des \"Boards\" dans l'interface de Firefly ?",
+      "options": [
+        "Créer des planches d'inspiration dynamiques pour trier les générations et interagir directement depuis l'interface.",
+        "Partager automatiquement ses images avec les autres utilisateurs du réseau.",
+        "Mesurer le temps passé par un graphiste sur un projet donné."
+      ],
+      "correctAnswer": 0,
+      "explanation": "C'est un outil de gestion de projet visuel pour organiser ses itérations créatives."
+    },
+    {
+      "id": 7,
+      "text": "Dans quel domaine d'édition Firefly est-il considéré comme l'un des leaders du marché ?",
+      "options": [
+        "L'intégration de modèles 3D animés.",
+        "L'édition graphique avancée (comme le remplissage par IA et l'extension générative des marges).",
+        "La colorisation de vidéos en noir et blanc datant du 19e siècle."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le 'Generative Fill' de Photoshop (propulsé par Firefly) a révolutionné la retouche d'image."
+    },
+    {
+      "id": 8,
+      "text": "Quelle politique restrictive l'outil applique-t-il vis-à-vis des sujets sensibles ?",
+      "options": [
+        "Il bloque les mots-clés contenant plus de 10 caractères.",
+        "Il refuse systématiquement de générer des personnalités publiques identifiables pour éviter les deepfakes.",
+        "Il interdit la génération d'images de marques d'automobiles."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Adobe privilégie une approche prudente et professionnelle pour éviter tout détournement politique ou social."
+    },
+    {
+      "id": 9,
+      "text": "Quel système éthique a été mis en place par l'éditeur concernant les sources d'entraînement ?",
+      "options": [
+        "Fondation caritative pour les écoles",
+        "Système de rémunération des artistes",
+        "Loterie annuelle pour gagner des outils"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Adobe compense les artistes de sa banque d'images Stock pour l'usage de leurs œuvres par l'IA."
+    },
+    {
+      "id": 10,
+      "text": "Sur quel modèle économique précis repose l'utilisation des fonctionnalités IA de l'écosystème ?",
+      "options": [
+        "Système de paiement unique à vie",
+        "Logique de crédits génératifs mensuels",
+        "Tarif calculé à la minute d'utilisation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Chaque action générative consomme des crédits, dont le volume dépend de votre forfait Creative Cloud."
+    },
+    {
+      "id": 11,
+      "text": "Quel avantage concret offre le forfait \"Firefly Standard\" (payant) par rapport au forfait \"Free\" ?",
+      "options": [
+        "Permet de générer des vidéos en 4K",
+        "Supprime le filigrane pour l'usage pro",
+        "Autorise les visages de personnalités"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'offre payante débloque les droits nécessaires à un usage professionnel serein."
+    },
+    {
+      "id": 12,
+      "text": "Pour quel type d'imagerie l'outil est-il particulièrement pertinent au quotidien ?",
+      "options": [
+        "Exploration artistique onirique complexe",
+        "Génération d'images neutres type Stock",
+        "Conception de plans de détails d'architecture"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Firefly vise l'efficacité pro plutôt que l'expérimentation artistique débridée."
+    },
+    {
+      "id": 13,
+      "text": "Pourquoi l'outil est-il privilégié pour les flux de travail liés à la \"mise en page\" par rapport à un concurrent indépendant ?",
+      "options": [
+        "Génère le texte de la mise en page",
+        "Intégration fluide et retouches directes",
+        "S'interface avec les imprimantes pro"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le fait de rester dans le même logiciel évite les pertes de temps et les ruptures de flux de travail."
+    },
+    {
+      "id": 14,
+      "text": "Que propose la plateforme web au-delà de la stricte génération par intelligence artificielle ?",
+      "options": [
+        "Offres d'emploi pour les graphistes",
+        "Édition et actions rapides (formats)",
+        "Visioconférence pour les maquettes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Adobe Express et Firefly Web offrent une boîte à outils complète pour les réseaux sociaux."
+    },
+    {
+      "id": 15,
+      "text": "Quelle cible de professionnels trouvera un bénéfice immédiat et décisif à adopter cet outil précis ?",
+      "options": [
+        "Développeurs web en bases de données",
+        "Agences exigeant une sécurité juridique",
+        "Créateurs de jeux amateurs en pixel art"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pour les grandes marques, la sécurité juridique d'Adobe est un argument imbattable."
+    },
+    {
+      "id": 16,
+      "text": "Quel rôle fondamental le modèle joue-t-il dans le quotidien d'un graphiste professionnel ?",
+      "options": [
+        "Remplace intégralement tout le processus",
+        "Assistant de production pour gagner du temps",
+        "Correcteur orthographique pour les affiches"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA ne remplace pas le créatif, elle lui donne des super-pouvoirs de productivité."
+    },
+    {
+      "id": 17,
+      "text": "Dans quelle situation de workflow l'usage de Firefly s'impose-t-il comme une évidence technique absolue ?",
+      "options": [
+        "Créer une musique libre pour une image",
+        "Retouches locales sur des logiciels métiers",
+        "Envoi d'emails commerciaux automatisé"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'intégration est l'argument massue : l'IA est une fonctionnalité de votre outil de travail habituel."
+    },
+    {
+      "id": 18,
+      "text": "Que comprend l'abonnement \"Firefly Pro\" de niveau supérieur ?",
+      "options": [
+        "Ordinateur optimisé livré avec licence",
+        "4000 crédits IA et 20 logiciels Adobe",
+        "Garantie de remboursement de l'image"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est l'offre ultime pour les studios de création intensifs."
+    },
+    {
+      "id": 19,
+      "text": "Combien de logiciels de l'écosystème intègrent actuellement ces outils d'automatisation IA ?",
+      "options": [
+        "Exclusivement 2 logiciels de la suite",
+        "Plus de 20 outils de la suite créative",
+        "Aucun, uniquement via le navigateur web"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA se généralise à travers toute la suite Adobe (Premiere, Express, Acrobat, etc.)."
+    },
+    {
+      "id": 20,
+      "text": "Quel chiffre témoigne de l'adoption massive de cette technologie par les professionnels depuis son lancement ?",
+      "options": [
+        "Plus de 12 milliards d'images générées.",
+        "100 millions d'images générées.",
+        "500 000 images générées."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Ce volume colossal prouve que l'IA est devenue un standard incontournable de la création graphique."
+    }
+  ]
+}

@@ -60,7 +60,7 @@ export default function App() {
     <div className="h-screen flex flex-col bg-wemodo-cream overflow-hidden">
       {/* Header */}
       <header className="border-b-4 border-wemodo-navy p-3 md:p-4 bg-white z-50 shrink-0 relative">
-        <div className="max-w-6xl mx-auto flex justify-between items-center gap-4">
+        <div className="max-w-[1400px] mx-auto flex justify-between items-center gap-4 px-4 md:px-8">
           <div className="flex items-center gap-4 md:w-auto w-full justify-between">
             <div className="flex items-center">
               <WemodoLogo />
@@ -97,7 +97,7 @@ export default function App() {
             </div>
 
             <a 
-              href="https://wemodo.com" 
+              href="https://wemodo.com/formations/data-ia/formation-ia-generatives" 
               target="_blank" 
               rel="noreferrer"
               className="bg-wemodo-navy text-white hover:bg-wemodo-purple transition-colors font-black uppercase text-[10px] md:text-xs border-2 border-wemodo-navy px-4 py-2 shadow-[2px_2px_0px_0px_rgba(244,255,126,1)]"
@@ -129,7 +129,7 @@ export default function App() {
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto">
-        <div className="max-w-4xl mx-auto h-full w-full px-4 py-4 md:py-6">
+        <div className="max-w-[1400px] mx-auto h-full w-full px-4 md:px-8 py-4 md:py-6">
           {view === "quiz" ? (
             <AIQuiz key="ai-quiz" />
           ) : view === "hunter" ? (

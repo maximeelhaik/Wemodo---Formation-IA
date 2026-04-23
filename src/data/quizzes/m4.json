@@ -1,0 +1,668 @@
+{
+  "c1": [
+    {
+      "id": 1,
+      "text": "Comment l'utilisateur interagit-il techniquement avec Midjourney au quotidien ?",
+      "options": [
+        "Via une interface web propriétaire fonctionnant en glisser-déposer.",
+        "Via un système de commandes textuelles exécutées dans la messagerie Discord.",
+        "Via une application logicielle locale installée sur le poste de travail."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Midjourney utilise Discord comme interface principale, ce qui permet une interaction communautaire et une gestion par commandes textuelles."
+    },
+    {
+      "id": 2,
+      "text": "Que permet d'afficher la commande `/info` ?",
+      "options": [
+        "Le dictionnaire des mots-clés pris en charge par la version actuelle.",
+        "Le tableau de bord indiquant le temps de génération restant et le mode actif.",
+        "L'historique détaillé des 50 dernières requêtes générées."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La commande /info est indispensable pour suivre sa consommation de crédits et connaître ses réglages actuels."
+    },
+    {
+      "id": 3,
+      "text": "Quel est l'objectif de la commande `/settings` avant de lancer ses premières créations ?",
+      "options": [
+        "Configurer des préférences globales comme la version du modèle et la qualité par défaut.",
+        "Lier son compte Midjourney à son adresse email professionnelle.",
+        "Ajuster la résolution de l'écran pour l'affichage des images générées."
+      ],
+      "correctAnswer": 0,
+      "explanation": "/settings permet de figer ses préférences (version, mode de vitesse, style) pour ne pas avoir à les retaper dans chaque prompt."
+    },
+    {
+      "id": 4,
+      "text": "Quelle caractéristique définit le \"Mode Turbo\" ?",
+      "options": [
+        "Il permet de générer des vidéos courtes à partir d'une image fixe.",
+        "Il génère une image en 30 secondes mais coûte 4 fois plus cher en minutes GPU.",
+        "Il contourne les filtres de sécurité pour accélérer la livraison du rendu."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est le mode le plus rapide, mais il est très gourmand en ressources d'abonnement."
+    },
+    {
+      "id": 5,
+      "text": "Dans quel contexte utiliser le \"Mode Fast\" ?",
+      "options": [
+        "Pour faire des économies sur l'abonnement mensuel.",
+        "Pour des projets urgents ou itérer rapidement sur un concept client.",
+        "Uniquement pour générer des images en très haute résolution (4K)."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le mode Fast est le standard équilibré pour des résultats rapides sans le surcoût du mode Turbo."
+    },
+    {
+      "id": 6,
+      "text": "Quel avantage exclusif offre le \"Mode Relax\" aux possesseurs d'un abonnement Standard ou Pro ?",
+      "options": [
+        "Une qualité de rendu colorimétrique supérieure.",
+        "Des générations illimitées, idéales pour l'exploration créative sans pression de quota.",
+        "La confidentialité totale des requêtes vis-à-vis de la communauté."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le mode Relax permet de générer sans limite de temps GPU, au prix d'une attente plus longue."
+    },
+    {
+      "id": 7,
+      "text": "Où sont sauvegardées les images une fois générées par l'utilisateur ?",
+      "options": [
+        "Elles sont envoyées automatiquement par email sous forme de fichier zip.",
+        "Elles sont sauvegardées automatiquement dans la galerie personnelle du panneau \"Create\".",
+        "Elles disparaissent au bout de 24h si elles ne sont pas téléchargées."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Toutes les créations sont centralisées sur le site web de Midjourney pour une consultation ultérieure."
+    },
+    {
+      "id": 8,
+      "text": "Dans l'interface de la galerie, à quoi sert la fonction symbolisée par un cœur (❤️) ?",
+      "options": [
+        "Créer une collection rapide de favoris",
+        "Voter pour les créations de la communauté",
+        "Entraîner le modèle sur ce style précis"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Le cœur sert de favori pour organiser son portfolio personnel."
+    },
+    {
+      "id": 9,
+      "text": "Quelle est l'utilité de l'option \"Spotlight\" (📌) sur une image ?",
+      "options": [
+        "Exporter l'image vers un logiciel de retouche",
+        "Rendre l'image visible sur son profil public",
+        "Augmenter le contraste de l'élément central"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Spotlight permet de mettre en avant certaines créations sur son profil public."
+    },
+    {
+      "id": 10,
+      "text": "Quelle bonne pratique est fortement recommandée concernant la sauvegarde des images ?",
+      "options": [
+        "Les convertir en format vectoriel pour limiter l'espace de stockage.",
+        "Télécharger régulièrement ses créations en haute résolution pour garantir un accès permanent.",
+        "Les supprimer de la galerie en ligne pour ne pas saturer les serveurs de Midjourney."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Un stockage local ou sur cloud externe est plus sûr que de dépendre uniquement des serveurs de la plateforme."
+    },
+    {
+      "id": 11,
+      "text": "Sur quoi repose le premier des trois piliers des bonnes pratiques de génération ?",
+      "options": [
+        "L'utilisation exclusive de prompts rédigés par d'autres utilisateurs professionnels.",
+        "La rédaction de descriptions structurées et spécifiques.",
+        "Le paramétrage systématique en Mode Turbo."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La clarté et la structure de la description sont la base d'un résultat prévisible."
+    },
+    {
+      "id": 12,
+      "text": "Comment se définit le concept \"d'outil communautaire\" pour Midjourney ?",
+      "options": [
+        "Outil open-source avec prompts publics",
+        "Images propriété collective des abonnés",
+        "Groupe Discord certifié obligatoire"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L'aspect public par défaut encourage l'apprentissage par l'observation des autres 'prompters'."
+    },
+    {
+      "id": 13,
+      "text": "Que signifie appliquer une \"analyse rétroactive\" dans son flux de travail ?",
+      "options": [
+        "Logiciel tiers analysant le code source",
+        "Évaluer ce qui fonctionne dans ses requêtes",
+        "Demander à ChatGPT de corriger les fautes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'itération et l'autocritique sont essentielles pour maîtriser la finesse de l'outil."
+    },
+    {
+      "id": 14,
+      "text": "Quel délai faut-il anticiper pour se sentir réellement à l'aise avec la syntaxe de l'outil ?",
+      "options": [
+        "Quelques heures de pratique intensive suffisent.",
+        "Il peut falloir plusieurs semaines pour prompter de manière automatique.",
+        "L'outil étant intuitif, la maîtrise est immédiate dès la première requête."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Maîtriser les subtilités et les paramètres techniques demande du temps et de l'expérimentation."
+    },
+    {
+      "id": 15,
+      "text": "Comment déclenche-t-on la commande principale de création ?",
+      "options": [
+        " `/create image:`",
+        " `/imagine prompt:`",
+        " `/generate vision:`"
+      ],
+      "correctAnswer": 1,
+      "explanation": "/imagine est la commande iconique et universelle de Midjourney."
+    },
+    {
+      "id": 16,
+      "text": "Quel impact a le choix d'un mode de génération (Turbo, Fast, Relax) sur le compte utilisateur ?",
+      "options": [
+        "Il modifie le style artistique par défaut de l'image.",
+        "Il influence simultanément le temps d'attente et le crédit d'heures GPU consommé.",
+        "Il détermine le format (carré, portrait, paysage) de la génération finale."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le mode est une gestion de la ressource temps vs ressource budget."
+    },
+    {
+      "id": 17,
+      "text": "Pourquoi est-il conseillé de consulter la \"Gallery\" publique des autres utilisateurs ?",
+      "options": [
+        "S'assurer que personne n'a eu le même concept",
+        "S'inspirer et récupérer des structures de prompts",
+        "Vérifier les mises à jour serveurs déployées"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est une 'bibliothèque vivante' de techniques et de styles à étudier."
+    },
+    {
+      "id": 18,
+      "text": "Quel est le format obligatoire pour les instructions (mots-clés) saisies dans l'outil ?",
+      "options": [
+        "Elles doivent être rédigées sous forme de code Python simplifié.",
+        "Elles doivent être rédigées en anglais.",
+        "Elles doivent obligatoirement commencer par un verbe d'action."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Midjourney a été entraîné principalement sur des bases de données anglophones."
+    },
+    {
+      "id": 19,
+      "text": "Dans le cadre d'un test de nouveau style visuel (brouillon), quel mode est le plus rationnel ?",
+      "options": [
+        "Le mode Fast.",
+        "Le mode Turbo.",
+        "Le mode furtif (Stealth)."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Le mode Fast est idéal pour le brouillonnage rapide sans le coût excessif du Turbo."
+    },
+    {
+      "id": 20,
+      "text": "Que risque l'utilisateur s'il ne vérifie pas régulièrement sa commande `/info` ?",
+      "options": [
+        "De voir son compte banni pour inactivité.",
+        "D'avoir de mauvaises surprises quant à l'épuisement de son quota d'heures rapides (Fast).",
+        "De perdre automatiquement les images non sauvegardées de sa session en cours."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Rester vigilant sur son crédit GPU évite de se retrouver bloqué en plein projet."
+    }
+  ],
+  "c2": [
+    {
+      "id": 1,
+      "text": "Comment Midjourney interprète-t-il l'ordre des mots dans une description ?",
+      "options": [
+        "Lit la requête à l'envers (derniers mots)",
+        "Poids supérieur aux premiers éléments",
+        "Poids équivalent à chaque mot saisi"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Les premiers mots définissent le sujet et la structure principale de l'image."
+    },
+    {
+      "id": 2,
+      "text": "Contrairement à ChatGPT, quelle approche rédactionnelle doit-on privilégier sur Midjourney ?",
+      "options": [
+        "Rédiger des paragraphes argumentés justifiant nos choix artistiques.",
+        "Poser des questions directes à l'algorithme (ex: \"Peux-tu me dessiner...\").",
+        "Privilégier une succession de mots-clés plutôt que des phrases grammaticales complètes."
+      ],
+      "correctAnswer": 2,
+      "explanation": "Le modèle est plus performant avec des concepts clairs séparés qu'avec des phrases complexes."
+    },
+    {
+      "id": 3,
+      "text": "Quel est le rôle principal des virgules dans un prompt Midjourney ?",
+      "options": [
+        "Elles sont obligatoires pour que l'algorithme ne génère pas un message d'erreur.",
+        "Elles séparent les concepts distincts et aident le modèle à mieux interpréter la structure.",
+        "Elles indiquent une pondération négative (ce qu'il ne faut pas générer)."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La ponctuation aide le modèle à isoler les différentes instructions de style ou de sujet."
+    },
+    {
+      "id": 4,
+      "text": "Qu'indiquent les deux tirets (`--`) à la fin d'une requête ?",
+      "options": [
+        "Le début d'une exclusion (prompt négatif).",
+        "La fin définitive de la description textuelle et l'ajout de paramètres techniques.",
+        "Une pause sémantique pour forcer l'IA à calculer plus lentement."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est la syntaxe pour passer des commandes techniques (ratio, style, version)."
+    },
+    {
+      "id": 5,
+      "text": "Que gère le paramètre `--stylize` (ou `--s`) ?",
+      "options": [
+        "Fidélité par rapport à la réalité anatomique",
+        "Liberté d'interprétation artistique (0 à 1000)",
+        "Taille des marges autour de l'image générée"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Un score élevé rend l'image plus artistique mais parfois plus éloignée du prompt initial."
+    },
+    {
+      "id": 6,
+      "text": "Quel effet produit un paramètre `--chaos 100` ?",
+      "options": [
+        "Produit des artefacts et défauts volontaires",
+        "Produit 4 propositions radicalement différentes",
+        "Mélange les styles de deux images de référence"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le chaos force la diversité au sein d'une même grille de 4 images."
+    },
+    {
+      "id": 7,
+      "text": "Quelle est l'utilité du paramètre `--weird` ?",
+      "options": [
+        "Ajuste l'étrangeté et la divergence visuelle",
+        "Force l'IA à inverser la palette de couleurs",
+        "Modifie le ratio pour les formats publicitaires"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Le weird apporte une touche d'originalité et de 'non-conformisme' visuel."
+    },
+    {
+      "id": 8,
+      "text": "Comment forcer Midjourney à générer une image verticale pour les réseaux sociaux (Stories) ?",
+      "options": [
+        "En utilisant le paramètre `--vertical 100`.",
+        "En ajoutant le paramètre `--ar 9:16`.",
+        "En précisant \"smartphone format\" au tout début du prompt."
+      ],
+      "correctAnswer": 1,
+      "explanation": "--ar signifie Aspect Ratio."
+    },
+    {
+      "id": 9,
+      "text": "Parmi ces propositions, laquelle respecte la règle d'or \"Être spécifique sans être verbeux\" ?",
+      "options": [
+        "Nice and beautiful office, light from outside",
+        "Modern minimalist office, golden hour lighting",
+        "Can you please create a picture of a workspace?"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cette version donne des instructions claires sans mots de remplissage inutiles."
+    },
+    {
+      "id": 10,
+      "text": "Selon la règle \"Penser en couches\", quel est l'enchaînement logique recommandé ?",
+      "options": [
+        "Ambiance/lumière -> Cadrage -> Sujet principal -> Style artistique.",
+        "Sujet principal -> Style artistique -> Cadrage/composition -> Ambiance/lumière.",
+        "Style artistique -> Ambiance/lumière -> Sujet principal -> Cadrage/composition."
+      ],
+      "correctAnswer": 1,
+      "explanation": "On définit d'abord 'quoi', puis 'comment' c'est traité visuellement."
+    },
+    {
+      "id": 11,
+      "text": "Comment Midjourney gère-t-il les \"Références\" artistiques (Noms d'artistes, mouvements) ?",
+      "options": [
+        "Les ignore sans hashtag (#) devant",
+        "Adapte immédiatement l'esthétique globale",
+        "Nécessite l'upload d'une œuvre originale"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'IA possède une vaste culture artistique intégrée lors de son entraînement."
+    },
+    {
+      "id": 12,
+      "text": "Pour garantir la précision du rendu, quelle est la limite de longueur recommandée pour un prompt ?",
+      "options": [
+        "Entre 10 et 20 mots.",
+        "Entre 40 et 60 mots.",
+        "Il n'y a aucune limite, plus il y a de détails, meilleur sera le résultat."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Au-delà, l'IA commence à ignorer certains termes par saturation."
+    },
+    {
+      "id": 13,
+      "text": "Que risque-t-on avec un prompt dépassant allègrement la limite de mots recommandée ?",
+      "options": [
+        "L'image sera systématiquement floue",
+        "Impact dilué et perte de précision",
+        "Consommation d'un crédit Turbo"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est l'effet 'dilution' : plus il y a de mots, moins chacun a de poids statistique."
+    },
+    {
+      "id": 14,
+      "text": "Quel est le but exact de la fonction `/describe` ?",
+      "options": [
+        "Description alternative pour accessibilité",
+        "Analyse d'image pour générer des prompts",
+        "Décrit les erreurs anatomiques ratées"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est un outil d'ingénierie inverse très puissant pour apprendre à prompter."
+    },
+    {
+      "id": 15,
+      "text": "Comment justifie-t-on l'utilisation de synonymes (Règle d'or n°5) lors du prompting ?",
+      "options": [
+        "Pour éviter les pénalités de plagiat imposées par l'algorithme.",
+        "Parce que des termes proches (ex: 'forest' vs 'woodland') entraînent des interprétations visuelles subtilement différentes.",
+        "Pour que le prompt soit compatible avec les anciennes versions du modèle (V4, V5)."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Chaque mot porte une nuance visuelle spécifique dans la base d'entraînement."
+    },
+    {
+      "id": 16,
+      "text": "Quel impact a l'utilisation du paramètre `--v 5.2` dans une requête aujourd'hui ?",
+      "options": [
+        "L'image sera générée avec une résolution inférieure pour économiser des crédits.",
+        "On obtiendra une image utilisant le moteur de rendu d'une version antérieure, offrant une cohérence différente.",
+        "La requête sera mise en attente si les serveurs de la version 5 sont surchargés."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Les anciennes versions restent accessibles pour leur style particulier."
+    },
+    {
+      "id": 17,
+      "text": "Si aucun paramètre `--v` n'est spécifié, comment réagit Midjourney ?",
+      "options": [
+        "Il affiche un message d'erreur demandant de préciser la version.",
+        "Il génère 4 images, chacune avec une version différente du modèle.",
+        "Il utilise automatiquement la dernière version du modèle par défaut (actuellement V6/V7)."
+      ],
+      "correctAnswer": 2,
+      "explanation": "Midjourney applique toujours la version la plus stable et récente par défaut."
+    },
+    {
+      "id": 18,
+      "text": "Que se passe-t-il si l'on utilise un paramètre de stylisation excessivement bas (ex: `--stylize 0`) ?",
+      "options": [
+        "L'outil refusera de générer l'image.",
+        "L'outil suivra littéralement le prompt sans ajouter de \"flair\" esthétique propre à Midjourney.",
+        "L'outil transformera la requête en une simple illustration vectorielle en noir et blanc."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cela permet d'obtenir un rendu plus brut, moins 'esthétisé' par défaut."
+    },
+    {
+      "id": 19,
+      "text": "Dans le cadre de l'optimisation itérative, quelle est la démarche conseillée ?",
+      "options": [
+        "Changer de compte utilisateur après 5 tentatives infructueuses.",
+        "Modifier un seul mot-clé ou paramètre à la fois pour comprendre son impact précis sur le rendu.",
+        "Réécrire entièrement le prompt à chaque nouvelle tentative pour forcer le hasard."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est la base de la méthode scientifique appliquée au prompting."
+    },
+    {
+      "id": 20,
+      "text": "Que permet le panneau \"Image Size\" intégré aux paramètres de l'outil ?",
+      "options": [
+        "De réduire le poids (en Ko) du fichier final pour le web.",
+        "De modifier visuellement le rapport largeur/hauteur (ratio) en un clic sans taper de commande manuelle.",
+        "De multiplier la résolution par 4 via une intelligence artificielle de suréchantillonnage (Upscale)."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'interface web et les paramètres simplifiés évitent parfois d'écrire les codes --ar."
+    }
+  ],
+  "c4": [
+    {
+      "id": 1,
+      "text": "Quel est le principal avantage de Midjourney face à des concurrents comme DALL-E ou Stable Diffusion ?",
+      "options": [
+        "Interface totalement gratuite et illimitée",
+        "Qualité esthétique et rendu photographique",
+        "Précision infaillible des blocs de texte"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Midjourney est largement reconnu comme le leader sur le plan du réalisme et du style artistique."
+    },
+    {
+      "id": 2,
+      "text": "Actuellement, quel défaut graphique reste l'une des limites les plus courantes de l'outil ?",
+      "options": [
+        "Incapacité à générer des paysages naturels",
+        "Génération de mains et anatomies imprécises",
+        "Refus de générer au format paysage large"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Les détails anatomiques fins restent un défi pour la plupart des modèles de diffusion."
+    },
+    {
+      "id": 3,
+      "text": "Que désigne-t-on par \"l'effet fusion de textes\" dans les erreurs de Midjourney ?",
+      "options": [
+        "Superposition de filigranes sur les créations",
+        "Génération de pseudo-mots incohérents (gibberish)",
+        "Refus si faute d'orthographe dans le prompt"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le rendu du texte à l'intérieur de l'image reste aléatoire et souvent illisible (gibberish)."
+    },
+    {
+      "id": 4,
+      "text": "Quelle fonctionnalité technique manque encore à Midjourney et peut frustrer un usage professionnel ?",
+      "options": [
+        "Décomposition de l'image par calques indépendants",
+        "Possibilité de sauvegarder au format simple JPG",
+        "Possibilité de modifier le ratio après génération"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L'image est aplatie ; on ne peut pas exporter séparément les éléments qui la composent."
+    },
+    {
+      "id": 5,
+      "text": "Comment peut-on contourner les problèmes liés au texte lors d'un flux de travail professionnel ?",
+      "options": [
+        "Générer sans texte puis utiliser Canva / Photoshop",
+        "Écrire en majuscules avec des guillemets doubles",
+        "Utiliser le mode Turbo pour plus de typographie"
+      ],
+      "correctAnswer": 0,
+      "explanation": "C'est la méthode hybride la plus efficace pour un résultat pro et propre."
+    },
+    {
+      "id": 6,
+      "text": "Pour masquer une zone à risque comme les mains lors de la génération d'un personnage, quelle astuce est recommandée ?",
+      "options": [
+        "Appliquer un flou gaussien via la commande `--blur`.",
+        "Privilégier des cadrages stratégiques comme \"close-up portrait\" ou \"upper body shot\".",
+        "Demander à l'IA de faire porter des gants au personnage."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cacher le problème à la source (le cadrage) évite les itérations inutiles."
+    },
+    {
+      "id": 7,
+      "text": "En quoi consiste la technique d'extension de l'image pour limiter les artefacts ?",
+      "options": [
+        "Générer uniquement le sujet central proprement, puis étendre l'image autour de lui avec les options Zoom ou Pan.",
+        "Agrandir la taille de la fenêtre Discord pendant la génération.",
+        "Utiliser un logiciel d'upscaling externe avant de modifier le prompt."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Construire l'image étape par étape permet de garder un meilleur contrôle sur les détails."
+    },
+    {
+      "id": 8,
+      "text": "Quel paramètre faut-il ajuster avec prudence pour ne pas multiplier les risques d'incohérences structurelles ?",
+      "options": [
+        "Le paramètre `--ar` (ratio), qui déforme les visages s'il dépasse 16:9.",
+        "Le paramètre `--chaos`, qui ne devrait pas dépasser 25 pour un contrôle optimal.",
+        "Le paramètre `--v`, qu'il faut toujours bloquer sur la version 5.2."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Trop de chaos rend le résultat imprévisible et souvent décevant."
+    },
+    {
+      "id": 9,
+      "text": "Quel est l'impact d'un paramètre `--stylize` trop élevé (supérieur à 500) sur la cohérence ?",
+      "options": [
+        "Risque de déformations artistiques excessives",
+        "Sature les couleurs primaires de l'image",
+        "Pixellise l'image en abaissant la résolution"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L'IA prend trop de libertés et peut dénaturer la demande initiale."
+    },
+    {
+      "id": 10,
+      "text": "Face à des artefacts persistants, quelle action de base est conseillée ?",
+      "options": [
+        "Redémarrer son ordinateur.",
+        "Désactiver le mode brouillon (Draft) pour repasser en qualité Standard.",
+        "Augmenter la valeur du paramètre `--weird` au maximum."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le mode brouillon sacrifie les détails pour la vitesse ; le désactiver améliore la finesse."
+    },
+    {
+      "id": 11,
+      "text": "Concernant le cadre légal et éthique, quel type de contenu est strictement interdit par la plateforme ?",
+      "options": [
+        "Les reproductions d'œuvres tombées dans le domaine public.",
+        "Les images d'une violence extrême (gore) ou à caractère sexuel.",
+        "Les logos d'entreprises concurrentes à OpenAI."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Midjourney applique une politique stricte de modération pour rester 'safe for work'."
+    },
+    {
+      "id": 12,
+      "text": "En matière de respect de la vie privée, que doit s'interdire un utilisateur professionnel ?",
+      "options": [
+        "De partager ses prompts sur des réseaux sociaux.",
+        "De générer des images de personnes réelles identifiables sans leur autorisation (deepfakes).",
+        "D'utiliser l'image d'un monument historique situé dans l'espace public."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'usurpation d'identité et la création de deepfakes sont des lignes rouges éthiques."
+    },
+    {
+      "id": 13,
+      "text": "Quelle règle de transparence prévaut pour l'usage commercial d'images Midjourney ?",
+      "options": [
+        "D'afficher obligatoirement le code source du prompt sur l'affiche.",
+        "De créditer professionnellement que le visuel a été généré par IA avec Midjourney.",
+        "De reverser 10% des bénéfices de la campagne à la plateforme."
+      ],
+      "correctAnswer": 1,
+      "explanation": "La transparence vis-à-vis du public est une recommandation forte des régulateurs."
+    },
+    {
+      "id": 14,
+      "text": "Quel usage de la fonction `/describe` est considéré comme \"éthiquement discutable\" ?",
+      "options": [
+        "Analyser des photos libres pour le vocabulaire",
+        "Copier délibérément le style d'artistes vivants",
+        "Décrire des paysages pour des textures de jeux"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Copier un style spécifique pour concurrencer un artiste est un sujet de débat majeur dans l'IA."
+    },
+    {
+      "id": 15,
+      "text": "Quel est l'un des risques sociaux et économiques majeurs liés à la qualité photographique de Midjourney ?",
+      "options": [
+        "La saturation des serveurs internet mondiaux.",
+        "La fabrication de mensonges convaincants permettant de manipuler l'opinion publique.",
+        "La perte de la notion de couleur dans l'art contemporain."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le réalisme extrême peut servir à créer de la désinformation très crédible."
+    },
+    {
+      "id": 16,
+      "text": "Quelle difficulté est rencontrée lorsqu'on tente de créer un storyboard (plusieurs images) avec un même personnage ?",
+      "options": [
+        "Facture chaque image du storyboard séparément",
+        "Maintenir une cohérence stricte du personnage",
+        "Interdit de générer le même sujet plus de 3 fois"
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est l'un des points de friction majeurs pour la narration séquentielle en IA."
+    },
+    {
+      "id": 17,
+      "text": "Que reproche-t-on souvent à Midjourney concernant la protection juridique des créations ?",
+      "options": [
+        "L'outil impose un filigrane ineffaçable sur toutes les images.",
+        "Le manque de garanties juridiques précises quant au contrôle des droits d'utilisation pour certains usages professionnels stricts.",
+        "L'obligation de breveter chaque prompt utilisé auprès d'un organisme international."
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le statut juridique des images générées par IA reste flou dans de nombreuses juridictions."
+    },
+    {
+      "id": 18,
+      "text": "Comment nomme-t-on l'usage conjoint de Midjourney et Photoshop ?",
+      "options": [
+        "Une infraction aux conditions d'utilisation.",
+        "Un Workflow hybride Humain-IA (Post-traitement externe).",
+        "Une faille de sécurité logicielle (Exploit)."
+      ],
+      "correctAnswer": 1,
+      "explanation": "C'est la méthode de travail la plus mature et la plus répandue chez les créatifs."
+    },
+    {
+      "id": 19,
+      "text": "Dans le cadre d'un \"Workflow adapté à la correction\" (en 3 étapes), que fait-on juste après la génération ?",
+      "options": [
+        "On utilise immédiatement un outil externe d'agrandissement.",
+        "On procède à une inspection systématique (zoom à 100%) sur les zones à risque comme les mains et les textures.",
+        "On publie l'image sur le réseau communautaire pour obtenir des avis."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'inspection minutieuse permet de détecter les artefacts avant toute utilisation."
+    },
+    {
+      "id": 20,
+      "text": "Pour un défaut mineur (ex: œil asymétrique), quelle option privilégier ?",
+      "options": [
+        "Relancer un prompt entièrement différent.",
+        "Utiliser le panneau d'édition interne (`EDIT`) de Midjourney pour corriger spécifiquement ce détail.",
+        "Mettre un \"dislike\" sur l'image pour que le support technique la corrige manuellement."
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'édition locale (Vary Region / Inpainting) est très efficace pour les petites corrections."
+    }
+  ]
+}

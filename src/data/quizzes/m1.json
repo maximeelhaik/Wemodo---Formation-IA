@@ -2,141 +2,241 @@
   "c2": [
     {
       "id": 1,
-      "text": "À quelle date l'expression \"Intelligence Artificielle\" a-t-elle été officiellement utilisée pour la première fois ?",
-      "options": ["En 1980", "En 1956 lors de la conférence de Dartmouth", "En 2000 avec le Web", "En 1995 par Bill Gates"],
+      "text": "Quand l'expression \"Intelligence Artificielle\" a-t-elle été officiellement utilisée ?",
+      "options": [
+        "En 1980",
+        "1956 (Conférence de Dartmouth)",
+        "En 2000 avec le Web",
+        "En 1995 par Bill Gates"
+      ],
       "correctAnswer": 1,
       "explanation": "C'est John McCarthy qui a forgé le terme en 1956 pour la conférence qui a lancé la discipline."
     },
     {
       "id": 2,
       "text": "Quels sont les trois piliers indispensables au fonctionnement de l'IA ?",
-      "options": ["L'ordinateur, la souris et le clavier", "Les données, les algorithmes et la puissance de calcul", "Le réseau, l'humain et le code", "Le texte, l'image et le son"],
+      "options": [
+        "Le matériel : l'ordinateur, la souris et le clavier",
+        "Les données, les algorithmes et la puissance de calcul",
+        "L'infrastructure : le réseau, l'humain et le code",
+        "Les contenus : le texte, l'image et le son numérique"
+      ],
       "correctAnswer": 1,
       "explanation": "Sans données (carburant), algorithmes (moteur) et puissance (énergie), l'IA ne peut fonctionner."
     },
     {
       "id": 3,
       "text": "Quel est le rôle d'une IA \"non générative\" (ou IA analyste) ?",
-      "options": ["Créer des musiques originales", "Rédiger des poèmes", "Détecter des motifs, classer et prédire des résultats", "Générer des voix humaines"],
+      "options": [
+        "Créer des musiques originales et des voix",
+        "Rédiger des poèmes et des textes littéraires",
+        "Détecter des motifs et prédire des résultats",
+        "Générer des images et des portraits humains"
+      ],
       "correctAnswer": 2,
       "explanation": "L'IA classique analyse l'existant pour classer ou prédire, sans créer de nouveau contenu."
     },
     {
       "id": 4,
       "text": "Lequel de ces outils est un exemple d'IA non générative du quotidien ?",
-      "options": ["Midjourney", "Un filtre anti-spam dans une boîte mail", "Un générateur de vidéo", "ChatGPT"],
+      "options": [
+        "Midjourney (génération d'images)",
+        "Un filtre anti-spam (boîte mail)",
+        "Un générateur de vidéos (Sora)",
+        "ChatGPT (modèle de langage)"
+      ],
       "correctAnswer": 1,
       "explanation": "Le filtre anti-spam classe les mails en deux catégories (Spam/Non-Spam), c'est de l'IA prédictive/analytique."
     },
     {
       "id": 5,
-      "text": "Quelle est la spécialité d'un grand modèle de langage (LLM) ?",
-      "options": ["Il génère et analyse uniquement des vidéos", "Il génère, résume, traduit et analyse du texte", "Il sert uniquement à la maintenance industrielle", "Il prédit la météo"],
+      "text": "Quelle est la spécialité d'un LLM ?",
+      "options": [
+        "Analyse de flux vidéos en temps réel",
+        "Traitement, résumé et analyse de texte",
+        "Maintenance des serveurs industriels",
+        "Prédiction des modèles météo locaux"
+      ],
       "correctAnswer": 1,
       "explanation": "Les LLM comme GPT-4 sont spécialisés dans le traitement complexe du langage naturel."
     },
     {
       "id": 6,
       "text": "Que permet un modèle d'IA dit \"multimodal\" ?",
-      "options": ["Il traite le texte, l'image et l'audio en même temps", "Il fonctionne sans aucune connexion internet", "Il ne comprend que les mathématiques", "Il imprime des documents en 3D"],
+      "options": [
+        "Il traite le texte, l'image et l'audio en même temps",
+        "Il fonctionne sans aucune connexion internet",
+        "Il ne comprend que les mathématiques",
+        "Il imprime des documents en 3D"
+      ],
       "correctAnswer": 0,
       "explanation": "Le multimodalité permet à l'IA d'interagir via plusieurs sens (vue, ouïe, texte) simultanément."
     },
     {
       "id": 7,
       "text": "Dans le secteur médical, comment l'IA est-elle notamment utilisée ?",
-      "options": ["Pour remplacer les médecins généralistes", "Pour nettoyer les hôpitaux", "Pour analyser des mammographies et repérer des tumeurs", "Pour imprimer des ordonnances"],
+      "options": [
+        "Pour remplacer les médecins généralistes de ville",
+        "Pour nettoyer les hôpitaux et les blocs opératoires",
+        "Pour analyser l'imagerie et repérer des tumeurs",
+        "Pour imprimer des ordonnances et des bilans"
+      ],
       "correctAnswer": 2,
       "explanation": "L'IA est excellente en imagerie médicale pour détecter des anomalies parfois invisibles à l'œil humain."
     },
     {
       "id": 8,
-      "text": "Quel est l'impact potentiel de l'IA sur l'environnement selon PwC ?",
-      "options": ["Elle pourrait réduire les émissions de CO2 de 10% d'ici 2030", "Elle augmentera la pollution de 50%", "Elle n'a aucun impact écologique", "Elle remplacera les énergies fossiles par magie"],
+      "text": "Impact de l'IA sur l'environnement selon PwC ?",
+      "options": [
+        "Réduction des émissions de CO2 de 10% d'ici 2030",
+        "Augmentation de la pollution de 50%",
+        "Aucun impact écologique",
+        "Remplacement magique des énergies fossiles"
+      ],
       "correctAnswer": 0,
       "explanation": "Grâce à l'optimisation des réseaux et des ressources, l'IA est un levier majeur de décarbonation."
     },
     {
       "id": 9,
       "text": "Qu'est-ce qu'un \"modèle d'IA\" concrètement ?",
-      "options": ["Un ordinateur très puissant", "Un programme entraîné sur des données pour une tâche spécifique", "Une base de données vierge", "Un robot physique"],
+      "options": [
+        "Un serveur informatique très puissant",
+        "Un programme entraîné pour une tâche",
+        "Une base de données numérique vierge",
+        "Un robot physique avec des capteurs"
+      ],
       "correctAnswer": 1,
       "explanation": "Un modèle est le résultat de l'apprentissage d'un algorithme sur un jeu de données."
     },
     {
       "id": 10,
-      "text": "Quelle est la limite actuelle des modèles de génération vidéo (comme Sora) par rapport à l'image ?",
-      "options": ["Ils ne génèrent que des vidéos en noir et blanc", "C'est très rapide mais sans aucun réalisme", "C'est encore coûteux et prend plusieurs minutes à générer", "Ils sont totalement interdits au grand public"],
+      "text": "Limite actuelle de la génération vidéo (ex: Sora) ?",
+      "options": [
+        "Vidéos noir et blanc uniquement",
+        "Rapide mais peu réaliste",
+        "Coûteux et lent (plusieurs minutes)",
+        "Interdit au grand public"
+      ],
       "correctAnswer": 2,
       "explanation": "La vidéo demande une puissance de calcul colossale, rendant la génération encore lente et onéreuse."
     },
     {
       "id": 11,
-      "text": "Quel est le rôle d'une IA dite \"générative\" ?",
-      "options": ["Trier des bases de données de manière classique", "Comprendre une consigne et générer un nouveau contenu inédit", "Classer des photos par ordre alphabétique", "Analyser le rythme cardiaque"],
+      "text": "Rôle d'une IA générative ?",
+      "options": [
+        "Tri classique de bases de données",
+        "Générer un contenu inédit à partir d'une consigne",
+        "Classer des photos par ordre alphabétique",
+        "Analyser le rythme cardiaque"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA générative crée de la matière (texte, code, image) à partir de ses connaissances statistiques."
     },
     {
       "id": 12,
       "text": "Dans l'industrie, qu'est-ce que la \"maintenance prédictive\" par IA ?",
-      "options": ["Analyser les capteurs pour prévoir une panne avant qu'elle n'arrive", "Nettoyer les machines la nuit", "Remplacer les ouvriers sur les chaînes de montage", "Imprimer des pièces de rechange"],
+      "options": [
+        "Analyser les capteurs pour prévoir une panne avant qu'elle n'arrive",
+        "Nettoyer les machines la nuit",
+        "Remplacer les ouvriers sur les chaînes de montage",
+        "Imprimer des pièces de rechange"
+      ],
       "correctAnswer": 0,
       "explanation": "En analysant les vibrations ou la chaleur, l'IA anticipe les pannes pour éviter les arrêts d'usine."
     },
     {
       "id": 13,
       "text": "Quel modèle choisiriez-vous pour du prototypage design ou de l'illustration ?",
-      "options": ["Un modèle de langage (LLM)", "Un modèle audio", "Un modèle de génération d'image (Midjourney, DALL-E)", "Un moteur de recherche classique"],
+      "options": [
+        "Un modèle de langage (LLM)",
+        "Un modèle audio",
+        "Un modèle de génération d'image (Midjourney, DALL-E)",
+        "Un moteur de recherche classique"
+      ],
       "correctAnswer": 2,
       "explanation": "Les modèles de diffusion (image) sont parfaits pour transformer des idées visuelles en maquettes."
     },
     {
       "id": 14,
       "text": "Comment l'IA est-elle utilisée dans la finance aujourd'hui ?",
-      "options": ["Pour remplacer les billets de banque", "Pour la détection de fraude et la rédaction de rapports", "Pour annuler toutes les dettes", "Pour fermer les agences bancaires"],
+      "options": [
+        "Pour remplacer les billets de banque",
+        "Pour la détection de fraude et la rédaction de rapports",
+        "Pour annuler toutes les dettes",
+        "Pour fermer les agences bancaires"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA repère les comportements de paiement inhabituels en temps réel pour sécuriser les transactions."
     },
     {
       "id": 15,
       "text": "Quel est l'un des critères essentiels pour bien choisir son modèle d'IA ?",
-      "options": ["Prendre obligatoirement le plus cher", "Définir le type de contenu voulu et le niveau de qualité nécessaire", "Choisir celui qui a le plus beau logo", "Prendre systématiquement un modèle vidéo"],
+      "options": [
+        "Prendre obligatoirement le plus cher",
+        "Définir le type de contenu voulu et le niveau de qualité nécessaire",
+        "Choisir celui qui a le plus beau logo",
+        "Prendre systématiquement un modèle vidéo"
+      ],
       "correctAnswer": 1,
       "explanation": "Le choix dépend du besoin : on n'utilise pas le même modèle pour un mail simple que pour un code complexe."
     },
     {
       "id": 16,
-      "text": "Une IA est-elle capable de \"raisonner\" au sens informatique ?",
-      "options": ["Oui, elle effectue des choix et tire des conclusions basées sur ses données", "Non, elle choisit toujours ses réponses totalement au hasard", "Oui, car elle a une conscience humaine", "Non, elle ne sait que copier-coller"],
+      "text": "Une IA peut-elle \"raisonner\" ?",
+      "options": [
+        "Oui, via des choix logiques basés sur ses données",
+        "Non, les réponses sont aléatoires",
+        "Oui, elle possède une conscience humaine",
+        "Non, elle ne fait que copier-coller"
+      ],
       "correctAnswer": 0,
       "explanation": "On parle de raisonnement probabiliste : le modèle suit une logique apprise pour résoudre des problèmes."
     },
     {
       "id": 17,
       "text": "L'application \"Google FloodHub\" est un exemple d'IA pour :",
-      "options": ["Le marketing", "Les ressources humaines", "La prévention des inondations (Environnement)", "La finance"],
+      "options": [
+        "Le marketing",
+        "Les ressources humaines",
+        "La prévention des inondations (Environnement)",
+        "La finance"
+      ],
       "correctAnswer": 2,
       "explanation": "C'est une IA qui analyse les données météo et satellite pour sauver des vies en prédisant les crues."
     },
     {
       "id": 18,
       "text": "ChatGPT est l'arbre qui cache la forêt. Que faut-il en conclure ?",
-      "options": ["L'IA se limite à la génération de texte", "L'IA englobe une multitude d'autres technologies déjà intégrées partout", "ChatGPT est le seul modèle d'IA existant", "Les autres modèles d'IA ne servent à rien"],
+      "options": [
+        "L'IA se limite à la génération de texte",
+        "L'IA englobe une multitude d'autres technologies déjà intégrées partout",
+        "ChatGPT est le seul modèle d'IA existant",
+        "Les autres modèles d'IA ne servent à rien"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA est partout : dans votre GPS, vos mails, votre banque, et pas seulement dans un chat."
     },
     {
       "id": 19,
       "text": "Comment fonctionne la traduction par IA (comme DeepL) aujourd'hui ?",
-      "options": ["Elle traduit mot à mot comme un dictionnaire", "Elle prédit et donne la traduction la plus juste en fonction du contexte", "Elle utilise des traducteurs humains en direct", "Elle invente de nouveaux mots"],
+      "options": [
+        "Elle traduit mot à mot comme un dictionnaire",
+        "Elle prédit et donne la traduction la plus juste en fonction du contexte",
+        "Elle utilise des traducteurs humains en direct",
+        "Elle invente de nouveaux mots"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA comprend l'intention de la phrase pour proposer une traduction naturelle et fluide."
     },
     {
       "id": 20,
       "text": "Qu'est-ce qu'un apprentissage (Machine Learning) pour une IA ?",
-      "options": ["Le fait d'analyser de très grandes quantités de données pour s'améliorer", "Le fait de lire des livres papier", "Le téléchargement d'un logiciel de traitement de texte", "Le fait de se connecter au Wi-Fi"],
+      "options": [
+        "L'analyse de grandes données pour s'améliorer",
+        "La lecture manuelle de nombreux livres papier",
+        "Le téléchargement d'un logiciel de traitement",
+        "La connexion automatique au réseau Wi-Fi local"
+      ],
       "correctAnswer": 0,
       "explanation": "C'est l'entraînement statistique qui permet à la machine de devenir performante sans être programmée manuellement."
     }
@@ -144,141 +244,241 @@
   "c3": [
     {
       "id": 1,
-      "text": "Selon l'Organisation Internationale du Travail, quel est l'impact de l'IA sur l'emploi ?",
-      "options": ["Elle va supprimer 90% des emplois humains", "Elle transforme les tâches et reconfigure les métiers, sans les supprimer totalement", "Elle ne concerne que les métiers manuels", "Elle n'aura aucun impact sur le travail"],
+      "text": "Impact de l'IA sur l'emploi selon l'OIT ?",
+      "options": [
+        "Suppression totale de 90% des emplois",
+        "Transformation et reconfiguration des métiers",
+        "Cerne uniquement les métiers manuels de base",
+        "Aucun impact notable sur le marché actuel"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA automatise des tâches, pas des métiers entiers. Elle déplace la valeur vers l'expertise et la validation."
     },
     {
       "id": 2,
       "text": "Parmi ces 5 grands cas d'usage de l'IA, lequel est correct ?",
-      "options": ["Remplacer, Ignorer, Détruire, Vendre, Oublier", "Automatiser, Générer, Assister la décision, Personnaliser, Sourcer", "Bloquer, Cacher, Compliquer, Ralentir, Effacer", "Écouter, Marcher, Courir, Dormir, Manger"],
+      "options": [
+        "Remplacer, Ignorer, Détruire, Vendre, Oublier",
+        "Automatiser, Générer, Assister la décision, Personnaliser, Sourcer",
+        "Bloquer, Cacher, Compliquer, Ralentir, Effacer",
+        "Écouter, Marcher, Courir, Dormir, Manger"
+      ],
       "correctAnswer": 1,
       "explanation": "Ce sont les 5 leviers de création de valeur de l'IA en entreprise."
     },
     {
       "id": 3,
       "text": "Qu'est-ce que le \"Turing Trap\" ?",
-      "options": ["Le fait de chercher à faire faire par l'IA exactement ce que fait l'humain", "Un virus informatique très dangereux", "Le fait que l'IA refuse de travailler", "Une méthode pour formater son ordinateur"],
+      "options": [
+        "Chercher à imiter exactement l'action humaine",
+        "Un virus informatique dangereux",
+        "Le refus de l'IA de travailler",
+        "Méthode de formatage PC"
+      ],
       "correctAnswer": 0,
       "explanation": "Le piège est de vouloir imiter l'humain au lieu de chercher à augmenter ses capacités."
     },
     {
       "id": 4,
-      "text": "Face à l'IA, quelle est la posture professionnelle recommandée ?",
-      "options": ["L'IA est un expert absolu qui décide à votre place", "L'IA est un copilote : elle suggère, l'humain valide et assume les choix", "Il faut déléguer toutes les tâches sensibles à l'IA", "Il faut refuser de l'utiliser pour protéger son poste"],
+      "text": "Posture professionnelle recommandée ?",
+      "options": [
+        "L'IA décide à votre place",
+        "Copilote : l'IA suggère, l'humain valide",
+        "Déléguer les tâches sensibles",
+        "Refuser l'usage pour protéger son poste"
+      ],
       "correctAnswer": 1,
       "explanation": "L'humain reste le pilote. L'IA propose, le professionnel dispose et reste responsable."
     },
     {
       "id": 5,
       "text": "Quel est un \"mauvais usage\" de l'IA en entreprise ?",
-      "options": ["Générer des variantes de posts pour les réseaux sociaux", "Trier des CV pour une pré-qualification", "Gérer de A à Z une réclamation client complexe et conflictuelle", "Traduire une documentation technique"],
+      "options": [
+        "Générer des variantes de posts pour les réseaux sociaux",
+        "Trier des CV pour une pré-qualification",
+        "Gérer de A à Z une réclamation client complexe et conflictuelle",
+        "Traduire une documentation technique"
+      ],
       "correctAnswer": 2,
       "explanation": "L'IA manque d'empathie et de discernement pour les situations humaines sensibles et conflictuelles."
     },
     {
       "id": 6,
-      "text": "Dans la checklist des réflexes, que signifie le principe \"Usage critique\" ?",
-      "options": ["Ne jamais dire merci à l'IA", "Toujours vérifier et croiser les sources, car l'IA n'est pas omnisciente", "Critiquer les collègues qui utilisent l'IA", "Demander à l'IA de s'auto-évaluer"],
+      "text": "Que signifie l'esprit critique ?",
+      "options": [
+        "Ne jamais dire merci à la machine",
+        "Vérifier et croiser les informations",
+        "Critiquer les collègues de bureau",
+        "Laisser l'IA s'auto-évaluer seule"
+      ],
       "correctAnswer": 1,
       "explanation": "La confiance n'exclut pas le contrôle. Il faut toujours garder un regard critique sur la production."
     },
     {
       "id": 7,
       "text": "En quoi consiste l'approche \"Lean AI\" pour cadrer un projet ?",
-      "options": ["Dépenser le plus d'argent possible immédiatement", "Se concentrer sur l'essentiel avec 3 axes : Should (Dois-je?), Can (Puis-je?), Will (Vais-je?)", "Attendre que les concurrents testent en premier", "Tout automatiser le même jour"],
+      "options": [
+        "Dépenser le budget le plus vite possible",
+        "Se concentrer sur : Should, Can et Will",
+        "Attendre le test des concurrents directs",
+        "Tout automatiser dès le premier jour"
+      ],
       "correctAnswer": 1,
       "explanation": "Le Lean IA permet d'évaluer la pertinence d'un projet avant d'engager des ressources."
     },
     {
       "id": 8,
       "text": "Selon les données, à qui profite le plus le gain de productivité lié à l'IA ?",
-      "options": ["Aux profils débutants et intermédiaires", "Uniquement aux directeurs d'entreprise", "Exclusivement aux développeurs informatiques", "À personne"],
+      "options": [
+        "Aux profils débutants et intermédiaires",
+        "Uniquement aux directeurs d'entreprise",
+        "Exclusivement aux développeurs informatiques",
+        "À personne"
+      ],
       "correctAnswer": 0,
       "explanation": "L'IA réduit l'écart entre les juniors et les seniors en apportant un socle de connaissances immédiat."
     },
     {
       "id": 9,
       "text": "Que résume l'expression \"Garbage in, garbage out\" lors d'un projet IA ?",
-      "options": ["L'IA produit beaucoup de déchets électroniques", "Si on fournit des données médiocres, l'IA donnera des résultats médiocres", "Il faut jeter son ordinateur pour passer à l'IA", "Les modèles d'IA ne comprennent pas l'anglais"],
+      "options": [
+        "L'IA produit beaucoup de déchets",
+        "Données médiocres = résultats médiocres",
+        "Il faut jeter son ordinateur actuel",
+        "L'IA ne comprend pas le français"
+      ],
       "correctAnswer": 1,
       "explanation": "La qualité du résultat dépend directement de la qualité des données d'entrée ou du prompt."
     },
     {
       "id": 10,
-      "text": "Quelle est la première question à se poser pour cadrer un projet IA (Méthode A.I.D.E) ?",
-      "options": ["Quel outil gratuit puis-je télécharger ?", "Quel est le problème métier concret que je veux résoudre ?", "Comment puis-je remplacer mon équipe ?", "Quelle est l'adresse du site d'OpenAI ?"],
+      "text": "Première question pour cadrer un projet (A.I.D.E) ?",
+      "options": [
+        "Quel outil gratuit utiliser ?",
+        "Quel problème métier concret résoudre ?",
+        "Comment remplacer mon équipe ?",
+        "Quelle est l'adresse d'OpenAI ?"
+      ],
       "correctAnswer": 1,
       "explanation": "On ne part pas de l'outil, mais du besoin métier. L'IA doit résoudre une douleur réelle."
     },
     {
       "id": 11,
       "text": "En contexte pro, l'IA excelle particulièrement sur les tâches qui sont :",
-      "options": ["Très émotionnelles et créatives ex nihilo", "Répétitives, structurées et à grande échelle", "Imprévues et hautement stratégiques", "Axées sur les conflits humains"],
+      "options": [
+        "Très émotionnelles et créatives ex nihilo",
+        "Répétitives, structurées et à grande échelle",
+        "Imprévues et hautement stratégiques",
+        "Axées sur les conflits humains"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA est un moteur de scalabilité pour tout ce qui suit des règles ou des structures logiques."
     },
     {
       "id": 12,
-      "text": "Quel est le pourcentage d'entreprises utilisant déjà l'IA générative dans au moins une fonction (McKinsey 2024) ?",
-      "options": ["10%", "33%", "71%", "99%"],
+      "text": "Quel pourcentage d'entreprises utilisent l'IA générative dans au moins une fonction (McKinsey 2024) ?",
+      "options": [
+        "10%",
+        "33%",
+        "71%",
+        "99%"
+      ],
       "correctAnswer": 2,
       "explanation": "L'adoption est massive et rapide, touchant désormais plus de deux tiers des entreprises mondiales."
     },
     {
       "id": 13,
       "text": "Quel atout l'IA apporte-t-elle spécifiquement aux équipes marketing ?",
-      "options": ["Elle garantit un succès commercial sans effort", "Elle permet l'adaptation rapide des campagnes (langue, ton, format)", "Elle remplace le directeur marketing", "Elle imprime les affiches publicitaires"],
+      "options": [
+        "Elle garantit un succès commercial sans effort",
+        "Elle permet l'adaptation rapide des campagnes (langue, ton, format)",
+        "Elle remplace le directeur marketing",
+        "Elle imprime les affiches publicitaires"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA permet de décliner un message pour 10 cibles differentes en quelques secondes."
     },
     {
       "id": 14,
       "text": "Qu'est-ce que l'IA ne peut absolument pas faire pour vous ?",
-      "options": ["Assumer la responsabilité légale finale d'un document", "Corriger des fautes d'orthographe", "Résumer un texte de 10 pages", "Proposer des idées de brainstorming"],
+      "options": [
+        "Assumer la responsabilité légale finale d'un document",
+        "Corriger des fautes d'orthographe",
+        "Résumer un texte de 10 pages",
+        "Proposer des idées de brainstorming"
+      ],
       "correctAnswer": 0,
       "explanation": "L'IA n'a pas d'existence juridique. Le signataire reste l'unique responsable du contenu produit."
     },
     {
       "id": 15,
       "text": "Quel métier est concerné par la recherche de mots-clés et l'optimisation de titres via l'IA ?",
-      "options": ["Plombier", "Expert SEO", "Médecin", "Chauffeur livreur"],
+      "options": [
+        "Plombier",
+        "Expert SEO",
+        "Médecin",
+        "Chauffeur livreur"
+      ],
       "correctAnswer": 1,
       "explanation": "L'IA est devenue l'alliée numéro 1 des experts en référencement naturel pour l'analyse sémantique."
     },
     {
       "id": 16,
       "text": "Lors du cadrage, pourquoi évaluer la \"Prévisibilité\" d'une tâche ?",
-      "options": ["Pour s'assurer que le résultat de l'IA suit des règles claires et n'est pas aléatoire", "Pour prédire l'avenir de l'entreprise", "Pour deviner le prix de l'abonnement", "Pour savoir si l'outil sera encore là demain"],
+      "options": [
+        "S'assurer que le résultat suit des règles",
+        "Prédire l'avenir financier de l'entreprise",
+        "Deviner le prix exact de l'abonnement IA",
+        "Savoir si l'outil sera là dans 10 ans"
+      ],
       "correctAnswer": 0,
       "explanation": "Une tâche prévisible est plus facile à automatiser et offre des résultats plus fiables."
     },
     {
       "id": 17,
-      "text": "Pourquoi l'IA est-elle un enjeu de cybersécurité en entreprise ?",
-      "options": ["Parce qu'elle empêche l'ordinateur de s'allumer", "Parce qu'il y a un risque de fuite de données confidentielles si elles sont collées dans des outils publics", "Parce qu'elle crée des virus automatiquement", "Parce qu'elle efface les disques durs"],
+      "text": "Pourquoi l'IA est-elle un enjeu de cybersécurité ?",
+      "options": [
+        "Empêche le PC de s'allumer",
+        "Risque de fuite de données confidentielles via outils publics",
+        "Crée des virus automatiquement",
+        "Efface les disques durs"
+      ],
       "correctAnswer": 1,
       "explanation": "Toute donnée envoyée à un modèle public peut potentiellement être apprise par ce modèle."
     },
     {
       "id": 18,
       "text": "Que signifie la lettre \"I\" dans la méthode A.I.D.E de Google ?",
-      "options": ["Ignorer", "Ideate (Imaginer des solutions et évaluer la faisabilité)", "Internet", "Imprimer"],
+      "options": [
+        "Ignorer",
+        "Ideate (Imaginer des solutions et évaluer la faisabilité)",
+        "Internet",
+        "Imprimer"
+      ],
       "correctAnswer": 1,
       "explanation": "L'étape d'idéation consiste à explorer comment l'IA peut répondre au problème identifié."
     },
     {
       "id": 19,
       "text": "Comment l'IA aide-t-elle dans le domaine des Ressources Humaines ?",
-      "options": ["Elle passe les entretiens téléphoniques toute seule", "Elle choisit le salaire des employés", "Elle synthétise les entretiens et rédige des annonces", "Elle licencie automatiquement les moins productifs"],
+      "options": [
+        "Elle passe les entretiens téléphoniques toute seule",
+        "Elle choisit le salaire des employés",
+        "Elle synthétise les entretiens et rédige des annonces",
+        "Elle licencie automatiquement les moins productifs"
+      ],
       "correctAnswer": 2,
       "explanation": "Elle libère les RH des tâches administratives pour leur permettre de se concentrer sur l'humain."
     },
     {
       "id": 20,
       "text": "Quel est un des pièges fréquents lors du lancement d'un projet IA ?",
-      "options": ["Tester l'outil avant de l'acheter", "Oublier de former les utilisateurs finaux (l'équipe) qui trouveront l'outil trop complexe", "Choisir une tâche trop simple", "Poser trop de questions au début"],
+      "options": [
+        "Tester l'outil avant de l'acheter",
+        "Oublier de former les utilisateurs",
+        "Choisir une tâche trop basique",
+        "Poser trop de questions au début"
+      ],
       "correctAnswer": 1,
       "explanation": "Un outil puissant sans formation finit souvent au placard. L'accompagnement au changement est vital."
     }
@@ -287,140 +487,240 @@
     {
       "id": 1,
       "text": "Qu'est-ce que la \"veille\" dans le domaine professionnel ?",
-      "options": ["Le fait de travailler la nuit", "Surveiller, collecter et analyser l'information pour anticiper les évolutions", "Attendre que son manager donne des instructions", "Regarder des séries sur son temps de travail"],
+      "options": [
+        "Le fait de travailler tard la nuit",
+        "Surveiller, collecter et analyser",
+        "Attendre les ordres du manager",
+        "Regarder des séries au bureau"
+      ],
       "correctAnswer": 1,
       "explanation": "La veille est un radar qui permet de rester compétitif dans un monde qui change vite."
     },
     {
       "id": 2,
-      "text": "Pourquoi l'IA générative nécessite-t-elle une veille plus active que les autres technologies ?",
-      "options": ["Parce qu'elle est très lente à évoluer", "Parce que son évolution est exponentielle et de nouveaux modèles sortent chaque semaine", "Parce que personne n'en parle", "Parce qu'elle est réservée aux scientifiques"],
+      "text": "Pourquoi l'IA générative nécessite-t-elle une veille active ?",
+      "options": [
+        "Évolution lente des technologies",
+        "Évolution exponentielle hebdo",
+        "Sujet confidentiel et privé",
+        "Réservé aux seuls chercheurs"
+      ],
       "correctAnswer": 1,
       "explanation": "Le rythme de l'IA est inédit. Ce qui est vrai le lundi peut être obsolète le vendredi."
     },
     {
       "id": 3,
       "text": "Combien de temps a-t-il fallu à ChatGPT pour atteindre 100 millions d'utilisateurs ?",
-      "options": ["7 ans", "2 ans", "2 mois", "2 semaines"],
+      "options": [
+        "7 ans",
+        "2 ans",
+        "2 mois",
+        "2 semaines"
+      ],
       "correctAnswer": 2,
       "explanation": "C'est l'adoption la plus rapide de l'histoire des technologies grand public (contre 4,5 ans pour Facebook)."
     },
     {
       "id": 4,
       "text": "Qu'est-ce qu'une \"veille technologique\" ?",
-      "options": ["Observer les prix pratiqués par ses concurrents", "Suivre les nouvelles lois et réglementations", "Suivre les innovations, nouveaux outils et avancées techniques", "Regarder les statistiques de son propre site web"],
+      "options": [
+        "Observer les prix pratiqués par ses concurrents",
+        "Suivre les nouvelles lois et réglementations",
+        "Suivre les innovations, nouveaux outils et avancées techniques",
+        "Regarder les statistiques de son propre site web"
+      ],
       "correctAnswer": 2,
       "explanation": "Il s'agit de surveiller les ruptures techniques pour savoir quel outil adopter demain."
     },
     {
       "id": 5,
-      "text": "Quelle est la différence entre la veille active et la veille passive ?",
-      "options": ["La passive est payante, l'active est gratuite", "L'active consiste à chercher et tester soi-même, la passive à recevoir l'info (newsletters, alertes)", "L'active se fait le matin, la passive le soir", "Il n'y a aucune différence"],
+      "text": "Différence entre veille active et passive ?",
+      "options": [
+        "Passive payante / Active gratuite",
+        "Active : chercher / Passive : recevoir",
+        "Active le matin / Passive le soir",
+        "Aucune différence entre les deux"
+      ],
       "correctAnswer": 1,
       "explanation": "L'idéal est un mix des deux : s'informer (passif) et pratiquer (actif)."
     },
     {
       "id": 6,
       "text": "Quel outil est recommandé pour \"Centraliser\" sa veille ?",
-      "options": ["Une application d'agrégation comme Feedly ou Notion", "Une clé USB", "Un fichier audio", "Une calculatrice"],
+      "options": [
+        "Une application d'agrégation comme Feedly ou Notion",
+        "Une clé USB",
+        "Un fichier audio",
+        "Une calculatrice"
+      ],
       "correctAnswer": 0,
       "explanation": "Un agrégateur évite d'aller sur 50 sites différents et permet de trier l'information efficacement."
     },
     {
       "id": 7,
-      "text": "Quel est un bon réflexe pour ne pas se laisser déborder par l'information (FOMO) ?",
-      "options": ["S'abonner à toutes les newsletters existantes", "Lire tous les articles sur l'IA chaque jour", "Accepter de manquer certaines infos et privilégier la qualité à la quantité", "Arrêter totalement de s'informer"],
+      "text": "Réflexe pour éviter le débordement d'infos (FOMO) ?",
+      "options": [
+        "S'abonner à toutes les newsletters",
+        "Tout lire chaque jour",
+        "Privilégier la qualité et accepter de manquer des infos",
+        "Arrêter de s'informer"
+      ],
       "correctAnswer": 2,
       "explanation": "Il vaut mieux 3 sources fiables que 100 flux de rumeurs pour garder sa lucidité."
     },
     {
       "id": 8,
       "text": "Dans les sources d'information, que font les acteurs majeurs comme OpenAI ou Anthropic ?",
-      "options": ["Ils publient des rapports de recherche officiels et de la documentation technique", "Ils créent des faux articles pour tromper les concurrents", "Ils ne communiquent jamais sur leurs outils", "Ils font uniquement des vidéos humoristiques"],
+      "options": [
+        "Rapports de recherche et documentation technique",
+        "Faux articles pour tromper",
+        "Pas de communication",
+        "Vidéos humoristiques"
+      ],
       "correctAnswer": 0,
       "explanation": "Les blogs officiels des labos d'IA sont la source la plus fiable pour comprendre les capacités réelles."
     },
     {
       "id": 9,
       "text": "\"Génération Do It Yourself\" ou \"Decode Quantum\" sont des exemples de :",
-      "options": ["Moteurs de recherche", "Podcasts francophones pour suivre la veille IA", "Logiciels de montage vidéo", "Modèles d'intelligence artificielle"],
+      "options": [
+        "Moteurs de recherche",
+        "Podcasts francophones pour suivre la veille IA",
+        "Logiciels de montage vidéo",
+        "Modèles d'intelligence artificielle"
+      ],
       "correctAnswer": 1,
       "explanation": "Le format audio est parfait pour faire sa veille pendant les temps de transport."
     },
     {
       "id": 10,
       "text": "Que faut-il absolument vérifier avant de partager une information trouvée en ligne sur l'IA ?",
-      "options": ["Si elle contient une image", "Si elle est très longue", "La fiabilité de la source, l'auteur et la date de publication", "Le nombre de \"likes\" sur le post"],
+      "options": [
+        "Si elle contient une image",
+        "Si elle est très longue",
+        "La fiabilité de la source, l'auteur et la date de publication",
+        "Le nombre de \"likes\" sur le post"
+      ],
       "correctAnswer": 2,
       "explanation": "Beaucoup de 'scoops' sur l'IA sont des annonces marketing non vérifiées ou dépassées."
     },
     {
       "id": 11,
       "text": "Quel est un risque fréquent lié à la désinformation technique sur l'IA ?",
-      "options": ["Les vulgarisations trop simplistes qui induisent le lecteur en erreur", "Les textes écrits en langage informatique pur", "Les articles qui ne citent jamais d'exemples", "Les sites web qui se chargent trop lentement"],
+      "options": [
+        "Les vulgarisations trop simplistes qui induisent le lecteur en erreur",
+        "Les textes écrits en langage informatique pur",
+        "Les articles qui ne citent jamais d'exemples",
+        "Les sites web qui se chargent trop lentement"
+      ],
       "correctAnswer": 0,
       "explanation": "Prétendre que l'IA 'pense' ou 'ressent' est une erreur de vulgarisation fréquente qu'il faut savoir détecter."
     },
     {
       "id": 12,
       "text": "Combien de temps minimum est-il conseillé de bloquer pour sa routine de veille ?",
-      "options": ["5 heures par jour", "10 à 15 minutes par jour ou 1h par semaine", "1 minute par mois", "Uniquement le week-end"],
+      "options": [
+        "5 heures par jour",
+        "10 à 15 minutes par jour ou 1h par semaine",
+        "1 minute par mois",
+        "Uniquement le week-end"
+      ],
       "correctAnswer": 1,
       "explanation": "La régularité est plus importante que la durée totale."
     },
     {
       "id": 13,
       "text": "Quel média francophone spécialisé pouvez-vous suivre pour l'IA ?",
-      "options": ["Le Journal de Mickey", "SiècleDigital ou FrenchWeb", "Netflix", "L'Équipe"],
+      "options": [
+        "Le Journal de Mickey",
+        "SiècleDigital ou FrenchWeb",
+        "Netflix",
+        "L'Équipe"
+      ],
       "correctAnswer": 1,
       "explanation": "Ces médias traitent l'IA sous l'angle business et professionnel au quotidien."
     },
     {
       "id": 14,
       "text": "À quelle étape de l'organisation de la veille correspond le fait de \"Noter ses découvertes et les organiser\" ?",
-      "options": ["Planifier", "Trier", "Documenter", "Expérimenter"],
+      "options": [
+        "Planifier",
+        "Trier",
+        "Documenter",
+        "Expérimenter"
+      ],
       "correctAnswer": 2,
       "explanation": "Documenter permet de transformer l'information en savoir réutilisable pour son équipe."
     },
     {
       "id": 15,
       "text": "Qu'est-ce que la \"veille réglementaire\" ?",
-      "options": ["Suivre ce que font les autres entreprises", "Se tenir informé des évolutions légales (ex: IA Act) qui impactent l'activité", "Suivre les nouveautés techniques", "Surveiller les tendances de mode"],
+      "options": [
+        "Suivre la concurrence",
+        "Suivre les évolutions légales (ex: IA Act)",
+        "Suivre les nouveautés techniques",
+        "Suivre les tendances de mode"
+      ],
       "correctAnswer": 1,
       "explanation": "Crucial pour s'assurer que l'usage de l'IA en entreprise reste légal et éthique."
     },
     {
       "id": 16,
       "text": "Pourquoi faut-il confronter (recouper) les informations trouvées ?",
-      "options": ["Pour éviter les biais et confirmer la véracité de l'information", "Pour avoir plus de choses à lire", "Pour faire plaisir aux auteurs", "Pour ralentir son apprentissage"],
+      "options": [
+        "Pour éviter les biais et confirmer la véracité de l'information",
+        "Pour avoir plus de choses à lire",
+        "Pour faire plaisir aux auteurs",
+        "Pour ralentir son apprentissage"
+      ],
       "correctAnswer": 0,
       "explanation": "Une seule source peut être erronée. Le recoupement est la base du sérieux professionnel."
     },
     {
       "id": 17,
       "text": "\"Superhuman\" ou \"Flint\" sont des exemples de :",
-      "options": ["Robots humanoïdes", "Modèles de génération d'image", "Newsletters qualitatives pour faire sa veille", "Marques de téléphones"],
+      "options": [
+        "Robots humanoïdes futuristes",
+        "Modèles de génération visuelle",
+        "Newsletters qualitatives de veille",
+        "Marques de téléphones mobiles"
+      ],
       "correctAnswer": 2,
       "explanation": "Ces newsletters sélectionnent le meilleur de l'IA pour vous faire gagner du temps."
     },
     {
       "id": 18,
-      "text": "Quand devez-vous idéalement commencer votre veille sur l'IA ?",
-      "options": ["À la fin de la décennie", "Uniquement quand le patron le demande", "Dès aujourd'hui, même pendant la formation", "Une fois que la formation est totalement terminée"],
+      "text": "Quand commencer sa veille sur l'IA ?",
+      "options": [
+        "À la fin de la décennie.",
+        "Uniquement quand le patron le demande.",
+        "Dès aujourd'hui.",
+        "Une fois la formation terminée."
+      ],
       "correctAnswer": 2,
       "explanation": "La veille se nourrit de la formation, et inversement. C'est une habitude à prendre tout de suite."
     },
     {
       "id": 19,
       "text": "Quel est l'objectif de l'étape \"Expérimenter\" dans la veille ?",
-      "options": ["Publier un livre sur le sujet", "Tester rapidement les outils mentionnés dans vos lectures pour voir s'ils sont utiles", "Détruire son ordinateur", "Envoyer des spams"],
+      "options": [
+        "Publier un livre sur le sujet",
+        "Identifier les outils les plus utiles",
+        "Tout connaitre sur le sujet",
+        "Prédire le futur de l'IA"
+      ],
       "correctAnswer": 1,
       "explanation": "On ne comprend jamais mieux un outil qu'en le testant sur un cas concret pendant 5 minutes."
     },
     {
       "id": 20,
-      "text": "Comment l'auteur Alvin Toffler définit-il les \"illettrés du 21e siècle\" ?",
-      "options": ["Ceux qui ne savent pas coder", "Ceux qui n'ont pas de smartphone", "Ceux qui ne peuvent pas apprendre, désapprendre et réapprendre", "Ceux qui ne lisent pas la presse papier"],
+      "text": "Définition des \"illettrés du 21e siècle\" (Toffler) ?",
+      "options": [
+        "Ceux qui ignorent le code",
+        "Ceux privés de smartphone",
+        "Ceux incapables d'apprendre",
+        "Ceux qui boudent la presse"
+      ],
       "correctAnswer": 2,
       "explanation": "L'agilité d'apprentissage est la compétence reine face à l'avalanche technologique."
     }

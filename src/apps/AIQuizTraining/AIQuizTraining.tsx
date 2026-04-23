@@ -29,6 +29,32 @@ export const AIQuizTraining: React.FC = () => {
   const [username, setUsername] = useState("");
   const [hasSaved, setHasSaved] = useState(false);
   const [isTransitioningToScore, setIsTransitioningToScore] = useState(false);
+  const [chapterCounts, setChapterCounts] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    if (selectedModule) {
+      const loadCounts = async () => {
+        const counts: Record<string, number> = {};
+        for (const chapter of selectedModule.chapters) {
+          const data = await getQuizData(selectedModule.id, chapter.id);
+          counts[chapter.id] = data.length;
+        }
+        setChapterCounts(counts);
+      };
+      loadCounts();
+    }
+  }, [selectedModule?.id]);
+
+  const handleLevelSelect = (level: number) => {
+    // Legacy support if needed, but we use handleChapterSelect now
+  };
+
+  const handleLevelReset = () => {
+    setSelectedModule(null);
+    setSelectedChapter(null);
+    setGameStarted(false);
+  };
+
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   
   const { saveScore, getAppLeaderboard } = useLeaderboard();
@@ -161,99 +187,117 @@ export const AIQuizTraining: React.FC = () => {
     );
   }
 
+
   // 1. Module Selection Screen
   if (!selectedModule && !gameStarted) {
     return (
-      <div className="max-w-4xl mx-auto flex flex-col gap-8 py-4 md:py-8 px-4">
-        <div className="space-y-4">
-          <h1 className="font-display font-black text-5xl md:text-7xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
+      <div className="flex flex-col gap-8 py-4 md:py-12">
+        <div className="max-w-4xl mx-auto w-full space-y-4 px-4 md:px-0">
+          <h1 className="font-display font-black text-5xl md:text-8xl uppercase italic tracking-tighter text-wemodo-navy leading-none mb-2">
             QUIZ <span className="text-wemodo-purple">FORMATION</span>
           </h1>
-          <p className="font-bold text-wemodo-navy/70 uppercase text-sm md:text-base tracking-widest max-w-2xl">
+          <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-base tracking-widest max-w-2xl">
             Validez vos acquis chapitre par chapitre. Sélectionnez un module pour commencer.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-0">
           {TRAINING_QUIZ_STRUCTURE.map((module) => (
             <motion.div 
               key={module.id}
-              whileHover={{ scale: 1.02, rotate: -1 }}
+              whileHover={{ scale: 1.02, y: -5 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setSelectedModule(module)}
-              className="group cursor-pointer"
+              className="group cursor-pointer bg-white border-4 border-wemodo-navy flex flex-col shadow-[6px_6px_0px_0px_rgba(18,14,61,1)] hover:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)] transition-all h-full overflow-hidden"
             >
-              <div className={`h-full ${module.color} border-4 border-wemodo-navy p-8 md:p-10 flex flex-col gap-6 shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] transition-all group-hover:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)]`}>
-                <div className="bg-white border-4 border-wemodo-navy w-16 h-16 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]">
-                  <Layers size={32} className="text-wemodo-purple fill-wemodo-purple" />
+              {/* Card Header with ID Badge */}
+              <div className="p-6 md:p-8 flex-1 flex flex-col gap-4">
+                <div className={`${module.color} text-white px-3 py-1 inline-block text-[10px] md:text-xs font-black w-fit uppercase tracking-widest`}>
+                  {module.id}
                 </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <h2 className="font-display font-black text-4xl uppercase italic tracking-tighter leading-none">{module.title}</h2>
-                    {module.chapters.some(c => c.isUpdated) && (
-                      <div className="w-3 h-3 bg-wemodo-purple rounded-full animate-pulse shadow-[0_0_8px_rgba(139,92,246,0.5)]" />
-                    )}
-                  </div>
-                  <p className="font-black uppercase text-xs tracking-widest text-wemodo-navy/60 mb-4">{module.description}</p>
-                  <p className="text-lg font-bold leading-tight">
-                    {module.chapters.length} chapitres à valider.
-                  </p>
+                <h3 className="font-display font-black uppercase text-3xl md:text-5xl italic tracking-tighter leading-[0.9] group-hover:text-wemodo-purple transition-colors">
+                  {module.description}
+                </h3>
+                <p className="font-black uppercase text-xs md:text-sm tracking-widest text-wemodo-navy/60">
+                  {module.title}
+                </p>
+              </div>
+              
+              {/* Card Footer */}
+              <div className="px-6 md:px-8 py-4 bg-wemodo-navy/5 border-t-4 border-wemodo-navy flex items-center justify-between mt-auto">
+                <div className="flex flex-col">
+                  <span className="font-bold text-[10px] uppercase text-wemodo-navy/40 tracking-widest leading-none mb-1">Contenu</span>
+                  <span className="font-black text-lg text-wemodo-navy uppercase italic">
+                    {module.chapters.length} chapitres
+                  </span>
                 </div>
-                <div className="mt-auto flex items-center gap-2 font-black uppercase text-sm group-hover:gap-4 transition-all">
-                  VOIR LES CHAPITRES <ChevronRight size={20} />
+                <div className="flex items-center gap-1 font-black uppercase text-sm md:text-base text-wemodo-purple group-hover:gap-3 transition-all">
+                  VOIR <ChevronRight size={24} strokeWidth={3} />
                 </div>
               </div>
             </motion.div>
           ))}
+          </div>
         </div>
       </div>
     );
   }
 
+
   // 2. Chapter Selection Screen
   if (selectedModule && !gameStarted) {
     return (
-      <div className="max-w-4xl mx-auto flex flex-col gap-8 py-4 md:py-8 px-4">
-        <div className="space-y-4">
+      <div className="flex flex-col gap-8 py-4 md:py-12">
+        <div className="max-w-4xl mx-auto w-full space-y-4 md:px-0 px-4">
           <button 
             onClick={() => setSelectedModule(null)}
-            className="flex items-center gap-2 font-black uppercase text-[10px] tracking-widest text-wemodo-navy/50 hover:text-wemodo-purple transition-colors"
+            className="flex items-center gap-2 font-black uppercase text-[10px] tracking-widest text-wemodo-navy/50 hover:text-wemodo-purple transition-colors mb-2"
           >
             <ArrowLeft size={14} /> Retour aux modules
           </button>
-          <h1 className="font-display font-black text-5xl md:text-7xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
-            {selectedModule.title}
-          </h1>
-          <p className="font-black uppercase text-xs tracking-widest text-wemodo-navy/60">
+          <h1 className="font-display font-black text-5xl md:text-7xl uppercase italic tracking-tighter text-wemodo-navy leading-none mb-2">
             {selectedModule.description}
+          </h1>
+          <p className="font-bold text-wemodo-navy/70 uppercase text-xs md:text-sm tracking-widest">
+            {selectedModule.title}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-0">
           {selectedModule.chapters.map((chapter) => (
             <motion.div 
               key={chapter.id}
-              whileHover={{ scale: 1.02, x: 5 }}
+              whileHover={{ scale: 1.02, y: -5 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => handleChapterSelect(chapter)}
-              className="group cursor-pointer bg-white border-4 border-wemodo-navy p-6 flex items-center justify-between shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] hover:shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] transition-all"
+              className="group cursor-pointer bg-white border-4 border-wemodo-navy flex flex-col shadow-[6px_6px_0px_0px_rgba(18,14,61,1)] hover:shadow-[12px_12px_0px_0px_rgba(18,14,61,1)] transition-all h-full overflow-hidden"
             >
-              <div className="flex items-center gap-4">
-                <div className="bg-wemodo-yellow border-2 border-wemodo-navy p-2">
-                  <BookOpen size={20} />
+              {/* Card Header with ID Badge */}
+              <div className="p-6 md:p-8 flex-1 flex flex-col gap-4">
+                <div className="bg-wemodo-navy text-white px-3 py-1 inline-block text-[10px] md:text-xs font-black w-fit uppercase tracking-widest">
+                  {chapter.id}
                 </div>
-                <div className="flex flex-col gap-1">
-                  <h3 className="font-black uppercase text-lg leading-tight">{chapter.title}</h3>
-                  {chapter.isUpdated && (
-                    <span className="bg-wemodo-purple text-white text-[8px] font-black px-2 py-0.5 w-fit uppercase tracking-tighter rounded-sm">
-                      Mis à jour
-                    </span>
-                  )}
+                <h3 className="font-display font-black uppercase text-3xl md:text-5xl italic tracking-tighter leading-[0.9] group-hover:text-wemodo-purple transition-colors">
+                  {chapter.title}
+                </h3>
+              </div>
+              
+              {/* Card Footer */}
+              <div className="px-6 md:px-8 py-4 bg-wemodo-navy/5 border-t-4 border-wemodo-navy flex items-center justify-between mt-auto">
+                <div className="flex flex-col">
+                  <span className="font-bold text-[10px] uppercase text-wemodo-navy/40 tracking-widest leading-none mb-1">Questions</span>
+                  <span className="font-black text-lg text-wemodo-navy uppercase italic">
+                    {chapterCounts[chapter.id] !== undefined ? chapterCounts[chapter.id] : "..."}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1 font-black uppercase text-sm md:text-base text-wemodo-purple group-hover:gap-3 transition-all">
+                  VOIR <ChevronRight size={24} strokeWidth={3} />
                 </div>
               </div>
-              <ChevronRight size={24} className="opacity-0 group-hover:opacity-100 transition-all text-wemodo-purple" />
             </motion.div>
           ))}
+          </div>
         </div>
       </div>
     );
@@ -371,24 +415,25 @@ export const AIQuizTraining: React.FC = () => {
   return (
     <div className="max-w-2xl mx-auto flex flex-col min-h-full gap-6 md:gap-8 py-0 md:py-1 bg-transparent">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 px-4 md:px-0 mt-4 md:mt-0">
-        <div className="space-y-1">
-          <button 
-            onClick={() => setGameStarted(false)}
-            className="flex items-center gap-2 font-black uppercase text-[10px] tracking-widest text-wemodo-navy/50 hover:text-wemodo-purple transition-colors mb-2"
-          >
-            <ArrowLeft size={14} /> Retour aux chapitres
-          </button>
-          <div className="flex items-center gap-3">
-             <div className="bg-wemodo-navy text-white p-2 border-2 border-wemodo-navy font-black text-xs">
-                {selectedChapter?.id}
-             </div>
-             <h1 className="font-display font-black text-3xl md:text-5xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
-                {selectedChapter?.title}
-             </h1>
+      <div className="flex flex-col gap-6 px-4 md:px-0 mt-6 md:mt-2">
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-4">
+            <div className="bg-wemodo-navy text-white px-3 py-1 border-2 border-wemodo-navy font-black text-xs uppercase tracking-widest">
+              {selectedChapter?.id}
+            </div>
+            <button 
+              onClick={() => setGameStarted(false)}
+              className="flex items-center gap-2 font-black uppercase text-[10px] tracking-widest text-wemodo-navy/50 hover:text-wemodo-purple transition-colors"
+            >
+              <ArrowLeft size={14} /> Retour aux chapitres
+            </button>
           </div>
+          <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none truncate">
+            {selectedChapter?.title}
+          </h1>
         </div>
-        <div className="shrink-0 flex items-center gap-3 bg-white border-4 border-wemodo-navy p-3 shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]">
+
+        <div className="flex items-center gap-3 bg-white border-4 border-wemodo-navy p-3 shadow-[4px_4px_0px_0px_rgba(18,14,61,1)] w-fit">
           <div className="flex flex-col">
             <span className="font-black uppercase text-[10px] text-wemodo-navy/50 leading-none mb-1">Score</span>
             <span className="font-display font-black text-2xl italic leading-none">{state.score} / {questions.length}</span>

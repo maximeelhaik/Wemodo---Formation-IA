@@ -1,0 +1,259 @@
+m1.json [c2] Q8: Meta pattern '\bici\b' found in text or options.
+m1.json [c4] Q8: Meta pattern '\bles sources\b' found in text or options.
+m1.json [c4] Q18: Meta pattern '\bla formation\b' found in text or options.
+m2.json [c1] Q6 Opt1: Option too long (118 chars): Il calcule des probabilités statistiques pour prédire quel mot a le plus de chances de venir ensuite selon le contexte
+m2.json [c1] Q7 Opt3: Option too long (106 chars): Un morceau de mot servant d'unité de base pour les calculs statistiques (environ 4 caractères en français)
+m2.json [c1] Q8 Opt0: Option too long (105 chars): Il analyse tous les tokens fournis pour comprendre le sens global de la demande avant de prédire la suite
+m2.json [c1] Q9 Opt1: Option too long (134 chars): Plusieurs couches de connexions (neurones) dont les "poids" s'ajustent statistiquement durant l'apprentissage pour extraire des motifs
+m2.json [c1] Q10 Opt2: Option too long (120 chars): Elles analysent des milliards de paires associant un texte et une image pour relier un concept à une structure de pixels
+m2.json [c1] Q11 Opt1: Option too long (126 chars): Sur la compétition entre deux réseaux : un générateur qui crée de faux contenus et un discriminateur qui tente de les détecter
+m2.json [c1] Q12 Opt2: Option too long (136 chars): Ajouter progressivement du bruit visuel lors de l'entraînement, puis apprendre à inverser ce processus (débruitage) pour générer l'image
+m2.json [c1] Q13 Opt3: Option too long (116 chars): TXT2IMG crée une image depuis un simple texte, IMG2IMG part d'une image source fournie pour la modifier ou l'altérer
+m2.json [c1] Q14 Opt0: Option too long (143 chars): Il analyse et comprend simultanément plusieurs formats (texte, image, son), permettant des réponses plus nuancées par le croisement du contexte
+m2.json [c1] Q16 Opt0: Option too long (135 chars): L'IA est le domaine général, le Machine Learning en est un sous-domaine, et le Deep Learning est une spécialisation du Machine Learning
+m2.json [c1] Q17 Opt1: Option too long (158 chars): Le réseau de neurones est un modèle mathématique généraliste, le LLM est une architecture spécifique (Transformer) entraînée uniquement sur du langage naturel
+m2.json [c1] Q18 Opt2: Option too long (161 chars): Le dataset est un ensemble de données structurées souvent pourvues de labels, tandis que le corpus est une vaste collection de textes pour l'analyse linguistique
+m2.json [c2] Q2: Text too long (149 chars): Parmi les 3 types de créativité identifiés, laquelle représente environ 95 % de la créativité humaine et consiste à associer des éléments existants ?
+m2.json [c2] Q3 Opt0: Option too long (140 chars): Elle excelle dans la créativité combinatoire mais échoue, en théorie, dans la créativité transformationnelle (rupture radicale et ex nihilo)
+m2.json [c2] Q5: Text too long (156 chars): Selon le modèle itératif de Graham Wallas (1926), à quelle étape du processus créatif correspond le moment du "déclic" ou de la pensée soudaine qui émerge ?
+m2.json [c2] Q6: Text too long (139 chars): Face à la création, nous rencontrons souvent des obstacles. Dans quelle famille classe-t-on la "peur du jugement" ou le "perfectionnisme" ?
+m2.json [c2] Q7 Opt1: Option too long (133 chars): Un doute initial qui pousse au repli sur des solutions familières, générant des résultats décevants, ce qui renforce le doute initial
+m2.json [c2] Q10 Opt2: Option too long (158 chars): Car l'IA n'est qu'un catalyseur : sans cadrage de notre part, son utilisation risque d'engendrer de la redondance, du plagiat ou une uniformisation des styles
+m2.json [c2] Q11: Text too long (167 chars): Parmi ces tâches créatives, laquelle ne faut-il idéalement PAS déléguer entièrement à une IA, car elle demande un fort niveau d'expertise et de réflexion stratégique ?
+m2.json [c2] Q12: Text too long (131 chars): Dans le domaine du SEO et de la rédaction web, comment est-il conseillé d'utiliser l'IA pour préserver la qualité finale du texte ?
+m2.json [c2] Q12 Opt1: Option too long (127 chars): Utiliser l'IA pour la structure (plan, balises) et le brouillon, puis enrichir, clarifier et fiabiliser manuellement le contenu
+m2.json [c2] Q13: Text too long (141 chars): Quel événement symbolique survenu en 2018 a prouvé que l'IA était capable de simuler une certaine forme de créativité combinatoire visuelle ?
+m2.json [c2] Q14 Opt1: Option too long (149 chars): La production de contenus très formatés par les statistiques moyennes de l'entraînement, conduisant à des tournures répétitives et une uniformisation
+m2.json [c2] Q15 Opt2: Option too long (116 chars): Le cannibalisme de l'IA, c'est-à-dire l'auto-alimentation des modèles par des images elles-mêmes générées par des IA
+m2.json [c2] Q16 Opt1: Option too long (129 chars): L'IA a biaisé tout le groupe vers un concept similaire et prévisible, tuant la diversité des idées au profit d'un consensus moyen
+m2.json [c2] Q17: Text too long (137 chars): Pour contrer les limites créatives de l'IA, il faut la contrôler. Quelle vérification correspond à la lutte contre les "Hallucinations" ?
+m2.json [c2] Q17 Opt2: Option too long (109 chars): Valider la pertinence du contexte, vérifier les affirmations factuelles et tester le rendu auprès de sa cible
+m2.json [c2] Q19 Opt3: Option too long (118 chars): L'intégration de notre identité créative : affiner le style, ajuster le ton et apporter une valeur ajoutée personnelle
+m2.json [c2] Q20 Opt2: Option too long (123 chars): C'est un assistant puissant pour produire des contenus qualitatifs et des pistes de réflexion, à condition d'être supervisé
+m2.json [c3] Q7 Opt2: Option too long (131 chars): Cela permet de représenter visuellement le cheminement et d'identifier instantanément les étapes redondantes ou les pertes de temps
+m2.json [c3] Q9: Text too long (150 chars): Avant d'intégrer l'IA pour automatiser une action, l'une des 5 questions essentielles à se poser concerne "l'impact". Que faut-il évaluer exactement ?
+m2.json [c3] Q9 Opt2: Option too long (112 chars): L'impact réel sur le temps gagné par rapport à la charge de travail demandée pour paramétrer et vérifier l'outil
+m2.json [c3] Q11 Opt1: Option too long (121 chars): Surestimer les capacités de l'outil et croire que l'IA fait tout parfaitement, la considérant comme un oracle infaillible
+m2.json [c3] Q12: Text too long (133 chars): Quel piège d'organisation correspond au fait de laisser l'IA gérer un flux d'emails ou un processus de bout en bout sans intervenir ?
+m2.json [c3] Q14: Text too long (140 chars): Pour bien cadrer vos objectifs de gain de productivité, il est recommandé d'utiliser la méthode SMART. Que signifie le "M" de cet acronyme ?
+m2.json [c3] Q15: Text too long (146 chars): Dans une matrice "Impact / Effort", quelles tâches (appelées "Quick Wins") devez-vous impérativement cibler pour commencer l'intégration de l'IA ?
+m2.json [c3] Q15 Opt2: Option too long (129 chars): Les tâches simples et répétitives qui ont un impact élevé sur la libération du temps, avec un effort de mise en place très faible
+m2.json [c3] Q17: Text too long (153 chars): L'IA ne résout pas tous les problèmes. Parmi les facteurs de productivité liés à la "dimension humaine", que faut-il également gérer pour être efficace ?
+m2.json [c3] Q18: Text too long (170 chars): Pour optimiser des workflows en entreprise, centraliser l'information et collaborer en temps réel, quel type d'outil est mentionné comme un levier d'efficacité puissant ?
+m2.json [c3] Q19 Opt2: Option too long (102 chars): Le temps gagné est réinvesti dans de nouvelles tâches liées à l'outil, empêchant la charge de diminuer
+m2.json [c3] Q20 Opt3: Option too long (104 chars): Le phénomène de faux travail généré par l'IA qui demande ensuite des heures de déchiffrage aux collègues
+m2.json [c4] Q1: Text too long (135 chars): Combien de grandes catégories d'outils d'IA générative identifie-t-on généralement dans le paysage actuel (texte, audio, image, etc.) ?
+m2.json [c4] Q3: Text too long (146 chars): Sur le marché des outils spécialisés dans la rédaction, quelle est la spécificité de la plateforme Jasper par rapport à un assistant généraliste ?
+m2.json [c4] Q4: Text too long (152 chars): D'après les statistiques du marché, quel pourcentage de professionnels de la communication et du marketing déclarent utiliser l'IA générative visuelle ?
+m2.json [c4] Q7: Text too long (139 chars): Si une marque a besoin de générer des logos ou des icônes modifiables sans perte de qualité, quel outil spécialisé est le plus recommandé ?
+m2.json [c4] Q8: Text too long (159 chars): Dans le domaine de la création vidéo, quelle caractéristique fait de Runway (Gen-4) un outil plébiscité pour les productions narratives ou cinématographiques ?
+m2.json [c4] Q11 Opt1: Option too long (120 chars): Elle agit directement au sein de vos notes existantes, évitant les copier-coller et s'intégrant au workflow collaboratif
+m2.json [c4] Q13 Opt2: Option too long (104 chars): Des accès illimités ou très élevés avec des fonctions avancées, remplaçant souvent 2 à 3 outils gratuits
+m2.json [c4] Q14 Opt1: Option too long (107 chars): Un risque de dépendance à un fournisseur unique et des performances limitées sur les tâches très techniques
+m2.json [c4] Q15 Opt2: Option too long (130 chars): Pour des usages intensifs nécessitant une forte expertise métier, où le retour sur investissement compense le coût des abonnements
+m2.json [c4] Q17 Opt2: Option too long (108 chars): Le manque d'intégration dans le workflow (exports manuels) et une qualité stagnante génèrent un ROI négatif.
+m2.json [c4] Q19 Opt2: Option too long (121 chars): S'assurer qu'il s'intègre parfaitement dans votre flux de travail quotidien en le testant sur des cas réels et mesurables
+m2.json [c4] Q20 Opt1: Option too long (128 chars): Car un excellent outil devient pénible et contre-productif s'il impose des allers-retours constants entre plusieurs applications
+m2.json [c4] Q20: Meta pattern '\bici\b' found in text or options.
+m2.json [c5] Q1 Opt1: Option too long (106 chars): Le prompting est l'acte de prompter, le prompt engineering est une méthodologie pour des résultats fiables
+m2.json [c5] Q2: Text too long (146 chars): Le métier de "Prompt Engineer" ne se limite pas à écrire des textes. Parmi ces propositions, laquelle fait partie de ses 5 dimensions de travail ?
+m2.json [c5] Q3 Opt0: Option too long (113 chars): La recherche vise à trouver une information existante, le prompt vise à créer, transformer ou analyser du contenu
+m2.json [c5] Q5: Text too long (129 chars): Malgré ses avantages, l'art du prompting présente des inconvénients. Lequel est particulièrement vrai en contexte professionnel ?
+m2.json [c5] Q5 Opt2: Option too long (126 chars): La création et le test de requêtes optimisées demandent un temps de préparation long, qui ne devient rentable que sur la durée
+m2.json [c5] Q6 Opt1: Option too long (126 chars): Car l'IA enrichit sa "mémoire de travail" au fil de l'échange, ce qui réduit son incertitude et limite les risques d'invention
+m2.json [c5] Q7: Text too long (130 chars): Dans le cycle d'amélioration continue d'un prompt, quelle est l'étape cruciale qui suit l'analyse de la première réponse de l'IA ?
+m2.json [c5] Q8 Opt2: Option too long (126 chars): La génération d'une information qui semble plausible et présentée avec assurance, mais qui est totalement inventée ou inexacte
+m2.json [c5] Q9: Text too long (165 chars): Si vous demandez à l'IA les chiffres d'une étude de l'INSEE pour 2023 et qu'elle génère un pourcentage réaliste mais fictif, de quel type d'hallucination s'agit-il ?
+m2.json [c5] Q10 Opt2: Option too long (115 chars): Demander à deux instances (ou deux IA) distinctes de chercher l'information et comparer si les résultats concordent
+m2.json [c5] Q11 Opt0: Option too long (139 chars): Elle autorise l'IA à laisser un espace vide ou un "X" en cas de manque d'information, plutôt que de tenter de deviner et d'inventer un fait
+m2.json [c5] Q12 Opt1: Option too long (138 chars): Demander explicitement à l'IA quelles informations précises elle a besoin de connaître sur nous pour générer le meilleur résultat possible
+m2.json [c5] Q13 Opt2: Option too long (132 chars): Elle demande à l'IA de nous poser des questions une par une pour s'assurer qu'aucun contexte important ne manque avant la génération
+m2.json [c5] Q14 Opt1: Option too long (140 chars): En exigeant de l'IA qu'elle vérifie ses propres informations, explicite ses sources ou présente des contre-arguments à sa propre proposition
+m2.json [c5] Q15 Opt2: Option too long (119 chars): "L'intro est bien, mais remplace le paragraphe 3 par une liste à puces et réduis le jargon technique de la conclusion."
+m2.json [c5] Q16 Opt1: Option too long (121 chars): L'IA ne sachant pas ce qui a déplu, elle risque de modifier de façon aléatoire des éléments qui étaient pourtant corrects
+m2.json [c5] Q18 Opt2: Option too long (111 chars): Cela réduit drastiquement les allers-retours correctifs frustrants qui prennent beaucoup plus de temps au final
+m2.json [c5] Q19 Opt2: Option too long (141 chars): Comme un investissement essentiel, valorisant ceux qui savent exploiter l'outil efficacement par rapport à ceux qui connaissent juste son nom
+m2.json [c5] Q20 Opt1: Option too long (117 chars): Car l'IA a tendance à devenir paresseuse si on accepte systématiquement ses premières propositions sans la challenger
+m2.json [c6] Q2 Opt1: Option too long (107 chars): À indiquer à l'IA ce qu'elle doit absolument éviter (ex: termes interdits, limites de budget, ton à bannir)
+m2.json [c6] Q4 Opt2: Option too long (124 chars): La rédaction de documents stratégiques ou de livrables nécessitant des critères précis et mesurables (ex: analyse de marché)
+m2.json [c6] Q5 Opt1: Option too long (142 chars): Elle se concentre intensément sur l'harmonie éditoriale, rendant le prompt idéal pour des contenus créatifs ou de la communication très ciblée
+m2.json [c6] Q6 Opt1: Option too long (142 chars): Fournir 2 à 3 exemples concrets du résultat attendu pour que l'IA détecte le "pattern" (schéma) et reproduise exactement le style ou le format
+m2.json [c6] Q7 Opt2: Option too long (118 chars): Assurer une cohérence éditoriale parfaite sur une production en série (ex: descriptions de produits, posts récurrents)
+m2.json [c6] Q9 Opt1: Option too long (140 chars): L'analyse multicritères et la validation de calculs ou décisions sensibles nécessitant une transparence logique (ex: répartition budgétaire)
+m2.json [c6] Q11 Opt1: Option too long (124 chars): Ce sont des places de marché commerciales permettant d'acheter ou de vendre des prompts optimisés et notés par la communauté
+m2.json [c6] Q12 Opt1: Option too long (110 chars): Demander directement à l'assistant IA de vous proposer et structurer 2 ou 3 trames sur-mesure pour votre tâche
+m2.json [c6] Q13 Opt2: Option too long (141 chars): Un espace de travail avec base de données comme Notion ou Airtable, permettant d'ajouter des tags, des catégories et d'évaluer la performance
+m2.json [c6] Q14 Opt1: Option too long (113 chars): La catégorie métier, les tags d'usage (ex: SEO, email), la note de performance et la date de dernière utilisation
+m2.json [c6] Q15 Opt1: Option too long (169 chars): C'est un mini-agent configuré une seule fois, embarquant vos instructions permanentes et fichiers de contexte, ce qui évite de réécrire les mêmes règles à chaque échange
+m2.json [c6] Q16 Opt0: Option too long (116 chars): Que le vocabulaire utilisé ne contient aucune ambiguïté et que l'objectif est compréhensible dès la première lecture
+m2.json [c6] Q17 Opt2: Option too long (147 chars): Le résultat de l'IA généré par le prompt peut être utilisé ou exploité immédiatement sans nécessiter de recherches externes ou de longues retouches
+m2.json [c6] Q18 Opt1: Option too long (114 chars): L'ajout d'instructions sur le format (ex: tableau), le ton (ex: pédagogique) et le contexte (ex: secteur bancaire)
+m2.json [c6] Q19 Opt2: Option too long (157 chars): Pour identifier rapidement les éléments de contexte manquants ou les contradictions, et ainsi maximiser les chances d'obtenir le bon résultat du premier coup
+m2.json [c6] Q20 Opt0: Option too long (148 chars): Cela permet de gagner en contrôle, de standardiser la qualité des résultats et de réutiliser efficacement son travail intellectuel sur le long terme
+m2.json [c7] Q1 Opt1: Option too long (138 chars): Le fait de concevoir des systèmes qui apportent une valeur positive réelle et mesurable à la société, au-delà de simplement "ne pas nuire"
+m2.json [c7] Q2 Opt1: Option too long (134 chars): Garantir un consentement éclairé et éviter les "dark patterns" (techniques de persuasion abusives) pour que l'humain garde le contrôle
+m2.json [c7] Q3 Opt1: Option too long (122 chars): La génération d'une information factuellement fausse ou inventée, mais présentée avec une syntaxe très crédible et assurée
+m2.json [c7] Q4 Opt1: Option too long (148 chars): Le droit pour un modèle d'IA d'être entraîné sur des contenus protégés sans licence, puis de générer des textes qui concurrencent l'éditeur original
+m2.json [c7] Q5 Opt0: Option too long (103 chars): Une charte éthique optionnelle que les entreprises de la tech peuvent signer sur la base du volontariat
+m2.json [c7] Q5 Opt1: Option too long (110 chars): Un traité international signé par les États-Unis, la Chine et l'Europe pour interdire le développement de l'IA
+m2.json [c7] Q5 Opt2: Option too long (142 chars): Le premier cadre juridique contraignant au monde, classant les systèmes d'IA selon leur niveau de risque pour protéger les droits fondamentaux
+m2.json [c7] Q6: Text too long (129 chars): Selon la pyramide de l'IA Act, comment sont classés les systèmes de "notation sociale" ou d'identification biométrique de masse ?
+m2.json [c7] Q8 Opt1: Option too long (114 chars): L'obligation de transparence, notamment signaler clairement aux utilisateurs qu'un contenu a été généré par une IA
+m2.json [c7] Q10 Opt1: Option too long (115 chars): Ils doivent publier un résumé public des données protégées par le droit d'auteur utilisées pour entraîner le modèle
+m2.json [c7] Q11 Opt1: Option too long (133 chars): Le texte s'applique progressivement avec des échéances différentes selon le niveau de risque, visant une conformité totale d'ici 2027
+m2.json [c7] Q11: Meta pattern '\bici\b' found in text or options.
+m2.json [c7] Q12 Opt1: Option too long (130 chars): Car on viole le RGPD (transfert de données hors UE) et on s'expose à des poursuites pour discrimination algorithmique indocumentée
+m2.json [c7] Q13 Opt0: Option too long (115 chars): Engager la responsabilité éditoriale de l'entreprise pour pratiques commerciales trompeuses et publicité mensongère
+m2.json [c7] Q14 Opt1: Option too long (125 chars): Le statut juridique des images générées reste flou et peut comporter des éléments de plagiat involontaire d'œuvres existantes
+m2.json [c7] Q15 Opt2: Option too long (132 chars): Garder une trace écrite interne des modèles utilisés, des instructions données et des résultats obtenus pour assurer une traçabilité
+m2.json [c7] Q16 Opt2: Option too long (108 chars): Optimiser ses prompts pour limiter les requêtes inutiles et ne pas générer de contenus superflus à la chaîne
+m2.json [c7] Q17 Opt1: Option too long (136 chars): Être attentif aux biais présents dans les réponses, les corriger et veiller à créer du contenu inclusif et représentatif de la diversité
+m2.json [c7] Q19: Text too long (137 chars): Selon l'IA Act, que doit faire un créateur de modèle pour respecter le pilier de la "Non-malfaisance" avant le déploiement de son outil ?
+m2.json [c7] Q19 Opt1: Option too long (130 chars): Évaluer le système lors de scénarios contraignants (tests de sécurité) pour identifier les failles et limiter les usages dangereux
+m2.json [c7] Q20 Opt1: Option too long (135 chars): Considérer la machine comme un outil de travail dont l'humain reste, en dernier ressort, le superviseur et le garant juridique et moral
+m2.json [c8] Q1 Opt1: Option too long (155 chars): La croyance selon laquelle l'IA, reposant sur des calculs mathématiques, prendrait des décisions neutres, alors qu'elle hérite en réalité des biais humains
+m2.json [c8] Q2 Opt1: Option too long (112 chars): Les biais présents dans les données d'entraînement et les biais d'optimisation générés par l'algorithme lui-même
+m2.json [c8] Q3 Opt2: Option too long (128 chars): Le taux d'erreur de l'algorithme est identique pour tous les groupes démographiques analysés, garantissant une performance égale
+m2.json [c8] Q4 Opt1: Option too long (139 chars): Parce que la discrimination peut apparaître au croisement de plusieurs caractéristiques (ex: âge + genre + origine) de manière très subtile
+m2.json [c8] Q5: Text too long (125 chars): Comment le fameux exemple de Google Translate (traduisant du turc vers l'anglais) a-t-il illustré le biais de genre en 2018 ?
+m2.json [c8] Q5 Opt1: Option too long (167 chars): Le système attribuait systématiquement le masculin aux professions prestigieuses (docteur, PDG) et le féminin aux métiers du soin (infirmière) depuis une langue neutre
+m2.json [c8] Q7 Opt1: Option too long (127 chars): De structurer l'information de manière prévisible, avec des phrases courtes et en définissant immédiatement le jargon technique
+m2.json [c8] Q9 Opt1: Option too long (112 chars): En analysant les images du site pour générer des balises "Alt" descriptives et claires pour les lecteurs d'écran
+m2.json [c8] Q10 Opt1: Option too long (128 chars): L'exclusion des personnes disposant d'un débit internet faible (ex: 3G) ou d'équipements anciens face à des contenus trop lourds
+m2.json [c8] Q11 Opt2: Option too long (139 chars): Interroger le modèle pour réussir à déterminer si les données spécifiques d'une personne faisaient partie de son jeu d'entraînement initial
+m2.json [c8] Q12 Opt1: Option too long (133 chars): Ajouter une quantité précise de "bruit" (aléa) lors du traitement pour brouiller les pistes et empêcher l'identification individuelle
+m2.json [c8] Q13 Opt0: Option too long (110 chars): Plus on ajoute de l'aléa pour protéger les données, plus la qualité prédictive du modèle a tendance à diminuer
+m2.json [c8] Q14 Opt2: Option too long (143 chars): Les données restent localement dans l'hôpital, le modèle s'entraîne sur place et n'envoie au serveur central que ses mises à jour mathématiques
+m2.json [c8] Q15 Opt1: Option too long (144 chars): Pour avoir collecté massivement plus de 30 milliards d'images faciales sans consentement afin d'entraîner son logiciel de reconnaissance faciale
+m2.json [c8] Q16 Opt0: Option too long (125 chars): Ne fournir au modèle que les informations strictement nécessaires pour accomplir la tâche, en écartant les données superflues
+m2.json [c8] Q17 Opt1: Option too long (185 chars): La pseudonymisation utilise des alias réversibles (qui gardent une possibilité de réidentification), tandis que l'anonymisation transforme les données de manière totalement irréversible
+m2.json [c8] Q18: Text too long (137 chars): Lors d'un traitement de prompt pour une relance client, transformer "Jean Martin, devis 456" en "Client C1, devis D1" est un exemple de :
+m2.json [c8] Q20 Opt1: Option too long (134 chars): Agréger les données en remplaçant les valeurs exactes par des tranches globales (ex: "Poste A : 40k-60k") sans identifiants personnels
+m2.json [c8] Q19 Opt2: Option too long (153 chars): Le droit, face à une décision automatisée vous concernant, de pouvoir obtenir une explication humaine claire sur la façon dont cette décision a été prise
+m3.json [c4] Q1 Opt0: Option too long (129 chars): Le mode Chat génère du texte brut, tandis que le mode Agent est une fonctionnalité exclusive à la génération de code et d'images.
+m3.json [c4] Q1 Opt2: Option too long (140 chars): Le mode Agent est capable d'entraîner ses propres modèles de données locaux, contrairement au mode Chat qui interroge des serveurs distants.
+m3.json [c4] Q2 Opt1: Option too long (131 chars): Un standard universel permettant à toutes les IA de dialoguer avec n'importe quelle application compatible via une seule connexion.
+m3.json [c4] Q3: Text too long (121 chars): Lors du lancement d'une tâche complexe en mode Agent, quelle bonne pratique est recommandée face au temps de traitement ?
+m3.json [c4] Q3 Opt1: Option too long (113 chars): Laisser l'autonomie travailler sans l'interrompre, car l'agent ajuste sa stratégie et itère en cours d'exécution.
+m3.json [c4] Q4: Meta pattern '\bles sources\b' found in text or options.
+m3.json [c4] Q6: Text too long (125 chars): Quel avantage majeur offre la fonction "Navigation web active" du mode Agent par rapport aux données d'entraînement de base ?
+m3.json [c4] Q9 Opt2: Option too long (110 chars): Elle doit être extrêmement précise (format attendu, contraintes, sources) pour optimiser l'exécution autonome.
+m3.json [c4] Q12 Opt1: Option too long (101 chars): Rechercher le contexte, analyser les profils LinkedIn des participants et préparer des argumentaires.
+m3.json [c4] Q13: Meta pattern '\bles sources\b' found in text or options.
+m3.json [c4] Q19 Opt2: Option too long (106 chars): L'agent détecte automatiquement les applications installées sur l'ordinateur sans configuration préalable.
+m3.json [c4] Q20 Opt1: Option too long (102 chars): Grâce à son autonomie, il ajuste sa stratégie, modifie sa requête ou cherche des sources alternatives.
+m3.json [c5] Q2 Opt2: Option too long (102 chars): Ils stockent les données sur des serveurs physiques chez l'utilisateur pour contourner les lois cloud.
+m3.json [c5] Q3 Opt1: Option too long (102 chars): L'analyse d'images sophistiquée, la compréhension de diagrammes complexes et un OCR contextuel précis.
+m3.json [c5] Q6 Opt1: Option too long (105 chars): L'IA invente des faits (ex: sources inexistantes) et les présente avec une assurance totalement crédible.
+m3.json [c5] Q7: Text too long (131 chars): Selon les benchmarks comparatifs IA, sur quels types d'opérations les LLM comme GPT-5 présentent-ils encore d'importantes lacunes ?
+m3.json [c5] Q8: Text too long (136 chars): Face à la limite de la date de coupure des connaissances, quel réflexe l'utilisateur doit-il adopter pour une information très récente ?
+m3.json [c5] Q9: Text too long (123 chars): Quel réglage est indispensable pour empêcher OpenAI d'utiliser vos données d'entreprise pour entraîner ses futurs modèles ?
+m3.json [c5] Q12 Opt1: Option too long (116 chars): Remplacer les noms par des pseudonymes et agréger les valeurs (ex: tranches de salaires plutôt que valeurs exactes).
+m3.json [c5] Q14 Opt1: Option too long (101 chars): D'indiquer clairement (à ses clients/collègues) lorsqu'un contenu a été généré ou assisté par une IA.
+m3.json [c5] Q17 Opt1: Option too long (112 chars): De télécharger une archive contenant toutes vos données personnelles et historiques, conformément au droit RGPD.
+m3.json [c5] Q18 Opt1: Option too long (115 chars): La qualité et l'éthique du résultat dépendent entièrement de la vigilance et de l'esprit critique de l'utilisateur.
+m3.json [c5] Q20 Opt0: Option too long (117 chars): De ne pas utiliser l'IA pour reproduire des œuvres protégées ou contrefaire délibérément le style d'un auteur vivant.
+m4.json [c2] Q6 Opt1: Option too long (110 chars): Il produit 4 propositions radicalement différentes les unes des autres pour explorer des directions créatives.
+m4.json [c2] Q7 Opt0: Option too long (105 chars): Il ajuste le niveau d'étrangeté et de divergence visuelle (ex: compositions inattendues ou surréalistes).
+m4.json [c2] Q15 Opt1: Option too long (123 chars): Parce que des termes proches (ex: 'forest' vs 'woodland') entraînent des interprétations visuelles subtilement différentes.
+m4.json [c2] Q16 Opt1: Option too long (111 chars): On obtiendra une image utilisant le moteur de rendu d'une version antérieure, offrant une cohérence différente.
+m4.json [c2] Q20 Opt1: Option too long (103 chars): De modifier visuellement le rapport largeur/hauteur (ratio) en un clic sans taper de commande manuelle.
+m4.json [c4] Q5 Opt0: Option too long (124 chars): En générant l'image sans texte (avec le paramètre `--no text`) puis en l'ajoutant en post-traitement sur Canva ou Photoshop.
+m4.json [c4] Q7 Opt0: Option too long (112 chars): Générer uniquement le sujet central proprement, puis étendre l'image autour de lui avec les options Zoom ou Pan.
+m4.json [c4] Q14 Opt1: Option too long (108 chars): L'utiliser sur les œuvres d'artistes vivants dans le but exact de copier leur style à des fins commerciales.
+m4.json [c4] Q16 Opt1: Option too long (107 chars): Maintenir une cohérence stricte d'un personnage identique sur plusieurs générations reste un défi complexe.
+m4.json [c4] Q17 Opt1: Option too long (130 chars): Le manque de garanties juridiques précises quant au contrôle des droits d'utilisation pour certains usages professionnels stricts.
+m4.json [c4] Q19 Opt1: Option too long (110 chars): On procède à une inspection systématique (zoom à 100%) sur les zones à risque comme les mains et les textures.
+m5.json [c1] Q1 Opt1: Option too long (107 chars): Un format de publication interactif et multimodal (texte, images, vidéos) accompagné d'un appel à l'action.
+m5.json [c1] Q1 Opt2: Option too long (108 chars): Un micro-blogging limité en caractères, conçu principalement pour relayer des liens vers des sites externes.
+m5.json [c1] Q3 Opt1: Option too long (128 chars): Le profil est réservé aux interactions privées, tandis que la page est le seul espace autorisé pour publier des offres d'emploi.
+m5.json [c1] Q3 Opt2: Option too long (107 chars): Le profil doit se concentrer sur la vente directe, tandis que la page gère exclusivement le service client.
+m5.json [c1] Q4 Opt1: Option too long (104 chars): Soigner la première ligne pour susciter la curiosité et inciter l'utilisateur à cliquer sur "voir plus".
+m5.json [c1] Q8 Opt0: Option too long (125 chars): Ils augmentent mécaniquement le temps passé par les utilisateurs sur le post, signalant un contenu de qualité à l'algorithme.
+m5.json [c1] Q10 Opt1: Option too long (103 chars): Un post qui intègre des informations utiles, des conseils actionnables ou un point de vue enrichissant.
+m5.json [c2] Q1 Opt1: Option too long (118 chars): Une image statique capturant une esthétique, complétée par un post contextuel (texte) indispensable pour l'engagement.
+m5.json [c2] Q2 Opt2: Option too long (103 chars): Changer radicalement de style graphique à chaque publication pour tester la réactivité de l'algorithme.
+m5.json [c2] Q3 Opt1: Option too long (109 chars): En montrant l'envers du décor, des visages derrière le projet, ou de vraies situations (produit en contexte).
+m5.json [c2] Q4 Opt0: Option too long (108 chars): Placer le texte en plein centre, directement sur le sujet principal, pour garantir qu'il soit lu en premier.
+m5.json [c2] Q4 Opt1: Option too long (119 chars): Privilégier un aplat minimaliste (une zone unie avec moins de détails figuratifs) pour assurer une lisibilité parfaite.
+m5.json [c2] Q5 Opt1: Option too long (106 chars): Intégrer beaucoup trop d'informations, de textes ou de détails perturbateurs dans une seule et même image.
+m5.json [c2] Q5 Opt2: Option too long (107 chars): Utiliser des couleurs trop claires qui fatiguent la vue sur les écrans de smartphone réglés en mode sombre.
+m5.json [c2] Q6 Opt1: Option too long (122 chars): Non, l'image peut être abstraite ou figurative, à condition d'évoquer le sujet et que ce choix soit justifié par le texte.
+m5.json [c2] Q8 Opt1: Option too long (106 chars): Un visuel qui n'a pas un lien sémantique suffisant ou évident avec le propos tenu dans la légende du post.
+m5.json [c2] Q9: Text too long (126 chars): Quel type de format visuel est particulièrement pertinent pour annoncer un contenu éducatif de type "Les 5 erreurs à éviter" ?
+m5.json [c2] Q9 Opt1: Option too long (101 chars): Une "couverture" (Cover) intégrant une accroche textuelle intrigante posée sur un visuel minimaliste.
+m5.json [c3] Q1 Opt1: Option too long (147 chars): L'éditorial structure le "quoi" et le "pourquoi" (thèmes, objectifs), la publication structure le "quand" et le "comment" (dates, heures, statuts).
+m5.json [c3] Q2 Opt1: Option too long (127 chars): Elle libère de l'espace pour la créativité pure en éliminant la pression quotidienne du "qu'est-ce que je poste aujourd'hui ?".
+m5.json [c3] Q3 Opt1: Option too long (145 chars): Pour équilibrer le ton dans le temps (Éducatif, Divertissant, Promotionnel, Inspirant) et éviter de lasser l'audience avec un discours monocorde.
+m5.json [c3] Q5 Opt1: Option too long (171 chars): Parce que tout ce qu'elle produit est par définition une moyenne statistique de l'existant ; elle nécessite une directive humaine radicale pour être réellement disruptive.
+m5.json [c3] Q6 Opt2: Option too long (102 chars): Le fait qu'elle facture des crédits supplémentaires pour analyser les données des petites entreprises.
+m5.json [c3] Q7 Opt1: Option too long (143 chars): Elle rend l'IA aveugle aux tendances émergentes récentes, aux buzz de la semaine ou aux derniers changements d'algorithmes des réseaux sociaux.
+m5.json [c3] Q8 Opt0: Option too long (112 chars): La considérer comme un conseiller infaillible et appliquer ses recommandations à la lettre pour gagner du temps.
+m5.json [c3] Q8 Opt1: Option too long (159 chars): La considérer comme un assistant de création idéal pour générer du volume et des idées, tout en restant le maître absolu des choix grâce à son esprit critique.
+m5.json [c3] Q9 Opt1: Option too long (102 chars): Vérifier systématiquement et manuellement chaque chiffre, étude, fait ou pourcentage cité par l'outil.
+m5.json [c3] Q10 Opt1: Option too long (156 chars): À suivre de manière transparente l'état d'avancement de chaque post (ex: Idée, Brouillon, À valider, Programmé, Publié) pour fluidifier le travail d'équipe.
+m6.json [c1] Q4 Opt0: Option too long (133 chars): Une connexion bidirectionnelle permettant d'aller chercher du contexte directement dans Gmail, Drive ou Docs pour réaliser une tâche.
+m6.json [c1] Q5 Opt1: Option too long (102 chars): Grâce à un accès direct aux serveurs d'indexation de Google Search pour de la recherche en temps réel.
+m6.json [c1] Q6 Opt1: Option too long (116 chars): La production potentielle d'"hallucinations", telles que des fausses statistiques ou des faits historiques déformés.
+m6.json [c1] Q7 Opt1: Option too long (137 chars): Il est perçu comme très conventionnel ou excessivement "corporate", nécessitant une retouche humaine pour y insuffler de la personnalité.
+m6.json [c1] Q11 Opt1: Option too long (124 chars): Il est très performant pour chapitrer un enregistrement de réunion ou en extraire les points clés sans visionnage préalable.
+m6.json [c1] Q12: Text too long (129 chars): En entreprise, quelle est la politique de protection des données sensibles sur les versions professionnelles payantes de Gemini ?
+m6.json [c1] Q12 Opt1: Option too long (111 chars): Les données soumises par l'utilisateur ne sont pas utilisées pour l'entraînement des modèles de base de Google.
+m6.json [c1] Q13: Text too long (124 chars): Si une équipe utilise principalement Microsoft Office 365, quelle recommandation stratégique s'applique au choix de Gemini ?
+m6.json [c1] Q13 Opt1: Option too long (150 chars): L'adoption de Gemini perdra de son intérêt principal (l'intégration fluide), rendant un outil concurrent ou agnostique potentiellement plus pertinent.
+m6.json [c1] Q17 Opt1: Option too long (120 chars): ChatGPT reste souvent considéré comme plus polyvalent pour les raisonnements logiques complexes et la structure du code.
+m6.json [c1] Q18 Opt1: Option too long (157 chars): Parce que son intégration invisible au sein de Workspace permet aux employés de l'utiliser sans devoir apprendre à maîtriser une nouvelle plateforme externe.
+m6.json [c1] Q19 Opt1: Option too long (115 chars): Sa connexion immédiate et native à l'indexation Search garantit une fiabilité optimale sur l'actualité instantanée.
+m6.json [c1] Q20 Opt0: Option too long (107 chars): La force de frappe de son intégration directe via les licences professionnelles Google Workspace mondiales.
+m6.json [c2] Q1 Opt1: Option too long (107 chars): L'approche "IA Constitutionnelle", utilisant une liste de principes explicites pour auto-évaluer le modèle.
+m6.json [c2] Q3 Opt1: Option too long (129 chars): Une interface dédiée permettant de visualiser, d'éditer et de tester du code, des sites web ou des schémas générés en temps réel.
+m6.json [c2] Q4 Opt0: Option too long (112 chars): Une "prudence excessive" pouvant mener à des refus de répondre sur des sujets totalement neutres ou inoffensifs.
+m6.json [c2] Q5 Opt1: Option too long (155 chars): Il respecte scrupuleusement les consignes, limitant ses inventions, là où d'autres IA privilégient toujours le fait de fournir une réponse coûte que coûte.
+m6.json [c2] Q6 Opt1: Option too long (118 chars): Elle est épurée au maximum, favorisant la concentration exclusive sur le texte, la structure des données et l'analyse.
+m6.json [c2] Q7 Opt1: Option too long (132 chars): L'absence de recherche web en temps réel intégrée, ce qui le prive de données sur des événements survenus il y a moins de 24 heures.
+m6.json [c2] Q8 Opt1: Option too long (111 chars): Il analyse parfaitement les images et les documents fournis en entrée, mais ne génère ni image native ni vidéo.
+m6.json [c2] Q9: Text too long (128 chars): Quel niveau de précision les modèles récents de Claude atteignent-ils dans l'interprétation de graphiques et schémas complexes ?
+m6.json [c2] Q11 Opt0: Option too long (103 chars): Les données servent à l'entraînement, sauf si l'utilisateur envoie une demande écrite de désactivation.
+m6.json [c2] Q11 Opt1: Option too long (136 chars): Les données sont exclues de l'entraînement des modèles par défaut, offrant une sécurité "Opt-out" native pour les usages professionnels.
+m6.json [c2] Q11 Opt2: Option too long (113 chars): Les données sont systématiquement rendues publiques au bout de six mois par soucis de transparence algorithmique.
+m6.json [c2] Q12: Text too long (129 chars): Pour un développeur informatique, pourquoi Claude est-il souvent recommandé comme un "partenaire de réflexion" de premier ordre ?
+m6.json [c2] Q12 Opt1: Option too long (139 chars): En raison de sa très haute précision dans la structuration logique, l'explication de blocs complexes et ses capacités de débogage avancées.
+m6.json [c2] Q12 Opt2: Option too long (114 chars): Parce qu'il est le seul modèle autorisé à se connecter directement aux dépôts GitHub privés sans authentification.
+m6.json [c2] Q13: Text too long (147 chars): Face à une demande de brainstorming créatif rapide pour trouver des accroches publicitaires hors-normes, quel modèle serait idéalement privilégié ?
+m6.json [c2] Q13 Opt1: Option too long (118 chars): ChatGPT, qui reste leader dans la créativité fluide, la polyvalence et les tâches nécessitant une réactivité débridée.
+m6.json [c2] Q14: Text too long (127 chars): Que garantissent les options régionales de déploiement Cloud (via AWS, GCP) proposées pour les versions entreprises de Claude ?
+m6.json [c2] Q14 Opt1: Option too long (120 chars): La résidence et la ségrégation des données selon les exigences géographiques et légales (ex: serveurs isolés en Europe).
+m6.json [c2] Q15 Opt1: Option too long (154 chars): Le modèle est entraîné à partager son processus de réflexion et à reconnaître explicitement ses incertitudes, refusant de feindre une confiance excessive.
+m6.json [c2] Q16 Opt1: Option too long (113 chars): Synthétiser un rapport financier de 150 pages sans perdre le fil conducteur ni omettre de subtilités analytiques.
+m6.json [c2] Q17 Opt1: Option too long (141 chars): Un style conversationnel authentique, évitant le formatage excessif (trop de puces ou de mots en gras) pour privilégier la réflexion nuancée.
+m6.json [c2] Q18 Opt0: Option too long (154 chars): C'est le nombre de lois fondamentales inscrites dans sa "Constitution" pour évaluer si une réponse générée contient des biais ou des risques sécuritaires.
+m6.json [c2] Q19 Opt1: Option too long (137 chars): Les options de suppression, de portabilité et de gestion du consentement sont gérées directement et facilement via l'interface du compte.
+m6.json [c2] Q20: Text too long (123 chars): En conclusion, pour quel type de profil professionnel Claude représente-t-il l'alternative la plus pertinente aujourd'hui ?
+m6.json [c2] Q20 Opt0: Option too long (124 chars): Les gestionnaires de réseaux sociaux cherchant un outil tout-en-un pour créer du texte, de l'image et gérer leur calendrier.
+m6.json [c2] Q20 Opt2: Option too long (107 chars): Les équipes commerciales ayant besoin de chercher des informations de prospection en temps réel sur le web.
+m7.json [c1] Q1: Text too long (140 chars): Quel modèle a succédé officiellement à DALL-E en tant que moteur principal de création visuelle dans l'écosystème d'OpenAI depuis fin 2025 ?
+m7.json [c1] Q2: Text too long (125 chars): Quelle est la vitesse de génération moyenne annoncée pour obtenir un résultat exploitable en haute définition (1500x2000px) ?
+m7.json [c1] Q6 Opt0: Option too long (102 chars): Le modèle ne peut générer qu'une seule image à la fois par requête, allongeant le temps d'exploration.
+m7.json [c1] Q7 Opt1: Option too long (111 chars): Le prompt ne garantit aucune reproductibilité stricte ; relancer la même requête produira une image différente.
+m7.json [c1] Q8 Opt1: Option too long (107 chars): L'impossibilité de voir les résultats des autres utilisateurs et de s'inspirer d'une galerie communautaire.
+m7.json [c1] Q9: Text too long (125 chars): Par défaut, et sans précision spécifique dans la requête, vers quel type de rendu graphique le modèle tend-il naturellement ?
+m7.json [c1] Q13 Opt1: Option too long (106 chars): Il est nativement inclus sans coût additionnel dans l'abonnement global de l'assistant (ex: ChatGPT Plus).
+m7.json [c1] Q14 Opt0: Option too long (119 chars): En utilisant le menu déroulant et en cliquant sur le bouton dédié "Créer une image", ce qui ouvre un panneau de styles.
+m7.json [c1] Q15 Opt1: Option too long (107 chars): Par la détection de mots-clés déclencheurs en début de phrase (ex: "Génère un visuel de...", "Dessine...").
+m7.json [c1] Q16 Opt1: Option too long (142 chars): Naturellement dans la demande textuelle (ex: "au format paysage"), tout en sachant que le modèle n'autorise que certains formats standardisés.
+m7.json [c1] Q18 Opt1: Option too long (119 chars): Grâce à sa courbe d'apprentissage extrêmement faible, idéale pour un rendu rapide et conforme sans expertise technique.
+m7.json [c1] Q20 Opt1: Option too long (121 chars): Une volonté de rendre l'outil d'une accessibilité universelle pour le grand-public et les professionnels non-techniciens.
+m7.json [c2] Q3 Opt1: Option too long (110 chars): Une sécurité commerciale garantie pour les entreprises, sans ambiguïté liée à la violation de droits d'auteur.
+m7.json [c2] Q4 Opt1: Option too long (110 chars): Par l'injection invisible de métadonnées (Content Credentials) identifiant l'origine algorithmique de l'image.
+m7.json [c2] Q5 Opt1: Option too long (120 chars): À tester différentes IA génératives (Firefly, Nano Banana, GPT Image, FLUX...) directement au sein de la même interface.
+m7.json [c2] Q6 Opt0: Option too long (115 chars): Créer des planches d'inspiration dynamiques pour trier les générations et interagir directement depuis l'interface.
+m7.json [c2] Q8 Opt1: Option too long (106 chars): Il refuse systématiquement de générer des personnalités publiques identifiables pour éviter les deepfakes.
+m7.json [c2] Q9 Opt1: Option too long (120 chars): Un système de rémunération pour les contributeurs de la base de données dont les images ont servi à entraîner le modèle.
+m7.json [c2] Q9: Meta pattern '\bles sources\b' found in text or options.
+m7.json [c2] Q12 Opt1: Option too long (137 chars): La génération d'images "type Shutterstock", c'est-à-dire neutres, lisses et exploitables immédiatement pour des contextes professionnels.
+m7.json [c2] Q13: Text too long (126 chars): Pourquoi l'outil est-il privilégié pour les flux de travail liés à la "mise en page" par rapport à un concurrent indépendant ?
+m7.json [c2] Q14 Opt1: Option too long (113 chars): De nombreuses fonctions d'édition et d'actions rapides (ex: conversion de formats d'images ou de vidéos) hors IA.
+m7.json [c2] Q15 Opt1: Option too long (144 chars): Les agences et créatifs travaillant sur des projets publicitaires ou corporatifs (packaging, campagnes) exigeant une sécurité juridique stricte.
+m7.json [c2] Q16 Opt1: Option too long (127 chars): Il agit comme un assistant de production facilitant la gestion des tâches chronophages pour libérer du temps pour l'innovation.
+m7.json [c2] Q17 Opt1: Option too long (147 chars): Lors de la nécessité d'effectuer des retouches locales avancées directement au sein d'un logiciel métier maîtrisé (comme Illustrator ou Photoshop).
+m7.json [c2] Q18 Opt1: Option too long (117 chars): Un volume massif de 4000 crédits IA par mois et l'accès au forfait complet incluant plus de 20 logiciels de la suite.
