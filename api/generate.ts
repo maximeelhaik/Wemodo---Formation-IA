@@ -36,35 +36,52 @@ export default async function handler(req: Request) {
   try {
     const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-    const response = await ai.models.generateContentStream({
-      model: GEMINI_MODEL,
-      contents: [
-        { role: 'user', parts: [{ text: `Mission : "${mission}"` }] }
-      ],
-      config: {
-        systemInstruction: `Expert Productivité IA. Génère 5 cas d'usage pour la mission fournie.
-        Chaque cas est un objet JSON avec :
-        - title: Titre court et percutant.
-        - timeSaved: Gain estimé (ex: "3h/semaine").
-        - action: Description concrète de ce que l'IA va faire.
-        - icon: Un emoji représentatif.
+    // Stratégie de retry pour absorber les 503 temporaires de Gemini Flash Lite
+    let response;
+    let retries = 0;
+    const maxRetries = 2;
 
-        IMPORTANT : Sépare chaque objet par le délimiteur exact : ---END_OF_CASE---
-        Règles : Pas de crochets [ ], pas de blabla, Français uniquement.`,
-        temperature: 0.1,
+    while (retries < maxRetries) {
+      try {
+        response = await ai.interactions.create({
+          model: GEMINI_MODEL,
+          input: `Mission : ${mission}`,
+          stream: true,
+          system_instruction: `Tu es un Expert en Productivité IA. Ta mission est de générer 5 cas d'usage concrets et immédiats pour la mission fournie.
+          Chaque cas doit être un objet JSON valide avec :
+          - title: Titre court (max 5 mots).
+          - timeSaved: Estimation réaliste du temps gagné (ex: "2h/jour", "4h/semaine").
+          - action: Instruction claire de ce que l'IA doit exécuter.
+          - icon: Un seul emoji représentatif.
+
+          IMPORTANT : Sépare STRICTEMENT chaque objet par le délimiteur : ---END_OF_CASE---
+          Règles : PAS de crochets [ ], PAS d'introduction, PAS de conclusion, Français uniquement.`,
+          generation_config: {
+            temperature: 0.2,
+            max_output_tokens: 1000,
+          }
+        });
+        break;
+      } catch (e: any) {
+        retries++;
+        if (e.status === 503 && retries < maxRetries) {
+          await new Promise(r => setTimeout(r, 800));
+          continue;
+        }
+        throw e;
       }
-    });
+    }
 
     const stream = new ReadableStream({
       async start(controller) {
         const encoder = new TextEncoder();
-        controller.enqueue(encoder.encode(' ')); // Espace d'amorçage
+        controller.enqueue(encoder.encode(' ')); // Amorçage
 
         try {
-          for await (const chunk of response) {
-            const text = chunk.text || "";
-            if (text) {
-              controller.enqueue(encoder.encode(text));
+          for await (const event of response) {
+            // Dans le nouveau SDK, le texte est dans event.delta.text pour les événements content.delta
+            if (event.event_type === 'content.delta' && 'text' in event.delta) {
+              controller.enqueue(encoder.encode(event.delta.text));
             }
           }
         } catch (e) {

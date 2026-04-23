@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { BrutalistCard, BrutalistButton, BrutalistLoading } from "../../components/BrutalistUI";
+import { usePersistentState } from "../../hooks/usePersistentState";
+import { Copy, Check } from "lucide-react";
 
 interface UseCase {
   title: string;
@@ -10,10 +12,17 @@ interface UseCase {
 }
 
 export const UseCaseGenerator: React.FC = () => {
-  const [mission, setMission] = useState("");
+  const [mission, setMission] = usePersistentState("usecase_mission", "");
   const [loading, setLoading] = useState(false);
-  const [useCases, setUseCases] = useState<UseCase[] | null>(null);
+  const [useCases, setUseCases] = usePersistentState<UseCase[] | null>("usecase_results", null);
   const [error, setError] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopy = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   const handleGenerate = async () => {
     if (!mission.trim()) return;
@@ -153,9 +162,15 @@ export const UseCaseGenerator: React.FC = () => {
               key="error"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-wemodo-pink border-4 border-wemodo-navy p-6 shadow-brutalist"
+              className="bg-wemodo-pink border-4 border-wemodo-navy p-6 shadow-brutalist flex flex-col items-center gap-4"
             >
               <p className="font-black text-white text-center uppercase tracking-wider">{error}</p>
+              <BrutalistButton 
+                onClick={handleGenerate}
+                className="bg-white text-wemodo-navy border-2 border-wemodo-navy text-xs px-4 py-2"
+              >
+                RÉESSAYER MAINTENANT
+              </BrutalistButton>
             </motion.div>
           )}
 
@@ -191,7 +206,22 @@ export const UseCaseGenerator: React.FC = () => {
                         </p>
                       </div>
 
-                      <div className="mt-auto" />
+                      <div className="mt-auto pt-4">
+                        <button
+                          onClick={() => handleCopy(useCase.action, `${useCase.title}-${idx}`)}
+                          className="w-full flex items-center justify-center gap-2 bg-wemodo-navy text-white font-black text-[10px] py-2 uppercase tracking-widest hover:bg-wemodo-purple transition-colors"
+                        >
+                          {copiedId === `${useCase.title}-${idx}` ? (
+                            <>
+                              <Check size={12} /> COPIÉ !
+                            </>
+                          ) : (
+                            <>
+                              <Copy size={12} /> COPIER L'ACTION
+                            </>
+                          )}
+                        </button>
+                      </div>
                     </BrutalistCard>
                   </motion.div>
                 ))}
