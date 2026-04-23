@@ -5,6 +5,7 @@ import { QuizState, Question } from "../../types";
 import { BrutalistCard, BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
 import { ChevronRight, RotateCcw, Award, CheckCircle2, XCircle, Timer, User, Zap, Brain, ArrowLeft } from "lucide-react";
 import { useLeaderboard } from "../../hooks/useLeaderboard";
+import { usePersistentState } from "../../hooks/usePersistentState";
 import { Leaderboard } from "../../components/Leaderboard";
 
 interface AIQuizProps {
@@ -13,12 +14,12 @@ interface AIQuizProps {
 }
 
 export const AIQuiz: React.FC<AIQuizProps> = ({ questions: propQuestions, initialLevel = 1 }) => {
-  const [currentLevel, setCurrentLevel] = useState<number | null>(null);
-  const [gameStarted, setGameStarted] = useState(false);
-  const [questions, setQuestions] = useState<Question[]>(propQuestions || []);
+  const [currentLevel, setCurrentLevel] = usePersistentState<number | null>("wemodo-quiz-current-level", null);
+  const [gameStarted, setGameStarted] = usePersistentState("wemodo-quiz-game-started", false);
+  const [questions, setQuestions] = usePersistentState<Question[]>("wemodo-quiz-questions", propQuestions || []);
   const [isLoading, setIsLoading] = useState(false);
   
-  const [state, setState] = useState<QuizState>({
+  const [state, setState] = usePersistentState<QuizState>("wemodo-quiz-state", {
     currentQuestionIndex: 0,
     score: 0,
     answers: [],

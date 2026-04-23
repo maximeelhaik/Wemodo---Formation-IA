@@ -1,7 +1,7 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY_MISSION || process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
+const GEMINI_MODEL = 'gemini-flash-lite-latest';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,126 +15,79 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ error: "GEMINI_API_KEY is missing." });
   }
 
-  const { theme, hallsCount, clichesCount, maxWords } = req.body;
+  const { theme, persona, hallsCount, clichesCount, maxWords } = req.body;
   const targetTheme = theme || "L'intelligence Artificielle et son impact sur la société";
+  const targetPersona = persona || "un rédacteur professionnel au style neutre";
   const finalHallsCount = hallsCount ?? 1;
   const finalClichesCount = clichesCount ?? 1;
-  const finalMaxWords = maxWords ?? 200;
+  const finalMaxWords = Math.min(maxWords ?? 200, 250);
 
-  const systemPrompt = `Tu es un expert en copywriting utilisé pour nourir un mini-jeu de détection d'hallucination d'IA.
-Ta mission est de générer un texte continu et naturel (human like) d'environ ${finalMaxWords} mots qui traite du thème suivant : "${targetTheme}" et qui integre subtilement des pièges à identifier par l'utilisateur.
+  const prompt = `Tu es un expert en rédaction et en création de pièges pour un jeu de détection d'IA.
 
-TYPES DE PIÈGES :
-1. HALLUCINATION : hallucinations courantes faites par les LLM, faits qui méritent d'être vérifiés manuellement par l'utilisateur. Pas de faits absurdes. 
-2. CLICHÉ : Des tournures "AI-like" faites couramment par les LLM et qui peuvent trahir l'utilisation d'une IA
+MISSION :
+Rédige un texte organique et humain d'environ ${finalMaxWords} mots sur le thème : "${targetTheme}".
+Adopte ce persona : "${targetPersona}".
 
-RÈGLES DE DENSITÉ ET FORMATAGE :
-- Ton texte final DOIT contenir exactement ${finalHallsCount} hallucination(s) et ${finalClichesCount} cliché(s).
-- Intègre ces pièges naturellement dans le texte.
-- Pour identifier chaque piège, tu DOIS insérer des balises XML autour des mots exacts du piège (2 à 5 mots max par piège).
-Utilise la syntaxe suivante :
-<hallucination explication="Explication courte">les mots du piège</hallucination>
-<cliche explication="Explication courte">les mots du cliché</cliche>
+CONSIGNES DE RÉDACTION :
+- Style humain, vivant, avec des variations de rythme (phrases courtes/longues).
+- Pas de structure scolaire (Intro/Conclusion classiques).
+- Pas de listes à puces.
+- Interdiction d'utiliser : "De plus", "En outre", "En conclusion", "Il est important de noter", etc.
 
+PIÈGES À INJECTER :
+1. Injecte exactement ${finalHallsCount} HALLUCINATION(S): Informations de 5 mots maximum qui mériteraient un fact-check: erreur factuelle crédible, statistique non exacte, date décalée, citation inventée, nom propre érroné.
+2. Injecte exactement ${finalClichesCount} CLICHÉ(S) IA : Formulation  de 5 mots maximum avec enthousiasme générique, meta-commentaire sur le sujet ou autre formulations typique des LLM.
 
-STRUCTURE DE SORTIE (JSON UNIQUEMENT) :
-Renvoie UNIQUEMENT un objet JSON valide avec une seule clé "texte_marque" contenant la totalité de ton texte balisé. Échappe correctement les guillemets.
+DÉCOUPAGE EN SEGMENTS (CRUCIAL) :
+Tu dois découper l'intégralité du texte en un tableau de segments JSON.
+RÈGLES DE DÉCOUPAGE :
+- Chaque segment doit contenir entre 2 et 5 mots.
+- Un segment ne doit JAMAIS commencer ou inclure au milieu  une ponctuation isolée (virgule, point, retour à la ligne). La ponctuation doit être intégrée à la fin du segment (ex: "dans ce cas," et non "dans ce cas" suivi de ",").
+- Les segments de type 'hallucination' ou 'cliche' doivent correspondre exactement aux mots du piège. Si le piège fait 3 mots, son segment fait 3 mots.
+- Tous les autres segments sont de type 'none'.
+- L'ordre des segments doit reconstituer fidèlement le texte original avec ses espaces et sa ponctuation.
+
+FORMAT DE RÉPONSE (JSON UNIQUEMENT) :
 {
-  "texte_marque": "Le texte avec les balises intégrées"
+  "segments": [
+    { "text": "Le texte du segment", "type": "none" },
+    { "text": " l'erreur factuelle", "type": "hallucination", "explanation": "Pourquoi c'est faux..." },
+    { "text": " une expression cliché", "type": "cliche", "explanation": "Pourquoi c'est un cliché IA..." },
+    ...
+  ]
 }`;
 
   try {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
-    const geminiRes = await fetch(url, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{
-          parts: [{ text: systemPrompt }]
-        }],
+        contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
           response_mime_type: "application/json",
-          temperature: 0.7,
-          maxOutputTokens: 8192
+          temperature: 0.9,
+          maxOutputTokens: 8000
         }
       })
     });
 
-    if (!geminiRes.ok) {
-      const errorBody = await geminiRes.json();
-      throw new Error(errorBody.error?.message || `Gemini Error ${geminiRes.status}`);
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(`API Error: ${err.error?.message}`);
     }
 
-    const data = await geminiRes.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    const data = await response.json();
+    const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!resultText) throw new Error("AI returned empty result");
 
-    if (!text) throw new Error("Réponse vide de Gemini");
-
-    const parsed = JSON.parse(text);
-    const texteMarque = parsed.texte_marque;
-
-    if (!texteMarque) {
-      // Fallback
-      return res.status(200).json(parsed);
-    }
-
-    const regex = /<(hallucination|cliche)\s+explication="([^"]+)">([\s\S]*?)<\/\1>/g;
-    const segments: { text: string, type: string, explanation?: string }[] = [];
-    let lastIndex = 0;
-    let match;
-
-    function chunkText(str: string, type: string) {
-      const words = str.split(/(\s+)/).filter((w: string) => w.length > 0);
-      const chunks: typeof segments = [];
-      let currentChunk = "";
-      let wordCount = 0;
-      let targetLength = Math.floor(Math.random() * 4) + 2;
-
-      for (const token of words) {
-        currentChunk += token;
-        if (token.trim() !== '') wordCount++;
-
-        if (wordCount >= targetLength) {
-          chunks.push({ text: currentChunk, type });
-          currentChunk = "";
-          wordCount = 0;
-          targetLength = Math.floor(Math.random() * 4) + 2;
-        }
-      }
-
-      if (currentChunk.trim().length > 0 || (currentChunk.length > 0 && chunks.length > 0)) {
-        if (currentChunk.trim().length === 0 && chunks.length > 0) {
-          chunks[chunks.length - 1].text += currentChunk;
-        } else {
-          chunks.push({ text: currentChunk, type });
-        }
-      }
-      return chunks;
-    }
-
-    while ((match = regex.exec(texteMarque)) !== null) {
-      const beforeText = texteMarque.substring(lastIndex, match.index);
-      if (beforeText) {
-        segments.push(...chunkText(beforeText, 'none'));
-      }
-      segments.push({
-        text: match[3],
-        type: match[1],
-        explanation: match[2]
-      });
-      lastIndex = regex.lastIndex;
-    }
-
-    const afterText = texteMarque.substring(lastIndex);
-    if (afterText) {
-      segments.push(...chunkText(afterText, 'none'));
-    }
-
-    return res.status(200).json({ segments });
+    const parsed = JSON.parse(resultText);
+    return res.status(200).json(parsed);
 
   } catch (error: any) {
     console.error("Hunt Generator Error:", error.message);
     return res.status(500).json({ error: error.message });
   }
 }
+

@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { BrutalistCard, BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
 import { Search, Info, RotateCcw, Award, Sparkles, Loader2 } from "lucide-react";
+import { usePersistentState } from "../../hooks/usePersistentState";
 import { useLeaderboard } from "../../hooks/useLeaderboard";
 import { Leaderboard } from "../../components/Leaderboard";
 
@@ -13,16 +14,31 @@ interface TextSegment {
   explanation?: string;
 }
 
+const RANDOM_THEMES = [
+  { theme: "Critique gastronomique d'un restaurant de Paris", persona: "un blogueur culinaire un peu familier" },
+  { theme: "Récit d'aventure sur l'ascension d'un sommet", persona: "un alpiniste écrivant son carnet de bord" },
+  { theme: "Article de blog sur la psychologie d'un animal au choix", persona: "un comportementaliste animalier" },
+  { theme: "Analyse d'une oeuvre d'art contemporaine", persona: "un critique d'art" },
+  { theme: "Brève historique sur l'invention d'un objet du quotidien", persona: "un historien passionné" },
+  { theme: "Conseils de jardinage urbain pour débutants", persona: "une voisine bienveissante" },
+  { theme: "Portrait d'un musicien des années 50 à 80", persona: "un journaliste musical" },
+  { theme: "Explication scientifique sur la formation d'un phénomène naturel", persona: "un chercheur enthousiaste" },
+  { theme: "Chronique culturelle sur le renouveau du cinéma d'animation", persona: "un cinéphile" },
+  { theme: "Guide de voyage sur une ville d'Europe", persona: "un guide touristique enthousiaste" },
+  { theme: "Essai sur l'impact d'un type de musique", persona: "un étudiant en psychologie" },
+  { theme: "Compte-rendu d'un match de sport", persona: "un commentateur sportif survolté" },
+];
+
 export const HallucinationHunter2: React.FC = () => {
-  const [segments, setSegments] = useState<TextSegment[]>([]);
+  const [segments, setSegments] = usePersistentState<TextSegment[]>("wemodo-hunter-inf-segments", []);
   const [isLoading, setIsLoading] = useState(false);
   const [theme, setTheme] = useState("");
-  const [gameStarted, setGameStarted] = useState(false);
-
-  const [foundIds, setFoundIds] = useState<number[]>([]);
+  const [currentLevel, setCurrentLevel] = usePersistentState("wemodo-hunter-inf-level", 1);
+  const [gameStarted, setGameStarted] = usePersistentState("wemodo-hunter-inf-started", false);
+  const [foundIds, setFoundIds] = usePersistentState<number[]>("wemodo-hunter-inf-found", []);
   const [errorIndices, setErrorIndices] = useState<number[]>([]);
   const [isErrorFlash, setIsErrorFlash] = useState(false);
-  const [isFinished, setIsFinished] = useState(false);
+  const [isFinished, setIsFinished] = usePersistentState("wemodo-hunter-inf-finished", false);
   const [selectedInfo, setSelectedInfo] = useState<TextSegment | null>(null);
   const [username, setUsername] = useState("");
   const [hasSaved, setHasSaved] = useState(false);
@@ -55,8 +71,8 @@ export const HallucinationHunter2: React.FC = () => {
 
   const finalScore = useMemo(() => {
     if (!duration) return 0;
-    return Math.max(100, 2000 - duration * 5); // v2 is harder, more points
-  }, [duration]);
+    return Math.max(100, (1000 + (currentLevel * 200)) - duration * 5);
+  }, [duration, currentLevel]);
 
   const fetchGameData = async (targetTheme?: string) => {
     setIsLoading(true);
@@ -68,11 +84,27 @@ export const HallucinationHunter2: React.FC = () => {
     setEndTime(null);
     setHasSaved(false);
 
+    let finalTheme = targetTheme || theme;
+    let finalPersona = "un rédacteur professionnel au style neutre";
+
+    // Random iteration if no theme provided
+    if (!finalTheme) {
+      const entry = RANDOM_THEMES[Math.floor(Math.random() * RANDOM_THEMES.length)];
+      finalTheme = entry.theme;
+      finalPersona = entry.persona;
+    }
+
     try {
       const res = await fetch('/api/hunt-generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ theme: targetTheme || theme })
+        body: JSON.stringify({ 
+          theme: finalTheme,
+          persona: finalPersona,
+          hallsCount: Math.max(1, Math.floor(currentLevel / 2) + 1),
+          clichesCount: Math.max(1, Math.ceil(currentLevel / 2)),
+          maxWords: 150 + (currentLevel * 10)
+        })
       });
       const data = await res.json();
       if (data.segments) {
@@ -120,13 +152,25 @@ export const HallucinationHunter2: React.FC = () => {
     }
   };
 
-  const resetGame = () => {
+  const resetToHome = () => {
     setGameStarted(false);
     setSegments([]);
     setFoundIds([]);
     setIsFinished(false);
     setSelectedInfo(null);
+    setCurrentLevel(1);
   };
+
+  const nextRound = () => {
+    setCurrentLevel(prev => prev + 1);
+    // The useEffect or manual call below will refresh context
+  };
+
+  useEffect(() => {
+    if (currentLevel > 1 && gameStarted && isFinished === false && segments.length === 0) {
+      fetchGameData();
+    }
+  }, [currentLevel]);
 
   const handleSaveScore = async () => {
     if (!username.trim()) return;
@@ -262,12 +306,20 @@ export const HallucinationHunter2: React.FC = () => {
               </div>
             )}
 
-            <BrutalistButton
-              onClick={resetGame}
-              className="mt-4 bg-wemodo-pink text-wemodo-navy border-wemodo-navy h-14 md:h-16 text-xl w-full shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]"
-            >
-              <RotateCcw size={24} /> Nouvelle Partie
-            </BrutalistButton>
+            <div className="flex flex-col gap-3 w-full mt-4">
+              <BrutalistButton
+                onClick={nextRound}
+                className="bg-wemodo-yellow text-wemodo-navy border-wemodo-navy h-14 md:h-16 text-xl w-full shadow-[4px_4px_0px_0px_rgba(18,14,61,1)]"
+              >
+                Manche Suivante
+              </BrutalistButton>
+              <BrutalistButton
+                onClick={resetToHome}
+                className="bg-white text-wemodo-navy border-wemodo-navy h-12 text-sm w-full"
+              >
+                <RotateCcw size={16} /> Retour au menu
+              </BrutalistButton>
+            </div>
           </motion.div>
           <Leaderboard entries={getAppLeaderboard(appId)} title="Top Chasseurs" />
         </div>
@@ -284,11 +336,11 @@ export const HallucinationHunter2: React.FC = () => {
             Chasse <span className="text-wemodo-purple">Infinie !</span>
           </h1>
           <p className="font-bold text-wemodo-navy/70 uppercase text-xs tracking-widest mt-2 px-1 border-l-4 border-wemodo-purple">
-            Mode : Génération IA Dynamique
+            Manche {currentLevel} • Mode Dynamique
           </p>
         </div>
         <BrutalistButton
-          onClick={resetGame}
+          onClick={resetToHome}
           className="bg-white text-wemodo-navy border-2 border-wemodo-navy px-3 py-1 text-xs shadow-none hover:bg-red-50"
         >
           Quitter
@@ -359,7 +411,7 @@ export const HallucinationHunter2: React.FC = () => {
                   scale: 0.95,
                   opacity: 0.5,
                 } : {
-                  backgroundColor: 'transparent',
+                  backgroundColor: 'rgba(0, 0, 0, 0.05)',
                   color: 'inherit',
                   scale: 1,
                   opacity: 1,

@@ -1,33 +1,34 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { BrutalistCard, BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
-import { Search } from "lucide-react";
+import { Search, RotateCcw } from "lucide-react";
+import { usePersistentState } from "../../hooks/usePersistentState";
 
 // For later restitution of the leaderboard
 // import { useLeaderboard } from "../../hooks/useLeaderboard";
 // import { Leaderboard } from "../../components/Leaderboard";
 
 const RANDOM_THEMES = [
-  "Critique gastronomique d'un nouveau restaurant de street-food",
-  "Récit d'aventure sur l'ascension d'un sommet méconnu",
-  "Article de blog sur la psychologie des chats domestiques",
-  "Analyse d'une oeuvre d'art contemporaine controversée",
-  "Brève historique sur l'invention de la machine à écrire",
-  "Conseils de jardinage urbain pour débutants",
-  "Portrait d'un musicien de jazz fictif des années 50",
-  "Explication scientifique sur la formation des aurores boréales",
-  "Chronique culturelle sur le renouveau du cinéma d'animation",
-  "Guide de voyage sur une ville futuriste imaginaire",
-  "Essai sur l'impact de la musique lo-fi sur la concentration",
-  "Compte-rendu d'un match de sport insolite",
-  "Réflexion philosophique sur le concept du temps",
-  "Newsletter sur les tendances de la mode éco-responsable",
-  "Fait divers sur une incroyable découverte archéologique",
-  "Texte descriptif d'un marché traditionnel en Provence",
-  "Introduction à la mythologie nordique et ses symboles",
-  "Critique de film sur une saga de science-fiction",
-  "Billet d'humeur sur la vie sans smartphone pendant une semaine",
-  "Vulgarisation sur le fonctionnement des trous noirs",
+  { theme: "Critique gastronomique d'un restaurant de Paris", persona: "un blogueur culinaire un peu familier" },
+  { theme: "Récit d'aventure sur l'ascension d'un sommet", persona: "un alpiniste écrivant son carnet de bord" },
+  { theme: "Article de blog sur la psychologie d'un animal au choix", persona: "un comportementaliste animalier" },
+  { theme: "Analyse d'une oeuvre d'art contemporaine", persona: "un critique d'art" },
+  { theme: "Brève historique sur l'invention d'un objet du quotidien", persona: "un historien passionné" },
+  { theme: "Conseils de jardinage urbain pour débutants", persona: "une voisine bienveillante" },
+  { theme: "Portrait d'un musicien des années 50 à 80", persona: "un journaliste musical" },
+  { theme: "Explication scientifique sur la formation d'un phénomène naturel (au choix)", persona: "un chercheur enthousiaste" },
+  { theme: "Chronique culturelle sur le renouveau du cinéma d'animation", persona: "un cinéphile" },
+  { theme: "Guide de voyage sur une ville d'Europe (au choix)", persona: "un guide touristique enthousiaste" },
+  { theme: "Essai sur l'impact d'un type de musique (au choix)", persona: "un étudiant en psychologie" },
+  { theme: "Compte-rendu d'un match de sport", persona: "un commentateur sportif survolté" },
+  { theme: "Réflexion philosophique sur un concept non physique", persona: "un philosophe contemporain" },
+  { theme: "Newsletter sur les tendances de la mode éco-responsable", persona: "une influenceuse mode engagée" },
+  { theme: "Fait divers sur une découverte archéologique", persona: "un journaliste de presse locale" },
+  { theme: "Texte descriptif d'un marché traditionnel ", persona: "un habitant local fier de son terroir et très descriptif" },
+  { theme: "Introduction à la mythologie nordique et ses symboles", persona: "un historien passionné de récits épiques" },
+  { theme: "Critique de film sur une saga de science-fiction célèbre", persona: "un fan de SF  critique sur la cohérence scientifique" },
+  { theme: "Billet d'humeur sur la vie sans smartphone pendant une semaine", persona: "un technophobe assumé et un peu provocateur" },
+  { theme: "Vulgarisation sur le fonctionnement d'un concept scientifique", persona: "un physicien qui utilise beaucoup d'analogies" },
 ];
 
 type TargetType = "hallucination" | "cliche" | "none";
@@ -38,40 +39,33 @@ interface TextSegment {
   explanation?: string;
 }
 
-// V2 — Email de consultant rédigé par IA
-// Hallucinations : stats crédibles mais inventées, fausses citations, acquisitions bidonnées
-// Clichés : formules LinkedIn, transitions automatiques, buzzwords vides
-// Level 1 Static Data: 1 Cliché, 0 Hallucinations, ~80 words
+// Level 1 Static Data: 1 Cliché, 1 Hallucination, ~100 words
 const HUNTER_DATA: TextSegment[] = [
-  { text: "L'intelligence artificielle transforme ", type: "none" },
-  { text: "radicalement de nombreux ", type: "none" },
-  { text: "secteurs d'activité aujourd'hui.\n\n", type: "none" },
-  { text: "ChatGPT a franchi une ", type: "none" },
-  { text: "étape historique en démontrant ", type: "none" },
-  { text: "l'étendue des capacités de ", type: "none" },
-  { text: "traitement du langage naturel. ", type: "none" },
-  { text: "Il est indéniable que", type: "cliche", explanation: "Formule d'autorité bateau très souvent utilisée par les IA pour conclure une phrase sans avancer la moindre preuve." },
-  { text: " cette technologie redessinera ", type: "none" },
-  { text: "le monde du travail ", type: "none" },
-  { text: "de demain. Les entreprises ", type: "none" },
-  { text: "intègrent de plus en ", type: "none" },
-  { text: "plus ces modèles pour ", type: "none" },
-  { text: "automatiser leurs tâches, ", type: "none" },
-  { text: "réinventant notre futur.", type: "none" },
+  { text: "Franchement, si vous traînez un peu sur les blogs en ce moment, vous avez forcément remarqué ce truc. ", type: "none" },
+  { text: "Une sorte de nappe de brouillard sémantique qui envahit tout. ", type: "none" },
+  { text: "Il est indéniable que", type: "cliche", explanation: "Transition lourde et péremptoire, typique du 'style robot' qui cherche à imposer une vérité sans nuance." },
+  { text: " l'IA va nous faire gagner un temps fou, mais ce qu'on voit surtout, c'est une uniformisation flippante des contenus. ", type: "none" },
+  { text: "Selon un rapport de ", type: "none" },
+  { text: "l’Institut européen de la Data Digital", type: "hallucination", explanation: "Cet institut n'existe pas. C'est une invention crédible qui profite du flou institutionnel autour du numérique." },
+  { text: ", près de la moitié des articles web actuels contiendraient déjà des traces de génération automatisée. ", type: "none" },
+  { text: "Moi, quand j'écris, j'aime bien quand ça gratte, quand il y a une tournure un peu bancale ", type: "none" },
+  { text: "qui prouve que je ne suis pas un algorithme. ", type: "none" },
+  { text: "Le problème, c'est que la tentation du bouton 'générer' est forte, surtout pour plaire aux moteurs de recherche. ", type: "none" },
+  { text: "On finit par perdre cette petite étincelle humaine ", type: "none" },
+  { text: "qui fait qu'on a envie de lire un article jusqu'au bout sans soupirer.", type: "none" }
 ];
 
 export const HallucinationHunter: React.FC = () => {
-  const [roundsData, setRoundsData] = useState<TextSegment[][]>([HUNTER_DATA]);
-  const [currentLevel, setCurrentLevel] = useState(0);
-  const [totalScore, setTotalScore] = useState(0);
+  const [totalScore, setTotalScore] = usePersistentState("wemodo-hunter-score", 0);
   const [isLoadingNext, setIsLoadingNext] = useState(false);
-  const [customTheme, setCustomTheme] = useState("");
-  const [isGeneratingCustom, setIsGeneratingCustom] = useState(false);
+  const [roundsData, setRoundsData] = usePersistentState<TextSegment[][]>("wemodo-hunter-rounds", [HUNTER_DATA]);
+  const [currentLevel, setCurrentLevel] = usePersistentState("wemodo-hunter-level", 0);
 
-  const [foundIds, setFoundIds] = useState<number[]>([]);
+  const [foundIds, setFoundIds] = usePersistentState<number[]>("wemodo-hunter-found", []);
   const [errorIndices, setErrorIndices] = useState<number[]>([]);
   const [isErrorFlash, setIsErrorFlash] = useState(false);
   const [selectedInfo, setSelectedInfo] = useState<TextSegment | null>(null);
+  const [prefetchError, setPrefetchError] = useState<boolean>(false);
 
   const [startTime, setStartTime] = useState<number | null>(null);
 
@@ -79,44 +73,76 @@ export const HallucinationHunter: React.FC = () => {
   const targets = useMemo(() => currentData?.filter(s => s.type !== "none") || [], [currentData]);
   const totalTargets = targets.length;
 
+  const stats = useMemo(() => {
+    const halls = currentData?.filter(s => s.type === "hallucination") || [];
+    const cliches = currentData?.filter(s => s.type === "cliche") || [];
+    const foundHallsCount = foundIds.filter(id => currentData[id]?.type === "hallucination").length;
+    const foundClichesCount = foundIds.filter(id => currentData[id]?.type === "cliche").length;
+
+    return {
+      totalHalls: halls.length,
+      totalCliches: cliches.length,
+      foundHalls: foundHallsCount,
+      foundCliches: foundClichesCount
+    };
+  }, [currentData, foundIds]);
+
+  // 💡 Background Prefetching Logic
+  // We want to always have 2 levels ready ahead of the current one
   useEffect(() => {
-    // Generate next round in the background if we don't have at least 2 rounds ahead
-    if (roundsData.length <= currentLevel + 2 && !isLoadingNext && !isGeneratingCustom) {
+    // If we're not already loading and not generating a custom theme
+    // Buffer limit: currentLevel + 2 means we have current level + 1 upcoming level ready
+    if (!isLoadingNext && !prefetchError && roundsData.length < currentLevel + 2) {
       const fetchRound = async () => {
         setIsLoadingNext(true);
-        try {
-          const nextLevelIndex = roundsData.length;
-          const levelNum = nextLevelIndex + 1;
-          const theme = RANDOM_THEMES[Math.floor(Math.random() * RANDOM_THEMES.length)];
+        const levelToFetch = roundsData.length + 1;
+        const entry = RANDOM_THEMES[Math.floor(Math.random() * RANDOM_THEMES.length)];
+        const theme = entry.theme;
+        const persona = entry.persona;
 
-          // Difficulty scaling formulas
-          const halls = Math.floor(levelNum / 2);
-          const cliches = Math.ceil(levelNum / 2);
-          const words = 60 + levelNum * 20;
+        console.log(`[Hunter] 📡 Prefetching level ${levelToFetch} (Theme: ${theme})...`);
+
+        try {
+          // Difficulty scaling matches the dynamic loop
+          const halls = Math.floor(levelToFetch / 2);
+          const cliches = Math.ceil(levelToFetch / 2);
+          const words = 60 + levelToFetch * 20;
 
           const res = await fetch("/api/hunt-generate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               theme,
+              persona,
               hallsCount: halls,
               clichesCount: cliches,
               maxWords: words
             })
           });
+
+          if (!res.ok) throw new Error(`API returned ${res.status}`);
+
           const data = await res.json();
           if (data.segments && data.segments.length > 0) {
-            setRoundsData(prev => [...prev, data.segments]);
+            setRoundsData(prev => {
+              // Double check to avoid duplicates during race conditions
+              if (prev.length >= levelToFetch) return prev;
+              return [...prev, data.segments];
+            });
+            setPrefetchError(false);
+            console.log(`[Hunter] ✅ Level ${levelToFetch} cached.`);
           }
         } catch (err) {
-          console.error("Failed to prefetch next round", err);
+          console.error(`[Hunter] ❌ Failed to prefetch level ${levelToFetch}:`, err);
+          setPrefetchError(true); // Stop retrying this level until currentLevel changes or success
         } finally {
           setIsLoadingNext(false);
         }
       };
+
       fetchRound();
     }
-  }, [roundsData.length, currentLevel, isLoadingNext, isGeneratingCustom]);
+  }, [roundsData.length, currentLevel, isLoadingNext]);
 
   const advanceToNextRound = useCallback((roundScore: number) => {
     setTotalScore(prev => prev + roundScore);
@@ -125,6 +151,7 @@ export const HallucinationHunter: React.FC = () => {
     setIsErrorFlash(false);
     setSelectedInfo(null);
     setStartTime(null);
+    setPrefetchError(false); // Reset error on round change to allow new prefetch attempt
     setCurrentLevel(prev => prev + 1);
   }, []);
 
@@ -175,30 +202,16 @@ export const HallucinationHunter: React.FC = () => {
     triggerMiss();
   };
 
-  const handleGenerateCustom = async () => {
-    if (!customTheme.trim()) return;
-    setIsGeneratingCustom(true);
-    try {
-      const res = await fetch("/api/hunt-generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ theme: customTheme })
-      });
-      const data = await res.json();
-      if (data.segments && data.segments.length > 0) {
-        setRoundsData(prev => {
-          const newRounds = prev.slice(0, currentLevel + 1);
-          newRounds.push(data.segments);
-          return newRounds;
-        });
-        setCustomTheme("");
-        advanceToNextRound(0);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsGeneratingCustom(false);
-    }
+  const resetToStart = () => {
+    setCurrentLevel(0);
+    setRoundsData([HUNTER_DATA]);
+    setFoundIds([]);
+    setErrorIndices([]);
+    setIsErrorFlash(false);
+    setSelectedInfo(null);
+    setStartTime(null);
+    setTotalScore(0);
+    setPrefetchError(false);
   };
 
   if (!currentData || currentData.length === 0) {
@@ -212,9 +225,15 @@ export const HallucinationHunter: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-6 md:gap-8 max-w-5xl mx-auto p-0 md:p-2 bg-transparent w-full">
-      {/* Header and custom generator */}
-      <div className="space-y-4 px-4 md:px-0 mt-4 md:mt-0 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+      {/* Header */}
+      <div className="space-y-4 px-4 md:px-0 mt-4 md:mt-0 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div className="space-y-3">
+          <button 
+            onClick={resetToStart}
+            className="flex items-center gap-2 font-black uppercase text-[10px] tracking-widest text-wemodo-navy/50 hover:text-wemodo-purple transition-colors mb-2"
+          >
+            <RotateCcw size={14} /> Recommencer à zéro (Niv. 1)
+          </button>
           <h1 className="font-display font-black text-4xl md:text-6xl uppercase italic tracking-tighter text-wemodo-navy leading-none">
             CHASSE AUX <span className="text-wemodo-purple">HALLUCINATIONS</span>
           </h1>
@@ -223,50 +242,36 @@ export const HallucinationHunter: React.FC = () => {
             <span className="text-wemodo-purple italic">Le score dépend de ta rapidité !</span>
           </p>
         </div>
-
-        {/* Custom Subject Generator (secondary) */}
-        <div className="flex flex-col gap-2 shrink-0 bg-white p-3 border-2 border-wemodo-navy bg-wemodo-cream/30 w-full md:w-auto min-w-[250px] shadow-[4px_4px_0_rgba(18,14,61,1)]">
-          <span className="text-[10px] font-black uppercase text-wemodo-navy/50 tracking-widest">Sujet sur mesure (optionnel)</span>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={customTheme}
-              onChange={(e) => setCustomTheme(e.target.value)}
-              placeholder="Ex: Startups..."
-              className="flex-1 px-2 py-1 text-sm border-2 border-wemodo-navy bg-white focus:outline-none focus:ring-2 focus:ring-wemodo-purple min-w-0"
-              disabled={isGeneratingCustom}
-              onKeyDown={(e) => e.key === 'Enter' && handleGenerateCustom()}
-            />
-            <BrutalistButton
-              onClick={handleGenerateCustom}
-              disabled={isGeneratingCustom || !customTheme.trim()}
-              className="h-auto py-1 px-3 text-xs"
-            >
-              Go
-            </BrutalistButton>
-          </div>
-          {isGeneratingCustom && <span className="text-[10px] text-wemodo-purple font-bold">Génération en cours...</span>}
-        </div>
       </div>
 
       {/* Stats Info */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white border-b-4 md:border-4 border-wemodo-navy p-4 md:shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] shrink-0 mx-4 md:mx-0">
-        <div className="flex items-center gap-4 md:gap-8 w-full md:w-auto justify-between md:justify-start">
-          <div className="flex flex-col">
-            <span className="text-[10px] md:text-xs font-black uppercase text-wemodo-navy/40">Éléments trouvés</span>
+      <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-white border-b-4 md:border-4 border-wemodo-navy p-4 md:shadow-[8px_8px_0px_0px_rgba(18,14,61,1)] shrink-0 mx-4 md:mx-0">
+        <div className="flex items-center gap-4 md:gap-8 flex-wrap">
+          {/* Hallucinations counter */}
+          <div className="flex flex-col pr-4 md:pr-8">
+            <span className="text-[10px] md:text-xs font-black uppercase text-red-600/60">🚨 Hallucinations</span>
+            <span className="text-3xl md:text-4xl font-black italic text-red-600 leading-none">
+              {stats.foundHalls} <span className="text-lg not-italic text-wemodo-navy/30">/ {stats.totalHalls}</span>
+            </span>
+          </div>
+
+          {/* Clichés counter */}
+          <div className="flex flex-col border-l-2 border-wemodo-navy/10 pl-4 md:pl-8">
+            <span className="text-[10px] md:text-xs font-black uppercase text-wemodo-purple/60">🎭 Clichés IA</span>
             <span className="text-3xl md:text-4xl font-black italic text-wemodo-purple leading-none">
-              {foundIds.length} <span className="text-lg not-italic text-wemodo-navy/30">/ {totalTargets}</span>
+              {stats.foundCliches} <span className="text-lg not-italic text-wemodo-navy/30">/ {stats.totalCliches}</span>
             </span>
           </div>
 
-          <div className="flex flex-col text-right md:text-left border-l-2 border-wemodo-navy/10 pl-4 md:pl-6">
-            <span className="text-[10px] md:text-xs font-black uppercase text-wemodo-navy/40">Score Cumulative</span>
+          {/* Score & Level */}
+          <div className="flex flex-col border-l-2 border-wemodo-navy/10 pl-4 md:pl-8">
+            <span className="text-[10px] md:text-xs font-black uppercase text-wemodo-navy/40">Total Score</span>
             <span className="text-3xl md:text-4xl font-black italic text-wemodo-navy leading-none">
-              {totalScore} <span className="text-sm md:text-lg not-italic text-wemodo-navy/30">pts</span>
+              {totalScore}
             </span>
           </div>
 
-          <div className="flex flex-col text-right md:text-left border-l-2 border-wemodo-navy/10 pl-4 md:pl-6 hidden md:flex">
+          <div className="flex flex-col border-l-2 border-wemodo-navy/10 pl-4 md:pl-8 hidden md:flex">
             <span className="text-[10px] md:text-xs font-black uppercase text-wemodo-navy/40">Manche</span>
             <span className="text-3xl md:text-4xl font-black italic text-wemodo-navy leading-none">
               {currentLevel + 1}
@@ -274,12 +279,15 @@ export const HallucinationHunter: React.FC = () => {
           </div>
         </div>
 
-        <div className="hidden md:block flex-1 max-w-md w-full h-4 bg-wemodo-navy/10 border-2 border-wemodo-navy overflow-hidden ml-4">
+        <div className="hidden lg:block flex-1 max-w-[200px] w-full h-8 bg-wemodo-navy/5 border-2 border-wemodo-navy relative overflow-hidden ml-4">
           <motion.div
             className="h-full bg-wemodo-yellow"
             animate={{ width: `${totalTargets > 0 ? Math.min(100, (foundIds.length / totalTargets) * 100) : 0}%` }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-[10px] font-black uppercase text-wemodo-navy tracking-tighter">Progression</span>
+          </div>
         </div>
       </div>
 

@@ -6,16 +6,17 @@ import { QuizState, Question, Chapter, Module } from "../../types";
 import { BrutalistButton, WemodoLogo } from "../../components/BrutalistUI";
 import { ChevronRight, RotateCcw, Award, CheckCircle2, XCircle, Brain, ArrowLeft, BookOpen, Layers } from "lucide-react";
 import { useLeaderboard } from "../../hooks/useLeaderboard";
+import { usePersistentState } from "../../hooks/usePersistentState";
 import { Leaderboard } from "../../components/Leaderboard";
 
 export const AIQuizTraining: React.FC = () => {
-  const [selectedModule, setSelectedModule] = useState<Module | null>(null);
-  const [selectedChapter, setSelectedChapter] = useState<Chapter | null>(null);
-  const [gameStarted, setGameStarted] = useState(false);
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [selectedModule, setSelectedModule] = usePersistentState<Module | null>("wemodo-training-module", null);
+  const [selectedChapter, setSelectedChapter] = usePersistentState<Chapter | null>("wemodo-training-chapter", null);
+  const [gameStarted, setGameStarted] = usePersistentState("wemodo-training-started", false);
+  const [questions, setQuestions] = usePersistentState<Question[]>("wemodo-training-questions", []);
   const [isLoading, setIsLoading] = useState(false);
   
-  const [state, setState] = useState<QuizState>({
+  const [state, setState] = usePersistentState<QuizState>("wemodo-training-state", {
     currentQuestionIndex: 0,
     score: 0,
     answers: [],
