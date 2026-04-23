@@ -20,89 +20,118 @@ export default async function handler(req: Request) {
   }
 
   if (req.method !== 'POST') {
-    return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 });
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   if (!GEMINI_API_KEY) {
-    return new Response(JSON.stringify({ error: "GEMINI_API_KEY is missing." }), { status: 500 });
+    console.error("[BACK] Erreur: GEMINI_API_KEY manquante");
+    return new Response(JSON.stringify({ error: "Clé API Gemini manquante dans l'environnement." }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
-  const { mission } = await req.json();
+  // Lecture du body sécurisée
+  let mission = "";
+  try {
+    const body = await req.json();
+    mission = body.mission;
+  } catch (e) {
+    return new Response(JSON.stringify({ error: "Requête invalide" }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 
   if (!mission) {
-    return new Response(JSON.stringify({ error: "Missing mission field" }), { status: 400 });
+    return new Response(JSON.stringify({ error: "Le champ 'mission' est manquant." }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
-  try {
-    const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+  console.log(`[BACK] Reçu: "${mission}" | Modèle: ${GEMINI_MODEL}`);
+  const aiStartTime = Date.now();
 
-    // Stratégie de retry pour absorber les 503 temporaires de Gemini Flash Lite
-    let response;
-    let retries = 0;
-    const maxRetries = 2;
+  // On crée le stream et on le retourne IMMÉDIATEMENT
+  const stream = new ReadableStream({
+    async start(controller) {
+      const encoder = new TextEncoder();
 
-    while (retries < maxRetries) {
+      // Amorçage immédiat pour réduire le TTFB perçu
+      controller.enqueue(encoder.encode(' '));
+      console.log(`[BACK] Stream Amorcé (0ms)`);
+
       try {
-        response = await ai.interactions.create({
-          model: GEMINI_MODEL,
-          input: `Mission : ${mission}`,
-          stream: true,
-          system_instruction: `Tu es un Expert en Productivité IA. Ta mission est de générer 5 cas d'usage concrets et immédiats pour la mission fournie.
-          Chaque cas doit être un objet JSON valide avec :
-          - title: Titre court (max 5 mots).
-          - timeSaved: Estimation réaliste du temps gagné (ex: "2h/jour", "4h/semaine").
-          - action: Instruction claire de ce que l'IA doit exécuter.
-          - icon: Un seul emoji représentatif.
+        const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+        let response;
+        let retries = 0;
+        const maxRetries = 2;
 
-          IMPORTANT : Sépare STRICTEMENT chaque objet par le délimiteur : ---END_OF_CASE---
-          Règles : PAS de crochets [ ], PAS d'introduction, PAS de conclusion, Français uniquement.`,
-          generation_config: {
-            temperature: 0.2,
-            max_output_tokens: 1000,
-          }
-        });
-        break;
-      } catch (e: any) {
-        retries++;
-        if (e.status === 503 && retries < maxRetries) {
-          await new Promise(r => setTimeout(r, 800));
-          continue;
-        }
-        throw e;
-      }
-    }
+        const isGemma = GEMINI_MODEL.toLowerCase().includes("gemma");
+        const systemInstruction = `Tu es un Expert en Productivité IA. Ta mission est de générer 5 cas d'usage concrets et immédiats pour la mission fournie.
+        Chaque cas doit être un objet JSON valide avec :
+        - title: Titre court résumant le cas d'usage (max 5 mots).
+        - timeSaved: Estimation réaliste du temps gagné (ex: "2h/jour", "4h/semaine").
+        - action: La description du cas d'unsage (20 à 30 mots).
+        - icon: Un seul emoji représentatif.
 
-    const stream = new ReadableStream({
-      async start(controller) {
-        const encoder = new TextEncoder();
-        controller.enqueue(encoder.encode(' ')); // Amorçage
+        IMPORTANT : Sépare STRICTEMENT chaque objet par le délimiteur : ---END_OF_CASE---
+        Règles : PAS de crochets [ ], PAS d'introduction, PAS de conclusion, Français uniquement.`;
 
-        try {
-          for await (const event of response) {
-            // Dans le nouveau SDK, le texte est dans event.delta.text pour les événements content.delta
-            if (event.event_type === 'content.delta' && 'text' in event.delta) {
-              controller.enqueue(encoder.encode(event.delta.text));
+        while (retries < maxRetries) {
+          try {
+            console.log(`[BACK] Appel AI (essai ${retries + 1}) | Modèle: ${GEMINI_MODEL}`);
+            response = await ai.interactions.create({
+              model: GEMINI_MODEL,
+              input: isGemma ? `${systemInstruction}\n\nMission : ${mission}` : `Mission : ${mission}`,
+              system_instruction: isGemma ? undefined : systemInstruction,
+              stream: true,
+              generation_config: {
+                temperature: 0.2,
+                max_output_tokens: 1000,
+              }
+            });
+            break;
+          } catch (e: any) {
+            retries++;
+            if (e.status === 503 && retries < maxRetries) {
+              console.warn(`[BACK] 503 détecté, retry...`);
+              await new Promise(r => setTimeout(r, 800));
+              continue;
             }
+            throw e;
           }
-        } catch (e) {
-          console.error("Stream Error:", e);
-        } finally {
-          controller.close();
         }
-      },
-    });
 
-    return new Response(stream, {
-      headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
-        'Cache-Control': 'no-cache, no-transform',
-        'X-Content-Type-Options': 'nosniff',
-        'Access-Control-Allow-Origin': '*',
-      },
-    });
+        console.log(`[BACK] AI a commencé à répondre (+${Date.now() - aiStartTime}ms)`);
 
-  } catch (error: any) {
-    console.error("Gemini Edge Error:", error);
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
-  }
+        for await (const event of response) {
+          if (event.event_type === 'content.delta' && 'text' in event.delta) {
+            controller.enqueue(encoder.encode(event.delta.text));
+          }
+        }
+      } catch (error: any) {
+        console.error("[BACK] Stream Error:", error);
+        // On envoie l'erreur dans le flux pour que le front puisse la voir si possible
+        controller.enqueue(encoder.encode(`---ERROR---${error.message || "Erreur AI"}`));
+      } finally {
+        console.log(`[BACK] Stream Fermé (Total: ${Date.now() - aiStartTime}ms)`);
+        controller.close();
+      }
+    },
+  });
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'no-cache, no-transform',
+      'X-Content-Type-Options': 'nosniff',
+      'Access-Control-Allow-Origin': '*',
+      'X-Model-Used': GEMINI_MODEL || 'default',
+    },
+  });
 }

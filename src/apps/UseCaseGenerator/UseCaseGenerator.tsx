@@ -27,16 +27,25 @@ export const UseCaseGenerator: React.FC = () => {
   const handleGenerate = async () => {
     if (!mission.trim()) return;
 
+    const startTime = performance.now();
+    console.log("🚀 [FRONT] Clic Bouton");
+
     setLoading(true);
     setError(null);
-    setUseCases([]); // Commencer avec un tableau vide pour ajouter au fur et à mesure
+    setUseCases([]); 
 
     try {
+      console.log("📤 [FRONT] Envoi Requête...");
+      const fetchStartTime = performance.now();
+      
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ mission })
       });
+
+      const modelUsed = response.headers.get('X-Model-Used');
+      console.log(`🤖 [FRONT] Modèle: ${modelUsed}`);
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: "Erreur serveur" }));
@@ -48,54 +57,64 @@ export const UseCaseGenerator: React.FC = () => {
 
       const decoder = new TextDecoder();
       let buffer = "";
+      let firstChunkReceived = false;
+      let casesCount = 0;
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
+        if (!firstChunkReceived) {
+          firstChunkReceived = true;
+          console.log(`📥 [FRONT] Début Réception (+${Math.round(performance.now() - fetchStartTime)}ms)`);
+        }
+
         buffer += decoder.decode(value, { stream: true });
-        
-        // On cherche le délimiteur défini dans l'API
+
+        // Gestion des erreurs injectées dans le flux
+        if (buffer.includes('---ERROR---')) {
+          const errorMsg = buffer.split('---ERROR---')[1];
+          throw new Error(errorMsg || "Erreur de génération");
+        }
+
         const parts = buffer.split('---END_OF_CASE---');
         
-        // On traite tous les segments sauf le dernier (qui est potentiellement incomplet)
         for (let i = 0; i < parts.length - 1; i++) {
           const content = parts[i].trim();
           if (content) {
             try {
-              // Nettoyage rapide pour éviter les blocs de code markdown s'ils s'invitent
               const cleanContent = content.replace(/```json|```/g, "").trim();
               if (cleanContent) {
                 const useCase = JSON.parse(cleanContent);
+                casesCount++;
+                console.log(`✨ [FRONT] Cas #${casesCount} créé (+${Math.round(performance.now() - fetchStartTime)}ms)`);
                 setUseCases(prev => [...(prev || []), useCase]);
               }
             } catch (e) {
-              console.warn("Échec du parsing d'un fragment de cas d'usage:", e);
+              console.warn("Échec du parsing d'un fragment:", e);
             }
           }
         }
-        
-        // On conserve le fragment restant (incomplet) pour le prochain chunk
         buffer = parts[parts.length - 1];
       }
 
-      // Traiter le dernier morceau si jamais il n'y a pas de délimiteur final
       const finalContent = buffer.trim().replace(/```json|```/g, "").trim();
       if (finalContent && finalContent.startsWith('{') && finalContent.endsWith('}')) {
         try {
           const useCase = JSON.parse(finalContent);
+          casesCount++;
+          console.log(`✨ [FRONT] Cas #${casesCount} créé (final) (+${Math.round(performance.now() - fetchStartTime)}ms)`);
           setUseCases(prev => {
-            // Vérifier si ce cas n'a pas déjà été ajouté (au cas où)
             if (prev?.some(uc => uc.title === useCase.title)) return prev;
             return [...(prev || []), useCase];
           });
-        } catch (e) {
-          // Ignorer si c'est incomplet
-        }
+        } catch (e) {}
       }
 
+      console.log(`🏁 [FRONT] Flux Terminé | Total: ${Math.round(performance.now() - startTime)}ms`);
+
     } catch (err: any) {
-      console.error("Streaming Error details:", err);
+      console.error("❌ [FRONT] Erreur:", err);
       
       const errorMessage = err.message || "";
       if (errorMessage.includes("high demand") || errorMessage.includes("Too Many Requests") || errorMessage.includes("503") || errorMessage.includes("500")) {
