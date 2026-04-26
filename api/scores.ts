@@ -2,8 +2,9 @@ import { VercelRequest, VercelResponse } from '@vercel/node';
 
 // On utilise fetch pour éviter d'imposer l'installation de @vercel/kv si npm ne marche pas
 // Mais Vercel KV fournit déjà les variables d'env KV_REST_API_URL et KV_REST_API_TOKEN
-const KV_URL = process.env.KV_REST_API_URL;
-const KV_TOKEN = process.env.KV_REST_API_TOKEN;
+// Support both standard Vercel KV and custom WEMODO_ prefixed variables
+const KV_URL = process.env.KV_REST_API_URL || process.env.WEMODO_KV_REST_API_URL;
+const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.WEMODO_KV_REST_API_TOKEN;
 
 async function kvFetch(command: string[]) {
   const response = await fetch(`${KV_URL}`, {
@@ -29,7 +30,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (!KV_URL || !KV_TOKEN) {
-    return res.status(500).json({ error: "KV environment variables are missing. Please link KV in Vercel dashboard." });
+    console.warn("KV environment variables are missing. Leaderboard will be local-only.");
+    if (req.method === 'GET') {
+      return res.status(200).json([]);
+    }
+    return res.status(200).json({ warning: "KV not configured", scores: [] });
   }
 
   const STORAGE_KEY = 'global-leaderboard';
