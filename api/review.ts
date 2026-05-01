@@ -37,7 +37,8 @@ Réponds UNIQUEMENT au format JSON strict sans texte autour : {"score": number, 
         }],
         generationConfig: {
           response_mime_type: "application/json",
-          temperature: 0.4
+          temperature: 0.4,
+          maxOutputTokens: 500
         }
       })
     });

@@ -72,11 +72,12 @@ export default async function handler(req: Request) {
         const maxRetries = 2;
 
         const isGemma = GEMINI_MODEL.toLowerCase().includes("gemma");
-        const systemInstruction = `Tu es un Expert en Productivité IA. Ta mission est de générer 5 cas d'usage concrets et immédiats pour la mission fournie.
+        const systemInstruction = `Tu es un Expert en Productivité IA. 
+        Ta mission est de générer 5 cas d'usage concrets et immédiats pour la mission fournie.
         Chaque cas doit être un objet JSON valide avec :
         - title: Titre court résumant le cas d'usage (max 5 mots).
         - timeSaved: Estimation réaliste du temps gagné (ex: "2h/jour", "4h/semaine").
-        - action: La description du cas d'unsage (20 à 30 mots).
+        - action: La description du cas d'unsage (20 à 30 mots) à l'infinitif. 
         - icon: Un seul emoji représentatif.
 
         IMPORTANT : Sépare STRICTEMENT chaque objet par le délimiteur : ---END_OF_CASE---

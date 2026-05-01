@@ -68,7 +68,7 @@ FORMAT DE RÉPONSE (JSON UNIQUEMENT) :
         generationConfig: {
           response_mime_type: "application/json",
           temperature: 0.9,
-          maxOutputTokens: 8000
+          maxOutputTokens: 2000
         }
       })
     });
