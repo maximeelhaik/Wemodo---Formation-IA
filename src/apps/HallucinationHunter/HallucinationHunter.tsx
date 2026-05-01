@@ -5,8 +5,8 @@ import { Search, RotateCcw } from "lucide-react";
 import { usePersistentState } from "../../hooks/usePersistentState";
 
 // For later restitution of the leaderboard
-// import { useLeaderboard } from "../../hooks/useLeaderboard";
-// import { Leaderboard } from "../../components/Leaderboard";
+import { useLeaderboard } from "../../hooks/useLeaderboard";
+import { Leaderboard } from "../../components/Leaderboard";
 
 const RANDOM_THEMES = [
   { theme: "Critique gastronomique d'un restaurant de Paris", persona: "un blogueur culinaire un peu familier" },
@@ -68,16 +68,47 @@ export const HallucinationHunter: React.FC = () => {
   const [prefetchError, setPrefetchError] = useState<boolean>(false);
 
   const [startTime, setStartTime] = useState<number | null>(null);
+  const [isRoundFinished, setIsRoundFinished] = useState(false);
+  const [lastRoundScore, setLastRoundScore] = useState(0);
+  const [username, setUsername] = useState("");
+  const [hasSaved, setHasSaved] = useState(false);
+
+  const { saveScore, getAppLeaderboard } = useLeaderboard();
+  const appId = "hallucination-hunter";
 
   const currentData = roundsData[currentLevel];
-  const targets = useMemo(() => currentData?.filter(s => s.type !== "none") || [], [currentData]);
+  const targets = useMemo(() => currentData?.filter(s => {
+    const type = s.type?.toLowerCase().trim() || "";
+    return type === "hallucination" || type === "cliche" || (type !== "none" && type !== "");
+  }) || [], [currentData]);
   const totalTargets = targets.length;
 
+  useEffect(() => {
+    if (currentData) {
+      console.log(`[Hunter] Level ${currentLevel + 1} Targets:`, targets);
+    }
+  }, [currentLevel, targets, currentData]);
+
   const stats = useMemo(() => {
-    const halls = currentData?.filter(s => s.type === "hallucination") || [];
-    const cliches = currentData?.filter(s => s.type === "cliche") || [];
-    const foundHallsCount = foundIds.filter(id => currentData[id]?.type === "hallucination").length;
-    const foundClichesCount = foundIds.filter(id => currentData[id]?.type === "cliche").length;
+    if (!currentData) return { totalHalls: 0, totalCliches: 0, foundHalls: 0, foundCliches: 0 };
+
+    const halls = currentData.filter(s => {
+      const t = s.type?.toLowerCase().trim() || "";
+      return t.includes("hallucination");
+    });
+    const cliches = currentData.filter(s => {
+      const t = s.type?.toLowerCase().trim() || "";
+      return t.includes("cliche");
+    });
+    
+    const foundHallsCount = foundIds.filter(id => {
+      const t = currentData[id]?.type?.toLowerCase().trim() || "";
+      return t.includes("hallucination");
+    }).length;
+    const foundClichesCount = foundIds.filter(id => {
+      const t = currentData[id]?.type?.toLowerCase().trim() || "";
+      return t.includes("cliche");
+    }).length;
 
     return {
       totalHalls: halls.length,
@@ -152,8 +183,21 @@ export const HallucinationHunter: React.FC = () => {
     setSelectedInfo(null);
     setStartTime(null);
     setPrefetchError(false); // Reset error on round change to allow new prefetch attempt
+    setIsRoundFinished(false);
+    setHasSaved(false);
     setCurrentLevel(prev => prev + 1);
   }, []);
+
+  const handleSaveScore = () => {
+    if (!username.trim()) return;
+    saveScore({
+      username: username.trim(),
+      score: totalScore + lastRoundScore,
+      total: currentLevel + 1, // Using level as a "total" metric here
+      appId
+    });
+    setHasSaved(true);
+  };
 
   // Monitor round completion
   useEffect(() => {
@@ -163,13 +207,15 @@ export const HallucinationHunter: React.FC = () => {
       // Base score increases slightly with level difficulty
       const basePoints = 1000 + (currentLevel * 200);
       const roundScore = Math.max(100, basePoints - duration * 5);
-
+      
+      setLastRoundScore(roundScore);
+      
       const timer = setTimeout(() => {
-        advanceToNextRound(roundScore);
+        setIsRoundFinished(true);
       }, 1500);
       return () => clearTimeout(timer);
     }
-  }, [foundIds.length, totalTargets, startTime, advanceToNextRound]);
+  }, [foundIds.length, totalTargets, startTime, currentLevel]);
 
   const triggerMiss = (index?: number) => {
     setIsErrorFlash(true);
@@ -185,7 +231,8 @@ export const HallucinationHunter: React.FC = () => {
 
     if (!startTime) setStartTime(Date.now());
 
-    if (segment.type !== "none") {
+    const type = segment.type?.toLowerCase().trim() || "";
+    if (type !== "none" && type !== "") {
       if (!foundIds.includes(index)) {
         setFoundIds(prev => [...prev, index]);
         setSelectedInfo(segment);
@@ -220,6 +267,95 @@ export const HallucinationHunter: React.FC = () => {
         <WemodoLogo variant="dark" className="h-10 md:h-14 animate-pulse opacity-50" />
         <p className="font-black text-wemodo-navy/50 uppercase tracking-widest animate-pulse">Génération de la prochaine manche...</p>
       </div>
+    );
+  }
+
+  // Summary Screen between rounds
+  if (isRoundFinished) {
+    return (
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="fixed inset-0 z-[200] flex flex-col items-center justify-start overflow-y-auto p-4 md:p-10 bg-wemodo-purple transition-colors duration-500"
+      >
+        <div className="mb-6 shrink-0">
+          <WemodoLogo variant="light" className="h-10 md:h-14" />
+        </div>
+
+        <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="flex flex-col gap-6 p-8 md:p-10 bg-white text-wemodo-navy md:shadow-[16px_16px_0px_0px_rgba(18,14,61,1)] md:border-4 border-wemodo-navy items-center md:items-start"
+          >
+            <div className="flex flex-col gap-2 mb-2">
+              <h2 className="font-display font-black text-5xl md:text-6xl uppercase italic tracking-tighter text-center md:text-left leading-none">
+                Manche <span className="text-wemodo-purple">Finie !</span>
+              </h2>
+              <div className="h-2 w-24 bg-wemodo-navy mx-auto md:mx-0" />
+            </div>
+
+            <div className="flex flex-col gap-4 items-center md:items-start text-center md:text-left">
+              <div className="relative">
+                <span className="block text-3xl font-black uppercase tracking-widest opacity-40 mb-1">Score de la manche</span>
+                <span className="block text-7xl md:text-8xl font-black italic tracking-tighter leading-none text-wemodo-purple">
+                  +{lastRoundScore}
+                </span>
+              </div>
+              
+              <div className="bg-wemodo-navy text-white p-4 w-full">
+                <span className="block text-[10px] font-black uppercase opacity-60">Score Total Cumulé</span>
+                <span className="text-4xl font-black italic">{totalScore + lastRoundScore}</span>
+              </div>
+            </div>
+
+            {!hasSaved ? (
+              <div className="w-full flex flex-col gap-3 mt-2 bg-wemodo-cream/50 p-4 border-2 border-wemodo-navy border-dashed">
+                <p className="font-black text-xs uppercase tracking-widest text-wemodo-navy/60 text-center md:text-left">
+                  Enregistrer ton record ?
+                </p>
+                <div className="flex gap-2">
+                  <input 
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Ton pseudo..."
+                    className="flex-1 px-4 py-2 border-2 border-wemodo-navy font-bold focus:outline-none focus:ring-2 focus:ring-wemodo-pink"
+                    onKeyDown={(e) => e.key === 'Enter' && handleSaveScore()}
+                  />
+                  <button 
+                    onClick={handleSaveScore}
+                    disabled={!username.trim()}
+                    className="bg-wemodo-navy text-white px-4 py-2 font-black uppercase text-xs border-2 border-wemodo-navy hover:bg-wemodo-purple disabled:opacity-50 transition-colors"
+                  >
+                    OK
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="w-full py-4 px-6 bg-wemodo-yellow border-4 border-wemodo-navy flex items-center gap-3">
+                <span className="font-black uppercase italic tracking-tighter text-lg">Score enregistré !</span>
+              </div>
+            )}
+
+            <BrutalistButton 
+              onClick={() => advanceToNextRound(lastRoundScore)} 
+              className="flex items-center justify-center gap-4 bg-wemodo-navy text-white hover:bg-wemodo-purple border-wemodo-navy h-16 text-2xl w-full shadow-[6px_6px_0px_0px_rgba(18,14,61,1)]"
+            >
+              Manche suivante <Search size={24} />
+            </BrutalistButton>
+          </motion.div>
+
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="w-full"
+          >
+            <Leaderboard entries={getAppLeaderboard(appId)} />
+          </motion.div>
+        </div>
+      </motion.div>
     );
   }
 

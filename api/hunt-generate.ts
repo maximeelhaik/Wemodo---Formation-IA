@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY_MISSION || process.env.GEMINI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -39,19 +39,19 @@ PIÈGES À INJECTER :
 2. Injecte exactement ${finalClichesCount} CLICHÉ(S) IA : Formulation  de 5 mots maximum avec enthousiasme générique, meta-commentaire sur le sujet ou autre formulations typique des LLM.
 
 DÉCOUPAGE EN SEGMENTS (CRUCIAL) :
-Tu dois découper l'intégralité du texte en un tableau de segments JSON.
+Tu dois découper l'intégralité du texte en un tableau de segments JSON. 
 RÈGLES DE DÉCOUPAGE :
-- Chaque segment doit contenir entre 2 et 5 mots.
-- Un segment ne doit JAMAIS commencer ou inclure au milieu  une ponctuation isolée (virgule, point, retour à la ligne). La ponctuation doit être intégrée à la fin du segment (ex: "dans ce cas," et non "dans ce cas" suivi de ",").
-- Les segments de type 'hallucination' ou 'cliche' doivent correspondre exactement aux mots du piège. Si le piège fait 3 mots, son segment fait 3 mots.
-- Tous les autres segments sont de type 'none'.
-- L'ordre des segments doit reconstituer fidèlement le texte original avec ses espaces et sa ponctuation.
+- Chaque segment doit contenir entre 2 et 5 mots (sauf pour les pièges qui peuvent être plus courts).
+- IMPORTANT : L'ordre des segments doit reconstituer EXACTEMENT le texte original. 
+- ESPACES : N'oublie aucun espace ! Si tu coupes entre deux mots, l'un des deux segments DOIT inclure l'espace (ex: "le chat " ou " le chat"). Si tu oublies l'espace dans les segments, les mots seront collés dans le jeu.
+- PONCTUATION : Un segment ne doit JAMAIS commencer par une ponctuation isolée. La ponctuation doit être intégrée à la fin du segment précédent (ex: "dans ce cas," et non "dans ce cas" puis ",").
+- TYPES : Utilise EXCLUSIVEMENT les types "none", "hallucination" ou "cliche" (sans accent, minuscule).
 
 FORMAT DE RÉPONSE (JSON UNIQUEMENT) :
 {
   "segments": [
-    { "text": "Le texte du segment", "type": "none" },
-    { "text": " l'erreur factuelle", "type": "hallucination", "explanation": "Pourquoi c'est faux..." },
+    { "text": "Le texte avec espaces ", "type": "none" },
+    { "text": "l'erreur factuelle", "type": "hallucination", "explanation": "Pourquoi c'est faux..." },
     { "text": " une expression cliché", "type": "cliche", "explanation": "Pourquoi c'est un cliché IA..." },
     ...
   ]
@@ -82,8 +82,25 @@ FORMAT DE RÉPONSE (JSON UNIQUEMENT) :
     const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
     if (!resultText) throw new Error("AI returned empty result");
 
-    const parsed = JSON.parse(resultText);
-    return res.status(200).json(parsed);
+    console.log("Raw Hunt response:", resultText);
+
+    try {
+      const parsed = JSON.parse(resultText.trim());
+      return res.status(200).json(parsed);
+    } catch (parseError) {
+      console.warn("Direct JSON parse failed, attempting extraction:", parseError);
+      const jsonMatch = resultText.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try {
+          const extracted = JSON.parse(jsonMatch[0]);
+          return res.status(200).json(extracted);
+        } catch (secondError) {
+          console.error("Extraction JSON parse failed:", secondError);
+          throw new Error("Format de réponse JSON invalide");
+        }
+      }
+      throw new Error("Impossible d'extraire le JSON de la réponse");
+    }
 
   } catch (error: any) {
     console.error("Hunt Generator Error:", error.message);

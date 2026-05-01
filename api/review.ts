@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY_REVIEWER || process.env.GEMINI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -12,7 +12,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: "Method not allowed" });
 
   if (!GEMINI_API_KEY) {
-    console.error("No Gemini API key found (tried GEMINI_API_KEY_REVIEWER and GEMINI_API_KEY)");
+    console.error("No Gemini API key found.");
     return res.status(500).json({ error: "GEMINI_API_KEY is missing." });
   }
 
@@ -56,8 +56,28 @@ Réponds UNIQUEMENT au format JSON strict sans texte autour : {"score": number, 
       throw new Error("Réponse vide de Gemini");
     }
 
-    const parsed = JSON.parse(text);
-    return res.status(200).json(parsed);
+    console.log("Raw Gemini response:", text);
+
+    try {
+      // Try parsing directly first
+      const parsed = JSON.parse(text.trim());
+      return res.status(200).json(parsed);
+    } catch (parseError) {
+      console.warn("Direct JSON parse failed, attempting extraction:", parseError);
+      
+      // Attempt to extract the first JSON object if there's trailing junk
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try {
+          const extracted = JSON.parse(jsonMatch[0]);
+          return res.status(200).json(extracted);
+        } catch (secondError) {
+          console.error("Extraction JSON parse failed:", secondError);
+          throw new Error("Format de réponse JSON invalide");
+        }
+      }
+      throw new Error("Impossible d'extraire le JSON de la réponse");
+    }
 
   } catch (error: any) {
     console.error("Gemini Error:", error.message);

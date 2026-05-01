@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY_ARCHITECT || process.env.GEMINI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -18,7 +18,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (!GEMINI_API_KEY) {
-    return res.status(500).json({ error: "GEMINI_API_KEY is missing (neither GEMINI_API_KEY_ARCHITECT nor GEMINI_API_KEY was found)." });
+    return res.status(500).json({ error: "GEMINI_API_KEY is missing." });
   }
 
   const { intention, styles } = req.body;
@@ -73,7 +73,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (!content) throw new Error("No response from Gemini");
 
-    return res.status(200).json(JSON.parse(content));
+    console.log("Raw Midjourney response:", content);
+
+    try {
+      const parsed = JSON.parse(content.trim());
+      return res.status(200).json(parsed);
+    } catch (parseError) {
+      console.warn("Direct JSON parse failed, attempting extraction:", parseError);
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try {
+          const extracted = JSON.parse(jsonMatch[0]);
+          return res.status(200).json(extracted);
+        } catch (secondError) {
+          console.error("Extraction JSON parse failed:", secondError);
+          throw new Error("Format de réponse JSON invalide");
+        }
+      }
+      throw new Error("Impossible d'extraire le JSON de la réponse");
+    }
 
   } catch (error: any) {
     console.error("Gemini Midjourney Error:", error);
