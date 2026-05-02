@@ -93,7 +93,7 @@ export default async function handler(req: Request) {
               stream: true,
               generation_config: {
                 temperature: 0.2,
-                max_output_tokens: 1000,
+                max_output_tokens: 2000,
               }
             });
             break;

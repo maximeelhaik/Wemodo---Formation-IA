@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wemodo IA Lab - Testeur de Latence</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0c10;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f0f2f5;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-grad: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      --accent-neon: #00f2fe;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    /* Animated blurred glow in background */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, rgba(79, 172, 254, 0.03) 50%, transparent 100%);
+      border-radius: 50%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      background: var(--accent-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .input-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .input-wrapper {
+      display: flex;
+      gap: 12px;
+      flex-direction: column;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 15px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: rgba(0, 242, 254, 0.4);
+      box-shadow: 0 0 16px rgba(0, 242, 254, 0.1);
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .btn-group {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    button {
+      background: var(--accent-grad);
+      border: none;
+      border-radius: 12px;
+      color: #0b1528;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 0 16px;
+      height: 52px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(0, 242, 254, 0.2);
+      white-space: nowrap;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.3);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button:disabled {
+      background: #252d38 !important;
+      border: 1px solid transparent !important;
+      color: var(--text-muted) !important;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    button.secondary {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    button.secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(0, 242, 254, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 242, 254, 0.1);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .metric-card {
+      background: rgba(0, 0, 0, 0.15);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .metric-card.active {
+      border-color: rgba(0, 242, 254, 0.25);
+      background: rgba(0, 242, 254, 0.02);
+    }
+
+    .metric-card .title {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .metric-card .value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .metric-card .value span {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+
+    .metric-card .status {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3a3f4d;
+      display: inline-block;
+    }
+
+    .status-dot.pulsing {
+      background: var(--accent-neon);
+      box-shadow: 0 0 8px var(--accent-neon);
+      animation: pulse 1.5s infinite;
+    }
+
+    .status-dot.success {
+      background: #3fb950;
+    }
+
+    .status-dot.error {
+      background: #f85149;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    .console-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .console-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .console-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      min-height: 120px;
+      max-height: 180px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      color: #7ee787;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .console-line {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .console-line.system {
+      color: var(--text-muted);
+    }
+
+    .console-line.accent {
+      color: var(--accent-neon);
+    }
+
+    .console-line.error {
+      color: #ff6b6b;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>⚡ Testeur de Latence (TTFB)</h1>
+      <p>Mesurez le temps qu'il faut à l'API pour envoyer le premier octet (TTFB hors caractères vides) et pour charger la réponse.</p>
+    </div>
+
+    <div class="input-section">
+      <label for="missionInput">Mission à tester</label>
+      <div class="input-wrapper">
+        <input type="text" id="missionInput" value="formateur" placeholder="Saisir la mission..." />
+        <div class="btn-group">
+          <button id="testBtn" onclick="runTest()">
+            <span id="btnText">Test complet</span>
+          </button>
+          <button id="simpleBtn" class="secondary" onclick="runAIPing()">
+            <span id="simpleText">Gemini (Hello)</span>
+          </button>
+          <button id="pingBtn" class="secondary" onclick="runPing()">
+            <span id="pingText">Ping Réseau</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="metrics-grid">
+      <!-- TTFB -->
+      <div class="metric-card" id="ttfbCard">
+        <span class="title">Premier octet réel (TTFB)</span>
+        <span class="value" id="ttfbValue">—<span>ms</span></span>
+        <span class="status">
+          <span class="status-dot" id="ttfbDot"></span>
+          <span id="ttfbStatus">En attente</span>
+        </span>
+      </div>
+
+      <!-- Total Response Time -->
+      <div class="metric-card" id="totalCard">
+        <span class="title">Temps de réponse total</span>
+        <span class="value" id="totalValue">—<span>ms</span></span>
+        <span class="status">
+          <span class="status-dot" id="totalDot"></span>
+          <span id="totalStatus">En attente</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="console-section">
+      <div class="console-header">
+        <label>Trace en temps réel</label>
+      </div>
+      <div class="console-box" id="consoleBox">
+        <div class="console-line system">> Prêt à tester. Cliquez sur l'un des boutons ci-dessus.</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Wemodo IA Lab — Analyse de Performance Edge & Serverless
+    </div>
+  </div>
+
+  <script>
+    function log(message, className = '') {
+      const box = document.getElementById('consoleBox');
+      const line = document.createElement('div');
+      line.className = 'console-line ' + className;
+      line.textContent = message;
+      box.appendChild(line);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function clearLog() {
+      const box = document.getElementById('consoleBox');
+      box.innerHTML = '';
+    }
+
+    function disableAllButtons(status) {
+      document.getElementById('testBtn').disabled = status;
+      document.getElementById('simpleBtn').disabled = status;
+      document.getElementById('pingBtn').disabled = status;
+    }
+
+    async function runTest() {
+      const missionInput = document.getElementById('missionInput');
+      const mission = missionInput.value.trim() || 'formateur';
+
+      // Reset metrics UI
+      document.getElementById('ttfbValue').innerHTML = '—<span>ms</span>';
+      document.getElementById('totalValue').innerHTML = '—<span>ms</span>';
+      document.getElementById('ttfbStatus').textContent = 'En cours...';
+      document.getElementById('totalStatus').textContent = 'En cours...';
+      document.getElementById('ttfbDot').className = 'status-dot pulsing';
+      document.getElementById('totalDot').className = 'status-dot pulsing';
+      document.getElementById('ttfbCard').classList.add('active');
+      document.getElementById('totalCard').classList.add('active');
+
+      clearLog();
+      log('> Initialisation de la requête de génération...', 'system');
+      log(`> Requête POST vers /api/generate avec mission: "${mission}"`, 'system');
+
+      disableAllButtons(true);
+
+      const startTime = performance.now();
+      let firstByteReceived = false;
+      let firstByteTime = 0;
+
+      try {
+        const response = await fetch('/api/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ mission }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP : ${response.status}`);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+          const { value, done } = await reader.read();
+          
+          if (!done && value) {
+            const chunkText = decoder.decode(value, { stream: true });
+            
+            // On ignore le caractère vide pour le TTFB
+            if (!firstByteReceived && chunkText.trim().length > 0) {
+              firstByteTime = performance.now() - startTime;
+              firstByteReceived = true;
+
+              // Update TTFB
+              document.getElementById('ttfbValue').innerHTML = `${Math.round(firstByteTime)}<span>ms</span>`;
+              document.getElementById('ttfbStatus').textContent = 'Premier contenu réel reçu !';
+              document.getElementById('ttfbDot').className = 'status-dot success';
+              log(`⚡ Premier contenu réel (TTFB) reçu en ${Math.round(firstByteTime)} ms`, 'accent');
+            }
+
+            if (chunkText.trim()) {
+              log(chunkText);
+            }
+          }
+
+          if (done) break;
+        }
+
+        // Complete successfully
+        const totalTime = performance.now() - startTime;
+        document.getElementById('totalValue').innerHTML = `${Math.round(totalTime)}<span>ms</span>`;
+        document.getElementById('totalStatus').textContent = 'Terminé';
+        document.getElementById('totalDot').className = 'status-dot success';
+        document.getElementById('ttfbCard').classList.remove('active');
+        document.getElementById('totalCard').classList.remove('active');
+        log(`🏁 Réponse complète reçue en ${Math.round(totalTime)} ms.`, 'system');
+
+      } catch (error) {
+        log(`❌ Erreur: ${error.message}`, 'error');
+        document.getElementById('ttfbStatus').textContent = 'Erreur';
+        document.getElementById('totalStatus').textContent = 'Erreur';
+        document.getElementById('ttfbDot').className = 'status-dot error';
+        document.getElementById('totalDot').className = 'status-dot error';
+        document.getElementById('ttfbCard').classList.remove('active');
+        document.getElementById('totalCard').classList.remove('active');
+      } finally {
+        disableAllButtons(false);
+      }
+    }
+
+    async function runAIPing() {
+      // Reset metrics UI
+      document.getElementById('ttfbValue').innerHTML = '—<span>ms</span>';
+      document.getElementById('totalValue').innerHTML = '—<span>ms</span>';
+      document.getElementById('ttfbStatus').textContent = 'En cours...';
+      document.getElementById('totalStatus').textContent = 'En cours...';
+      document.getElementById('ttfbDot').className = 'status-dot pulsing';
+      document.getElementById('totalDot').className = 'status-dot pulsing';
+      document.getElementById('ttfbCard').classList.add('active');
+      document.getElementById('totalCard').classList.add('active');
+
+      clearLog();
+      log('> Lancement du test de ping direct Gemini (sans system instructions)', 'system');
+      log('> POST /api/ai-ping', 'system');
+
+      disableAllButtons(true);
+
+      const startTime = performance.now();
+      let firstByteReceived = false;
+      let firstByteTime = 0;
+
+      try {
+        const response = await fetch('/api/ai-ping', {
+          method: 'POST'
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP : ${response.status}`);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+          const { value, done } = await reader.read();
+          
+          if (!done && value) {
+            const chunkText = decoder.decode(value, { stream: true });
+            
+            // On ignore le caractère vide pour le TTFB
+            if (!firstByteReceived && chunkText.trim().length > 0) {
+              firstByteTime = performance.now() - startTime;
+              firstByteReceived = true;
+
+              // Update TTFB
+              document.getElementById('ttfbValue').innerHTML = `${Math.round(firstByteTime)}<span>ms</span>`;
+              document.getElementById('ttfbStatus').textContent = 'Premier contenu réel reçu !';
+              document.getElementById('ttfbDot').className = 'status-dot success';
+              log(`⚡ Premier contenu réel (TTFB) reçu en ${Math.round(firstByteTime)} ms`, 'accent');
+            }
+
+            if (chunkText.trim()) {
+              log(chunkText);
+            }
+          }
+
+          if (done) break;
+        }
+
+        // Complete successfully
+        const totalTime = performance.now() - startTime;
+        document.getElementById('totalValue').innerHTML = `${Math.round(totalTime)}<span>ms</span>`;
+        document.getElementById('totalStatus').textContent = 'Terminé';
+        document.getElementById('totalDot').className = 'status-dot success';
+        document.getElementById('ttfbCard').classList.remove('active');
+        document.getElementById('totalCard').classList.remove('active');
+        log(`🏁 Réponse complète reçue en ${Math.round(totalTime)} ms.`, 'system');
+
+      } catch (error) {
+        log(`❌ Erreur: ${error.message}`, 'error');
+        document.getElementById('ttfbStatus').textContent = 'Erreur';
+        document.getElementById('totalStatus').textContent = 'Erreur';
+        document.getElementById('ttfbDot').className = 'status-dot error';
+        document.getElementById('totalDot').className = 'status-dot error';
+        document.getElementById('ttfbCard').classList.remove('active');
+        document.getElementById('totalCard').classList.remove('active');
+      } finally {
+        disableAllButtons(false);
+      }
+    }
+
+    async function runPing() {
+      // Reset metrics UI
+      document.getElementById('ttfbValue').innerHTML = '—<span>ms</span>';
+      document.getElementById('totalValue').innerHTML = '—<span>ms</span>';
+      document.getElementById('ttfbStatus').textContent = 'En cours...';
+      document.getElementById('totalStatus').textContent = 'En cours...';
+      document.getElementById('ttfbDot').className = 'status-dot pulsing';
+      document.getElementById('totalDot').className = 'status-dot pulsing';
+      document.getElementById('ttfbCard').classList.add('active');
+      document.getElementById('totalCard').classList.add('active');
+
+      clearLog();
+      log('> Lancement du test de ping simple (sans AI)', 'system');
+      log('> GET /api/ping', 'system');
+
+      disableAllButtons(true);
+
+      const startTime = performance.now();
+
+      try {
+        const response = await fetch('/api/ping');
+
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP : ${response.status}`);
+        }
+
+        const text = await response.text();
+        const endTime = performance.now() - startTime;
+
+        // In a single roundtrip ping, first byte and total time are identical
+        document.getElementById('ttfbValue').innerHTML = `${Math.round(endTime)}<span>ms</span>`;
+        document.getElementById('totalValue').innerHTML = `${Math.round(endTime)}<span>ms</span>`;
+        document.getElementById('ttfbStatus').textContent = 'Terminé';
+        document.getElementById('totalStatus').textContent = 'Terminé';
+        document.getElementById('ttfbDot').className = 'status-dot success';
+        document.getElementById('totalDot').className = 'status-dot success';
+        document.getElementById('ttfbCard').classList.remove('active');
+        document.getElementById('totalCard').classList.remove('active');
+
+        log(`⚡ Réponse du ping reçue : "${text}"`, 'accent');
+        log(`🏁 Terminé en ${Math.round(endTime)} ms.`, 'system');
+
+      } catch (error) {
+        log(`❌ Erreur: ${error.message}`, 'error');
+        document.getElementById('ttfbStatus').textContent = 'Erreur';
+        document.getElementById('totalStatus').textContent = 'Erreur';
+        document.getElementById('ttfbDot').className = 'status-dot error';
+        document.getElementById('totalDot').className = 'status-dot error';
+        document.getElementById('ttfbCard').classList.remove('active');
+        document.getElementById('totalCard').classList.remove('active');
+      } finally {
+        disableAllButtons(false);
+      }
+    }
+  </script>
+</body>
+</html>

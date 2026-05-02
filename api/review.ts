@@ -20,7 +20,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!prompt) return res.status(400).json({ error: "Missing prompt field" });
 
   try {
-    // generateContent (pas streamGenerateContent) = compatible avec response_mime_type JSON
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
     const geminiRes = await fetch(url, {
@@ -30,14 +29,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         contents: [{
           parts: [{
             text: `Tu es un expert en ingénierie de prompt.
-Analyse ce prompt : "${prompt}"
+Analyse ce prompt : ${JSON.stringify(prompt)}
 Donne une note sur 10 (pertinence, clarté, contexte) et un conseil de correction ultra-actionnable et pro.
-Réponds UNIQUEMENT au format JSON strict sans texte autour : {"score": number, "feedback": "string"}`
+Ne donne pas la solution ou de prompt corrigé, juste un conseil sur ce qui est manquant ou pas clair.
+Réponds UNIQUEMENT au format JSON strict avec la structure : {"score": number, "feedback": "string"}`
           }]
         }],
         generationConfig: {
           response_mime_type: "application/json",
-          temperature: 0.4,
+          response_schema: {
+            type: "OBJECT",
+            properties: {
+              score: { type: "NUMBER", description: "Le score sur 10" },
+              feedback: { type: "STRING", description: "Le conseil d'optimisation" }
+            },
+            required: ["score", "feedback"]
+          },
+          temperature: 0.3,
           maxOutputTokens: 500
         }
       })
@@ -59,25 +67,45 @@ Réponds UNIQUEMENT au format JSON strict sans texte autour : {"score": number, 
 
     console.log("Raw Gemini response:", text);
 
+    // Nettoyage robuste du texte retourné par Gemini
+    let cleanedText = text.trim();
+    if (cleanedText.startsWith("```json")) {
+      cleanedText = cleanedText.replace(/^```json\s*/, "").replace(/```$/, "");
+    } else if (cleanedText.startsWith("```")) {
+      cleanedText = cleanedText.replace(/^```\s*/, "").replace(/```$/, "");
+    }
+    cleanedText = cleanedText.trim();
+
     try {
-      // Try parsing directly first
-      const parsed = JSON.parse(text.trim());
+      // Tentative de parsing direct du texte nettoyé
+      const parsed = JSON.parse(cleanedText);
+      
+      // Validation des clés
+      if (typeof parsed.score === 'undefined' || typeof parsed.feedback === 'undefined') {
+        throw new Error("Missing required keys in response");
+      }
       return res.status(200).json(parsed);
     } catch (parseError) {
-      console.warn("Direct JSON parse failed, attempting extraction:", parseError);
-      
-      // Attempt to extract the first JSON object if there's trailing junk
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      console.warn("Direct JSON parse failed, attempting regex extraction:", parseError);
+
+      // Extraction via regex
+      const jsonMatch = cleanedText.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         try {
           const extracted = JSON.parse(jsonMatch[0]);
-          return res.status(200).json(extracted);
+          if (typeof extracted.score !== 'undefined' && typeof extracted.feedback !== 'undefined') {
+            return res.status(200).json(extracted);
+          }
         } catch (secondError) {
           console.error("Extraction JSON parse failed:", secondError);
-          throw new Error("Format de réponse JSON invalide");
         }
       }
-      throw new Error("Impossible d'extraire le JSON de la réponse");
+
+      // Si tout a échoué, on crée un fallback propre
+      return res.status(200).json({
+        score: 5,
+        feedback: "Le prompt a pu être analysé mais le format de retour de l'IA était incorrect. Pensez à bien structurer les instructions."
+      });
     }
 
   } catch (error: any) {
